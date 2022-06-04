@@ -6,6 +6,9 @@ import logo from './logo.svg';
 import { Contents } from "./components/pages/contents";
 import { TextInput } from "./components/TextInput";
 import { Todo } from "./components/Todo";
+import { ImgPreview } from "./components/organisms/ImgPreview";
+
+
 
 import { TodoType } from "./types/todo";
 import './App.css';
@@ -49,6 +52,9 @@ function App() {
 
         フォームテスト
         <TextInput />
+
+        画像プレビュー
+        <ImgPreview />
 
 
        
