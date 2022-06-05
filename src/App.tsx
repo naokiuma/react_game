@@ -8,6 +8,10 @@ import { TextInput } from "./components/TextInput";
 import { Todo } from "./components/Todo";
 import { ImgPreview } from "./components/organisms/ImgPreview";
 
+//firevase
+import { collection, getDocs,doc } from "firebase/firestore";
+import { db } from "./firebase" //これがfirestore
+
 
 
 import { TodoType } from "./types/todo";
@@ -22,13 +26,37 @@ function App() {
 
 
   const getAxiosData = () => {
-    axios
-      .get<Array<TodoType>>("https://jsonplaceholder.typicode.com/todos")
-      .then((response) => {
-        setTodos(response.data)
-        console.log(response);
+    //デフォ
+    //https://firebase.google.com/docs/firestore/quickstart#web-v9
+    // axios
+    //   .get<Array<TodoType>>("https://jsonplaceholder.typicode.com/todos")
+    //   .then((response) => {
+    //     setTodos(response.data)
+    //     console.log(response);
 
+    //   })
+
+    console.log("動作確認");
+
+    const docRef = collection(db, "game");
+    getDocs(docRef).then(snapshot => {
+      let results = []
+      snapshot.docs.forEach(doc => {
+        results.push({ id: doc.id, ...doc.data() })
       })
+      console.log(results);
+    })
+
+
+    // const querySnapshot = async function () {
+    //   await getDocs(collection(db, "game"));
+    // }();
+
+    // querySnapshot.forEach((doc) => {
+    //   console.log(`${doc.id} => ${doc.data()}`);
+    // });
+
+    
   }
   return (
     <div className="App">
