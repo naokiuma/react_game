@@ -8,6 +8,9 @@ import { TextInput } from "./components/TextInput";
 import { Todo } from "./components/Todo";
 import { ImgPreview } from "./components/organisms/ImgPreview";
 
+import { GetFireData } from "./components/firebase/getFireData";
+
+
 //firevase
 import { collection, getDocs,doc } from "firebase/firestore";
 import { db } from "./firebase" //これがfirestore
@@ -36,16 +39,21 @@ function App() {
 
     //   })
 
-    console.log("動作確認");
+  console.log("動作確認");
 
-    const docRef = collection(db, "game");
-    getDocs(docRef).then(snapshot => {
-      let results = []
-      snapshot.docs.forEach(doc => {
-        results.push({ id: doc.id, ...doc.data() })
-      })
-      console.log(results);
-    })
+  // const querySnapshot = await getDocs(collection(db, "game"));
+  // querySnapshot.forEach((doc) => {
+  //   console.log(`${doc.id} => ${doc.data()}`);
+  // });
+
+    // const docRef = collection(db, "game");
+    // getDocs(docRef).then(snapshot => {
+    //   let results = []
+    //   snapshot.docs.forEach(doc => {
+    //     results.push({ id: doc.id, ...doc.data() })
+    //   })
+    //   console.log(results);
+    // })
 
 
     // const querySnapshot = async function () {
@@ -83,6 +91,9 @@ function App() {
 
         画像プレビュー
         <ImgPreview />
+
+
+        <GetFireData />
 
 
        
