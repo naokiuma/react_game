@@ -1,15 +1,9 @@
-// import firebase from 'firebase/app';
-// import 'firebase/auth';
-// import 'firebase/firestore';
-// import 'firebase/storage';
 
 import { initializeApp } from 'firebase/app';
-// import { getDatabase } from "firebase/database";
-
 import { getFirestore } from "firebase/firestore";
-
 const firebase = require("./firebase");
 require("firebase/firestore");
+
 
 
 const firebaseConfig = {
@@ -22,9 +16,7 @@ const firebaseConfig = {
     appId: process.env.REACT_APP_FIREBASE_APP_ID
 };
 
-// Initialize Firebase
+//デフォルト
 const app = initializeApp(firebaseConfig);
-
-// export const db = getDatabase(app);
-
 export const db = getFirestore(app);
+

@@ -16,15 +16,13 @@ export const GetFireData = () => {
     useEffect (() => {
         //const docRef = collection(db, "game");//collection gameの中身を取得
         //const docRef = query(collection(db, "game"),orderBy('id','desc'));//gameの中身を取得。idのこうじゅん。
+        const docRef = query(collection(db, "game"));//collection
 
-        const docRef = query(collection(db, "game"),where("id","=",1));//collection
 
         getDocs(docRef).then(snapshot => {//getdocsはquerysnapshotをかえす
             let results = []
             console.log("この時点");
             console.log(typeof(snapshot))//オブジェクト
-
-
             snapshot.docs.map(doc => {
                 results.push({ id: doc.id, ...doc.data() })
                 console.log(results)
