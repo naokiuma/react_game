@@ -19,5 +19,22 @@ export const Testfetch = (): JSX.Element => {
       console.log(todos);
     }
 
-    return <button onClick={onClickFetchData}>テストフェッチ</button>
+    //todo。いずれこのliもコンポーネントにする。
+    return (
+      <>
+        <button onClick={onClickFetchData}>テストフェッチ</button>
+        <ul>
+
+          {todos.map((todo) => (
+            <li>
+              title：{todo.title}
+              userId：{todo.userId}
+              completed：{todo.completed}
+            </li>
+          ))}
+        
+        </ul>
+      </>
+      
+    )
 }

@@ -18,6 +18,9 @@ import { About } from "./components/pages/About";
 
 
 import './App.css';
+import './css/global/reset.css';
+import './css/global/main.css';
+
 
 
 
@@ -30,14 +33,21 @@ function App() {
     <BrowserRouter>
         <header>
           <ul>
-            <Link to="/">home</Link>
-            <Link to="/about">about</Link>
+            <li>
+              <Link to="/">home</Link>  
+            </li>
+            <li>
+              <Link to="/about">about</Link>
+            </li>
           </ul>
         </header>
-        <Routes>
-          <Route path={`/`} element={<Home />} />
-          <Route path={`/about/`} element={<About />} />
-        </Routes>
+        <div className="contens_area">
+
+          <Routes>
+            <Route path={`/`} element={<Home />} />
+            <Route path={`/about/`} element={<About />} />
+          </Routes>
+        </div>
     </BrowserRouter>
   );
 }

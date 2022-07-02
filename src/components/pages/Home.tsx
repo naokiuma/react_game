@@ -5,7 +5,7 @@ import { Testfetch } from "../../fetch/Testfetch";
 
 export const Home:FC = memo(() => {
     return (
-        <section className="home">
+        <section className="home main_contents">
             <p>
                 ホームです。
             </p>
