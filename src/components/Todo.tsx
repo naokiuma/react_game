@@ -1,5 +1,5 @@
 import React from 'react';
-import {TodoType} from "../types/todo";
+import {TodoType} from "../types/todoType";
 
 export const Todo = (
     props: Omit<TodoType, "id">//omitにすると指定のものだけを省く。

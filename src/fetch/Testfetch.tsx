@@ -1,4 +1,4 @@
-import { TodoType } from "../types/todo";
+import { TodoType } from "../types/todoType";
 import {useState} from "react";
 import axios from "axios";
 
