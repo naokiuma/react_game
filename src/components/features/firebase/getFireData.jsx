@@ -3,7 +3,7 @@ import {useState,useEffect} from "react";
 
 //firevase
 import { collection, getDocs,query, orderBy,limit,where } from "firebase/firestore";
-import { db } from "../../firebase" //これがfirestore
+import { db } from "../../../firebase" //これがfirestore
 
 
 

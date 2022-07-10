@@ -1,23 +1,27 @@
 import { memo,FC } from "react";
-//detchデータ
-import { Testfetch } from "../../fetch/Testfetch";
-import { Topic } from "../global/Topic";
+import { BrowserRouter,Route,Link,Routes } from "react-router-dom";//switch は Routesに変わった
 
-// export const InlineStyle = () => {
-//     const Container ={
-//       border:"1px solid black",
-//       borderRadius:"20px"
-  
-//     }
-//     return (
-//       <div style={Container}>
-//         <p>-inline styles -</p>
-//         <button>ボタン</button>
-//       </div>
-//     );
-//   };
+import { Topic } from "../parts/Topic";
 
-export const Home:FC = memo(() => {
+
+const TopcsData = [
+        {
+          id: 1,
+          title: "delectus aut autem",
+          status: 'プレイ中'
+        },
+        {
+          id: 2,
+          title: "quis ut nam facilis et officia qui",
+          status: '完了'
+        },
+    ]
+
+
+
+export const Home:FC = () => {
+
+    console.log(TopcsData);
 
     const Topics ={
         display:"flex",
@@ -28,15 +32,18 @@ export const Home:FC = memo(() => {
                 ホームです。
             </p>
             <div style={Topics}>
-                <Topic title={'やあ'} id={1} status={'話し中'}/>
-                <Topic title={'ダイイングライトをプレイ中'} id={1} status={'話し中'}/>
-                <Topic title={'ゼルダ面白かったー！'} id={1} status={'完了'}/>
 
-
-
+                {
+                    TopcsData.map((topic:any)=>(
+                        <a href={"/topics/" + topic.id}>
+                        {/* https://teratail.com/questions/103162 */}
+                            <Topic title={topic.title} id={topic.id} status={topic.status}/>
+                        </a>
+                    ))
+                }
+                   
             </div>
-            <Testfetch/>
         </section>
     )
 
-})
+}

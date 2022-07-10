@@ -22,6 +22,8 @@ import { About } from "./components/pages/About";
 import './App.css';
 import './css/global/reset.css';
 import './css/global/main.css';
+import { TopicDetail } from './components/pages/TopicDetail';
+import { Topic } from './components/parts/Topic';
 
 
 
@@ -48,6 +50,8 @@ function App() {
           <Routes>
             <Route path={`/`} element={<Home />} />
             <Route path={`/about/`} element={<About />} />
+            <Route path={`/topics/:id`} element={<TopicDetail />} />
+
           </Routes>
         </div>
     </BrowserRouter>

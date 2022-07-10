@@ -3,7 +3,7 @@ import {useState,useEffect} from "react";
 
 //firevase
 import { collection, addDoc,getDocs,query, orderBy,limit,where,doc } from "firebase/firestore";
-import { db } from "../../firebase" //これがfirestore
+import { db } from "../../../firebase" //これがfirestore
 require("firebase/firestore");
 
 //https://mo-gu-mo-gu.com/async-await-in-useeffect/

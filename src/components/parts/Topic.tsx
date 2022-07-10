@@ -1,21 +1,25 @@
 
-import {TopicType} from "../../types/topicType";
+// import {TopicType} from "../../types/__topicType";
+type TopicType = {
+    title: string;
+    id: number;
+    userId?:number
+    participants?:number
+    status:string
+};
+
 
 export const Topic = (props:TopicType) => {
     const { title,id,status } = props;
 
-    const topic_card ={
-        width:"30%"
-    }
-
     return (
-        <div style={topic_card}>
+        <div>
             <span>
                 タイトル：{title}
             </span>
             <br/>
             <span>
-                ステータス；{status}
+                ステータス:{status}
             </span>
         </div>
         

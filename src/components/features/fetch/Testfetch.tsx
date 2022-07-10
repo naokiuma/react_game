@@ -1,12 +1,21 @@
-import { TodoType } from "../types/todoType";
+//import { TodoType } from "../../../types/todoType";
 import {useState} from "react";
 import axios from "axios";
+
+type TodoType = {
+  userId: number;
+  id: number;
+  title: string;
+  completed: boolean;
+};
 
 
 
 export const Testfetch = (): JSX.Element => {
 
+    // const [todos,setTodos] = useState<Array<TodoType>>([]);
     const [todos,setTodos] = useState<Array<TodoType>>([]);
+    
 
     const onClickFetchData = () => {
       console.log("動作確認");
