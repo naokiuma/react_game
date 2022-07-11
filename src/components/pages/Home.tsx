@@ -36,7 +36,7 @@ export const Home:FC = () => {
                 {
                     TopcsData.map((topic:any)=>(
 
-                        <Link to={"/topics/" + topic.id} state={{test:'test'}}>
+                        <Link to={"/topics/" + topic.id} state={topic}>
                             <Topic title={topic.title} id={topic.id} status={topic.status}/>
                         </Link>  
                     ))
