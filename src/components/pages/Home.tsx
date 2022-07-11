@@ -35,10 +35,10 @@ export const Home:FC = () => {
 
                 {
                     TopcsData.map((topic:any)=>(
-                        <a href={"/topics/" + topic.id}>
-                        {/* https://teratail.com/questions/103162 */}
+
+                        <Link to={"/topics/" + topic.id} state={{test:'test'}}>
                             <Topic title={topic.title} id={topic.id} status={topic.status}/>
-                        </a>
+                        </Link>  
                     ))
                 }
                    
