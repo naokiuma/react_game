@@ -21,6 +21,7 @@ const TopcsData = [
 
 export const Home:FC = () => {
 
+    console.log("はい");
     console.log(TopcsData);
 
     const Topics ={
