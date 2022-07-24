@@ -21,12 +21,11 @@ const TopcsData = [
 
 export const Home:FC = () => {
 
-    console.log("はい");
-    console.log(TopcsData);
 
     const Topics ={
         display:"flex",
     }
+    
     return (
         <section className="home main_contents">
             <p>

@@ -7,11 +7,6 @@ import { Home } from "./components/pages/Home";
 import { About } from "./components/pages/About";
 
 
-
-
-
-
-
 // import { Contents } from "./components/pages/contents";
 // import { TextInput } from "./components/TextInput";
 // import { ImgPreview } from "./components/organisms/ImgPreview";
@@ -22,16 +17,13 @@ import { About } from "./components/pages/About";
 import './App.css';
 import './css/global/reset.css';
 import './css/global/main.css';
-import { TopicDetail } from './components/pages/TopicDetail';
+import { TopicPage } from './components/pages/TopicPage';
 import { Topic } from './components/parts/Topic';
 
 
 
 
 function App() {
-
- 
-
 
   return (
     <BrowserRouter>
@@ -45,15 +37,15 @@ function App() {
             </li>
           </ul>
         </header>
-        <div className="contens_area">
+        <main>
 
           <Routes>
             <Route path={`/`} element={<Home />} />
             <Route path={`/about/`} element={<About />} />
-            <Route path={`/topics/:id`} element={<TopicDetail />} />
+            <Route path={`/topics/:id`} element={<TopicPage />} />
 
           </Routes>
-        </div>
+        </main>
     </BrowserRouter>
   );
 }
