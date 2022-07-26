@@ -1,6 +1,8 @@
 .main_contents{
-    width: 1080px;
+    max-width: 1080px;
     margin: auto;
+    padding: 0 40px;
+    width: 100%;
 }
 
 .billboard{
@@ -48,5 +50,22 @@ header{
         li{
             margin-left: 10px;
         }
+    }
+}
+
+.comments_wrap{
+    .text{
+        padding: 15px 20px;
+        background-color: #afe8ff;
+        margin-top: 20px;
+        &:first-child{
+            margin-top: 0;
+        }
+    }
+    .left{
+        text-align: left;
+    }
+    .right{
+        text-align: right;
     }
 }

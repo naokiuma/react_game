@@ -7,11 +7,13 @@ import { Topic } from "../parts/Topic";
 const TopcsData = [
         {
           id: 1,
+          parent_user_id:1,
           title: "delectus aut autem",
           status: 'プレイ中'
         },
         {
           id: 2,
+          parent_user_id:2,
           title: "quis ut nam facilis et officia qui",
           status: '完了'
         },
@@ -34,10 +36,15 @@ export const Home:FC = () => {
             <div style={Topics}>
 
                 {
-                    TopcsData.map((topic:any)=>(
+                    TopcsData.map((topic)=>(
 
                         <Link to={"/topics/" + topic.id} state={topic}>
-                            <Topic title={topic.title} id={topic.id} status={topic.status}/>
+                            <Topic
+                                title={topic.title}
+                                id={topic.id}
+                                parent_user_id={topic.parent_user_id}
+                                status={topic.status}
+                            />
                         </Link>  
                     ))
                 }

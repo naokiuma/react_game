@@ -3,7 +3,7 @@
 type TopicType = {
     title: string;
     id: number;
-    userId?:number
+    parent_user_id?:number
     participants?:number
     status:string
 };
