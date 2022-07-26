@@ -5,6 +5,12 @@ import { BrowserRouter,Route,Link,Routes } from "react-router-dom";//switch は 
 //コンポーネント
 import { Home } from "./components/pages/Home";
 import { About } from "./components/pages/About";
+import { TopicPage } from './components/pages/TopicPage';
+import { Topic } from './components/parts/Topic';
+
+
+//ルーター
+import { Router } from "./router/Route";
 
 
 // import { Contents } from "./components/pages/contents";
@@ -17,8 +23,6 @@ import { About } from "./components/pages/About";
 import './App.css';
 import './css/global/reset.css';
 import './css/global/main.css';
-import { TopicPage } from './components/pages/TopicPage';
-import { Topic } from './components/parts/Topic';
 
 
 
@@ -38,13 +42,7 @@ function App() {
           </ul>
         </header>
         <main>
-
-          <Routes>
-            <Route path={`/`} element={<Home />} />
-            <Route path={`/about/`} element={<About />} />
-            <Route path={`/topics/:id`} element={<TopicPage />} />
-
-          </Routes>
+          <Router />
         </main>
     </BrowserRouter>
   );
