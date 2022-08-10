@@ -10,7 +10,7 @@ export type Comments = {
 
 export const TopicPage:FC = memo(() => {
     const location = useLocation();
-    console.log(location.state)
+    console.log(location)
     const locationVal = location.state;
     const tags = ['ホラー','アクション']
     const commets:Comments[] = [
@@ -33,7 +33,7 @@ export const TopicPage:FC = memo(() => {
         <section className="topic">
             <div className="billboard">
                 <div className="billboard_inner">
-                    <h1 className="topic_title">{locationVal['title']}</h1>
+                    <h1 className="topic_title">{location.state['title']}</h1>
                 </div>
             </div>
 
@@ -43,7 +43,7 @@ export const TopicPage:FC = memo(() => {
                     ダイイングライト
                 </h2>
                 
-                parent_user_id：{locationVal['parent_user_id']}
+                parent_user_id：{location.state['parent_user_id']}
                     <div className="tags">
                         {
                             tags.map((tag:string)=>(
@@ -61,7 +61,7 @@ export const TopicPage:FC = memo(() => {
                         {
                             commets.map((comment) => (
                                 <div className={'text ' + 
-                                    (comment.user_id == locationVal['parent_user_id'] ? 'left' : 'right') }
+                                    (comment.user_id === locationVal['parent_user_id'] ? 'left' : 'right') }
                                 >
                                     {comment.comment}
                                  </div>

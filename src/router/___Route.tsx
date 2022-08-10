@@ -8,10 +8,12 @@ import { TopicPage } from '../components/pages/TopicPage';
 export const Router = () => {
     return (
 
-        <Routes>
-            <Route path={`/`} element={<Home />} />
-            <Route path={`/about/`} element={<About />} />
-            <Route path={`/topics/:id`} element={<TopicPage />} />
-        </Routes>
+        <>
+            <Routes>
+                <Route path={`/`} element={<Home />} />
+                <Route path={`/about/`} element={<About />} />
+                <Route path={`/topics/:id`} element={<TopicPage />} />
+            </Routes>
+        </>
     )
 }
