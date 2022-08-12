@@ -1,11 +1,13 @@
 import { memo,FC } from "react";
 import { useLocation } from "react-router-dom";
+import { Comment } from "../atom/Comment";
 
 
-export type Comments = {
+export type CommentsType = {
+    topic_id:number
     comment_id:number;
     user_id:number;
-    comment:string;
+    text:string;
 }
 
 export const TopicPage:FC = memo(() => {
@@ -13,21 +15,21 @@ export const TopicPage:FC = memo(() => {
     console.log(location)
     const locationVal = location.state;
     const tags = ['ホラー','アクション']
-    const commets:Comments[] = [
+
+    const commets:CommentsType[] = [
         {
             comment_id:1,
+            topic_id:1,
             user_id:1,
-            comment:'めっちゃおもろいな',
+            text:'めっちゃおもろいな',
         },
         {
             comment_id:2,
+            topic_id:1,
             user_id:2,
-            comment:'でもかなり怖くない？',
+            text:'でもかなり怖くない？',
         }
     ]
-        
-
-    
 
     return (
         <section className="topic">
@@ -38,16 +40,14 @@ export const TopicPage:FC = memo(() => {
             </div>
 
             <div className="main_contents">
-
                 <h2 className="game_title">
                     ダイイングライト
                 </h2>
-                
                 parent_user_id：{location.state['parent_user_id']}
                     <div className="tags">
                         {
                             tags.map((tag:string)=>(
-                                <span className="tag">
+                                <span className="tag" key={tag}>
                                     {tag}
                                 </span>
                             ))
@@ -60,11 +60,11 @@ export const TopicPage:FC = memo(() => {
                     <div className="comments_wrap">
                         {
                             commets.map((comment) => (
-                                <div className={'text ' + 
-                                    (comment.user_id === locationVal['parent_user_id'] ? 'left' : 'right') }
-                                >
-                                    {comment.comment}
-                                 </div>
+                                <div className={'text ' + (comment.user_id === locationVal['parent_user_id'] ? 'left' : 'right') } key={comment.comment_id}>
+                                    {comment.text}
+                                </div>
+                                // <Comment info={{ class: 'John', comment: 'male' }}/>
+                                
                             ))
                         }
 

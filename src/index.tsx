@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter,Route,Routes } from "react-router-dom";//switch は Routesに変わった
+import { BrowserRouter,HashRouter} from "react-router-dom";//switch は Routesに変わった
 
 import './index.css';
 import App from './App';
+//コンポーネント
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(
@@ -11,9 +12,9 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <HashRouter>
       <App />
-    </BrowserRouter>
+    </HashRouter>
   </React.StrictMode>
 );
 

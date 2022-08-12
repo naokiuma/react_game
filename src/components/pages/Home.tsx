@@ -22,12 +22,9 @@ const TopcsData = [
 
 
 export const Home:FC = () => {
-
-
     const Topics ={
         display:"flex",
     }
-    
     return (
         <section className="home main_contents">
             <p>
@@ -38,8 +35,9 @@ export const Home:FC = () => {
                 {
                     TopcsData.map((topic)=>(
 
-                        <Link to={"/topics/" + topic.id} state={topic}>
+                        <Link to={"/topics/" + topic.id} state={topic} key={topic.id}>
                             <Topic
+                                key={topic.id}
                                 title={topic.title}
                                 id={topic.id}
                                 parent_user_id={topic.parent_user_id}
