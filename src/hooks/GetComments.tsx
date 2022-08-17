@@ -6,20 +6,23 @@ import { CommentsType } from "../types/commentsType"
 export const GetComments = () => {
 
     const [comments,setComments] = useState<Array<CommentsType>>([]);
+
+
     
 
-    // const fetchComments = () => {
+    const fetchComments = () => {
       axios
       .get("http://localhost:8888/api/comments")
       .then((res) => {
+        console.log(res.data)
         setComments(res.data);
       })
-      console.log('axios内のcomments')
-      console.log(comments);
-    // }
+      //console.log('axios内のcomments')
+      //console.log(comments);
+     }
 
 
-    return {comments}
+    return {fetchComments,comments}
 
     
 }
