@@ -21,7 +21,8 @@ export const TopicPage:FC = memo(() => {
 
 
     const location = useLocation();
-    // console.log(location)
+    console.log('location')
+    console.log(location)
     const locationVal = location.state;
     const tags = ['ホラー','アクション']
 

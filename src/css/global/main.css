@@ -41,6 +41,9 @@ header {
   height: 70px;
   background-color: #333;
   color: #fff;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
 }
 
 header a {
@@ -55,6 +58,11 @@ header ul {
 
 header ul li {
   margin-left: 10px;
+}
+
+header .login_block {
+  display: flex;
+  align-items: center;
 }
 
 .comments_wrap .text {
