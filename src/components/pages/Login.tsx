@@ -1,5 +1,7 @@
 import axios from 'axios'
-import { ChangeEvent, useState,useEffect } from 'react'
+import { ChangeEvent, useState,useContext} from 'react'
+import {LoggedInContext,ExampleContext} from "../global/LoggedInProvider";
+
 import { memo,FC } from "react";
 
 type LoginParams = {
@@ -8,13 +10,20 @@ type LoginParams = {
 }
 
  
-export const Login:FC = memo(() => {
-    // useEffect(() => {
-    //     handleClick();
-    // },[])
+// export const Login:FC = memo(() => {
+export const Login = () => {
+
+    const IsLogged = useContext(LoggedInContext);
+    console.log(IsLogged);
+
 
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
+
+    const { count, setCount } = useContext(ExampleContext);//サンプル
+    const { username,setUserName } = useContext(LoggedInContext);
+
+
 
     const changeEmail = (e:ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value)
@@ -22,6 +31,8 @@ export const Login:FC = memo(() => {
     const changePassword = (e:ChangeEvent<HTMLInputElement>) => {
         setPassword(e.target.value)
     }
+
+
 
     const handleClick = () => {
         console.log("取得");
@@ -37,28 +48,36 @@ export const Login:FC = memo(() => {
                     {withCredentials:true}
                 )
                 .then((response) => {
-                    console.log(response)
+                    console.log(response.data.name);
+                    console.log(response.data.email);
+
+                    setUserName(response.data.name);
+
                 })
             })
         }
 
     return(
-    <section className="login">
-        <h1>
-            ログインページですです。
-        </h1>
-        <div>
-            メールアドレス
-            <input onChange={changeEmail}/>
-        </div>
-        <div>
-            パスワード
-            <input onChange={changePassword}/>
-        </div>
-        <div>
-            <button onClick={handleClick}>ログイン</button>
-        </div>
-    </section>
-
+        <section className="login">
+            <button onClick={() => setCount(count + 1)}>+</button>
+            <h1>
+                ログインページです。
+            </h1>
+            これが
+            {count}
+            です。
+            {username}
+            <div>
+                メールアドレス
+                <input onChange={changeEmail}/>
+            </div>
+            <div>
+                パスワード
+                <input onChange={changePassword}/>
+            </div>
+            <div>
+                <button onClick={handleClick}>ログイン</button>
+            </div>
+        </section>
     )
-})
+}

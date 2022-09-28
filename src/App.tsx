@@ -3,7 +3,7 @@ import { BrowserRouter,Route,Link,Routes } from "react-router-dom";//switch は 
 import { Home } from "./components/pages/Home";
 
 //プロバイダー。これで包むことで、この中でグローバルstateを支える
-import { LoggedInProvider,LoggedInContext,UserNameContext } from "./components/global/LoggedInProvider";
+import { LoggedInProvider,ExampleProvider,LoggedInContext,ExampleContext } from "./components/global/LoggedInProvider";
 
 import { About } from "./components/pages/About";
 import { TopicPage } from './components/pages/TopicPage';
@@ -14,22 +14,22 @@ import { Nomatch } from './components/pages/Nomatch';
 //ルーター
 // import { Router } from "./router/Route";
 
-
 import './App.css';
 import './css/global/reset.css';
 import './css/global/main.css';
 
 function App() {
 
-  const IsLogged = useContext(LoggedInContext);
-  console.log(IsLogged);
-  const userName = useContext(UserNameContext);
-  console.log(userName);
+const { count, setCount } = useContext(ExampleContext);//サンプル
+
+const { username } = useContext(LoggedInContext);
+
 
   
 
   return (
     <>
+    <ExampleProvider>
       <LoggedInProvider>
         <header>
           <ul>
@@ -40,13 +40,22 @@ function App() {
               <Link to="/about">About</Link>
             </li>
           </ul>
+          <div>
+          {/* {username} */}
+          </div>
           <div className="login_block">
             <Link to="/login">Login</Link>
           </div>
         </header>
-      </LoggedInProvider>
+        あ？れ？
+        {username}
+        {count}
+        
+      
+      
 
         <main>
+        ここは？{username}
         <Routes>
           <Route index element={<Home />} />
           <Route path="/about/" element={<About />} />
@@ -56,6 +65,8 @@ function App() {
           <Route path="*" element={<Nomatch />} />
         </Routes>
         </main>
+        </LoggedInProvider>
+    </ExampleProvider>
 
     </>
   );
