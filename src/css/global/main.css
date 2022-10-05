@@ -65,6 +65,10 @@ header .login_block {
   align-items: center;
 }
 
+header .login_block div {
+  margin-left: 20px;
+}
+
 .comments_wrap .text {
   padding: 15px 20px;
   background-color: #afe8ff;

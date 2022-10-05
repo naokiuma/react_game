@@ -1,7 +1,6 @@
 import axios from 'axios'
 import { ChangeEvent, useState,useContext} from 'react'
-import {LoggedInContext,ExampleContext} from "../global/LoggedInProvider";
-
+import {LoggedInContext} from "../global/LoggedInProvider";
 import { memo,FC } from "react";
 
 type LoginParams = {
@@ -9,19 +8,20 @@ type LoginParams = {
     password:string;
 }
 
+
  
 // export const Login:FC = memo(() => {
 export const Login = () => {
 
+    //ログイン状態
     const IsLogged = useContext(LoggedInContext);
     console.log(IsLogged);
-
 
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
 
-    const { count, setCount } = useContext(ExampleContext);//サンプル
     const { username,setUserName } = useContext(LoggedInContext);
+    const { useremail,setUseremail } = useContext(LoggedInContext);
 
 
 
@@ -48,10 +48,20 @@ export const Login = () => {
                     {withCredentials:true}
                 )
                 .then((response) => {
-                    console.log(response.data.name);
-                    console.log(response.data.email);
-
                     setUserName(response.data.name);
+                    setUseremail(response.data.email);
+
+                    // ローカルストレージにキーを指定して、それに紐づく値を保存
+                    localStorage.setItem('userName', response.data.name);
+                    localStorage.setItem('userEmail', response.data.email);
+
+
+                    // ローカルストレージからキーを指定して取得
+                    var cat = localStorage.getItem("myCat");
+
+                    // ローカルストレージから対象のキーに紐づく値を削除
+                    localStorage.removeItem("myCat");
+
 
                 })
             })
@@ -59,13 +69,10 @@ export const Login = () => {
 
     return(
         <section className="login">
-            <button onClick={() => setCount(count + 1)}>+</button>
+            {/* <button onClick={() => setCount(count + 1)}>+</button> */}
             <h1>
                 ログインページです。
             </h1>
-            これが
-            {count}
-            です。
             {username}
             <div>
                 メールアドレス

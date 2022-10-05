@@ -57,7 +57,11 @@ header{
     .login_block{
         display: flex;
         align-items: center;
+        div{
+            margin-left: 20px;
+        }
     }
+
 }
 
 .comments_wrap{
