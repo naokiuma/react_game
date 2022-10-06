@@ -10,15 +10,16 @@ export const Header = () => {
 
 
     const logout = () => {
+        const test = 'logout_test';
         axios//csrf保護の初期化
             .get('http://localhost:8888/sanctum/csrf-cookie', { withCredentials: true })
             .then((response) => {
-                //ログイン処理
+                //ログアウト処理
                 axios
                 .post(
                     'http://localhost:8888/api/logout',
-                    {}
-                    // {withCredentials:true}
+                    test,
+                    {withCredentials:true}//これが漏れていた！
                 )
                 .then((response) => {
                   console.log(response);

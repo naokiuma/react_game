@@ -32,6 +32,14 @@ export const Login = () => {
         setPassword(e.target.value)
     }
 
+    // SPA認証済みではないとアクセスできないAPI
+    const handleUserClick = () => {
+        axios.get('http://localhost:8888/api/user', { withCredentials: true }).then((response) => {
+        console.log(response.data)
+        })
+    }
+
+
 
 
     const handleClick = () => {
@@ -61,11 +69,10 @@ export const Login = () => {
 
                     // ローカルストレージから対象のキーに紐づく値を削除
                     localStorage.removeItem("myCat");
-
-
                 })
             })
         }
+
 
     return(
         <section className="login">
@@ -74,6 +81,8 @@ export const Login = () => {
                 ログインページです。
             </h1>
             {username}
+
+            <button onClick={handleUserClick}>ボタン</button>
             <div>
                 メールアドレス
                 <input onChange={changeEmail}/>
