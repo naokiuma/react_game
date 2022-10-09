@@ -8,18 +8,25 @@ import {Link } from "react-router-dom";
 
 export const Header = () => {
 
+    const {  } = useContext(LoggedInContext);
+    const { userAuth,setUserAuth,username,setUserName } = useContext(LoggedInContext);
 
-    const logout = () => {
-        const test = 'logout_test';
+    console.log(username)
+
+    console.log(userAuth)
+
+
+    const test = () => {
+        const test = 'Test_test';
         axios//csrf保護の初期化
             .get('http://localhost:8888/sanctum/csrf-cookie', { withCredentials: true })
             .then((response) => {
                 //ログアウト処理
                 axios
                 .post(
-                    'http://localhost:8888/api/logout',
+                    'http://localhost:8888/api/test',
                     test,
-                    {withCredentials:true}//これが漏れていた！
+                    {withCredentials:true}
                 )
                 .then((response) => {
                   console.log(response);
@@ -27,7 +34,26 @@ export const Header = () => {
          })
     }
 
-    const { username,useremail } = useContext(LoggedInContext);
+
+    const logout = () => {
+        axios//csrf保護の初期化
+            .get('http://localhost:8888/sanctum/csrf-cookie', { withCredentials: true })
+            .then((response) => {
+                //ログアウト処理
+                axios
+                .post(
+                    'http://localhost:8888/api/logout',
+                    {},
+                    {withCredentials:true}
+                )
+                .then((response) => {
+                  console.log(response);
+                  setUserAuth(false)
+                  setUserName('');
+                })
+         })
+    }
+
     return(
         <header>
             <ul>
@@ -39,14 +65,15 @@ export const Header = () => {
                 </li>
             </ul>
 
+            
             <div className="login_block">
                 <div className="user_info">
-                    {username}
+                    {username !== '' ? username + 'さん' : ''}
                 </div>
                 <div>
-                    <Link to="/login">Login</Link>
-                    <button onClick={logout}>Loout</button>
-
+                    {userAuth ? 
+                    <button className="header_btn" onClick={logout}>Logout</button> :
+                    <Link to="/login">Login</Link>}
                 </div>
 
             </div>

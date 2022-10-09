@@ -21,6 +21,7 @@ export const Login = () => {
     const [password,setPassword] = useState('')
 
     const { username,setUserName } = useContext(LoggedInContext);
+    const { userAuth,setUserAuth } = useContext(LoggedInContext);
     const { useremail,setUseremail } = useContext(LoggedInContext);
 
 
@@ -35,16 +36,19 @@ export const Login = () => {
     // SPA認証済みではないとアクセスできないAPI
     const handleUserClick = () => {
         axios.get('http://localhost:8888/api/user', { withCredentials: true }).then((response) => {
-        console.log(response.data)
+            console.log(response.data)
+
+            console.log('ログイン状態')
+            console.log(userAuth)
         })
     }
 
 
 
 
-    const handleClick = () => {
-        console.log("取得");
+    const handleLoginClick = () => {
         const loginParams:LoginParams = {email,password}
+
         axios//csrf保護の初期化
             .get('http://localhost:8888/sanctum/csrf-cookie', { withCredentials: true })
             .then((response) => {
@@ -58,17 +62,19 @@ export const Login = () => {
                 .then((response) => {
                     setUserName(response.data.name);
                     setUseremail(response.data.email);
+                    setUserAuth(true);
 
+                    
+                    
+                    //ローカルストレージに保存する場合-------------------------------------
                     // ローカルストレージにキーを指定して、それに紐づく値を保存
-                    localStorage.setItem('userName', response.data.name);
-                    localStorage.setItem('userEmail', response.data.email);
+                    // localStorage.setItem('userName', response.data.name);
+                    // localStorage.setItem('userEmail', response.data.email);
 
-
-                    // ローカルストレージからキーを指定して取得
-                    var cat = localStorage.getItem("myCat");
-
-                    // ローカルストレージから対象のキーに紐づく値を削除
-                    localStorage.removeItem("myCat");
+                    // // ローカルストレージからキーを指定して取得
+                    // var cat = localStorage.getItem("myCat");
+                    // // ローカルストレージから対象のキーに紐づく値を削除
+                    // localStorage.removeItem("myCat");
                 })
             })
         }
@@ -92,7 +98,7 @@ export const Login = () => {
                 <input onChange={changePassword}/>
             </div>
             <div>
-                <button onClick={handleClick}>ログイン</button>
+                <button onClick={handleLoginClick}>ログイン</button>
             </div>
         </section>
     )

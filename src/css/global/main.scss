@@ -43,8 +43,13 @@ header{
     display: flex;
     justify-content: space-between;
     padding: 0 20px;
-    a{
+    a,.header_btn{
         color: #fff;
+    }
+    .header_btn{
+        background-color: initial;
+        box-shadow: initial;
+        border: initial;
     }
     ul{
         display: flex;

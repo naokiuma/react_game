@@ -46,8 +46,14 @@ header {
   padding: 0 20px;
 }
 
-header a {
+header a, header .header_btn {
   color: #fff;
+}
+
+header .header_btn {
+  background-color: initial;
+  box-shadow: initial;
+  border: initial;
 }
 
 header ul {

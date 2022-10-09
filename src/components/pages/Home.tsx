@@ -24,9 +24,6 @@ const TopcsData = [
 
 
 export const Home:FC = () => {
-
-
-
     const { username,setUserName } = useContext(LoggedInContext);
     const { useremail,setUseremail } = useContext(LoggedInContext);
 

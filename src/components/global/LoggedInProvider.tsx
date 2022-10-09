@@ -1,8 +1,9 @@
-import React, { useEffect, useState,createContext,useContext} from "react";
-
+import React, {useState,createContext} from "react";
 
 
 type LoggedInContextType ={
+    setUserAuth:(value:boolean) => void;
+    userAuth:boolean;
     setUserName: (value: string) => void;
     username: string;
     setUseremail: (value: string) => void;
@@ -13,38 +14,21 @@ type LoggedInContextType ={
 export const LoggedInContext = createContext<LoggedInContextType>({} as LoggedInContextType);
 
 
-
-
-
 //認証情報とセットするコンテキスト
 export const LoggedInProvider = (props) => {
     const { children } = props;//一般的に、どんなものでも囲えるようにchildrecなpropsにする
 
-    // const GlobalUserInfoontext = useContext(UserInfoContext)
-    const isLoggedIn = true;//ここで初期値を書き換える
-
-     // ステートオブジェクト作成
+     // 全体のステートオブジェクト作成
+    const [userAuth, setUserAuth] = useState<boolean>(false);//ログイン有無
     const [username, setUserName] = useState<string>('');
     const [useremail, setUseremail] = useState<string>('');
 
 
-
     return (
 
-        <LoggedInContext.Provider value={{username,setUserName,useremail,setUseremail }}>
+        <LoggedInContext.Provider value={{username,setUserName,useremail,setUseremail,userAuth,setUserAuth}}>
             {children}
         </LoggedInContext.Provider>
     )
 }
 
-// export const ExampleProvider = (props) => {
-//     const { children } = props;//一般的に、どんなものでも囲えるようにchildrecなpropsにする
-//     const [count, setCount] = useState<number>(0);
-  
-//     return (
-//       <ExampleContext.Provider value={{count, setCount}}>
-//         {children}
-//       </ExampleContext.Provider>
-//     )
-//   };
-  
