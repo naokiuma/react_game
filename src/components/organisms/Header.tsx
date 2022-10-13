@@ -68,7 +68,7 @@ export const Header = () => {
             
             <div className="login_block">
                 <div className="user_info">
-                    {username !== '' ? username + 'さん' : ''}
+                    {username !== 'undefined' ? username + 'さん' : 'ゲストさん'}
                 </div>
                 <div>
                     {userAuth ? 

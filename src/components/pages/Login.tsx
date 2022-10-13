@@ -1,17 +1,38 @@
 import axios from 'axios'
 import { ChangeEvent, useState,useContext} from 'react'
+import { useLocation } from "react-router-dom";
+
 import {LoggedInContext} from "../global/LoggedInProvider";
-import { memo,FC } from "react";
 
 type LoginParams = {
     email:string;
     password:string;
 }
 
-
+type State = {
+    url:string
+}
  
 // export const Login:FC = memo(() => {
 export const Login = () => {
+
+
+
+    const location = useLocation();
+    if(location.state != null){
+        const { url } = location.state as State;//どのページからきたかを取得。
+        console.log('これなんだろう？');
+        console.log(url);
+
+    }
+    
+    // console.log(location);
+    // console.log('これなんだろう2？');
+
+    
+
+
+
 
     //ログイン状態
     const IsLogged = useContext(LoggedInContext);
@@ -36,14 +57,10 @@ export const Login = () => {
     // SPA認証済みではないとアクセスできないAPI
     const handleUserClick = () => {
         axios.get('http://localhost:8888/api/user', { withCredentials: true }).then((response) => {
-            console.log(response.data)
-
             console.log('ログイン状態')
             console.log(userAuth)
         })
     }
-
-
 
 
     const handleLoginClick = () => {
@@ -63,8 +80,6 @@ export const Login = () => {
                     setUserName(response.data.name);
                     setUseremail(response.data.email);
                     setUserAuth(true);
-
-                    
                     
                     //ローカルストレージに保存する場合-------------------------------------
                     // ローカルストレージにキーを指定して、それに紐づく値を保存

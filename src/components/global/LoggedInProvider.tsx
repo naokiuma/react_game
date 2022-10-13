@@ -9,6 +9,7 @@ type LoggedInContextType ={
     setUseremail: (value: string) => void;
     useremail: string;
   }
+  
 //ログイン有無のcontextを作成
 // export const LoggedInContext = createContext(false);//valueの初期値はfalse
 export const LoggedInContext = createContext<LoggedInContextType>({} as LoggedInContextType);

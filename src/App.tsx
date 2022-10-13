@@ -1,6 +1,8 @@
-import { useContext} from 'react'
+// import { useContext} from 'react'
 import { Route,Routes,RouteProps,Navigate,Outlet,useLocation } from "react-router-dom";//switch は Routesに変わった
 import { Home } from "./components/pages/Home";
+import { PrivateRoute } from "../src/router/PrivateRoute";
+
 
 
 
@@ -20,20 +22,6 @@ import './css/global/main.css';
 
 
 
-export const PrivateRoute = () => {
-  const { userAuth } = useContext(LoggedInContext);
-
-  if(userAuth){
-    return(
-      <>
-       <Outlet/>
-      </>
-    )
-  }else{
-    return <Navigate to="/login/" replace/>
-  }
-
-};
 
 
 function App() {
