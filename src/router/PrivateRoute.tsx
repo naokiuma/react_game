@@ -16,6 +16,7 @@ export const PrivateRoute = () => {
     if(userAuth){
       return(
         <>
+        outletです
          <Outlet/>
         </>
       )

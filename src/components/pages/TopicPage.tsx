@@ -2,6 +2,7 @@ import axios from "axios";
 
 
 import { memo,FC } from "react";
+import { useEffect } from 'react';
 import { useLocation } from "react-router-dom";
 import { Comment } from "../atom/Comment";
 
@@ -12,12 +13,13 @@ import { GetComments } from "../../hooks/GetComments"
 
 export const TopicPage:FC = memo(() => {
     //const { fetchComments } = GetComments();
-    console.log('getcommentsの中身だよ')
     let {fetchComments,comments} = GetComments() 
-    fetchComments()
+    useEffect(() => {//この記述で初回のみ実行される
+        fetchComments()
+    },[])
+    
 
     console.log(comments)
-    
 
 
     const location = useLocation();

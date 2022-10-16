@@ -1,5 +1,5 @@
 import axios from "axios";
-import {useState} from "react";
+import {useState,useCallback} from "react";
 import { CommentsType } from "../types/commentsType"
 
 
@@ -7,22 +7,14 @@ export const GetComments = () => {
 
     const [comments,setComments] = useState<Array<CommentsType>>([]);
 
-
-    
-
     const fetchComments = () => {
       axios
       .get("http://localhost:8888/api/comments")
       .then((res) => {
-        console.log(res.data)
+        console.log('getcomments')
         setComments(res.data);
       })
-      //console.log('axios内のcomments')
-      //console.log(comments);
      }
 
-
     return {fetchComments,comments}
-
-    
 }

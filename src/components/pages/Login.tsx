@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { ChangeEvent, useState,useContext} from 'react'
-import { useLocation } from "react-router-dom";
+import { useLocation,useNavigate } from "react-router-dom";
 
 import {LoggedInContext} from "../global/LoggedInProvider";
 
@@ -10,42 +10,32 @@ type LoginParams = {
 }
 
 type State = {
-    url:string
+    url?:string
+
 }
- 
-// export const Login:FC = memo(() => {
+
+
 export const Login = () => {
 
-
-
     const location = useLocation();
-    if(location.state != null){
-        const { url } = location.state as State;//どのページからきたかを取得。
-        console.log('これなんだろう？');
-        console.log(url);
 
-    }
-    
-    // console.log(location);
-    // console.log('これなんだろう2？');
-
+    const { url } = location.state as State;//どのページからきたかを取得。
+    console.log('urlの中身');
+    console.log(url);
     
 
-
+    const navigate = useNavigate();
 
 
     //ログイン状態
     const IsLogged = useContext(LoggedInContext);
     console.log(IsLogged);
-
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
 
     const { username,setUserName } = useContext(LoggedInContext);
     const { userAuth,setUserAuth } = useContext(LoggedInContext);
     const { useremail,setUseremail } = useContext(LoggedInContext);
-
-
 
     const changeEmail = (e:ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value)
@@ -80,7 +70,7 @@ export const Login = () => {
                     setUserName(response.data.name);
                     setUseremail(response.data.email);
                     setUserAuth(true);
-                    
+                    navigate(url)
                     //ローカルストレージに保存する場合-------------------------------------
                     // ローカルストレージにキーを指定して、それに紐づく値を保存
                     // localStorage.setItem('userName', response.data.name);

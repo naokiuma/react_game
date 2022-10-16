@@ -1,5 +1,4 @@
 
-// import {TopicType} from "../../types/__topicType";
 type TopicType = {
     title: string;
     id: number;
