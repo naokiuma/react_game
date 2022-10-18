@@ -1,10 +1,7 @@
-import axios from "axios";
-
 
 import { memo,FC } from "react";
 import { useEffect } from 'react';
 import { useLocation } from "react-router-dom";
-import { Comment } from "../atom/Comment";
 
 //Customhooks
 import { GetComments } from "../../hooks/GetComments"
@@ -19,6 +16,7 @@ export const TopicPage:FC = memo(() => {
     },[])
     
 
+    console.log('コメント')
     console.log(comments)
 
 
@@ -46,6 +44,7 @@ export const TopicPage:FC = memo(() => {
     return (
       
         <section className="topic">
+            <h1>トピックページ</h1>
             <div className="billboard">
                 <div className="billboard_inner">
                     <h1 className="topic_title">{location.state['title']}</h1>

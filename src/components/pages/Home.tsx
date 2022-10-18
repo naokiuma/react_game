@@ -8,6 +8,7 @@ import { LoggedInProvider,LoggedInContext } from "../global/LoggedInProvider";
 
 const TopcsData = [
     {
+        //game
         id: 1,
         parent_user_id:1,
         title: "delectus aut autem",
@@ -34,13 +35,11 @@ export const Home:FC = () => {
 
 
     if(loginUserName !== null){
-
-    setUserName(loginUserName);
+        setUserName(loginUserName);
     }
 
     if(loginUserEmail !== null){
-
-    setUserName(loginUserEmail);
+        setUserName(loginUserEmail);
     }
 
 
