@@ -3,6 +3,10 @@ import { useContext} from 'react'
 import { LoggedInContext} from "../components/global/LoggedInProvider";
 
 
+/**
+ * 
+ * ログインユーザーのみアクセス可能
+ */
 export const PrivateRoute = () => {
     const { userAuth } = useContext(LoggedInContext);
     const location = useLocation();
@@ -16,7 +20,7 @@ export const PrivateRoute = () => {
     if(userAuth){
       return(
         <>
-        outletです
+        outlet
          <Outlet/>
         </>
       )

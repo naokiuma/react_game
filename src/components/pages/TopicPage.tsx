@@ -4,13 +4,14 @@ import { useEffect } from 'react';
 import { useLocation } from "react-router-dom";
 
 //Customhooks
-import { GetComments } from "../../hooks/GetComments"
-// import { CommentsType } from "../../types/commentsType"
+import { GetComments } from "../../hooks/Comments"
 
 
 export const TopicPage:FC = memo(() => {
-    //const { fetchComments } = GetComments();
-    let {fetchComments,comments} = GetComments() 
+    const locationVal = useLocation().state;
+    console.log(locationVal)
+    
+    let {fetchComments,comments} = GetComments(locationVal['id']) 
     useEffect(() => {//この記述で初回のみ実行される
         fetchComments()
     },[])
@@ -20,10 +21,7 @@ export const TopicPage:FC = memo(() => {
     console.log(comments)
 
 
-    const location = useLocation();
-    console.log('location')
-    console.log(location)
-    const locationVal = location.state;
+
     const tags = ['ホラー','アクション']
 
     // const comments:CommentsType[] = [
@@ -47,15 +45,15 @@ export const TopicPage:FC = memo(() => {
             <h1>トピックページ</h1>
             <div className="billboard">
                 <div className="billboard_inner">
-                    <h1 className="topic_title">{location.state['title']}</h1>
+                    <h1 className="topic_title">{locationVal['title']}</h1>
                 </div>
             </div>
 
             <div className="main_contents">
                 <h2 className="game_title">
-                    ダイイングライト
+                    {locationVal['title']}
                 </h2>
-                parent_user_id：{location.state['parent_user_id']}
+                parent_user_id：{locationVal['parent_user_id']}
                     <div className="tags">
                         {
                             tags.map((tag:string)=>(
