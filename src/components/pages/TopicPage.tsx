@@ -10,7 +10,7 @@ import { GetComments } from "../../hooks/Comments"
 export const TopicPage:FC = memo(() => {
     const locationVal = useLocation().state;
     console.log(locationVal)
-    
+
     let {fetchComments,comments} = GetComments(locationVal['id']) 
     useEffect(() => {//この記述で初回のみ実行される
         fetchComments()
@@ -20,29 +20,11 @@ export const TopicPage:FC = memo(() => {
     console.log('コメント')
     console.log(comments)
 
-
-
     const tags = ['ホラー','アクション']
 
-    // const comments:CommentsType[] = [
-    //     {
-    //         comment_id:1,
-    //         topic_id:1,
-    //         user_id:1,
-    //         text:'めっちゃおもろいな',
-    //     },
-    //     {
-    //         comment_id:2,
-    //         topic_id:1,
-    //         user_id:2,
-    //         text:'でもかなり怖くない？',
-    //     }
-    // ]
 
     return (
-      
         <section className="topic">
-            <h1>トピックページ</h1>
             <div className="billboard">
                 <div className="billboard_inner">
                     <h1 className="topic_title">{locationVal['title']}</h1>

@@ -1,5 +1,5 @@
 .main_contents {
-  max-width: 1080px;
+  max-width: 1280px;
   margin: auto;
   padding: 0 40px;
   width: 100%;
@@ -73,6 +73,10 @@ header .login_block {
 
 header .login_block div {
   margin-left: 20px;
+}
+
+.topics_wrap {
+  display: flex;
 }
 
 .comments_wrap .text {

@@ -13,8 +13,9 @@ import { About } from "./components/pages/About";
 import { TopicPage } from './components/pages/TopicPage';
 import { Login } from './components/pages/Login';
 import { Header } from './components/organisms/Header';
-
 import { Nomatch } from './components/pages/Nomatch';
+
+/*css*/
 import './App.css';
 import './css/global/reset.css';
 import './css/global/main.css';

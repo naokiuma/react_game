@@ -7,6 +7,9 @@ import { LoggedInProvider,LoggedInContext } from "../global/LoggedInProvider";
 //Customhooks
 import { GetTopics } from "../../hooks/Topics"
 
+//css
+import '../../css/pages/top.css';
+
 
 // const TopicsTest = [
 //     {
@@ -32,12 +35,10 @@ export const Home:FC = memo(() => {
 
     //表示topics
     let {fetchTopics,topics} = GetTopics();
-
     useEffect(() => {//この記述で初回のみ実行される
         fetchTopics()
     },[])
-
-    console.log(topics)
+    // console.log(topics)
     
 
 
@@ -55,39 +56,49 @@ export const Home:FC = memo(() => {
         setUserName(loginUserEmail);
     }
 
-
-    const TopicsCss ={
-        display:"flex",
-    }
-
     return (
-        <section className="home main_contents">
+        <>
+       
             <section className="hero">
+                <h1>Enjog</h1>
+                <p>
+                    <span>
+                        Enjogとは
+                    </span>
+                    「楽しんでいる最中」の気持ちを残すサービス。
+                    クリアしてなくても、<br/>
+                    観終わってなくても、<br/>
+                    読み終わってなくても、<br/>
+                    その時その時のエンジョイの気持ち、感動を記録しよう。<br/>
+
+
+
+                </p>
+
+
+
 
             </section>
-            <p>
-                ホームです。
-            </p>
+            <section className="home main_contents">
+                <div className="topics_wrap">
+                    {
+                        topics.map((topic)=>(
 
-            <div style={TopicsCss}>
-
-                {
-                    topics.map((topic)=>(
-
-                        <Link to={"/topics/" + topic.id} state={topic} key={topic.id}>
-                            <Topic
-                                key={topic.id}
-                                id={topic.id}
-                                title={topic.title}
-                                user_id={topic.parent_user_id}
-                                status={topic.status}
-                            />
-                        </Link>  
-                    ))
-                }
-                   
-            </div>
-        </section>
+                            <Link to={"/topics/" + topic.id} state={topic} key={topic.id}>
+                                <Topic
+                                    key={topic.id}
+                                    id={topic.id}
+                                    title={topic.title}
+                                    user_id={topic.parent_user_id}
+                                    status={topic.status}
+                                />
+                            </Link>  
+                        ))
+                    }
+                    
+                </div>
+            </section>
+        </>
     )
 
 })

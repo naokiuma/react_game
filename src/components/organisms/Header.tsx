@@ -12,7 +12,6 @@ export const Header = () => {
     const { userAuth,setUserAuth,username,setUserName } = useContext(LoggedInContext);
 
     console.log(username)
-
     console.log(userAuth)
 
 
