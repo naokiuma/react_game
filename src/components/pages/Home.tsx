@@ -40,13 +40,9 @@ export const Home:FC = memo(() => {
     },[])
     // console.log(topics)
     
-
-
-
     // ローカルストレージからキーを指定して取得
     let loginUserName = localStorage.getItem("userName");
     let loginUserEmail = localStorage.getItem("userEmail");
-
 
     if(loginUserName !== null){
         setUserName(loginUserName);
@@ -60,26 +56,30 @@ export const Home:FC = memo(() => {
         <>
        
             <section className="hero">
-                <h1>Enjog</h1>
-                <p>
-                    <span>
-                        Enjogとは
-                    </span>
-                    「楽しんでいる最中」の気持ちを残すサービス。
-                    クリアしてなくても、<br/>
-                    観終わってなくても、<br/>
-                    読み終わってなくても、<br/>
-                    その時その時のエンジョイの気持ち、感動を記録しよう。<br/>
+                
+                <div className="inner">
+                    <h1>Enjog</h1>
+
+                    <p>
+                        <span>
+                            Enjog
+                        </span>
+                        で、「楽しんでいる最中」のログを残す。
+                        {/* クリアしてなくても、<br/>
+                        観終わってなくても、<br/>
+                        読み終わってなくても、<br/>
+                        その時その時のエンジョイの気持ち、感動を記録しよう。<br/> */}
 
 
 
-                </p>
+                    </p>
+                </div>
 
 
 
 
             </section>
-            <section className="home main_contents">
+            <section className="home_section main_contents">
                 <div className="topics_wrap">
                     {
                         topics.map((topic)=>(

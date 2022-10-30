@@ -4,7 +4,12 @@
   background-color: #f3f3f3;
 }
 
-.home .topics_wrap {
+.hero .inner {
+  width: 1280px;
+  margin: auto;
+}
+
+.home_section .topics_wrap {
   margin-top: 40px;
 }
 /*# sourceMappingURL=top.css.map */

@@ -19,9 +19,11 @@ export const Login = () => {
 
     const location = useLocation();
 
-    const { url } = location.state as State;//どのページからきたかを取得。
-    console.log('urlの中身');
-    console.log(url);
+    console.log(location)
+
+    // const { url } = location.state as State;//どのページからきたかを取得。
+    // console.log('urlの中身');
+    // console.log(url);
     
 
     const navigate = useNavigate();
@@ -70,7 +72,7 @@ export const Login = () => {
                     setUserName(response.data.name);
                     setUseremail(response.data.email);
                     setUserAuth(true);
-                    navigate(url)
+                    // navigate(url)//リダイレクト
                     //ローカルストレージに保存する場合-------------------------------------
                     // ローカルストレージにキーを指定して、それに紐づく値を保存
                     // localStorage.setItem('userName', response.data.name);

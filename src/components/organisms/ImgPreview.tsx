@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
 
+import '../../css/parts/image_preview.css';
+
+
+
+
 export const ImgPreview = () => {
     const [imgData, setImg] = useState(null);
     const changeFile = (e:any) => {
@@ -7,49 +12,23 @@ export const ImgPreview = () => {
         console.log(files[0]);
         if(files.length > 0) {
 
-            var file = files[0]
-            var reader = new FileReader()
+            let file = files[0]
+            let reader = new FileReader()
             reader.onload = (e) => {
-    
                 setImg(e.target.result)
-    
             };
-            reader.readAsDataURL(file)
-    
+            reader.readAsDataURL(file)    
         } else {
-    
             setImg(null)
-    
         }
-        // let fileReader = new FileReader();
-        // fileReader.onload = () => {
-        //     let canvas = document.getElementById('preview');
-        //     let ctx = canvas.getContext('2d');
-        //     let image = new Image();
-        //     image.src = fileReader.result;
-        //     image.onload = () => {
-        //         canvas.width = image.width;
-        //         canvas.height = image.height;
-        //         ctx.drawImage(Image,0,0);
-
-
-        //     }
-        // }
-        // fileReader.readAsDataURL(obj.files[0]);
-
-
     }
    
 
     return (
         <div>
             <input type="file" accept="image/*" onChange={changeFile}/>
-            {/* <canvas id="preview">
-                
-            </canvas> */}
             <div>
-
-                <img src={imgData} />
+                <img className="setted_img_frame" src={imgData} />
             </div>
         </div>
     ); 

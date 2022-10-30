@@ -2,9 +2,13 @@
     height: 600px;
     width: 100%;
     background-color: #f3f3f3;
+    .inner{
+        width: 1280px;
+        margin: auto;
+    }
 }
 
-.home{
+.home_section{
     .topics_wrap{
         margin-top: 40px;
     }

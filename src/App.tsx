@@ -29,14 +29,14 @@ function App() {
           <Header />
           <Routes>
             <Route index element={<Home />} />
-
             <Route path="/about/" element={<About />} />
+            <Route path="/topics/:id" element={<TopicPage />} />
+            <Route path="/login/" element={<Login/>} />
+
             {/* <Route path="/about" element={<PrivateRoute />}>
               <Route element={<About/>}/>
             </Route> */}
             
-            <Route path="/topics/:id" element={<TopicPage />} />
-            <Route path="/login/" element={<Login/>} />
 
             <Route path="*" element={<Nomatch />} />
           </Routes>

@@ -21,7 +21,7 @@ export const LoggedInProvider = (props) => {
 
      // 全体のステートオブジェクト作成
     const [userAuth, setUserAuth] = useState<boolean>(false);//ログイン有無
-    const [username, setUserName] = useState<string>('');
+    const [username, setUserName] = useState<string>('ゲスト');
     const [useremail, setUseremail] = useState<string>('');
 
 
