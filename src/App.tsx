@@ -13,7 +13,9 @@ import { About } from "./components/pages/About";
 import { TopicPage } from './components/pages/TopicPage';
 import { Login } from './components/pages/Login';
 import { Header } from './components/organisms/Header';
+import { Footer } from './components/organisms/Footer';
 import { Nomatch } from './components/pages/Nomatch';
+
 
 /*css*/
 import './App.css';
@@ -27,6 +29,7 @@ function App() {
       <LoggedInProvider>
         <main>
           <Header />
+
           <Routes>
             <Route index element={<Home />} />
             <Route path="/about/" element={<About />} />
@@ -40,8 +43,10 @@ function App() {
 
             <Route path="*" element={<Nomatch />} />
           </Routes>
+
         </main>
-        </LoggedInProvider>
+        <Footer />
+      </LoggedInProvider>
     </>
   );
 }

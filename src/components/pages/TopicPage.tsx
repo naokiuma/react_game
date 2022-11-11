@@ -3,6 +3,9 @@ import { memo,FC } from "react";
 import { useEffect } from 'react';
 import { useLocation } from "react-router-dom";
 
+//新規form
+import { TopicForm } from "../parts/form/TopicForm"
+
 //Customhooks
 import { GetComments } from "../../hooks/Comments"
 
@@ -17,12 +20,7 @@ export const TopicPage:FC = memo(() => {
     },[])
     
 
-    console.log('コメント')
-    console.log(comments)
-
     const tags = ['ホラー','アクション']
-
-
     return (
         <section className="topic">
             <div className="billboard">
@@ -58,6 +56,7 @@ export const TopicPage:FC = memo(() => {
                             ))
                         }
                     </div>
+                <TopicForm />
             </div>
         </section>
     )

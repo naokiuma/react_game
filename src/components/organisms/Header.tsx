@@ -8,30 +8,29 @@ import {Link } from "react-router-dom";
 
 export const Header = () => {
 
-    const {  } = useContext(LoggedInContext);
     const { userAuth,setUserAuth,username,setUserName } = useContext(LoggedInContext);
 
     console.log(username)
     console.log(userAuth)
 
 
-    const test = () => {
-        const test = 'Test_test';
-        axios//csrf保護の初期化
-            .get('http://localhost:8888/sanctum/csrf-cookie', { withCredentials: true })
-            .then((response) => {
-                //ログアウト処理
-                axios
-                .post(
-                    'http://localhost:8888/api/test',
-                    test,
-                    {withCredentials:true}
-                )
-                .then((response) => {
-                  console.log(response);
-                })
-         })
-    }
+    // const test = () => {
+    //     const test = 'Test_test';
+    //     axios//csrf保護の初期化
+    //         .get('http://localhost:8888/sanctum/csrf-cookie', { withCredentials: true })
+    //         .then((response) => {
+    //             //テスト処理
+    //             axios
+    //             .post(
+    //                 'http://localhost:8888/api/test',
+    //                 test,
+    //                 {withCredentials:true}
+    //             )
+    //             .then((response) => {
+    //               console.log(response);
+    //             })
+    //      })
+    // }
 
 
     const logout = () => {
@@ -63,6 +62,7 @@ export const Header = () => {
                     <Link to="/about">About</Link>
                 </li>
             </ul>
+            {/* <button onClick={test}>テスト</button> */}
 
             
             <div className="login_block">
@@ -78,9 +78,5 @@ export const Header = () => {
             </div>
       </header>
     )
-
-
-    
-
 
 }

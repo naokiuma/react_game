@@ -23,14 +23,13 @@ const GetTopics = (topic_ID?:number) => {
 }
 
 
-const CreateTopics = () => {
+
+const CreateTopics = (title,body,status) => {
   let target_URL =  `${API_BASE_URL}/topics/create`;
 
 
   const postTopics = (title,body,status) => {
     console.log('postTopics動いてる？')
-
-
     axios//csrf保護の初期化
       .get('http://localhost:8888/sanctum/csrf-cookie', { withCredentials: true })
       .then((response) => {
@@ -45,8 +44,7 @@ const CreateTopics = () => {
             console.log('createTopics')
             console.log(res)
           })
-          
-          
+        
       })
 
   }

@@ -1,17 +1,12 @@
 import { memo,FC } from "react";
 import {ChangeEvent,useState} from 'react'
-import {LoggedInContext} from "../global/LoggedInProvider";
-import {ImgPreview} from "../organisms/ImgPreview"
-
+import {ImgPreview} from "../../organisms/ImgPreview"
 
 
 //Customhooks
-import {CreateTopics} from "../../hooks/Topics"
+import {CreateTopics} from "../../../hooks/Topics"
 
-
-export const About:FC = memo(() => {
-
-    
+export const TopicForm:FC = memo(() => {
 
     const [title,setTitle] = useState('')
     const changeTitle = (e:ChangeEvent<HTMLInputElement>) => {
@@ -34,10 +29,7 @@ export const About:FC = memo(() => {
         console.log(title)
         console.log(body)
         console.log(status)
-        // CreateTopics({title,body,status})
         postTopics(title,body,status)
-        
-
     }
 
 
@@ -57,17 +49,16 @@ export const About:FC = memo(() => {
             </div>
             <select onChange={changeStatus}>
                 <option value="プレイ中">プレイ中</option>
-                <option value="完了！">完了！</option>
-            </select>
+                <option value="クリア">クリア</option>
+                <option value="やり込み中">やり込み中</option>
 
+            </select>
 
             <br/>
             タイトル：{title}<br/>
             本文：{body}<br/>
             ステータス：{status}<br/>
             
-
-
             <ImgPreview/>
             <button onClick={submit}>submit</button>
         </section>
