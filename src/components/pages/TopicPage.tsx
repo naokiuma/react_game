@@ -3,9 +3,6 @@ import { memo,FC } from "react";
 import { useEffect } from 'react';
 import { useLocation } from "react-router-dom";
 
-//新規form
-import { TopicForm } from "../parts/form/TopicForm"
-
 //Customhooks
 import { GetComments } from "../../hooks/Comments"
 
@@ -46,7 +43,7 @@ export const TopicPage:FC = memo(() => {
                     <div>
                         {locationVal['status']}
                     </div>
-
+                    {/* 一つ一つのコメント */}
                     <div className="comments_wrap">
                         {
                             comments.map((comment) => (
@@ -56,7 +53,6 @@ export const TopicPage:FC = memo(() => {
                             ))
                         }
                     </div>
-                <TopicForm />
             </div>
         </section>
     )

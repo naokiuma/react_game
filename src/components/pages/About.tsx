@@ -1,7 +1,6 @@
 import { memo,FC } from "react";
 import {ChangeEvent,useState} from 'react'
 import {LoggedInContext} from "../global/LoggedInProvider";
-import {ImgPreview} from "../organisms/ImgPreview"
 
 
 
@@ -43,7 +42,8 @@ export const About:FC = memo(() => {
 
     return (
         <section >
-            <button >ボタン</button>
+            アバウトページです
+            {/* <button >ボタン</button>
             <div>
                 タイトル
                 <input onChange={changeTitle}/>
@@ -67,9 +67,7 @@ export const About:FC = memo(() => {
             ステータス：{status}<br/>
             
 
-
-            <ImgPreview/>
-            <button onClick={submit}>submit</button>
+            <button onClick={submit}>submit</button> */}
         </section>
     )
 

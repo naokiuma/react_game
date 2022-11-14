@@ -4,6 +4,7 @@ export type TopicsType = {
     title:string;
     body:string;
     status:string;
+    image:any;
     created_at?:string;
     updated_at?:string;
 };

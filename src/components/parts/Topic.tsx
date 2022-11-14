@@ -14,11 +14,11 @@ export const Topic = (props:TopicType) => {
     return (
         <div>
             <span>
-                タイトル：{title}
+                {title}
             </span>
             <br/>
             <span>
-                ステータス:{status}
+                {status}
             </span>
         </div>
         

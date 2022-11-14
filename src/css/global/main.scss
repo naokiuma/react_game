@@ -1,3 +1,6 @@
+html{
+    position: relative;
+}
 .main_contents{
     max-width: 1280px;
     margin: auto;
@@ -80,6 +83,16 @@ footer{
 
 .topics_wrap{
     display: flex;
+    flex-wrap: wrap;
+    li{
+        width: 30%;
+        margin-right: 3%;
+        margin-top: 20px;
+        &:nth-child(3n){
+            margin-right: 0;
+        }
+
+    }
 }
 
 .comments_wrap{
@@ -97,4 +110,26 @@ footer{
     .right{
         text-align: right;
     }
+}
+
+.modal{
+    width: 60vw;
+    position:fixed;
+    left: 20vw;
+    right: 20vw;
+    top:30%;
+    background-color: #fff;
+    border:2px solid black;
+    padding: 20px;
+    display: none;
+}
+
+.modal.isActive{
+    display: block;
+}
+
+.new_topic_button{
+    position: fixed;
+    right: 20px;
+    bottom: 120px;
 }

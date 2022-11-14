@@ -29,7 +29,6 @@ const CreateTopics = (title,body,status) => {
 
 
   const postTopics = (title,body,status) => {
-    console.log('postTopics動いてる？')
     axios//csrf保護の初期化
       .get('http://localhost:8888/sanctum/csrf-cookie', { withCredentials: true })
       .then((response) => {
@@ -37,7 +36,7 @@ const CreateTopics = (title,body,status) => {
         axios
         .post(
           target_URL,
-          {title: title,body: body,status: status},
+          {title: title,body: body,status: status,file:Image},
           {withCredentials:true}
           )
           .then((res) => {

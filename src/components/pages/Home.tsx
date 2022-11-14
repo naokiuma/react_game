@@ -1,8 +1,12 @@
-import { memo,FC,useContext,useEffect } from "react";
+import { memo,FC,useContext,useEffect, useState } from "react";
 import { BrowserRouter,Route,Link,Routes } from "react-router-dom";//switch は Routesに変わった
 
 import { Topic } from "../parts/Topic";
 import { LoggedInProvider,LoggedInContext } from "../global/LoggedInProvider";
+
+//新規form
+import { TopicForm } from "../parts/form/TopicForm"
+
 
 //Customhooks
 import { GetTopics } from "../../hooks/Topics"
@@ -32,6 +36,10 @@ import '../../css/pages/top.css';
 export const Home:FC = memo(() => {
     const { username,setUserName } = useContext(LoggedInContext);
     const { useremail,setUseremail } = useContext(LoggedInContext);
+
+    const [modalActive,toggleModalActive] = useState(false)
+    console.log(modalActive);
+
 
     //表示topics
     let {fetchTopics,topics} = GetTopics();
@@ -69,9 +77,6 @@ export const Home:FC = memo(() => {
                         観終わってなくても、<br/>
                         読み終わってなくても、<br/>
                         その時その時のエンジョイの気持ち、感動を記録しよう。<br/> */}
-
-
-
                     </p>
                 </div>
 
@@ -80,24 +85,33 @@ export const Home:FC = memo(() => {
 
             </section>
             <section className="home_section main_contents">
-                <div className="topics_wrap">
+                <ul className="topics_wrap">
                     {
                         topics.map((topic)=>(
 
-                            <Link to={"/topics/" + topic.id} state={topic} key={topic.id}>
-                                <Topic
-                                    key={topic.id}
-                                    id={topic.id}
-                                    title={topic.title}
-                                    user_id={topic.parent_user_id}
-                                    status={topic.status}
-                                />
-                            </Link>  
+                            <li>
+
+                                <Link to={"/topics/" + topic.id} state={topic} key={topic.id}>
+                                    <Topic
+                                        key={topic.id}
+                                        id={topic.id}
+                                        title={topic.title}
+                                        user_id={topic.parent_user_id}
+                                        status={topic.status}
+                                        />
+                                </Link>  
+                            </li>
                         ))
-                    }
-                    
-                </div>
+                    }  
+                </ul>
+                
+
+                <TopicForm isActive={modalActive} />
+
             </section>
+            <div className="new_topic_button">
+                <button onClick={() => toggleModalActive(!modalActive)}>新規トピックの投稿</button>
+            </div>
         </>
     )
 
