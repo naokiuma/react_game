@@ -16,7 +16,6 @@ export const TopicForm:FC<{isActive:boolean}> = memo((props) => {
     console.log(props);
     const [imgData, setImg] = useState(null);
     console.log('画像。')
-
     console.log(imgData)
 
 
@@ -40,11 +39,18 @@ export const TopicForm:FC<{isActive:boolean}> = memo((props) => {
     let {postTopics} = CreateTopics(title,body,status);
 
     const submit = ():void => {
+        console.log('この時点ではある？')
         console.log(title)
         console.log(body)
         console.log(status)
         console.log(imgData);
-        postTopics(title,body,status)
+        // const formdata = new FormData();
+        // formdata.append('upload_file', imgData)
+        // const formData = new FormData();
+        // formData.append('item_image_file', imgData);
+    
+
+        postTopics(title,body,status,imgData)
     }
 
 

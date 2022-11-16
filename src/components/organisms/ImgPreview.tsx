@@ -11,17 +11,27 @@ export const ImgPreview = ({setImage,imgData}) => {
     const img_data = imgData;
     const changeFile = (e:any) => {
         const files = e.target.files;
-        console.log(files[0]);
-        if(files.length > 0) {
+        console.log('ImgPreviewでの画像');
 
+        console.log(files);
+
+        if(files && files[0]) {
             let file = files[0]
+            console.log('fileです');
+            console.log(files);
+            
+            console.log(file);
+
+            
             let reader = new FileReader()
             reader.onload = (e) => {
                 // setImg(e.target.result)
+                console.log('setする画像だよ')
+                console.log(file)
                 setImg(file)
 
             };
-            reader.readAsDataURL(file)    
+            reader.readAsDataURL(file)
         } else {
             setImg(null)
         }
