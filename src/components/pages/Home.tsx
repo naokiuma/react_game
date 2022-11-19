@@ -8,35 +8,17 @@ import { LoggedInProvider,LoggedInContext } from "../global/LoggedInProvider";
 import { TopicForm } from "../parts/form/TopicForm"
 
 
-//Customhooks
-import { GetTopics } from "../../hooks/Topics"
+//インフラ
+import { GetTopics } from "../../Infrastructure/Topics"
 
 //css
 import '../../css/pages/top.css';
 
 
-// const TopicsTest = [
-//     {
-//         //game
-//         id: 1,
-//         parent_user_id:1,
-//         title: "delectus aut autem",
-//         status: 'プレイ中'
-//     },
-//     {
-//         id: 2,
-//         parent_user_id:2,
-//         title: "quis ut nam facilis et officia qui",
-//         status: '完了'
-//     },
-// ]
-
 
 
 export const Home:FC = memo(() => {
     const { username,setUserName } = useContext(LoggedInContext);
-    const { useremail,setUseremail } = useContext(LoggedInContext);
-
     const [modalActive,toggleModalActive] = useState(false)
     console.log(modalActive);
 
@@ -46,8 +28,7 @@ export const Home:FC = memo(() => {
     useEffect(() => {//この記述で初回のみ実行される
         fetchTopics()
     },[])
-    // console.log(topics)
-    
+
     // ローカルストレージからキーを指定して取得
     let loginUserName = localStorage.getItem("userName");
     let loginUserEmail = localStorage.getItem("userEmail");

@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useLocation } from "react-router-dom";
 
 //Customhooks
-import { GetComments } from "../../hooks/Comments"
+import { GetComments } from "../../Infrastructure/GetComments"
 
 
 export const TopicPage:FC = memo(() => {

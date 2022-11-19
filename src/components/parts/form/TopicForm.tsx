@@ -1,10 +1,10 @@
 import { memo,FC } from "react";
 import {ChangeEvent,useState} from 'react'
-import {ImgPreview} from "../../organisms/ImgPreview"
+import {ImgPreview} from "../../Templates/ImgPreview"
 
 
 //Customhooks
-import {CreateTopics} from "../../../hooks/Topics"
+import {CreateTopics} from "../../../Infrastructure/Topics"
 
 
 //複数のpropsがある場合はこういう書き方ができる
@@ -14,48 +14,47 @@ import {CreateTopics} from "../../../hooks/Topics"
 
 export const TopicForm:FC<{isActive:boolean}> = memo((props) => {
     console.log(props);
+
+    //モーダル表示フラグ
+    let isActive = props.isActive
+
+    //画像
     const [imgData, setImg] = useState(null);
     console.log('画像。')
     console.log(imgData)
 
-
-    let isActive = props.isActive
-
+    //タイトル
     const [title,setTitle] = useState('')
     const changeTitle = (e:ChangeEvent<HTMLInputElement>) => {
         setTitle(e.target.value)
     }
 
+    //本文
     const [body,setBody] = useState('')
     const changeBody = (e:ChangeEvent<HTMLInputElement>) => {
         setBody(e.target.value)
     }
 
+    //ステータス
     const [status,setStatus] = useState('プレイ中')
     const changeStatus = (e:ChangeEvent<HTMLSelectElement>) => {
         setStatus(e.target.value)
     }
 
+
     let {postTopics} = CreateTopics(title,body,status);
 
+
     const submit = ():void => {
-        console.log('この時点ではある？')
         console.log(title)
         console.log(body)
         console.log(status)
         console.log(imgData);
-        // const formdata = new FormData();
-        // formdata.append('upload_file', imgData)
-        // const formData = new FormData();
-        // formData.append('item_image_file', imgData);
-    
-
         postTopics(title,body,status,imgData)
     }
 
 
     return (
-        // <div>
 
             <div className={'modal ' + (isActive == true ? 'isActive' : '')}>
                 <button >ボタン</button>

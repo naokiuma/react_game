@@ -1,4 +1,4 @@
-import React, {useState,createContext} from "react";
+import  {useState,createContext} from "react";
 
 
 type LoggedInContextType ={
@@ -24,9 +24,7 @@ export const LoggedInProvider = (props) => {
     const [username, setUserName] = useState<string>('ゲスト');
     const [useremail, setUseremail] = useState<string>('');
 
-
     return (
-
         <LoggedInContext.Provider value={{username,setUserName,useremail,setUseremail,userAuth,setUserAuth}}>
             {children}
         </LoggedInContext.Provider>

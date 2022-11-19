@@ -1,7 +1,6 @@
 
-import React from 'react';
 
-
+// 一つ一つのコメント
 export const Comment = (info) => {
     console.log("props")
     console.log(info.props)
@@ -9,8 +8,6 @@ export const Comment = (info) => {
     let propclassName = info.props.class;
     let comment = info.props.comment;
     
-
-
     return (
         <div className={'text ' + propclassName } >
             {comment}
