@@ -42,7 +42,7 @@ export const TopicForm:FC<{isActive:boolean}> = memo((props) => {
     }
 
 
-    let {postTopics} = CreateTopics(title,body,status);
+    let {postTopics} = CreateTopics();
 
 
     const submit = ():void => {

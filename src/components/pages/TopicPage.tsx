@@ -1,18 +1,29 @@
 
 import { memo,FC } from "react";
-import { useEffect } from 'react';
+import { useEffect,useState } from 'react';
 import { useLocation } from "react-router-dom";
 
-//Customhooks
-import { GetComments } from "../../Infrastructure/GetComments"
+//新規form
+import { CommentForm } from "../parts/form/CommentForm"
+
+
+//インフラ
+import { GetComments } from "../../Infrastructure/Comments"
 
 
 export const TopicPage:FC = memo(() => {
     const locationVal = useLocation().state;
+    console.log("locationの中身")
     console.log(locationVal)
 
     let {fetchComments,comments} = GetComments(locationVal['id']) 
-    useEffect(() => {//この記述で初回のみ実行される
+
+    const [modalActive,toggleModalActive] = useState(false)
+
+
+
+    //この記述で初回のみ実行される
+    useEffect(() => {
         fetchComments()
     },[])
     
@@ -31,28 +42,36 @@ export const TopicPage:FC = memo(() => {
                     {locationVal['title']}
                 </h2>
                 parent_user_id：{locationVal['parent_user_id']}
-                    <div className="tags">
-                        {
-                            tags.map((tag:string)=>(
-                                <span className="tag" key={tag}>
-                                    {tag}
-                                </span>
-                            ))
-                        }
-                    </div>
-                    <div>
-                        {locationVal['status']}
-                    </div>
-                    {/* 一つ一つのコメント */}
-                    <div className="comments_wrap">
-                        {
-                            comments.map((comment) => (
-                                <div className={'text ' + (comment.user_id === locationVal['parent_user_id'] ? 'left' : 'right') } key={comment.comment_id}>
-                                    {comment.text}
-                                </div>                                
-                            ))
-                        }
-                    </div>
+                <div className="tags">
+                    {
+                        tags.map((tag:string)=>(
+                            <span className="tag" key={tag}>
+                                {tag}
+                            </span>
+                        ))
+                    }
+                </div>
+                <div>
+                    {locationVal['status']}
+                </div>
+                {/* 一つ一つのコメント */}
+                <div className="comments_wrap">
+                    {
+                        comments.map((comment) => (
+                            <div className={'text ' + (comment.user_id === locationVal['parent_user_id'] ? 'left' : 'right') } key={comment.comment_id}>
+                                {comment.text}
+                            </div>                                
+                        ))
+                    }
+                </div>
+                <CommentForm 
+                    isActive={modalActive} 
+                    topic_id={locationVal["id"]}
+                />
+
+            </div>
+            <div className="new_form_button">
+                <button onClick={() => toggleModalActive(!modalActive)}>新規トピックの投稿</button>
             </div>
         </section>
     )

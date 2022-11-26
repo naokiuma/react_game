@@ -7,7 +7,6 @@ import { LoggedInProvider,LoggedInContext } from "../global/LoggedInProvider";
 //新規form
 import { TopicForm } from "../parts/form/TopicForm"
 
-
 //インフラ
 import { GetTopics } from "../../Infrastructure/Topics"
 
@@ -45,7 +44,6 @@ export const Home:FC = memo(() => {
         <>
        
             <section className="hero">
-                
                 <div className="inner">
                     <h1>Enjog</h1>
 
@@ -60,9 +58,6 @@ export const Home:FC = memo(() => {
                         その時その時のエンジョイの気持ち、感動を記録しよう。<br/> */}
                     </p>
                 </div>
-
-
-
 
             </section>
             <section className="home_section main_contents">
@@ -90,7 +85,7 @@ export const Home:FC = memo(() => {
                 <TopicForm isActive={modalActive} />
 
             </section>
-            <div className="new_topic_button">
+            <div className="new_form_button">
                 <button onClick={() => toggleModalActive(!modalActive)}>新規トピックの投稿</button>
             </div>
         </>
