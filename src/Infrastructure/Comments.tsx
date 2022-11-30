@@ -37,7 +37,6 @@ const CreateComments = () => {
 				
 				)
 				.then((res) => {
-				console.log('createTopics')
 				console.log(res)
 				})
 			})

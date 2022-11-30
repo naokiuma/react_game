@@ -1,10 +1,11 @@
-import { memo,FC } from "react";
+import { memo,FC,useEffect } from "react";
 import {ChangeEvent,useState} from 'react'
 import {ImgPreview} from "../../Templates/ImgPreview"
 
 
-//Customhooks
-import {CreateTopics} from "../../../Infrastructure/Topics"
+//インフラ
+import {CreateTopics} from "../../../Infrastructure/useTopics"
+
 
 
 //複数のpropsがある場合はこういう書き方ができる
@@ -13,10 +14,18 @@ import {CreateTopics} from "../../../Infrastructure/Topics"
 // }
 
 export const TopicForm:FC<{isActive:boolean}> = memo((props) => {
+    console.log('formの中');
     console.log(props);
+
+
+
+
 
     //モーダル表示フラグ
     let isActive = props.isActive
+    //再描写する処理
+    // let onEventCallBack = props.onEventCallBack
+
 
     //画像
     const [imgData, setImg] = useState(null);
@@ -42,20 +51,23 @@ export const TopicForm:FC<{isActive:boolean}> = memo((props) => {
     }
 
 
-    let {postTopics} = CreateTopics();
+    
 
 
     const submit = ():void => {
+        console.log('中身一覧！')
+
         console.log(title)
         console.log(body)
         console.log(status)
         console.log(imgData);
-        postTopics(title,body,status,imgData)
+        // postTopics({title,body,status,setTopics,imgData})
+        // // onEventCallBack();
+        // console.log('完了！')
     }
 
 
     return (
-
             <div className={'modal ' + (isActive == true ? 'isActive' : '')}>
                 <button >ボタン</button>
                 <div>

@@ -8,29 +8,38 @@ import { LoggedInProvider,LoggedInContext } from "../global/LoggedInProvider";
 import { TopicForm } from "../parts/form/TopicForm"
 
 //インフラ
-import { GetTopics } from "../../Infrastructure/Topics"
+import { GetTopics } from "../../Infrastructure/useTopics"
 
 //css
 import '../../css/pages/top.css';
 
 
-
-
 export const Home:FC = memo(() => {
     const { username,setUserName } = useContext(LoggedInContext);
     const [modalActive,toggleModalActive] = useState(false)
-    console.log(modalActive);
+
+    //fethcが実施されたフラグ
+    // let new_fetch_flg = false;
 
 
-    //表示topics
-    let {fetchTopics,topics} = GetTopics();
-    useEffect(() => {//この記述で初回のみ実行される
+    const {fetchTopics,topics,setTopics} = GetTopics();
+
+    useEffect(() => {
+        console.log('useeffect検知しました');
         fetchTopics()
     },[])
+
 
     // ローカルストレージからキーを指定して取得
     let loginUserName = localStorage.getItem("userName");
     let loginUserEmail = localStorage.getItem("userEmail");
+
+    // let pushMessage = () => {
+    //    console.log('通知！');
+    //    fetchTopics()
+    // }
+      
+
 
     if(loginUserName !== null){
         setUserName(loginUserName);
@@ -42,7 +51,6 @@ export const Home:FC = memo(() => {
 
     return (
         <>
-       
             <section className="hero">
                 <div className="inner">
                     <h1>Enjog</h1>
@@ -82,9 +90,11 @@ export const Home:FC = memo(() => {
                 </ul>
                 
 
+                {/* <TopicForm isActive={modalActive} onEventCallBack={pushMessage}/> */}
                 <TopicForm isActive={modalActive} />
-
             </section>
+
+            
             <div className="new_form_button">
                 <button onClick={() => toggleModalActive(!modalActive)}>新規トピックの投稿</button>
             </div>
