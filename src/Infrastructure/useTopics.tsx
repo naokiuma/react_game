@@ -45,33 +45,10 @@ const CreateTopics = () => {
 				
 				)
 				.then((res) => {
-					console.log('createTopics')
-					console.log('さて');
-					console.log('res.dataです')
-					console.log(res.data)
-					// console.log(topics)
-					// let newitem = {
-					// 	"id": 999,
-					// 	"parent_user_id": null,
-					// 	"title": "aaaaaa",
-					// 	"body": "ooo",
-					// 	"status": "プレイ中",
-					// 	"created_at": "2022-11-30T14:13:44.000000Z",
-					// 	"updated_at": "2022-11-30T14:13:44.000000Z"
-					// }
-					
-					
-					// topics.push(newitem)
-					// setTopics(topics);
-
-					// console.log(topics)
 					fetchTopics();
-
 				})
 			})
 	}
-
-
 
 
 	return {postTopics}
