@@ -1,36 +1,21 @@
-import { memo,FC,useEffect } from "react";
+import { memo,FC } from "react";
 import {ChangeEvent,useState} from 'react'
 import {ImgPreview} from "../../Templates/ImgPreview"
-
-
-//インフラ
 import {CreateTopics} from "../../../Infrastructure/useTopics"
 
 
 
-//複数のpropsがある場合はこういう書き方ができる
-// type Props ={
-//     isActive:boolean
-// }
-
-export const TopicForm:FC<{isActive:boolean}> = memo((props) => {
+export const TopicForm:FC<{isActive:boolean,fetchTopics:Function}> = memo((props) => {
     console.log('formの中');
-    console.log(props);
-
-
-
-
 
     //モーダル表示フラグ
     let isActive = props.isActive
-    //再描写する処理
-    // let onEventCallBack = props.onEventCallBack
 
+    const {postTopics} = CreateTopics();//importした関数の場合はこの書き方
+    const fetchTopics = props.fetchTopics;//propsで渡した関数の場合はこの書き方
 
-    //画像
-    const [imgData, setImg] = useState(null);
-    console.log('画像。')
-    console.log(imgData)
+    
+
 
     //タイトル
     const [title,setTitle] = useState('')
@@ -50,20 +35,18 @@ export const TopicForm:FC<{isActive:boolean}> = memo((props) => {
         setStatus(e.target.value)
     }
 
-
-    
+     //画像
+     const [imgData, setImg] = useState(null);
+     console.log('画像。')
+     console.log(imgData)
 
 
     const submit = ():void => {
-        console.log('中身一覧！')
-
         console.log(title)
         console.log(body)
         console.log(status)
         console.log(imgData);
-        // postTopics({title,body,status,setTopics,imgData})
-        // // onEventCallBack();
-        // console.log('完了！')
+        postTopics(title,body,status,fetchTopics,null)
     }
 
 

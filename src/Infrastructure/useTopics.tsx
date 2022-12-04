@@ -26,7 +26,7 @@ const GetTopics = (topic_ID?:number) => {
 const CreateTopics = () => {
 	let target_URL =  `${API_BASE_URL}/topics/create`;
 
-	const postTopics = (title,body,status,imgData?) => {
+	const postTopics = (title,body,status,fetchTopics,imgData?) => {
 		console.log('postTopicsの中');
 		// console.log(setTopics);
 		console.log(title);
@@ -47,15 +47,26 @@ const CreateTopics = () => {
 				.then((res) => {
 					console.log('createTopics')
 					console.log('さて');
-					// const newPosts = [...props.posts, response.data] // 解説します★7
-        			// props.setPosts(newPosts)
-
-					// console.log(topics);
 					console.log('res.dataです')
 					console.log(res.data)
-					// setTopics(fetchTopics());
-					// fetchTopics();
+					// console.log(topics)
+					// let newitem = {
+					// 	"id": 999,
+					// 	"parent_user_id": null,
+					// 	"title": "aaaaaa",
+					// 	"body": "ooo",
+					// 	"status": "プレイ中",
+					// 	"created_at": "2022-11-30T14:13:44.000000Z",
+					// 	"updated_at": "2022-11-30T14:13:44.000000Z"
+					// }
 					
+					
+					// topics.push(newitem)
+					// setTopics(topics);
+
+					// console.log(topics)
+					fetchTopics();
+
 				})
 			})
 	}
