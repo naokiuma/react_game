@@ -14,7 +14,9 @@ const GetTopics = (topic_ID?:number) => {
 		axios
 			.get(target_URL)
 			.then((res) => {
-				console.log('getTopicsしました、settopicsします。')
+				console.log('getTopicsしました。')
+				console.log(res.data)
+
 				setTopics(res.data);
 			})
 	}

@@ -69,9 +69,7 @@ export const Home:FC = memo(() => {
                 <ul className="topics_wrap">
                     {
                         topics.map((topic)=>(
-
                             <li>
-
                                 <Link to={"/topics/" + topic.id} state={topic} key={topic.id}>
                                     <Topic
                                         key={topic.id}
@@ -79,7 +77,8 @@ export const Home:FC = memo(() => {
                                         title={topic.title}
                                         user_id={topic.parent_user_id}
                                         status={topic.status}
-                                        />
+                                        image_path={topic.image_path}
+                                    />
                                 </Link>  
                             </li>
                         ))

@@ -10,7 +10,10 @@
 }
 
 .home_section .topics_wrap {
-  margin-top: 40px;
   justify-content: flex-start;
+}
+
+.home_section .topics_wrap li {
+  margin-left: 20px;
 }
 /*# sourceMappingURL=top.css.map */

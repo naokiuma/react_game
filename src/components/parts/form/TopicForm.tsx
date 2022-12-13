@@ -46,7 +46,7 @@ export const TopicForm:FC<{isActive:boolean,fetchTopics:Function}> = memo((props
         console.log(body)
         console.log(status)
         console.log(imgData);
-        postTopics(title,body,status,fetchTopics,null)
+        postTopics(title,body,status,fetchTopics,imgData)
     }
 
 

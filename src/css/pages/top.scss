@@ -10,8 +10,10 @@
 
 .home_section{
     .topics_wrap{
-        margin-top: 40px;
+        // margin-top: 40px;
         justify-content: flex-start;
+        li{
+            margin-left: 20px;
+        }
     }
-
 }
