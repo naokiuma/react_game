@@ -10,7 +10,7 @@
 
 
 export const Topic = (props) => {
-    const { id,title,user_id,status,image_path} = props;
+    let { id,title,user_id,status,image_path} = props;
 
     return (
         <div className="card_wrap">
@@ -21,7 +21,10 @@ export const Topic = (props) => {
             <span>
                 {status}
             </span>
-            <img src={image_path} alt="" />
+            {/* {image_path != null ? image_path.replace("public","strage") : null} */}
+            {image_path != null && <img src={"http://localhost:8888/" + image_path.replace("public","storage")} alt="" />}
+            {/* {image_path != null && <img src={"http://localhost:8888/" + id + '/' + image_path} alt="" />} */}
+
         </div>
         
     )

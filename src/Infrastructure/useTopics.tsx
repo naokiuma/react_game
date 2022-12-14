@@ -16,7 +16,6 @@ const GetTopics = (topic_ID?:number) => {
 			.then((res) => {
 				console.log('getTopicsしました。')
 				console.log(res.data)
-
 				setTopics(res.data);
 			})
 	}

@@ -85,7 +85,7 @@ export const Home:FC = memo(() => {
                     }  
                 </ul>
                 
-                <TopicForm isActive={modalActive} fetchTopics={fetchTopics} /> 
+                <TopicForm isActive={modalActive} fetchTopics={fetchTopics} toggleModalActive={toggleModalActive}/> 
                 
             </section>
 
