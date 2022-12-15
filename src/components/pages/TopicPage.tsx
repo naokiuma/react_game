@@ -41,7 +41,7 @@ export const TopicPage:FC = memo(() => {
                 <h2 className="game_title">
                     {locationVal['title']}
                 </h2>
-                parent_user_id：{locationVal['parent_user_id']}
+                parent_user_id：{locationVal['id']}
                 <div className="tags">
                     {
                         tags.map((tag:string)=>(
@@ -67,11 +67,12 @@ export const TopicPage:FC = memo(() => {
                 <CommentForm 
                     isActive={modalActive} 
                     topic_id={locationVal["id"]}
+                    toggleModalActive={toggleModalActive}
                 />
 
             </div>
             <div className="new_form_button">
-                <button onClick={() => toggleModalActive(!modalActive)}>新規トピックの投稿</button>
+                <button onClick={() => toggleModalActive(!modalActive)}>新規コメントの投稿</button>
             </div>
         </section>
     )

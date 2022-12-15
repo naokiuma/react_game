@@ -57,7 +57,7 @@ export const TopicForm:FC<{isActive:boolean,fetchTopics:Function,toggleModalActi
             <div className='modal'>
                 <div className="close_btn_wrap">
                     <div className="close_btn" onClick={() =>  props.toggleModalActive(false)}>
-                </div>
+                    </div>
                 </div>
                 <div>
                     <button >ボタン</button>

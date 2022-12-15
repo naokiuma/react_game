@@ -12,7 +12,7 @@ import {CreateComments} from "../../../Infrastructure/Comments"
 //     isActive:boolean
 // }
 
-export const CommentForm:FC<{isActive:boolean,topic_id:number}> = memo((props) => {
+export const CommentForm:FC<{isActive:boolean,topic_id:number,toggleModalActive:Function}> = memo((props) => {
     console.log("コメントフォーム");
 
     console.log(props);
@@ -53,28 +53,36 @@ export const CommentForm:FC<{isActive:boolean,topic_id:number}> = memo((props) =
 
 
     return (
+        <div className={'modal_wrap ' + (isActive == true ? 'isActive' : '')}>
+            <div className="ovarlay"></div>
+        
+            <div className='modal'>
+                <div className="close_btn_wrap">
+                
+                    <div className="close_btn" onClick={() => props.toggleModalActive(false)}>
+                    </div>
+                </div>
+                <button >ボタン</button>
+                <div>
+                    名前
+                    <input onChange={changeName}/>
+                </div>
+                <div>
+                    本文
+                    <input onChange={changeBody}/>
+                </div>
+                
 
-        <div className={'modal ' + (isActive == true ? 'isActive' : '')}>
-            <button >ボタン</button>
-            <div>
-                名前
-                <input onChange={changeName}/>
+                <br/>
+                タイトル：{name}<br/>
+                本文：{text}<br/>
+                
+                <ImgPreview
+                    setImage = {setImg}
+                    imgData = {imgData}
+                />
+                <button onClick={submit}>submit</button>
             </div>
-            <div>
-                本文
-                <input onChange={changeBody}/>
-            </div>
-            
-
-            <br/>
-            タイトル：{name}<br/>
-            本文：{text}<br/>
-            
-            <ImgPreview
-                setImage = {setImg}
-                imgData = {imgData}
-            />
-            <button onClick={submit}>submit</button>
         </div>
     )
 
