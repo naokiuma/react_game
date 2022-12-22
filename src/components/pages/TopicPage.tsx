@@ -51,7 +51,7 @@ export const TopicPage:FC = memo(() => {
                         ))
                     }
                 </div>
-                <div>
+                <div className="status_label mt10">
                     {locationVal['status']}
                 </div>
                 {/* 一つ一つのコメント */}
@@ -65,6 +65,7 @@ export const TopicPage:FC = memo(() => {
                     }
                 </div>
                 <CommentForm 
+                
                     isActive={modalActive} 
                     topic_id={locationVal["id"]}
                     toggleModalActive={toggleModalActive}
@@ -72,7 +73,7 @@ export const TopicPage:FC = memo(() => {
 
             </div>
             <div className="new_form_button">
-                <button onClick={() => toggleModalActive(!modalActive)}>新規コメントの投稿</button>
+                <button onClick={() => toggleModalActive(!modalActive)}>投稿</button>
             </div>
         </section>
     )

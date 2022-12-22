@@ -5,7 +5,7 @@ import {CreateTopics} from "../../../Infrastructure/useTopics"
 
 
 
-export const TopicForm:FC<{isActive:boolean,fetchTopics:Function,toggleModalActive:Function}> = memo((props) => {
+export const TopicForm:FC<{form_title:string,isActive:boolean,fetchTopics:Function,toggleModalActive:Function}> = memo((props) => {
     console.log('formの中');
 
     //モーダル表示フラグ
@@ -55,6 +55,7 @@ export const TopicForm:FC<{isActive:boolean,fetchTopics:Function,toggleModalActi
         <div className={'modal_wrap ' + (isActive == true ? 'isActive' : '')}>
             <div className="ovarlay"></div>
             <div className='modal'>
+                <span>{props.form_title}</span>
                 <div className="close_btn_wrap">
                     <div className="close_btn" onClick={() =>  props.toggleModalActive(false)}>
                     </div>

@@ -17,10 +17,9 @@ export const Topic = (props) => {
             <h4 className="_title">
                 {title}
             </h4>
-            <br/>
-            <span>
+            <div className="status_label">
                 {status}
-            </span>
+            </div>
             {/* {image_path != null ? image_path.replace("public","strage") : null} */}
             {image_path != null && <img src={"http://localhost:8888/" + image_path.replace("public","storage")} alt="" />}
             {/* {image_path != null && <img src={"http://localhost:8888/" + id + '/' + image_path} alt="" />} */}

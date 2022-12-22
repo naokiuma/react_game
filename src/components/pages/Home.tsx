@@ -86,6 +86,7 @@ export const Home:FC = memo(() => {
                 </ul>
                 
                 <TopicForm
+                    form_title='トピックを追加'
                     isActive={modalActive}
                     fetchTopics={fetchTopics}
                     toggleModalActive={toggleModalActive}
@@ -95,7 +96,7 @@ export const Home:FC = memo(() => {
 
 
             <div className="new_form_button">
-                <button onClick={() => toggleModalActive(!modalActive)}>新規トピックの投稿</button>
+                <button onClick={() => toggleModalActive(!modalActive)}>投稿</button>
             </div>
         </>
     )
