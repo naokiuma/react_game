@@ -36,6 +36,8 @@ export const Login = () => {
     const [password,setPassword] = useState('')
 
     const { username,setUserName } = useContext(LoggedInContext);
+    const { userid,setUserID } = useContext(LoggedInContext);
+
     const { userAuth,setUserAuth } = useContext(LoggedInContext);
     const { useremail,setUseremail } = useContext(LoggedInContext);
 
@@ -69,7 +71,10 @@ export const Login = () => {
                     {withCredentials:true}
                 )
                 .then((response) => {
+                    console.log(response.data)
                     setUserName(response.data.name);
+                    setUserID(response.data.user_id);
+                    
                     setUseremail(response.data.email);
                     setUserAuth(true);
                     // navigate(url)//リダイレクト

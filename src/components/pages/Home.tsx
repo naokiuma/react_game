@@ -1,8 +1,6 @@
 import { memo,FC,useContext,useEffect, useState,ChangeEvent} from "react";
 import { BrowserRouter,Route,Link,Routes } from "react-router-dom";//switch は Routesに変わった
 import {ImgPreview} from "../Templates/ImgPreview"
-
-
 import { Topic } from "../parts/Topic";
 import { LoggedInProvider,LoggedInContext } from "../global/LoggedInProvider";
 
@@ -21,6 +19,8 @@ import '../../css/pages/top.css';
 
 export const Home:FC = memo(() => {
     const { username,setUserName } = useContext(LoggedInContext);
+    const { userid } = useContext(LoggedInContext);
+
     const [modalActive,toggleModalActive] = useState(false)
 
 
@@ -44,6 +44,8 @@ export const Home:FC = memo(() => {
     if(loginUserEmail !== null){
         setUserName(loginUserEmail);
     }
+
+    console.log(username)
 
 
     return (
@@ -79,7 +81,12 @@ export const Home:FC = memo(() => {
                                         status={topic.status}
                                         image_path={topic.image_path}
                                     />
-                                </Link>  
+                                </Link>
+                                parent_uder_id:{topic.parent_user_id}
+                                contextのuser_id:{userid}
+                                namae:{username}
+
+                                {(username !== 'ゲスト' && userid == topic.parent_user_id) && <span>編集</span>}
                             </li>
                         ))
                     }  

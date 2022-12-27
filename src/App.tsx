@@ -35,9 +35,9 @@ function App() {
             <Route path="/topics/:id" element={<TopicPage />} />
             <Route path="/login/" element={<Login/>} />
 
-            {/* <Route path="/about" element={<PrivateRoute />}>
+            <Route path="/about" element={<PrivateRoute />}>
               <Route element={<About/>}/>
-            </Route> */}
+            </Route>
             
 
             <Route path="*" element={<Nomatch />} />

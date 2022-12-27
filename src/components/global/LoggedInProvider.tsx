@@ -6,6 +6,8 @@ type LoggedInContextType ={
     userAuth:boolean;
     setUserName: (value: string) => void;
     username: string;
+    setUserID: (value: number) => void;
+    userid: number;
     setUseremail: (value: string) => void;
     useremail: string;
   }
@@ -20,12 +22,13 @@ export const LoggedInProvider = (props) => {
     const { children } = props;//一般的に、どんなものでも囲えるようにchildrecなpropsにする
 
      // 全体のステートオブジェクト作成
-    const [userAuth, setUserAuth] = useState<boolean>(false);//ログイン有無
-    const [username, setUserName] = useState<string>('ゲスト');
-    const [useremail, setUseremail] = useState<string>('');
+     const [username, setUserName] = useState<string>('ゲスト');
+     const [userid, setUserID] = useState<number>(0);     
+     const [useremail, setUseremail] = useState<string>('');
+     const [userAuth, setUserAuth] = useState<boolean>(false);//ログイン有無
 
     return (
-        <LoggedInContext.Provider value={{username,setUserName,useremail,setUseremail,userAuth,setUserAuth}}>
+        <LoggedInContext.Provider value={{username,setUserName,userid,setUserID,useremail,setUseremail,userAuth,setUserAuth}}>
             {children}
         </LoggedInContext.Provider>
     )
