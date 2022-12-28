@@ -21,7 +21,7 @@ export const LoggedInContext = createContext<LoggedInContextType>({} as LoggedIn
 export const LoggedInProvider = (props) => {
     const { children } = props;//一般的に、どんなものでも囲えるようにchildrecなpropsにする
 
-     // 全体のステートオブジェクト作成
+     // 全体のステートオブジェクト、デフォルトの値を作成
      const [username, setUserName] = useState<string>('ゲスト');
      const [userid, setUserID] = useState<number>(0);     
      const [useremail, setUseremail] = useState<string>('');

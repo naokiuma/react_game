@@ -14,7 +14,6 @@ import {CreateComments} from "../../../Infrastructure/Comments"
 
 export const CommentForm:FC<{isActive:boolean,topic_id:number,toggleModalActive:Function}> = memo((props) => {
     console.log("コメントフォーム");
-
     console.log(props);
     // let topic_id = props.topic_id;
     // let user_id = props.user_id;

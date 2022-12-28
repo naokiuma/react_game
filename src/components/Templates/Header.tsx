@@ -61,6 +61,9 @@ export const Header = () => {
                 <li>
                     <Link to="/about">About</Link>
                 </li>
+                <li>
+                    <Link to="/setting">Setting</Link>
+                </li>
             </ul>
             {/* <button onClick={test}>テスト</button> */}
 

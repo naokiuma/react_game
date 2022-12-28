@@ -10,7 +10,9 @@ import { LoggedInContext} from "../components/global/LoggedInProvider";
 export const PrivateRoute = () => {
     const { userAuth } = useContext(LoggedInContext);
     const location = useLocation();
-    // console.log('一旦ここ')
+    console.log('userAuth')
+    console.log(userAuth)
+
     // console.log(location.pathname)
 
     // const navigate = useNavigate()
@@ -20,7 +22,7 @@ export const PrivateRoute = () => {
     if(userAuth){
       return(
         <>
-        outlet
+        outletだよ
          <Outlet/>
         </>
       )

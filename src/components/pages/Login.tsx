@@ -18,16 +18,7 @@ type State = {
 export const Login = () => {
 
     const location = useLocation();
-
     console.log(location)
-
-    // const { url } = location.state as State;//どのページからきたかを取得。
-    // console.log('urlの中身');
-    // console.log(url);
-    
-
-    const navigate = useNavigate();
-
 
     //ログイン状態
     const IsLogged = useContext(LoggedInContext);
@@ -71,6 +62,8 @@ export const Login = () => {
                     {withCredentials:true}
                 )
                 .then((response) => {
+                    console.log('login後のデータ')
+
                     console.log(response.data)
                     setUserName(response.data.name);
                     setUserID(response.data.user_id);
@@ -94,13 +87,14 @@ export const Login = () => {
 
     return(
         <section className="login">
-            {/* <button onClick={() => setCount(count + 1)}>+</button> */}
             <h1>
-                ログインページです。
+                Login
             </h1>
             {username}
+            {userid}
 
-            <button onClick={handleUserClick}>ボタン</button>
+
+            {/* <button onClick={handleUserClick}>ボタン</button> */}
             <div>
                 メールアドレス
                 <input onChange={changeEmail}/>

@@ -2,7 +2,7 @@ import { memo,FC,useContext,useEffect, useState,ChangeEvent} from "react";
 import { BrowserRouter,Route,Link,Routes } from "react-router-dom";//switch は Routesに変わった
 import {ImgPreview} from "../Templates/ImgPreview"
 import { Topic } from "../parts/Topic";
-import { LoggedInProvider,LoggedInContext } from "../global/LoggedInProvider";
+import { LoggedInContext } from "../global/LoggedInProvider";
 
 //新規form
 import { TopicForm } from "../parts/form/TopicForm"
@@ -18,7 +18,7 @@ import '../../css/pages/top.css';
 
 
 export const Home:FC = memo(() => {
-    const { username,setUserName } = useContext(LoggedInContext);
+    const { username } = useContext(LoggedInContext);
     const { userid } = useContext(LoggedInContext);
 
     const [modalActive,toggleModalActive] = useState(false)
@@ -31,21 +31,32 @@ export const Home:FC = memo(() => {
         fetchTopics()
     },[])
 
+    console.log('ここでのtopics')
+    console.log(topics)
+    console.log(userid)
+
+
+
 
     // ローカルストレージからキーを指定して取得
-    let loginUserName = localStorage.getItem("userName");
-    let loginUserEmail = localStorage.getItem("userEmail");
+    // let loginUserName = localStorage.getItem("userName");
+    // let loginUserID = localStorage.getItem("userEmail");
 
+    // // let loginUserEmail = localStorage.getItem("userEmail");
 
-    if(loginUserName !== null){
-        setUserName(loginUserName);
-    }
+    // if(loginUserName !== null){
+    //     setUserName(loginUserName);
+    // }
 
-    if(loginUserEmail !== null){
-        setUserName(loginUserEmail);
-    }
+    // if(loginUserEmail !== null){
+    //     setUserID(loginUserEmail);
+    // }
+
+    console.log('usernameとid')
 
     console.log(username)
+    console.log(userid)
+
 
 
     return (
@@ -69,6 +80,8 @@ export const Home:FC = memo(() => {
             </section>
             <section className="home_section main_contents">
                 <ul className="topics_wrap">
+                    contextのuser_id:{userid}
+                    namae:{username}
                     {
                         topics.map((topic)=>(
                             <li>
@@ -83,10 +96,9 @@ export const Home:FC = memo(() => {
                                     />
                                 </Link>
                                 parent_uder_id:{topic.parent_user_id}
-                                contextのuser_id:{userid}
-                                namae:{username}
+                                
 
-                                {(username !== 'ゲスト' && userid == topic.parent_user_id) && <span>編集</span>}
+                                {(username !== 'ゲスト' && userid === topic.parent_user_id) && <span>編集</span>}
                             </li>
                         ))
                     }  

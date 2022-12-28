@@ -1,5 +1,5 @@
 // import { useContext} from 'react'
-import { Route,Routes,RouteProps,Navigate,Outlet,useLocation } from "react-router-dom";//switch は Routesに変わった
+import { Route,Routes,BrowserRouter } from "react-router-dom";//switch は Routesに変わった
 import { Home } from "./components/pages/Home";
 import { PrivateRoute } from "../src/router/PrivateRoute";
 
@@ -10,6 +10,8 @@ import { PrivateRoute } from "../src/router/PrivateRoute";
 import { LoggedInProvider} from "./components/global/LoggedInProvider";
 
 import { About } from "./components/pages/About";
+import { Setting } from "./components/pages/Setting";
+
 import { TopicPage } from './components/pages/TopicPage';
 import { Login } from './components/pages/Login';
 import { Header } from './components/Templates/Header';
@@ -25,18 +27,21 @@ import './css/global/main.css';
 function App() {
   return (
     <>
+    <BrowserRouter>
+    
       <LoggedInProvider>
         <main>
           <Header />
 
           <Routes>
             <Route index element={<Home />} />
-            <Route path="/about/" element={<About />} />
             <Route path="/topics/:id" element={<TopicPage />} />
             <Route path="/login/" element={<Login/>} />
+            <Route path="/about/" element={<About/>} />
 
-            <Route path="/about" element={<PrivateRoute />}>
-              <Route element={<About/>}/>
+
+            <Route element={<PrivateRoute />}>
+              <Route path="/setting" element={<Setting/>}/>
             </Route>
             
 
@@ -46,6 +51,7 @@ function App() {
         </main>
         <Footer />
       </LoggedInProvider>
+      </BrowserRouter>
     </>
   );
 }

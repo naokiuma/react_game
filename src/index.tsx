@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter,HashRouter} from "react-router-dom";//switch は Routesに変わった
+import {HashRouter} from "react-router-dom";//switch は Routesに変わった
 
 import './index.css';
 import App from './App';
@@ -12,9 +12,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   // <React.StrictMode>
-     <BrowserRouter>
-      <App />
-     </BrowserRouter>
+     <App />
   // </React.StrictMode>
 );
 
