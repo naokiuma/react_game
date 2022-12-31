@@ -1,11 +1,11 @@
 import { memo,FC,useContext,useEffect, useState,ChangeEvent} from "react";
 import { BrowserRouter,Route,Link,Routes } from "react-router-dom";//switch は Routesに変わった
 import {ImgPreview} from "../Templates/ImgPreview"
-import { Topic } from "../parts/Topic";
+import { Topic } from "../atom/Topic";
 import { LoggedInContext } from "../global/LoggedInProvider";
 
 //新規form
-import { TopicForm } from "../parts/form/TopicForm"
+import { TopicForm } from "../Molecules/form/TopicForm"
 
 //インフラ
 import { GetTopics} from "../../Infrastructure/useTopics"
@@ -61,20 +61,25 @@ export const Home:FC = memo(() => {
 
     return (
         <>
-            <section className="hero">
+            <section className="hero" style={{ backgroundImage: "url(/img/top_billboard.jpg)" }}>
                 <div className="inner">
-                    <h1>Enjog</h1>
+                    <div className="_left_area">
+                        <h1>Enjog</h1>
+                        <p>
+                            <span>
+                            ゲームプレイのログを残す。
+                            </span>
+                        </p>
+                    </div>
+                    <div className="_right_area">
+                        <ul>
+                            <li>a</li>
+                            <li>i</li>
+                            <li>u</li>
 
-                    <p>
-                        <span>
-                            Enjog
-                        </span>
-                        で、「楽しんでいる最中」のログを残す。
-                        {/* クリアしてなくても、<br/>
-                        観終わってなくても、<br/>
-                        読み終わってなくても、<br/>
-                        その時その時のエンジョイの気持ち、感動を記録しよう。<br/> */}
-                    </p>
+                        </ul>
+                    </div>
+
                 </div>
 
             </section>

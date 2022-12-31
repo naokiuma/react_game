@@ -4,7 +4,7 @@ import { useEffect,useState } from 'react';
 import { useLocation } from "react-router-dom";
 
 //新規form
-import { CommentForm } from "../parts/form/CommentForm"
+import { CommentForm } from "../Molecules/form/CommentForm"
 
 
 //インフラ
