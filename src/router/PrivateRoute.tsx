@@ -22,7 +22,6 @@ export const PrivateRoute = () => {
     if(userAuth){
       return(
         <>
-        outletだよ
          <Outlet/>
         </>
       )
@@ -30,4 +29,4 @@ export const PrivateRoute = () => {
       return <Navigate to="/login/" state={{url: location.pathname }} replace/>
     }
   
-  };
+};

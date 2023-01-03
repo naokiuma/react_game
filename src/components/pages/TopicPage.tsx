@@ -8,7 +8,7 @@ import { CommentForm } from "../Molecules/form/CommentForm"
 
 
 //インフラ
-import { GetComments } from "../../Infrastructure/Comments"
+import { GetComments } from "../../Infrastructure/useComments"
 
 
 export const TopicPage:FC = memo(() => {

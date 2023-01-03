@@ -22,7 +22,7 @@ export const LoggedInProvider = (props) => {
     const { children } = props;//一般的に、どんなものでも囲えるようにchildrecなpropsにする
 
      // 全体のステートオブジェクト、デフォルトの値を作成
-     const [username, setUserName] = useState<string>('ゲスト');
+     const [username, setUserName] = useState<string>('名無し');
      const [userid, setUserID] = useState<number>(0);     
      const [useremail, setUseremail] = useState<string>('');
      const [userAuth, setUserAuth] = useState<boolean>(false);//ログイン有無

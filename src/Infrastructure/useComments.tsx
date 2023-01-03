@@ -22,14 +22,14 @@ const GetComments = (topic_ID?:number) => {
 const CreateComments = () => {
 	let target_URL =  `${API_BASE_URL}/comments/create`;
 
-	const postComments = (topic_id,name,text,user_id?) => {
+	const postComments = (topic_id,user_id,name,text,imgData?) => {
 		axios
 			.get('http://localhost:8888/sanctum/csrf-cookie', { withCredentials: true })
 			.then((response) => {
 			axios
 			.post(
 				target_URL,
-				{topic_id: topic_id,name:name,text: text,user_id: user_id},
+				{topic_id: topic_id,name:name,text: text,user_id: user_id,file:imgData},
 				{headers:
 					{'Content-Type': 'multipart/form-data',},//画像を送る際にはこの指定が必要
 					withCredentials:true,

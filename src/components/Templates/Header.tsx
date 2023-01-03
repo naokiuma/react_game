@@ -67,16 +67,23 @@ export const Header = () => {
             </ul>
             {/* <button onClick={test}>テスト</button> */}
 
-            
             <div className="login_block">
                 <div className="user_info">
-                    {username !== 'undefined' ? username + 'さん' : 'ゲストさん'}
+                    {username !== 'undefined' ? username + 'さん' : '名無しさん'}
                 </div>
-                <div>
-                    {userAuth ? 
-                    <button className="header_btn" onClick={logout}>Logout</button> :
-                    <Link to="/login">Login</Link>}
-                </div>
+                {userAuth?
+                    <div>
+                        <button className="header_btn" onClick={logout}>Logout</button>
+                    </div>:
+                    <>
+                        <div>
+                            <Link to="/login">Login</Link>
+                        </div>
+                        <div>
+                            <Link to="/register">Register</Link>
+                        </div>
+                    </>
+                }
 
             </div>
       </header>

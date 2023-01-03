@@ -9,12 +9,6 @@ type LoginParams = {
     password:string;
 }
 
-type State = {
-    url?:string
-
-}
-
-
 export const Login = () => {
 
     const location = useLocation();
@@ -22,15 +16,13 @@ export const Login = () => {
 
     //ログイン状態
     const IsLogged = useContext(LoggedInContext);
-    console.log(IsLogged);
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
-
     const { username,setUserName } = useContext(LoggedInContext);
     const { userid,setUserID } = useContext(LoggedInContext);
-
     const { userAuth,setUserAuth } = useContext(LoggedInContext);
-    const { useremail,setUseremail } = useContext(LoggedInContext);
+    const { setUseremail } = useContext(LoggedInContext);
+
 
     const changeEmail = (e:ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value)
@@ -38,6 +30,7 @@ export const Login = () => {
     const changePassword = (e:ChangeEvent<HTMLInputElement>) => {
         setPassword(e.target.value)
     }
+
 
     // SPA認証済みではないとアクセスできないAPI
     const handleUserClick = () => {
@@ -62,12 +55,8 @@ export const Login = () => {
                     {withCredentials:true}
                 )
                 .then((response) => {
-                    console.log('login後のデータ')
-
-                    console.log(response.data)
                     setUserName(response.data.name);
                     setUserID(response.data.user_id);
-                    
                     setUseremail(response.data.email);
                     setUserAuth(true);
                     // navigate(url)//リダイレクト
@@ -94,7 +83,6 @@ export const Login = () => {
             {userid}
 
 
-            {/* <button onClick={handleUserClick}>ボタン</button> */}
             <div>
                 メールアドレス
                 <input onChange={changeEmail}/>

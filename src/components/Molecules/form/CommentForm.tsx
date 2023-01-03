@@ -4,7 +4,7 @@ import {ImgPreview} from "../../Templates/ImgPreview"
 
 
 //Customhooks
-import {CreateComments} from "../../../Infrastructure/Comments"
+import {CreateComments} from "../../../Infrastructure/useComments"
 
 
 //複数のpropsがある場合はこういう書き方ができる
@@ -15,14 +15,11 @@ import {CreateComments} from "../../../Infrastructure/Comments"
 export const CommentForm:FC<{isActive:boolean,topic_id:number,toggleModalActive:Function}> = memo((props) => {
     console.log("コメントフォーム");
     console.log(props);
-    // let topic_id = props.topic_id;
-    // let user_id = props.user_id;
-
 
     //モーダル表示フラグ
     let isActive = props.isActive
     let topic_id = props.topic_id
-    let user_id = 999
+    let user_id = 0
 
     //画像
     const [imgData, setImg] = useState(null);
@@ -47,7 +44,9 @@ export const CommentForm:FC<{isActive:boolean,topic_id:number,toggleModalActive:
 
 
     const submit = ():void => {
-        postComments(topic_id,name,text,user_id)
+        postComments(topic_id,user_id,name,text,imgData);
+        props.toggleModalActive(false);
+
     }
 
 
@@ -57,7 +56,6 @@ export const CommentForm:FC<{isActive:boolean,topic_id:number,toggleModalActive:
         
             <div className='modal'>
                 <div className="close_btn_wrap">
-                
                     <div className="close_btn" onClick={() => props.toggleModalActive(false)}>
                     </div>
                 </div>

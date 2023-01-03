@@ -13,8 +13,6 @@ export const TopicForm:FC<{form_title:string,isActive:boolean,fetchTopics:Functi
     const {postTopics} = CreateTopics();//importした関数の場合はこの書き方
     const fetchTopics = props.fetchTopics;//propsで渡した関数の場合はこの書き方
 
-    
-
 
     //タイトル
     const [title,setTitle] = useState('')
@@ -41,10 +39,6 @@ export const TopicForm:FC<{form_title:string,isActive:boolean,fetchTopics:Functi
 
 
     const submit = ():void => {
-        // console.log(title)
-        // console.log(body)
-        // console.log(status)
-        // console.log(imgData);
         postTopics(title,body,status,fetchTopics,imgData);
         props.toggleModalActive(false);
 
