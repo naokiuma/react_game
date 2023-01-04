@@ -13,26 +13,6 @@ export const Header = () => {
     console.log(username)
     console.log(userAuth)
 
-
-    // const test = () => {
-    //     const test = 'Test_test';
-    //     axios//csrf保護の初期化
-    //         .get('http://localhost:8888/sanctum/csrf-cookie', { withCredentials: true })
-    //         .then((response) => {
-    //             //テスト処理
-    //             axios
-    //             .post(
-    //                 'http://localhost:8888/api/test',
-    //                 test,
-    //                 {withCredentials:true}
-    //             )
-    //             .then((response) => {
-    //               console.log(response);
-    //             })
-    //      })
-    // }
-
-
     const logout = () => {
         axios//csrf保護の初期化
             .get('http://localhost:8888/sanctum/csrf-cookie', { withCredentials: true })
@@ -65,7 +45,6 @@ export const Header = () => {
                     <Link to="/setting">Setting</Link>
                 </li>
             </ul>
-            {/* <button onClick={test}>テスト</button> */}
 
             <div className="login_block">
                 <div className="user_info">

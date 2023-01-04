@@ -10,12 +10,10 @@ const GetTopics = (topic_ID?:number) => {
 	const [topics,setTopics] = useState<Array<TopicsType>>([]);
 
 	const fetchTopics = ():any => {
-		console.log('fetchTopics開始〜〜')
 		axios
 			.get(target_URL)
 			.then((res) => {
-				console.log('getTopicsしました。')
-				console.log(res.data)
+				// console.log(res.data)
 				setTopics(res.data);
 			})
 	}
@@ -30,8 +28,8 @@ const CreateTopics = () => {
 	const postTopics = (title,body,status,fetchTopics,imgData?) => {
 		console.log('postTopicsの中');
 		// console.log(setTopics);
-		console.log(title);
-		console.log(imgData);
+		// console.log(title);
+		// console.log(imgData);
 			axios//csrf保護の初期化
 			.get('http://localhost:8888/sanctum/csrf-cookie', { withCredentials: true })
 			.then((response) => {

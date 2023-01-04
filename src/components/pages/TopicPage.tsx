@@ -13,8 +13,8 @@ import { GetComments } from "../../Infrastructure/useComments"
 
 export const TopicPage:FC = memo(() => {
     const locationVal = useLocation().state;
-    console.log("locationの中身")
-    console.log(locationVal)
+    // console.log("locationの中身")
+    // console.log(locationVal)
 
     let {fetchComments,comments} = GetComments(locationVal['id']) 
 
@@ -65,8 +65,8 @@ export const TopicPage:FC = memo(() => {
                     }
                 </div>
                 <CommentForm 
-                
                     isActive={modalActive} 
+                    fetchComments={fetchComments}
                     topic_id={locationVal["id"]}
                     toggleModalActive={toggleModalActive}
                 />

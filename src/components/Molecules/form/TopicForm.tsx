@@ -11,6 +11,7 @@ export const TopicForm:FC<{form_title:string,isActive:boolean,fetchTopics:Functi
     //モーダル表示フラグ
     let isActive = props.isActive
     const {postTopics} = CreateTopics();//importした関数の場合はこの書き方
+
     const fetchTopics = props.fetchTopics;//propsで渡した関数の場合はこの書き方
 
 
@@ -22,7 +23,7 @@ export const TopicForm:FC<{form_title:string,isActive:boolean,fetchTopics:Functi
 
     //本文
     const [body,setBody] = useState('')
-    const changeBody = (e:ChangeEvent<HTMLInputElement>) => {
+    const changeBody = (e:ChangeEvent<HTMLTextAreaElement>) => {
         setBody(e.target.value)
     }
 
@@ -62,7 +63,7 @@ export const TopicForm:FC<{form_title:string,isActive:boolean,fetchTopics:Functi
                     </div>
                     <div>
                         本文
-                        <input onChange={changeBody}/>
+                        <textarea onChange={changeBody}/>
                     </div>
                     <div>
                         ステータス

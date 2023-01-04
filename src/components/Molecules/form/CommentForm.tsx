@@ -1,6 +1,7 @@
-import { memo,FC } from "react";
-import {ChangeEvent,useState} from 'react'
+import {ChangeEvent,useState,useContext,memo,FC} from 'react'
 import {ImgPreview} from "../../Templates/ImgPreview"
+import { LoggedInContext } from "../../global/LoggedInProvider";
+
 
 
 //Customhooks
@@ -12,14 +13,23 @@ import {CreateComments} from "../../../Infrastructure/useComments"
 //     isActive:boolean
 // }
 
-export const CommentForm:FC<{isActive:boolean,topic_id:number,toggleModalActive:Function}> = memo((props) => {
+export const CommentForm:FC<{isActive:boolean,topic_id:number,toggleModalActive:Function,fetchComments:Function}> = memo((props) => {
     console.log("コメントフォーム");
     console.log(props);
+
+    
+    const { username } = useContext(LoggedInContext);
+    const { userid } = useContext(LoggedInContext);
 
     //モーダル表示フラグ
     let isActive = props.isActive
     let topic_id = props.topic_id
-    let user_id = 0
+    let user_id = userid;
+
+   
+
+
+    const fetchComments = props.fetchComments;//propsで渡した関数の場合はこの書き方
 
     //画像
     const [imgData, setImg] = useState(null);
@@ -27,14 +37,14 @@ export const CommentForm:FC<{isActive:boolean,topic_id:number,toggleModalActive:
     console.log(imgData)
 
     //投稿者
-    const [name,setName] = useState('')
+    const [name,setName] = useState(username)
     const changeName = (e:ChangeEvent<HTMLInputElement>) => {
         setName(e.target.value)
     }
 
     //本文
     const [text,setBody] = useState('')
-    const changeBody = (e:ChangeEvent<HTMLInputElement>) => {
+    const changeBody = (e:ChangeEvent<HTMLTextAreaElement>) => {
         setBody(e.target.value)
     }
 
@@ -44,7 +54,7 @@ export const CommentForm:FC<{isActive:boolean,topic_id:number,toggleModalActive:
 
 
     const submit = ():void => {
-        postComments(topic_id,user_id,name,text,imgData);
+        postComments(topic_id,user_id,name,text,fetchComments,imgData);
         props.toggleModalActive(false);
 
     }
@@ -62,16 +72,16 @@ export const CommentForm:FC<{isActive:boolean,topic_id:number,toggleModalActive:
                 <button >ボタン</button>
                 <div>
                     名前
-                    <input onChange={changeName}/>
+                    <input onChange={changeName} value={name}/>
                 </div>
                 <div>
                     本文
-                    <input onChange={changeBody}/>
+                    <textarea onChange={changeBody}/>
                 </div>
                 
 
                 <br/>
-                タイトル：{name}<br/>
+                名前：{name}<br/>
                 本文：{text}<br/>
                 
                 <ImgPreview

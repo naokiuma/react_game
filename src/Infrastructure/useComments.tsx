@@ -22,7 +22,7 @@ const GetComments = (topic_ID?:number) => {
 const CreateComments = () => {
 	let target_URL =  `${API_BASE_URL}/comments/create`;
 
-	const postComments = (topic_id,user_id,name,text,imgData?) => {
+	const postComments = (topic_id,user_id,name,text,fetchCommnets,imgData?) => {
 		axios
 			.get('http://localhost:8888/sanctum/csrf-cookie', { withCredentials: true })
 			.then((response) => {
@@ -37,7 +37,7 @@ const CreateComments = () => {
 				
 				)
 				.then((res) => {
-				console.log(res)
+					fetchCommnets();
 				})
 			})
 	}
