@@ -2,38 +2,24 @@ import axios from 'axios'
 
 import {LoggedInContext} from "../global/LoggedInProvider";
 import {useContext} from 'react'
+import {Logout} from '../../Infrastructure/useLogout'
+
 import {Link } from "react-router-dom";
 
 
 
 export const Header = () => {
 
-    const { userAuth,setUserAuth,username,setUserName } = useContext(LoggedInContext);
+    const { userAuth,username,setUserAuth,setUserName } = useContext(LoggedInContext);
 
     console.log(username)
     console.log(userAuth)
 
-    const logout = () => {
-        axios//csrf保護の初期化
-            .get('http://localhost:8888/sanctum/csrf-cookie', { withCredentials: true })
-            .then((response) => {
-                //ログアウト処理
-                axios
-                .post(
-                    'http://localhost:8888/api/logout',
-                    {},
-                    {withCredentials:true}
-                )
-                .then((response) => {
-                  console.log(response);
-                  setUserAuth(false)
-                  setUserName('');
-                })
-         })
-    }
+    let handleLogout = Logout()
 
     return(
         <header>
+            <img src="/img/global/logo.png" alt="Logo" />
             <ul>
                 <li>
                     <Link to="/">Home</Link>
@@ -52,7 +38,7 @@ export const Header = () => {
                 </div>
                 {userAuth?
                     <div>
-                        <button className="header_btn" onClick={logout}>Logout</button>
+                        <button className="header_btn" onClick={handleLogout}>Logout</button>
                     </div>:
                     <>
                         <div>

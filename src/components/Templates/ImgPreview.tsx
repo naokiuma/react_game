@@ -1,52 +1,49 @@
 import React, { useState } from 'react';
-
 import '../../css/parts/image_preview.css';
 
 
-
-
 export const ImgPreview = ({setImage,imgData}) => {
-    // const [imgData, setImg] = useState(null);
+
+    //プレビュー用のデータ
+    const [imagePreview, setImagePreview] = useState(undefined)
+
     const setImg = setImage;
     const img_data = imgData;
-    const changeFile = (e:any) => {
+    const changeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
         const files = e.target.files;
-        console.log('ImgPreviewでの画像');
 
-        console.log(files);
+         // 何も選択されなかったら処理中断
+        if (e.target.files?.length === 0) {
+            return
+        }
+        
+        // console.log('ImgPreviewでの画像');
+        // console.log(files);
 
         if(files && files[0]) {
             let file = files[0]
-            console.log('fileです');
-            console.log(files);
-            
-            console.log(file);
-
-            
-            let reader = new FileReader()
+            const reader = new FileReader()
             reader.onload = (e) => {
-                // setImg(e.target.result)
-                console.log('setする画像だよ')
-                console.log(file)
-                setImg(file)
 
+                // imagePreviewに読み込み結果（データURL）を代入する
+                // imagePreviewに値を入れると<output>に画像が表示される
+                setImagePreview(e.target?.result)//表示用画像
+                setImg(file)//送信用画像
             };
-            reader.readAsDataURL(file)
-        } else {
-            setImg(null)
+            reader.readAsDataURL(e.target?.files[0])
         }
     }
-   
 
     return (
-        <div>
+        <div>画像ファイルを選択
             <input
                 type="file"
                 multiple
 				accept="image/*,.png,.jpg,.jpeg,.gif"
                 onChange={changeFile}/>
             <div>
-                <img className="setted_img_frame" src={img_data} />
+                <img className="setted_img_frame" src={imagePreview} />
+
             </div>
         </div>
     ); 
