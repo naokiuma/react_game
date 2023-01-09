@@ -86,7 +86,6 @@ export const CommentForm:FC<{isActive:boolean,topic_id:number,toggleModalActive:
                 
                 <ImgPreview
                     setImage = {setImg}
-                    imgData = {imgData}
                 />
                 <button onClick={submit}>submit</button>
             </div>

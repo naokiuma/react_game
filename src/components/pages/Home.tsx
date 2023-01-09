@@ -1,6 +1,5 @@
 import { memo,FC,useContext,useEffect, useState,ChangeEvent} from "react";
 import { BrowserRouter,Route,Link,Routes } from "react-router-dom";//switch は Routesに変わった
-import {ImgPreview} from "../Templates/ImgPreview"
 import { Topic } from "../atom/Topic";
 import { LoggedInContext } from "../global/LoggedInProvider";
 
@@ -66,9 +65,8 @@ export const Home:FC = memo(() => {
                     <div className="_left_area">
                         <h1>Enjog</h1>
                         <p>
-                            <span>
-                            ゲームプレイのログを残す。
-                            </span>
+                            記録を残そう。<br/>
+                            もっとやりたいゲームをシェアしよう！
                         </p>
                     </div>
                     <div className="_right_area">

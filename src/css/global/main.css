@@ -145,11 +145,12 @@ footer {
 }
 
 .modal {
-  width: 60vw;
+  min-width: 600px;
+  max-width: 80vw;
+  top: 15%;
   position: fixed;
   left: 20vw;
   right: 20vw;
-  top: 30%;
   background-color: #fff;
   border: 2px solid black;
   padding: 20px;

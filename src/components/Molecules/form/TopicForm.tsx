@@ -50,41 +50,30 @@ export const TopicForm:FC<{form_title:string,isActive:boolean,fetchTopics:Functi
         <div className={'modal_wrap ' + (isActive == true ? 'isActive' : '')}>
             <div className="ovarlay"></div>
             <div className='modal'>
-                <span>{props.form_title}</span>
+                {/* <span>{props.form_title}</span> */}
                 <div className="close_btn_wrap">
                     <div className="close_btn" onClick={() =>  props.toggleModalActive(false)}>
                     </div>
                 </div>
                 <div>
-                    <button >ボタン</button>
                     <div>
-                        タイトル
+                        タイトル<br/>
                         <input onChange={changeTitle}/>
                     </div>
                     <div>
-                        本文
                         <textarea onChange={changeBody}/>
                     </div>
-                    <div>
-                        ステータス
-                    </div>
+                    
                     <select onChange={changeStatus}>
                         <option value="プレイ中">プレイ中</option>
                         <option value="クリア">クリア</option>
                         <option value="やり込み中">やり込み中</option>
-
                     </select>
-
-                    <br/>
-                    タイトル：{title}<br/>
-                    本文：{body}<br/>
-                    ステータス：{status}<br/>
                     
                     <ImgPreview
                         setImage = {setImg}
-                        imgData = {imgData}
                         />
-                    <button onClick={submit}>submit</button>
+                    <button onClick={submit}>投稿！</button>
                 </div>
             </div>
         </div>
