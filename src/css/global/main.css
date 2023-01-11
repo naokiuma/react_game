@@ -8,16 +8,22 @@ html {
 }
 
 .main_contents {
-  max-width: 1280px;
+  max-width: 1000px;
   margin: 100px auto;
   padding: 0 40px;
   width: 100%;
 }
 
+.main_contents ._main_img_wrap {
+  width: 80%;
+}
+
 .billboard {
   width: 100%;
-  height: 400px;
-  background-color: #dbd3d3;
+  height: 500px;
+  background-color: rgba(255, 255, 255, 0.3);
+  background-position: center 20%;
+  background-blend-mode: lighten;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,6 +31,10 @@ html {
 
 h1 {
   font-size: 60px;
+}
+
+.fw_b {
+  font-weight: bold;
 }
 
 .login {
@@ -148,6 +158,7 @@ footer {
   min-width: 600px;
   max-width: 80vw;
   top: 15%;
+  min-height: 400px;
   position: fixed;
   left: 20vw;
   right: 20vw;
@@ -156,6 +167,27 @@ footer {
   padding: 20px;
   z-index: 100;
   border-radius: 10px;
+}
+
+.modal .write_area {
+  margin-top: 10px;
+}
+
+.modal .write_area input {
+  width: 80%;
+  padding: 10px;
+  line-height: 1;
+}
+
+.modal .write_area textarea {
+  width: 100%;
+  padding: 10px;
+  line-height: 1.5;
+  height: 15em;
+}
+
+.modal .submit_btn {
+  margin-top: 20px;
 }
 
 .modal .close_btn_wrap {
@@ -253,10 +285,11 @@ footer {
 }
 
 .status_label {
-  padding: 4px 8px;
+  font-weight: bold;
+  border: 2px solid #555;
+  padding: 10px 20px;
   display: inline-block;
   font-size: 12px;
-  border: 1px solid;
 }
 
 .mt10 {

@@ -1,5 +1,6 @@
 .setted_img_frame {
   width: 400px;
-  height: auto;
+  height: 300px;
+  border: dotted;
 }
 /*# sourceMappingURL=image_preview.css.map */

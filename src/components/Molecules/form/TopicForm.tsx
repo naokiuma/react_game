@@ -48,32 +48,35 @@ export const TopicForm:FC<{form_title:string,isActive:boolean,fetchTopics:Functi
 
     return (
         <div className={'modal_wrap ' + (isActive == true ? 'isActive' : '')}>
-            <div className="ovarlay"></div>
+            <div className="ovarlay" onClick={() =>  props.toggleModalActive(false)}></div>
             <div className='modal'>
-                {/* <span>{props.form_title}</span> */}
                 <div className="close_btn_wrap">
                     <div className="close_btn" onClick={() =>  props.toggleModalActive(false)}>
                     </div>
                 </div>
                 <div>
-                    <div>
-                        タイトル<br/>
+                    <div className="write_area" >
+                        <span className="fw_b">
+                            タイトル
+                        </span>
+                        <br/>
                         <input onChange={changeTitle}/>
                     </div>
-                    <div>
-                        <textarea onChange={changeBody}/>
-                    </div>
-                    
-                    <select onChange={changeStatus}>
+                    <select className="write_area" onChange={changeStatus}>
                         <option value="プレイ中">プレイ中</option>
                         <option value="クリア">クリア</option>
                         <option value="やり込み中">やり込み中</option>
                     </select>
+                    <div className="write_area" >
+                        <textarea onChange={changeBody}/>
+                    </div>
                     
-                    <ImgPreview
-                        setImage = {setImg}
-                        />
-                    <button onClick={submit}>投稿！</button>
+                   
+                    <div className="write_area">
+                        <ImgPreview setImage = {setImg}/>
+                    </div>
+
+                    <button className="submit_btn" onClick={submit}>投稿！</button>
                 </div>
             </div>
         </div>

@@ -62,32 +62,25 @@ export const CommentForm:FC<{isActive:boolean,topic_id:number,toggleModalActive:
 
     return (
         <div className={'modal_wrap ' + (isActive == true ? 'isActive' : '')}>
-            <div className="ovarlay"></div>
+            <div className="ovarlay" onClick={() =>  props.toggleModalActive(false)}></div>
         
             <div className='modal'>
                 <div className="close_btn_wrap">
                     <div className="close_btn" onClick={() => props.toggleModalActive(false)}>
                     </div>
                 </div>
-                <button >ボタン</button>
-                <div>
-                    名前
+                <div className="write_area" >
+                    なまえ<br/>
                     <input onChange={changeName} value={name}/>
                 </div>
-                <div>
-                    本文
+                <div className="write_area">
                     <textarea onChange={changeBody}/>
                 </div>
-                
-
-                <br/>
-                名前：{name}<br/>
-                本文：{text}<br/>
-                
-                <ImgPreview
-                    setImage = {setImg}
-                />
-                <button onClick={submit}>submit</button>
+               
+                <div className="write_area">
+                    <ImgPreview setImage = {setImg}/>
+                 </div>
+                <button className="submit_btn" onClick={submit}>投稿！</button>
             </div>
         </div>
     )

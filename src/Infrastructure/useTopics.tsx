@@ -4,12 +4,13 @@ import {useState} from "react";
 import { TopicsType } from "../types/topicsType"
 
 
-const GetTopics = (topic_ID?:number) => {
+const GetTopics = () => {
 	let base_URL =  `${API_BASE_URL}/topics`;
-	let target_URL = topic_ID == undefined ? base_URL : `${base_URL}/${topic_ID}`;
 	const [topics,setTopics] = useState<Array<TopicsType>>([]);
 
-	const fetchTopics = ():any => {
+
+	const fetchTopics = (topic_ID?:number):any => {
+		let target_URL = topic_ID == undefined ? base_URL : `${base_URL}/${topic_ID}`;
 		axios
 			.get(target_URL)
 			.then((res) => {
