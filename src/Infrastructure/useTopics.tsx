@@ -7,14 +7,11 @@ import { TopicsType } from "../types/topicsType"
 const GetTopics = () => {
 	let base_URL =  `${API_BASE_URL}/topics`;
 	const [topics,setTopics] = useState<Array<TopicsType>>([]);
-
-
 	const fetchTopics = (topic_ID?:number):any => {
 		let target_URL = topic_ID == undefined ? base_URL : `${base_URL}/${topic_ID}`;
 		axios
 			.get(target_URL)
 			.then((res) => {
-				// console.log(res.data)
 				setTopics(res.data);
 			})
 	}
@@ -27,10 +24,6 @@ const CreateTopics = () => {
 	let target_URL =  `${API_BASE_URL}/topics/create`;
 
 	const postTopics = (title,body,status,fetchTopics,imgData?) => {
-		console.log('postTopicsの中');
-		// console.log(setTopics);
-		// console.log(title);
-		// console.log(imgData);
 			axios//csrf保護の初期化
 			.get('http://localhost:8888/sanctum/csrf-cookie', { withCredentials: true })
 			.then((response) => {

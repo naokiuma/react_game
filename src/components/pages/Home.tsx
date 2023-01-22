@@ -19,11 +19,12 @@ import '../../css/pages/top.css';
 export const Home:FC = memo(() => {
     const { username } = useContext(LoggedInContext);
     const { userid } = useContext(LoggedInContext);
-
     const [modalActive,toggleModalActive] = useState(false)
-
-
     const {fetchTopics,topics} = GetTopics();
+
+    let selected_tag = '';
+
+
 
     useEffect(() => {
         console.log('useeffect検知しました');
@@ -77,18 +78,27 @@ export const Home:FC = memo(() => {
 
                         </ul>
                     </div>
+                </div>
+            </section>
 
+            contextのuser_id:{userid}
+            namae:{username}
+
+            
+            <section className="home_section main_contents">
+
+                <div className="tags_wrap">
+                    <ul>
+                        <li></li>
+                    </ul>
                 </div>
 
-            </section>
-            <section className="home_section main_contents">
                 <ul className="topics_wrap">
-                    contextのuser_id:{userid}
-                    namae:{username}
+                    
                     {
                         topics.map((topic)=>(
                             <li>
-                                <Link to={"/topics/" + topic.id} state={topic} key={topic.id}>
+                                <Link to={"/topics/" + topic.id} state={topic}>
                                     <Topic
                                         key={topic.id}
                                         id={topic.id}

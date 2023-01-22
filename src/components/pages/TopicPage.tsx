@@ -15,6 +15,12 @@ import { url } from "inspector";
 
 
 export const TopicPage:FC = memo(() => {
+    let test = useLocation();
+    console.log('testlocation')
+    console.log(test)
+
+
+
     const locationVal = useLocation().state;
     console.log("locationの中身")
     console.log(locationVal)
@@ -23,6 +29,11 @@ export const TopicPage:FC = memo(() => {
     const {fetchTopics,topics} = GetTopics();
     const [modalActive,toggleModalActive] = useState(false)
 
+    console.log('取得コメント');
+    console.log(comments);
+
+
+
 
     //この記述で初回のみ実行される
     useEffect(() => {
@@ -30,9 +41,11 @@ export const TopicPage:FC = memo(() => {
         fetchTopics(locationVal['id'])
     },[])
 
-    console.log('初回')
+    console.log('初回_fetchtopicsで取得したデータ')
     console.log(topics)
 
+
+    //背景画像
     let bg_img
     if(topics[0] && topics[0]['image_path'] != null){
         bg_img = 'http://localhost:8888/' + topics[0]['image_path'].replace("public","storage");
