@@ -9,36 +9,30 @@ import { CommentForm } from "../Molecules/form/CommentForm"
 //インフラ
 import { GetComments } from "../../Infrastructure/useComments"
 import { GetTopics} from "../../Infrastructure/useTopics"
-import { url } from "inspector";
 
 
 
+export const TopicDetail:FC = memo(() => {
 
-export const TopicPage:FC = memo(() => {
-    let test = useLocation();
-    console.log('testlocation')
-    console.log(test)
+    const locationVal = useLocation();
 
 
+    let tempID = locationVal.pathname
+    tempID = tempID.replace('/topics/', '');
+    let topic_id = Number(tempID)
 
-    const locationVal = useLocation().state;
-    console.log("locationの中身")
-    console.log(locationVal)
 
-    let {fetchComments,comments} = GetComments(locationVal['id']) 
+    let {fetchComments,comments} = GetComments(topic_id) 
     const {fetchTopics,topics} = GetTopics();
     const [modalActive,toggleModalActive] = useState(false)
 
     console.log('取得コメント');
     console.log(comments);
 
-
-
-
     //この記述で初回のみ実行される
     useEffect(() => {
         fetchComments()
-        fetchTopics(locationVal['id'])
+        fetchTopics(topic_id)
     },[])
 
     console.log('初回_fetchtopicsで取得したデータ')
@@ -71,7 +65,7 @@ export const TopicPage:FC = memo(() => {
                 <h2 className="game_title">
                     {topics[0] && topics[0]['title']}
                 </h2>
-                id：{locationVal['id']}
+                id：{topic_id}
 
                 {(topics[0] && topics[0]['image_path'] != null) &&
                     <div className="_main_img_wrap">
@@ -96,7 +90,7 @@ export const TopicPage:FC = memo(() => {
                 <div className="comments_wrap">
                     {
                         comments.map((comment) => (
-                            <div className={'text ' + (comment.user_id === locationVal['parent_user_id'] ? 'left' : 'right') } key={comment.comment_id}>
+                            <div className={'text ' + (comment.user_id === topics[0]['parent_user_id'] ? 'left' : 'right') } key={comment.comment_id}>
                                 {comment.text}
                             </div>                                
                         ))
@@ -105,7 +99,7 @@ export const TopicPage:FC = memo(() => {
                 <CommentForm 
                     isActive={modalActive} 
                     fetchComments={fetchComments}
-                    topic_id={locationVal["id"]}
+                    topic_id={topic_id}
                     toggleModalActive={toggleModalActive}
                 />
 

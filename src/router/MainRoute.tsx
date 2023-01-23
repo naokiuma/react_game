@@ -4,7 +4,7 @@ import { Home } from "../components/pages/Home";
 import { PrivateRoute } from "../../src/router/PrivateRoute";
 import { About } from "../components/pages/About";
 import { Setting } from "../components/pages/Setting";
-import { TopicPage } from '../components/pages/TopicPage';
+import { TopicDetail } from '../components/pages/TopicDetail';
 import { Login } from '../components/pages/Login';
 import { Register } from '../components/pages/Register';
 import { Nomatch } from '../components/pages/Nomatch';
@@ -17,7 +17,7 @@ export const MainRoute = () => {
     return(
         <Routes>
             <Route index element={<Home />} />
-            <Route path="/topics/:id" element={<TopicPage />} />
+            <Route path="/topics/:id" element={<TopicDetail />} />
             <Route path="/login/" element={<Login/>} />
             <Route path="/register/" element={<Register/>} />
             <Route path="/about/" element={<About/>} />

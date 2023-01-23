@@ -16,14 +16,6 @@ import { LoggedInProvider} from "./components/global/LoggedInProvider";
 import { Header } from './components/Templates/Header';
 import { Footer } from './components/Templates/Footer';
 
-// import { About } from "./components/pages/About";
-// import { Setting } from "./components/pages/Setting";
-// import { TopicPage } from './components/pages/TopicPage';
-// import { Login } from './components/pages/Login';
-// import { Signup } from './components/pages/Signup';
-// import { Nomatch } from './components/pages/Nomatch';
-
-
 /*css*/
 import './App.css';
 import './css/global/reset.css';
@@ -35,25 +27,11 @@ function App() {
     <>
     <BrowserRouter>
         <main>
-    
-        <LoggedInProvider>
-            <Header />
-            <MainRoute />
-
-            {/* <Routes>
-              <Route index element={<Home />} />
-              <Route path="/topics/:id" element={<TopicPage />} />
-              <Route path="/login/" element={<Login/>} />
-              <Route path="/signup/" element={<Signup/>} />
-              <Route path="/about/" element={<About/>} />
-              <Route element={<PrivateRoute />}>
-                <Route path="/setting" element={<Setting/>}/>
-              </Route>
-              <Route path="*" element={<Nomatch />} />
-            </Routes> */}
-
-          <Footer />
-        </LoggedInProvider>
+          <LoggedInProvider>
+              <Header />
+              <MainRoute />
+              <Footer />
+          </LoggedInProvider>
         </main>
       </BrowserRouter>
     </>
