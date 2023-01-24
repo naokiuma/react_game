@@ -1,3 +1,12 @@
+#　react/spaによるアプリ（構築中）です。
+
+特徴
+・バックエンドはlaravelのAPI（別リポジトリ）です。
+・ディレクトリ構造を色々試しています
+・CSSは全体でまとめています
+・Typescriptも導入
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
