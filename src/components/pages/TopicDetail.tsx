@@ -90,7 +90,7 @@ export const TopicDetail:FC = memo(() => {
                 <div className="comments_wrap">
                     {
                         comments.map((comment) => (
-                            <div className={'text ' + (comment.user_id === topics[0]['parent_user_id'] ? 'left' : 'right') } key={comment.comment_id}>
+                            <div className={'text ' + (topics[0] && comment.user_id === topics[0]['parent_user_id'] ? 'left' : 'right') } key={comment.comment_id}>
                                 {comment.text}
                             </div>                                
                         ))

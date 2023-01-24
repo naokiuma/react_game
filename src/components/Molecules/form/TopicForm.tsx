@@ -1,9 +1,13 @@
-import { memo,FC } from "react";
-import {ChangeEvent,useState} from 'react'
+import { memo,FC,ChangeEvent,useState } from "react";
+import { useForm } from 'react-hook-form';
 import {ImgPreview} from "../../Templates/ImgPreview"
 import {CreateTopics} from "../../../Infrastructure/useTopics"
 
-
+// type FormInputs = {
+//     postTitle: string;
+//     postBody: string;
+//     postStatus: string;
+// };
 
 export const TopicForm:FC<{form_title:string,isActive:boolean,fetchTopics:Function,toggleModalActive:Function}> = memo((props) => {
     console.log('formの中');
@@ -11,9 +15,7 @@ export const TopicForm:FC<{form_title:string,isActive:boolean,fetchTopics:Functi
     //モーダル表示フラグ
     let isActive = props.isActive
     const {postTopics} = CreateTopics();//importした関数の場合はこの書き方
-
     const fetchTopics = props.fetchTopics;//propsで渡した関数の場合はこの書き方
-
 
     //タイトル
     const [title,setTitle] = useState('')
@@ -33,10 +35,10 @@ export const TopicForm:FC<{form_title:string,isActive:boolean,fetchTopics:Functi
         setStatus(e.target.value)
     }
 
-     //画像
-     const [imgData, setImg] = useState(null);
-     console.log('画像。')
-     console.log(imgData)
+    //画像
+    const [imgData, setImg] = useState(null);
+    //  console.log('画像。')
+    //  console.log(imgData)
 
 
     const submit = ():void => {
@@ -60,7 +62,7 @@ export const TopicForm:FC<{form_title:string,isActive:boolean,fetchTopics:Functi
                             タイトル
                         </span>
                         <br/>
-                        <input onChange={changeTitle}/>
+                        <input onChange={changeTitle} />
                     </div>
                     <select className="write_area" onChange={changeStatus}>
                         <option value="プレイ中">プレイ中</option>
