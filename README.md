@@ -1,10 +1,10 @@
 #　react/spaによるアプリ（構築中）です。
 
 特徴
-・バックエンドはlaravelのAPI（別リポジトリ）です。
-・ディレクトリ構造を色々試しています
-・CSSは全体でまとめています
-・Typescriptも導入
+・バックエンドはlaravelのAPI（別リポジトリ）です。<br/>
+・ディレクトリ構造をatomicdesignやらdddもどきやら色々変えたり試しています<br/>
+・CSSは全体でまとめています<br/>
+・Typescriptも導入<br/>
 
 
 # Getting Started with Create React App
