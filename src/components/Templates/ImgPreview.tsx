@@ -1,14 +1,11 @@
-import React, { useState } from 'react';
+import  { useState,FC } from 'react';
 import '../../css/parts/image_preview.css';
 
 
 export const ImgPreview = ({setImage}) => {
-
     //プレビュー用のデータ
     const [imagePreview, setImagePreview] = useState(undefined)
-
     const setImg = setImage;
-    // const img_data = imgData; //多分これいらない。
     const changeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
         const files = e.target.files;
 
@@ -17,8 +14,6 @@ export const ImgPreview = ({setImage}) => {
             return
         }
         
-        // console.log('ImgPreviewでの画像');
-        // console.log(files);
 
         if(files && files[0]) {
             let file = files[0]

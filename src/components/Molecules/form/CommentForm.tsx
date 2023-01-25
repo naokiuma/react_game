@@ -2,18 +2,18 @@ import {ChangeEvent,useState,useContext,memo,FC} from 'react'
 import {ImgPreview} from "../../Templates/ImgPreview"
 import { LoggedInContext } from "../../global/LoggedInProvider";
 
-
-
 //Customhooks
 import {CreateComments} from "../../../Infrastructure/useComments"
 
 
-//複数のpropsがある場合はこういう書き方ができる
-// type Props ={
-//     isActive:boolean
-// }
+type Props ={
+    isActive:boolean,
+    topic_id:number,
+    toggleModalActive:Function,
+    fetchComments:Function
+}
 
-export const CommentForm:FC<{isActive:boolean,topic_id:number,toggleModalActive:Function,fetchComments:Function}> = memo((props) => {
+export const CommentForm:FC<Props> = memo((props) => {
     console.log("コメントフォーム");
     console.log(props);
 

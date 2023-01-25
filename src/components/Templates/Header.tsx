@@ -1,21 +1,16 @@
 import axios from 'axios'
 
 import {LoggedInContext} from "../global/LoggedInProvider";
-import {useContext} from 'react'
+import {useContext,FC} from 'react'
 import {Logout} from '../../Infrastructure/useLogout'
-
 import {Link } from "react-router-dom";
 
 
 
-export const Header = () => {
+export const Header:FC = () => {
 
-    const { userAuth,username,setUserAuth,setUserName } = useContext(LoggedInContext);
-
-    console.log(username)
-    console.log(userAuth)
-
-    let handleLogout = Logout()
+    const { userAuth,username } = useContext(LoggedInContext);
+    const handleLogout = Logout()
 
     return(
         <header>
