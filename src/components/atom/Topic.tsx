@@ -1,16 +1,16 @@
 
-// type TopicType = {
-//     title: string;
-//     id: number;
-//     user_id?:number
-//     participants?:number
-//     status:string
-//     image_path:string
-// };
+type TopicType = {
+    title: string;
+    id: number;
+    user_id?:number
+    participants?:number
+    status:string
+    image_path:string
+};
 
 
-export const Topic = (props) => {
-    let { id,title,user_id,status,image_path} = props;
+export const Topic = (TopicType) => {
+    let { id,title,user_id,status,image_path} = TopicType;
 
     return (
         <div className="card_wrap">

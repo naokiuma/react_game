@@ -1,0 +1,19 @@
+
+// import { Comment as Comment_S } from '../../../components/atom/Comment';
+// import { ComponentStory, ComponentMeta } from '@storybook/react';
+
+
+
+// export default {
+//   title: 'Tesst',
+//   component: Comment_S,
+// } as ComponentMeta<typeof Comment_S>;
+
+// const Template: ComponentStory<typeof Comment_S> = (args) => <Comment_S {...args} />;
+
+// export const Primary = Template.bind({});
+// // More on args: https://storybook.js.org/docs/react/writing-stories/args
+// Primary.args = {
+//   info: 'test',
+//   label: 'Button',
+// };
