@@ -7,6 +7,7 @@ import {CreateComments} from "../../../Infrastructure/useComments"
 
 
 type Props ={
+    form_title:string,//formの題名
     isActive:boolean,
     topic_id:number,
     toggleModalActive:Function,
@@ -27,6 +28,7 @@ export const CommentForm:FC<Props> = memo((props) => {
     let user_id = userid;
 
    
+    //
 
 
     const fetchComments = props.fetchComments;//propsで渡した関数の場合はこの書き方
@@ -70,7 +72,7 @@ export const CommentForm:FC<Props> = memo((props) => {
                     </div>
                 </div>
                 <div className="write_area" >
-                    なまえ<br/>
+                    投稿者名<br/>
                     <input onChange={changeName} value={name}/>
                 </div>
                 <div className="write_area">

@@ -1,17 +1,13 @@
-import { memo,FC,useState } from "react";
+import { memo,FC,useState,useEffect } from "react";
 import { useForm } from 'react-hook-form';
 import {ImgPreview} from "../../Templates/ImgPreview"
 import {CreateTopics} from "../../../Infrastructure/useTopics"
 
+//インフラ
+import { GetCategory } from "../../../Infrastructure/useCategory"
 
 
-type Props = {
-    form_title:string,
-    isActive:boolean,
-    fetchTopics:Function,
-    toggleModalActive:Function
-}
-
+//Form用の情報
 type FormInputs = {
     Title: string;
     Body: string;
@@ -19,12 +15,82 @@ type FormInputs = {
 };
 
 
+type Props = {
+    form_title:string,//formの題名
+    isActive:boolean,//modal表示フラグ
+    fetchTopics:Function,//topicを取得
+    toggleModalActive:Function,
+    is_edit?: {
+        Title: string;
+        Body: string;
+        Status: string;
+    };
+    
+}
+
+
 export const TopicForm:FC<Props> = memo((props) => {
-    console.log('formの中');
+
+
+    //既存カテゴリーの取得
+    const {fetchCategories,categories} = GetCategory();  
+    useEffect(() => {
+        console.log('useeffect検知しました');
+        fetchCategories()
+    },[])
+
+    console.log('ここでのカテゴリー')
+    console.log(categories)
+
+
+    let default_Title;
+    let default_Body;
+    let default_Status;
+    // if(props.is_edit){
+    //     default_Title = props.is_edit.Title =! 'undefined' ? props.is_edit.Title : ''
+    //     default_Body = props.is_edit.Body =! 'undefined' ? props.is_edit.Body : ''
+    //     default_Status = props.is_edit.Status =! 'undefined' ? props.is_edit.Status : 'プレイ中'
+    // }else{
+    //     default_Title = ''
+    //     default_Body =  ''
+    //     default_Status =  'プレイ中'
+    // }
+    // let default_Title = props.is_editprops.is_edit.Title =! 'undefined' ? props.is_edit.Title : null
+    // let default_Body = props.is_edit.Body =! 'undefined' ? props.is_edit.Body : null
+    // let default_Status = props.is_edit.Status =! 'undefined' ? props.is_edit.Status : ''
+    
+
+
+    useEffect(() => {
+        if(props.is_edit){
+            default_Title = props.is_edit.Title =! 'undefined' ? props.is_edit.Title : ''
+            default_Body = props.is_edit.Body =! 'undefined' ? props.is_edit.Body : ''
+            default_Status = props.is_edit.Status =! 'undefined' ? props.is_edit.Status : 'プレイ中'
+        }
+        
+    }, []);
 
     //useformの初期化
-    const {register,handleSubmit,reset,watch,formState: { errors }} = useForm<FormInputs>();
+    const {
+        register,
+        handleSubmit,
+        reset,
+        watch,
+        formState: { errors }
+    } = useForm<FormInputs>({
+        // shouldUnregister:false,//廃止されてる様子 https://qiita.com/bluebill1049/items/f838bae7f3ed29e81fff
+        defaultValues: { 
+            Title: default_Title,
+            Body:default_Body,
+            Status:default_Status
+        }
+    });
+    console.log('default_Title2')
 
+
+
+    
+   
 
     //モーダル表示フラグ
     let isActive = props.isActive
@@ -58,8 +124,7 @@ export const TopicForm:FC<Props> = memo((props) => {
                             {props.form_title}
                         </span>
                         <br/>
-                        
-                        <input {...register('Title', { required: 'タイトルは必須です' })} />
+                        <input value={default_Title} {...register('Title', { required: 'タイトルは必須です' })}/>
                         <p>{errors.Title?.message}</p> {/* エラー表示 */}
                     </div>
                     

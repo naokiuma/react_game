@@ -17,14 +17,12 @@ import '../../css/pages/top.css';
 
 
 export const Home:FC = memo(() => {
-    const { username } = useContext(LoggedInContext);
+    const { username } = useContext(LoggedInContext); 
     const { userid } = useContext(LoggedInContext);
     const [modalActive,toggleModalActive] = useState(false)
     const {fetchTopics,topics} = GetTopics();
 
     let selected_tag = '';
-
-
 
     useEffect(() => {
         console.log('useeffect検知しました');
