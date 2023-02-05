@@ -20,11 +20,15 @@ type Props = {
     isActive:boolean,//modal表示フラグ
     fetchTopics:Function,//topicを取得
     toggleModalActive:Function,
-    is_edit?: {
-        Title: string;
-        Body: string;
-        Status: string;
-    };
+    is_edit?:boolean,
+    title?:string,
+    body?:string,
+    status?:string
+    // is_edit?: {
+    //     Title: string;
+    //     Body: string;
+    //     Status: string;
+    // };
     
 }
 
@@ -35,40 +39,39 @@ export const TopicForm:FC<Props> = memo((props) => {
     //既存カテゴリーの取得
     const {fetchCategories,categories} = GetCategory();  
     useEffect(() => {
-        console.log('useeffect検知しました');
+        // console.log('useeffect検知しました');
         fetchCategories()
     },[])
 
-    console.log('ここでのカテゴリー')
-    console.log(categories)
+    const [loading, setLoading] = useState(true);
 
 
-    let default_Title;
-    let default_Body;
-    let default_Status;
-    // if(props.is_edit){
-    //     default_Title = props.is_edit.Title =! 'undefined' ? props.is_edit.Title : ''
-    //     default_Body = props.is_edit.Body =! 'undefined' ? props.is_edit.Body : ''
-    //     default_Status = props.is_edit.Status =! 'undefined' ? props.is_edit.Status : 'プレイ中'
-    // }else{
-    //     default_Title = ''
-    //     default_Body =  ''
-    //     default_Status =  'プレイ中'
-    // }
-    // let default_Title = props.is_editprops.is_edit.Title =! 'undefined' ? props.is_edit.Title : null
-    // let default_Body = props.is_edit.Body =! 'undefined' ? props.is_edit.Body : null
-    // let default_Status = props.is_edit.Status =! 'undefined' ? props.is_edit.Status : ''
-    
+    // console.log('ここでのカテゴリー')
+    // console.log(categories)
+    // console.log('子供のpropsです')
+    // console.log(props)
+    // console.log(props.title)
 
+    let default_Title = '';
+    let default_Body = '';
+    let default_Status = '';
+    if(props.is_edit){
+        default_Title = props.title;
+        default_Body = props.body;
+        default_Status = props.status;
+        // default_Title = props.title =! 'undefined' ? props.title : ''
+        // default_Body = props.body =! 'undefined' ? props.body : ''
+        // default_Status = props.status =! 'undefined' ? props.status : 'プレイ中'
+        // setLoading(false)
 
-    useEffect(() => {
-        if(props.is_edit){
-            default_Title = props.is_edit.Title =! 'undefined' ? props.is_edit.Title : ''
-            default_Body = props.is_edit.Body =! 'undefined' ? props.is_edit.Body : ''
-            default_Status = props.is_edit.Status =! 'undefined' ? props.is_edit.Status : 'プレイ中'
-        }
-        
-    }, []);
+    }else{
+        default_Title = ''
+        default_Body =  ''
+        default_Status =  'プレイ中'
+        // setLoading(false)
+
+    }
+
 
     //useformの初期化
     const {
@@ -88,10 +91,6 @@ export const TopicForm:FC<Props> = memo((props) => {
     console.log('default_Title2')
 
 
-
-    
-   
-
     //モーダル表示フラグ
     let isActive = props.isActive
     const {postTopics} = CreateTopics();//importした関数の場合はこの書き方
@@ -104,11 +103,14 @@ export const TopicForm:FC<Props> = memo((props) => {
 
 
     const submit = (data:FormInputs) => {
-        // console.log(data);
         postTopics(data.Title,data.Body,data.Status,fetchTopics,imgData);
         props.toggleModalActive(false);
     }
 
+
+    if (loading) {
+        return <div>loading....</div>;
+      }
 
     return (
         <form className={'modal_wrap ' + (isActive == true ? 'isActive' : '')} onSubmit={handleSubmit(submit)}>
@@ -139,7 +141,6 @@ export const TopicForm:FC<Props> = memo((props) => {
                     </div>
                     <p>{errors.Body?.message}</p> {/* エラー表示 */}
                     
-                   
                     <div className="write_area">
                         <ImgPreview setImage = {setImg}/>
                     </div>

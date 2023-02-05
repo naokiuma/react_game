@@ -140,7 +140,10 @@ export const TopicDetail:FC = memo(() => {
                     isActive={EditmodalActive}
                     fetchTopics={fetchTopics}
                     toggleModalActive={toggleEditModalActive}
-                    is_edit={{Title:title,Body:body,Status:status}}
+                    is_edit={true}
+                    title={title}
+                    body={body}
+                    status={status}
                 /> 
 
             </div>
