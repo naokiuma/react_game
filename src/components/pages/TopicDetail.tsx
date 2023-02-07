@@ -135,16 +135,16 @@ export const TopicDetail:FC = memo(() => {
                     topic_id={topic_id}
                     toggleModalActive={toggleModalActive}
                 />
-                <TopicForm
-                    form_title='トピックを編集'
+                {/* <TopicForm
+                    // form_title='トピックを編集'
                     isActive={EditmodalActive}
-                    fetchTopics={fetchTopics}
-                    toggleModalActive={toggleEditModalActive}
-                    is_edit={true}
-                    title={title}
-                    body={body}
-                    status={status}
-                /> 
+                    // fetchTopics={fetchTopics}
+                    // toggleModalActive={toggleEditModalActive}
+                    // is_edit={true}
+                    // title={title}
+                    // body={body}
+                    // status={status} */}
+                {/* />  */}
 
             </div>
             <div className="new_form_button">

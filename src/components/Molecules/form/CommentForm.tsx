@@ -71,6 +71,7 @@ export const CommentForm:FC<Props> = memo((props) => {
                     <div className="close_btn" onClick={() => props.toggleModalActive(false)}>
                     </div>
                 </div>
+                {props.form_title}
                 <div className="write_area" >
                     投稿者名<br/>
                     <input onChange={changeName} value={name}/>

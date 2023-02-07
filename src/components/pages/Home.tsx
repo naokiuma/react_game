@@ -2,6 +2,8 @@ import { memo,FC,useContext,useEffect, useState,ChangeEvent} from "react";
 import { BrowserRouter,Route,Link,Routes } from "react-router-dom";//switch は Routesに変わった
 import { Topic } from "../atom/Topic";
 import { LoggedInContext } from "../global/LoggedInProvider";
+// import { TotalGameCountContext } from "../global/TotalGameCountProvider";
+
 
 //新規form
 import { TopicForm } from "../Molecules/form/TopicForm"
@@ -17,12 +19,12 @@ import '../../css/pages/top.css';
 
 
 export const Home:FC = memo(() => {
+    // const {TotalGameCount} = useContext(LoggedInContext);
+
     const { username } = useContext(LoggedInContext); 
     const { userid } = useContext(LoggedInContext);
     const [modalActive,toggleModalActive] = useState(false)
     const {fetchTopics,topics} = GetTopics();
-
-    let selected_tag = '';
 
     useEffect(() => {
         console.log('useeffect検知しました');
@@ -51,7 +53,6 @@ export const Home:FC = memo(() => {
     // }
 
     console.log('usernameとid')
-
     console.log(username)
     console.log(userid)
 
@@ -77,6 +78,7 @@ export const Home:FC = memo(() => {
                         </ul>
                     </div>
                 </div>
+                {/* みんなの積みゲー数数:{TotalGameCount} */}
             </section>
 
             contextのuser_id:{userid}
@@ -98,17 +100,17 @@ export const Home:FC = memo(() => {
                             <li>
                                 <Link to={"/topics/" + topic.id} state={topic}>
                                     <Topic
-                                        key={topic.id}
+                                        key={topic.title}
                                         id={topic.id}
                                         title={topic.title}
                                         user_id={topic.parent_user_id}
+                                        tags={topic.tags}
                                         status={topic.status}
                                         image_path={topic.image_path}
                                     />
                                 </Link>
                                 parent_uder_id:{topic.parent_user_id}
-                                
-
+                            
                                 {(username !== 'ゲスト' && userid === topic.parent_user_id) && <span>編集</span>}
                             </li>
                         ))

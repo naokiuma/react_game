@@ -10,6 +10,7 @@ type LoggedInContextType ={
     userid: number;
     setUseremail: (value: string) => void;
     useremail: string;
+    // TotalGameCount:number;
   }
   
 //ログイン有無のcontextを作成
@@ -26,6 +27,8 @@ export const LoggedInProvider = (props) => {
      const [userid, setUserID] = useState<number>(0);     
      const [useremail, setUseremail] = useState<string>('');
      const [userAuth, setUserAuth] = useState<boolean>(false);//ログイン有無
+    //  const [TotalGameCount, setTotalGameCount] = useState(0);
+
 
     return (
         <LoggedInContext.Provider value={{username,setUserName,userid,setUserID,useremail,setUseremail,userAuth,setUserAuth}}>

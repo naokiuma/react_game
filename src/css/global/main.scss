@@ -8,9 +8,9 @@ html{
     position: relative;
 }
 .main_contents{
-    max-width: 1080px;
+    max-width: 1240px;
     margin: 100px auto;
-    padding: 0 40px;
+    padding: 0 20px;
     width: 100%;
     ._main_img_wrap{
         width: 80%;
@@ -276,6 +276,20 @@ footer{
     padding: 10px 20px;
     display: inline-block;
     font-size: 12px;
+}
+
+.tags_wrap{
+    display: flex;
+    margin-top: 10px;
+    span{
+        border: 1px solid;
+        font-size: 12px;
+        margin-left: 10px;
+        padding: 3px;
+        &:first-child{
+            margin-left: 0;
+        }
+    }
 }
 
 .mt10{
