@@ -12,7 +12,6 @@
 
 export const Topic = (TopicType) => {
     let { id,title,user_id,tags,status,image_path} = TopicType;
-    console.log(tags)
 
     return (
         <div className="card_wrap">
@@ -27,7 +26,7 @@ export const Topic = (TopicType) => {
                 {tags && 
                     <div className="tags_wrap">
                     {tags.map((tag) => (
-                        <span className='tag_button' style={{ background: `{${tag.color}}`}}>
+                        <span key={tag.name} className='tag_button' style={{ background: `{${tag.color}}`}}>
                             {tag.name}
                         </span>
                     ))}

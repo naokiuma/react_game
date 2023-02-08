@@ -88,7 +88,6 @@ export const TopicForm:FC<Props> = memo((props) => {
             Status:default_Status
         }
     });
-    console.log('default_Title2')
 
 
     //モーダル表示フラグ
@@ -98,8 +97,8 @@ export const TopicForm:FC<Props> = memo((props) => {
 
     //画像のみ別途用意
     const [imgData, setImg] = useState(null);
-    console.log('画像。')
-    console.log(imgData)
+    // console.log('画像。')
+    // console.log(imgData)
 
 
     const submit = (data:FormInputs) => {
