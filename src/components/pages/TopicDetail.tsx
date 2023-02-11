@@ -19,6 +19,9 @@ import { GetTopics} from "../../Infrastructure/useTopics"
 
 export const TopicDetail:FC = memo(() => {
 
+
+    let [topic,set_result_topic] = useState([]);
+    
     //user_id
     const { userid } = useContext(LoggedInContext);
     console.log('userid')
@@ -37,7 +40,7 @@ export const TopicDetail:FC = memo(() => {
 
     // コメントデータ取得
     let {fetchComments,comments} = GetComments(topic_id) 
-    const {fetchTopics,topics} = GetTopics();
+    const {fetchTopics} = GetTopics();
     //コメントフォーム
     const [modalActive,toggleModalActive] = useState(false)
 
@@ -46,22 +49,27 @@ export const TopicDetail:FC = memo(() => {
 
     //この記述で初回のみ実行される
     useEffect(() => {
+
         fetchComments()
-        fetchTopics(topic_id)
+        fetchTopics(topic_id).then((data) => {
+            set_result_topic(data)
+
+        })
+
     },[])
 
     console.log('初回_fetchtopicsで取得したデータ')
-    console.log(topics)
+    console.log(topic)
 
     //左辺がtrueなら右辺を返す。 
-    let title = topics[0] && topics[0]['title'];//タイトル
-    let body = topics[0] && topics[0]['body'];//本文
-    let status = topics[0] && topics[0]['status'];//ステータス
+    let title = topic[0] && topic[0]['title'];//タイトル
+    let body = topic[0] && topic[0]['body'];//本文
+    let status = topic[0] && topic[0]['status'];//ステータス
 
     //背景画像
     let main_img
-    if(topics[0] && topics[0]['image_path'] != null){
-        let temp_image_path = topics[0]['image_path'];
+    if(topic[0] && topic[0]['image_path'] != null){
+        let temp_image_path = topic[0]['image_path'];
         main_img = 'http://localhost:8888/' + temp_image_path.replace("public","storage");
     }else{
         main_img = '';
@@ -94,7 +102,7 @@ export const TopicDetail:FC = memo(() => {
                 
 
                 {/* topicのユーザーidがログイン中urser_idと同じなら編集可能 */}
-                {(topics[0] && (topics[0]['parent_user_id'] != userid) ) && 
+                {(topic[0] && (topic[0]['parent_user_id'] != userid) ) && 
                     <button onClick={() => toggleEditModalActive(!EditmodalActive)}>記事を編集</button>
                 }
 
@@ -122,7 +130,7 @@ export const TopicDetail:FC = memo(() => {
                 <div className="comments_wrap">
                     {
                         comments.map((comment) => (
-                            <div className={'text ' + (topics[0] && comment.user_id === topics[0]['parent_user_id'] ? 'left' : 'right') } key={comment.comment_id}>
+                            <div className={'text ' + (topic[0] && comment.user_id === topic[0]['parent_user_id'] ? 'left' : 'right') } key={comment.comment_id}>
                                 {comment.text}
                             </div>                                
                         ))
@@ -135,16 +143,6 @@ export const TopicDetail:FC = memo(() => {
                     topic_id={topic_id}
                     toggleModalActive={toggleModalActive}
                 />
-                {/* <TopicForm
-                    // form_title='トピックを編集'
-                    isActive={EditmodalActive}
-                    // fetchTopics={fetchTopics}
-                    // toggleModalActive={toggleEditModalActive}
-                    // is_edit={true}
-                    // title={title}
-                    // body={body}
-                    // status={status} */}
-                {/* />  */}
 
             </div>
             <div className="new_form_button">

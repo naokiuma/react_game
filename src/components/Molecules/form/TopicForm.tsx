@@ -19,6 +19,7 @@ type Props = {
     form_title:string,//formの題名
     isActive:boolean,//modal表示フラグ
     fetchTopics:Function,//topicを取得
+    set_result_topics:Function
     toggleModalActive:Function,
     is_edit?:boolean,
     title?:string,
@@ -36,41 +37,12 @@ type Props = {
 export const TopicForm:FC<Props> = memo((props) => {
 
 
+    console.log('topicformです')
     //既存カテゴリーの取得
     const {fetchCategories,categories} = GetCategory();  
     useEffect(() => {
-        // console.log('useeffect検知しました');
         fetchCategories()
     },[])
-
-    const [loading, setLoading] = useState(true);
-
-
-    // console.log('ここでのカテゴリー')
-    // console.log(categories)
-    // console.log('子供のpropsです')
-    // console.log(props)
-    // console.log(props.title)
-
-    let default_Title = '';
-    let default_Body = '';
-    let default_Status = '';
-    if(props.is_edit){
-        default_Title = props.title;
-        default_Body = props.body;
-        default_Status = props.status;
-        // default_Title = props.title =! 'undefined' ? props.title : ''
-        // default_Body = props.body =! 'undefined' ? props.body : ''
-        // default_Status = props.status =! 'undefined' ? props.status : 'プレイ中'
-        // setLoading(false)
-
-    }else{
-        default_Title = ''
-        default_Body =  ''
-        default_Status =  'プレイ中'
-        // setLoading(false)
-
-    }
 
 
     //useformの初期化
@@ -81,12 +53,6 @@ export const TopicForm:FC<Props> = memo((props) => {
         watch,
         formState: { errors }
     } = useForm<FormInputs>({
-        // shouldUnregister:false,//廃止されてる様子 https://qiita.com/bluebill1049/items/f838bae7f3ed29e81fff
-        defaultValues: { 
-            Title: default_Title,
-            Body:default_Body,
-            Status:default_Status
-        }
     });
 
 
@@ -94,22 +60,19 @@ export const TopicForm:FC<Props> = memo((props) => {
     let isActive = props.isActive
     const {postTopics} = CreateTopics();//importした関数の場合はこの書き方
     const fetchTopics = props.fetchTopics;//propsで渡した関数の場合はこの書き方
+    const set_result_topics = props.set_result_topics
 
     //画像のみ別途用意
     const [imgData, setImg] = useState(null);
-    // console.log('画像。')
-    // console.log(imgData)
-
 
     const submit = (data:FormInputs) => {
-        postTopics(data.Title,data.Body,data.Status,fetchTopics,imgData);
-        props.toggleModalActive(false);
+        postTopics(data.Title,data.Body,data.Status,imgData).then(() =>{
+            fetchTopics().then((data) => {
+                set_result_topics(data);
+                window.location.reload()
+            });
+        })
     }
-
-
-    if (loading) {
-        return <div>loading....</div>;
-      }
 
     return (
         <form className={'modal_wrap ' + (isActive == true ? 'isActive' : '')} onSubmit={handleSubmit(submit)}>
@@ -125,7 +88,7 @@ export const TopicForm:FC<Props> = memo((props) => {
                             {props.form_title}
                         </span>
                         <br/>
-                        <input value={default_Title} {...register('Title', { required: 'タイトルは必須です' })}/>
+                        <input {...register('Title', { required: 'タイトルは必須です' })}/>
                         <p>{errors.Title?.message}</p> {/* エラー表示 */}
                     </div>
                     
@@ -143,8 +106,6 @@ export const TopicForm:FC<Props> = memo((props) => {
                     <div className="write_area">
                         <ImgPreview setImage = {setImg}/>
                     </div>
-
-
                     <button className="submit_btn">投稿！</button>
                 </div>
             </div>
