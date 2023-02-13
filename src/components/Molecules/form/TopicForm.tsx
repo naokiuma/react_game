@@ -24,13 +24,7 @@ type Props = {
     is_edit?:boolean,
     title?:string,
     body?:string,
-    status?:string
-    // is_edit?: {
-    //     Title: string;
-    //     Body: string;
-    //     Status: string;
-    // };
-    
+    status?:string    
 }
 
 

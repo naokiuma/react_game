@@ -49,13 +49,10 @@ export const TopicDetail:FC = memo(() => {
 
     //この記述で初回のみ実行される
     useEffect(() => {
-
         fetchComments()
         fetchTopics(topic_id).then((data) => {
             set_result_topic(data)
-
         })
-
     },[])
 
     console.log('初回_fetchtopicsで取得したデータ')

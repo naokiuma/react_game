@@ -2,8 +2,6 @@
 import { Route,Routes,BrowserRouter } from "react-router-dom";//switch は Routesに変わった
 import { MainRoute } from "../src/router/MainRoute";
 
-
-
 //プロバイダー。この中でグローバルstateを利用可能
 import { LoggedInProvider} from "./components/global/LoggedInProvider";
 // import { TotalGameCountProvider} from "./components/global/TotalGameCountProvider";
@@ -20,6 +18,7 @@ import './css/global/main.css';
 function App() {
   return (
     <>
+
       <BrowserRouter>
           <main>
           {/* <TotalGameCountProvider>  */}
@@ -31,6 +30,7 @@ function App() {
           {/* </TotalGameCountProvider> */}
           </main>
       </BrowserRouter>
+
     </>
   );
 }

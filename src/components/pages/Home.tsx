@@ -4,20 +4,29 @@ import { Topic } from "../atom/Topic";
 import { LoggedInContext } from "../global/LoggedInProvider";
 // import { TotalGameCountContext } from "../global/TotalGameCountProvider";
 
-
 //新規form
 import { TopicForm } from "../Molecules/form/TopicForm"
 //インフラ
-import { GetTopics} from "../../Infrastructure/useTopics"
+import { GetTopics} from "../../Infrastructure/useTopics"//topic一覧
+import { GetCategory } from "../../Infrastructure/useCategory"//カテゴリー情報
+
 //css
 import '../../css/pages/top.css';
 
 
 export const Home:FC = memo(() => {
+
+    const {fetchCategories,categories} = GetCategory();  
+    useEffect(() => {
+        fetchCategories()
+        console.log(categories)
+    },[])
+
     // const {TotalGameCount} = useContext(LoggedInContext);
     const [modalActive,toggleModalActive] = useState(false)
     let [selecged_tag,set_tag] = useState(null)
     let [result_topics,set_result_topics] = useState([]);//ここでnullは渡すな
+    let [default_topics,set_default_topics] = useState([]);
 
     const { username } = useContext(LoggedInContext); 
     const { userid } = useContext(LoggedInContext);
@@ -25,19 +34,19 @@ export const Home:FC = memo(() => {
     //インフラ
     const {fetchTopics} = GetTopics();
 
-    //初回、topicsを取得
+    //topicsを取得
     useEffect(() => {
-        console.log('useEffect開始！')
         fetchTopics().then((data) => {
+            set_default_topics(data);
             set_result_topics(data);
         });
     },[])
 
     //タグが選ばれた際
     useEffect(() => {
-        if(selecged_tag != 'clear'){
+        if(selecged_tag != 'すべて'){
             let temp_array = [];
-            result_topics.filter( _topic => {
+            default_topics.filter( _topic => {
                 _topic.tags.forEach(each_tags => {
                     if(Object.values(each_tags).includes(selecged_tag)){
                         temp_array.push(_topic)
@@ -45,6 +54,8 @@ export const Home:FC = memo(() => {
                 })
             })
             set_result_topics(temp_array);
+        }else{
+            set_result_topics(default_topics)
         }
     },[selecged_tag])
 
@@ -78,9 +89,10 @@ export const Home:FC = memo(() => {
                 <section className="home_section main_contents">
                     <div className="tags_search_wrap">
                         <ul>
-                            <li onClick={() => set_tag('アクション')}>アクション</li>
-                            <li>RPG</li>
-                            <li>アドベンチャー</li>
+                            {categories.map((_category)=>(
+                                <li key={_category.category_id} onClick={() => set_tag(_category.name)}>{_category.name}</li>
+                            ))}
+                            <li onClick={() => set_tag('すべて')}>すべて</li>
                         </ul>
                     </div>
 

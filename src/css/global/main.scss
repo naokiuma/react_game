@@ -292,6 +292,21 @@ footer{
     }
 }
 
+.tags_search_wrap{
+    ul{
+        display: flex;
+        flex-direction: row;
+        li{
+            background-color: #C6F6D5;
+            cursor: pointer;
+            margin-left: 10px;
+            border-radius: 10px;
+            padding: 5px 10px;
+        }
+
+    }
+}
+
 .mt10{
     margin-top: 10px;
 }
