@@ -3,6 +3,8 @@ import { Route,Routes,BrowserRouter } from "react-router-dom";//switch は Route
 import { Home } from "../components/pages/Home";
 import { PrivateRoute } from "../../src/router/PrivateRoute";
 import { About } from "../components/pages/About";
+import { GameSearch } from "../components/pages/GameSearch";
+
 import { Setting } from "../components/pages/Setting";
 import { TopicDetail } from '../components/pages/TopicDetail';
 import { Login } from '../components/pages/Login';
@@ -21,6 +23,8 @@ export const MainRoute = () => {
             <Route path="/login/" element={<Login/>} />
             <Route path="/register/" element={<Register/>} />
             <Route path="/about/" element={<About/>} />
+            <Route path="/search/" element={<GameSearch/>} />
+
             <Route element={<PrivateRoute />}>
               <Route path="/setting" element={<Setting/>}/>
             </Route>

@@ -163,6 +163,10 @@ footer{
     border-radius: 10px;
     .write_area{
         margin-top: 10px;
+        ._title{
+            font-size: 24px;
+
+        }
         input{
             width: 80%;
             padding: 10px;
@@ -307,6 +311,31 @@ footer{
     }
 }
 
+
+
+._attention_msg{
+    color: red;
+}
+.game_name{
+    ._attention_msg{
+        margin-left: 10px;
+        font-size: 12px;
+    }
+
+}
+
+
+.search_result_area{
+    border:1px solid;
+    background-color: #fff;
+    padding: 20px;
+    min-height: 400px;
+}
+
 .mt10{
     margin-top: 10px;
+}
+
+.mt20{
+    margin-top: 20px;
 }

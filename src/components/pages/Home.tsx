@@ -3,6 +3,8 @@ import { BrowserRouter,Route,Link,Routes } from "react-router-dom";//switch は 
 import { Topic } from "../atom/Topic";
 import { LoggedInContext } from "../global/LoggedInProvider";
 // import { TotalGameCountContext } from "../global/TotalGameCountProvider";
+import { ChakraProvider } from '@chakra-ui/react'
+
 
 //新規form
 import { TopicForm } from "../Molecules/form/TopicForm"
@@ -87,6 +89,8 @@ export const Home:FC = memo(() => {
                 namae:{username}
                 
                 <section className="home_section main_contents">
+                    {/* <ChakraProvider> */}
+
                     <div className="tags_search_wrap">
                         <ul>
                             {categories.map((_category)=>(
@@ -95,6 +99,8 @@ export const Home:FC = memo(() => {
                             <li onClick={() => set_tag('すべて')}>すべて</li>
                         </ul>
                     </div>
+                    {/* </ChakraProvider> */}
+
 
                     {
                         (() => {

@@ -23,6 +23,9 @@ export const Header:FC = () => {
                     <Link to="/about">About</Link>
                 </li>
                 <li>
+                    <Link to="/search">ゲームをさがす</Link>
+                </li>
+                <li>
                     <Link to="/setting">Setting</Link>
                 </li>
             </ul>

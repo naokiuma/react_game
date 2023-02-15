@@ -10,6 +10,8 @@ import { GetCategory } from "../../../Infrastructure/useCategory"
 //Form用の情報
 type FormInputs = {
     Title: string;
+    GameName:string;
+    URL?:string;
     Body: string;
     Status: string;
 };
@@ -78,12 +80,12 @@ export const TopicForm:FC<Props> = memo((props) => {
                 </div>
                 <div>
                     <div className="write_area" >
-                        <span className="fw_b">
+                        <span className="fw_b _title">
                             {props.form_title}
                         </span>
                         <br/>
-                        <input {...register('Title', { required: 'タイトルは必須です' })}/>
-                        <p>{errors.Title?.message}</p> {/* エラー表示 */}
+                        <input className="mt10" {...register('Title', { required: 'タイトルは必須です' })}/>
+                        <p className="_attention_msg">{errors.Title?.message}</p> {/* エラー表示 */}
                     </div>
                     
                     <select className="write_area" {...register('Status')}>
@@ -92,10 +94,24 @@ export const TopicForm:FC<Props> = memo((props) => {
                         <option value="やり込み中">やり込み中</option>
                     </select>
 
+                    <div className="write_area game_name">
+                        <span>ゲーム名
+                            <span className="_attention_msg">※似たタイトルを探します</span>
+                        </span><br/>
+                        <input {...register('GameName', { required: 'ゲーム名は必須です' })}/>
+                        <p className="_attention_msg">{errors.GameName?.message}</p> {/* エラー表示 */}
+                    </div>
+
+                    <div className="write_area game_name">
+                        <span>参考URL</span><br/>
+                        <input placeholder="https://" {...register('URL')} value="https://"/>
+                    </div>
+
                     <div className="write_area" >
+                        <span>ゲームへの思いを書きましょう！</span>
                         <textarea {...register('Body', { required: '本文は必須です' })}/>
                     </div>
-                    <p>{errors.Body?.message}</p> {/* エラー表示 */}
+                    <p className="_attention_msg">{errors.Body?.message}</p> {/* エラー表示 */}
                     
                     <div className="write_area">
                         <ImgPreview setImage = {setImg}/>

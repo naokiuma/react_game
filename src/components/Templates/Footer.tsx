@@ -8,7 +8,6 @@ export const Footer:FC = () => {
             <span>
             フッターパーツ
             </span>
-
         </footer>
     )
 
