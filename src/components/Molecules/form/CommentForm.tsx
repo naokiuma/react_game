@@ -27,9 +27,6 @@ export const CommentForm:FC<Props> = memo((props) => {
     let topic_id = props.topic_id
     let user_id = userid;
 
-   
-    //
-
 
     const fetchComments = props.fetchComments;//propsで渡した関数の場合はこの書き方
 

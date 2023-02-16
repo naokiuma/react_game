@@ -334,11 +334,32 @@ footer {
   font-size: 12px;
 }
 
+.search_input_wrap {
+  margin-top: 100px;
+}
+
+.search_input_wrap span {
+  font-size: 40px;
+  font-weight: bold;
+  display: block;
+  text-align: center;
+}
+
+.search_input_wrap input {
+  width: 70%;
+  height: 60px;
+  padding: 5px 10px;
+  display: block;
+  margin: 50px auto 0;
+  font-size: 20px;
+}
+
 .search_result_area {
   border: 1px solid;
   background-color: #fff;
   padding: 20px;
   min-height: 400px;
+  margin-top: 60px;
 }
 
 .mt10 {
