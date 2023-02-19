@@ -279,12 +279,12 @@ footer {
   cursor: pointer;
 }
 
-.card_wrap {
+.topic_card_wrap {
   padding: 24px;
   color: #535353;
 }
 
-.card_wrap ._title {
+.topic_card_wrap ._title {
   font-size: 20px;
 }
 

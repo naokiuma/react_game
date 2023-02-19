@@ -2,7 +2,7 @@ import axios from 'axios'
 
 import {LoggedInContext} from "../global/LoggedInProvider";
 import {useContext,FC} from 'react'
-import {Logout} from '../../Infrastructure/useLogout'
+import {Logout} from '../../fooks/useLogout'
 import {Link } from "react-router-dom";
 
 
@@ -17,13 +17,13 @@ export const Header:FC = () => {
             <img src="/img/global/logo.png" alt="Logo" />
             <ul>
                 <li>
-                    <Link to="/">Home</Link>
-                </li>
-                <li>
-                    <Link to="/about">About</Link>
+                    <Link to="/">トップ</Link>
                 </li>
                 <li>
                     <Link to="/search">ゲームをさがす</Link>
+                </li>
+                <li>
+                    <Link to="/about">サービスについて</Link>
                 </li>
                 <li>
                     <Link to="/setting">Setting</Link>

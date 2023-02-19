@@ -1,10 +1,10 @@
 import { memo,FC,useState,useEffect } from "react";
 import { useForm } from 'react-hook-form';
 import {ImgPreview} from "../../Templates/ImgPreview"
-import {CreateTopics} from "../../../Infrastructure/useTopics"
+import {CreateTopics} from "../../../fooks/useTopics"
 
 //インフラ
-import { GetCategory } from "../../../Infrastructure/useCategory"
+import { GetCategory } from "../../../fooks/useCategory"
 
 
 //Form用の情報

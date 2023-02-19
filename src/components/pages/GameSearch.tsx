@@ -1,5 +1,5 @@
 import { ChangeEvent,memo,FC,useState,useEffect } from "react";
-import {SearchGame} from "../../Infrastructure/useGame";
+import {SearchGame} from "../../fooks/useGame";
 
 
 
@@ -8,27 +8,29 @@ export const GameSearch:FC = memo(() => {
 
     const {fetchGame} = SearchGame();
 
-    // useEffect(() => {
-    //     searchGame().then((data) =>{
-
-    //     })
-    // },[])
+   
 
     const [keyword, setKeyword] = useState("");
+    const [result, setResult] = useState([]);
+
+
     const changeKeyword = (e:ChangeEvent<HTMLInputElement>) => {
         setKeyword(e.target.value)
     }
 
     const submit = ():void => {
-        let result = fetchGame(keyword)
-        console.log(result)
-        // props.toggleModalActive(false);
+        fetchGame(keyword).then((data) =>{
+            setResult(data)
+            console.log('result')
+            console.log(result)
+        })
 
     }
 
 
 
     return (
+        
         <section className="main_contents">
             <div className="search_input_wrap">
                 <span>
@@ -43,11 +45,67 @@ export const GameSearch:FC = memo(() => {
             </div>
 
 
-            <div className="search_result_area">
+             {
+                (()=>{
+                    if(result){
+                        return(
 
-                結果がここにはいる
+                            <div className="search_result_area">
+                            {
+                                
+                                result.map((each_game)=>(
 
-            </div>
+                                    <li key={each_game.id}>
+                                        <div className="">
+                                            ゲーム名：{each_game.game_name}
+                                            {/* {console.log('each_game.topicsだよ')} */}
+
+                                            {/* {console.log(each_game.topics)} */}
+
+                                            {each_game.topics && 
+                                                <ul>
+                                                    {
+                                                        each_game.topics.map((_topic)=>(
+                                                            
+                                                                <li>
+                                                                    <span>{_topic.title}</span>
+                                                                    <span>{_topic.status}</span>
+                                                                </li>
+                                                            
+                                                        ))
+                                                    }
+                                                </ul>
+                                            }
+                                            {/* {each_game.topics && 
+                                                each_game.topics.map((_topic)=>{ return
+                                                    (
+
+                                                        <div>
+                                                        あるよ
+                                                        <span>{_topic.title}</span>
+                                                        <span>{_topic.status}</span>
+                                                        </div>
+                                                    )
+                                                })
+                                            } */}
+                                        </div>
+                                    </li>
+                                    
+                                ))
+                            }  
+
+                            </div>
+                        )
+                    }
+                })()
+            }
+
+
+
+
+
+
+                
         </section>
     )
 

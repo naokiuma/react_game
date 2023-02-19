@@ -9,8 +9,8 @@ import { ChakraProvider } from '@chakra-ui/react'
 //新規form
 import { TopicForm } from "../Molecules/form/TopicForm"
 //インフラ
-import { GetTopics} from "../../Infrastructure/useTopics"//topic一覧
-import { GetCategory } from "../../Infrastructure/useCategory"//カテゴリー情報
+import { GetTopics} from "../../fooks/useTopics"//topic一覧
+import { GetCategory } from "../../fooks/useCategory"//カテゴリー情報
 
 //css
 import '../../css/pages/top.css';
@@ -46,6 +46,7 @@ export const Home:FC = memo(() => {
 
     //タグが選ばれた際
     useEffect(() => {
+        console.log(default_topics)
         if(selecged_tag != 'すべて'){
             let temp_array = [];
             default_topics.filter( _topic => {

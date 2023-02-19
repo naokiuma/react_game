@@ -14,7 +14,7 @@ export const Topic = (TopicType) => {
     let { id,title,user_id,tags,status,image_path} = TopicType;
 
     return (
-        <div className="card_wrap">
+        <div className="topic_card_wrap">
             <h4 className="_title">
                 {title}
             </h4>

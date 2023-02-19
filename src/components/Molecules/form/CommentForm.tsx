@@ -3,7 +3,7 @@ import {ImgPreview} from "../../Templates/ImgPreview"
 import { LoggedInContext } from "../../global/LoggedInProvider";
 
 //Customhooks
-import {CreateComments} from "../../../Infrastructure/useComments"
+import {CreateComments} from "../../../fooks/useComments"
 
 
 type Props ={

@@ -12,8 +12,8 @@ import { TopicForm } from "../Molecules/form/TopicForm"
 import { CommentForm } from "../Molecules/form/CommentForm"
 
 //インフラ
-import { GetComments } from "../../Infrastructure/useComments"
-import { GetTopics} from "../../Infrastructure/useTopics"
+import { GetComments } from "../../fooks/useComments"
+import { GetTopics} from "../../fooks/useTopics"
 
 
 

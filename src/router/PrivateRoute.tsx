@@ -13,8 +13,6 @@ export const PrivateRoute = () => {
     console.log('userAuth')
     console.log(userAuth)
 
-    // console.log(location.pathname)
-
     // const navigate = useNavigate()
     //https://zenn.dev/horisan/articles/2aeaf0bd3fb70f この方法でも取れる
 
