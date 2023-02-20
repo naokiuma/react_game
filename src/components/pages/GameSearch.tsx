@@ -41,59 +41,29 @@ export const GameSearch:FC = memo(() => {
                     onChange={changeKeyword}
                 />
                 <button className="submit_btn"onClick={submit}>探す</button>
-
             </div>
-
-
              {
                 (()=>{
                     if(result){
                         return(
-
                             <div className="search_result_area">
-                            {
-                                
-                                result.map((each_game)=>(
-
-                                    <li key={each_game.id}>
-                                        <div className="">
-                                            ゲーム名：{each_game.game_name}
-                                            {/* {console.log('each_game.topicsだよ')} */}
-
-                                            {/* {console.log(each_game.topics)} */}
-
-                                            {each_game.topics && 
-                                                <ul>
-                                                    {
-                                                        each_game.topics.map((_topic)=>(
-                                                            
-                                                                <li>
-                                                                    <span>{_topic.title}</span>
-                                                                    <span>{_topic.status}</span>
-                                                                </li>
-                                                            
-                                                        ))
-                                                    }
-                                                </ul>
-                                            }
-                                            {/* {each_game.topics && 
-                                                each_game.topics.map((_topic)=>{ return
-                                                    (
-
-                                                        <div>
-                                                        あるよ
+                            {result.map((each_game)=>(
+                                <li key={each_game.id}>
+                                    <div className="">
+                                        ゲーム名：{each_game.game_name}
+                                        {each_game.topics && 
+                                            <ul>
+                                                {each_game.topics.map((_topic)=>(
+                                                    <li>
                                                         <span>{_topic.title}</span>
                                                         <span>{_topic.status}</span>
-                                                        </div>
-                                                    )
-                                                })
-                                            } */}
-                                        </div>
-                                    </li>
-                                    
-                                ))
-                            }  
-
+                                                    </li>       
+                                                ))}
+                                            </ul>
+                                        }
+                                    </div>
+                                </li>
+                            ))}
                             </div>
                         )
                     }
