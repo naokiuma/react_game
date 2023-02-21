@@ -1,7 +1,14 @@
-import {render,screen,logDOM}from '@testing-library/react'
-import { Footer } from '../components/Templates/Footer'
+import { Route,Routes,BrowserRouter } from "react-router-dom";//switch は Routesに変わった
 
-test('Header rendring test',()=>{
-    render(<Footer/>)
-    logDOM(screen.getByText('フッターパーツ'))
+import {render,screen,logDOM}from '@testing-library/react'
+import { Header } from '../components/Templates/Header'
+
+test('Header レンダリング test',()=>{
+    render(
+        <BrowserRouter>
+            <Header/>
+        </BrowserRouter>
+
+    )
+    logDOM(screen.getByText('トップ'))
 })

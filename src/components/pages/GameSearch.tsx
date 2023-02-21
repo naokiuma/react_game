@@ -46,25 +46,25 @@ export const GameSearch:FC = memo(() => {
                 (()=>{
                     if(result){
                         return(
-                            <div className="search_result_area">
+                            <ul className="search_result_area">
                             {result.map((each_game)=>(
                                 <li key={each_game.id}>
                                     <div className="">
                                         ゲーム名：{each_game.game_name}
                                         {each_game.topics && 
-                                            <ul>
-                                                {each_game.topics.map((_topic)=>(
-                                                    <li>
-                                                        <span>{_topic.title}</span>
-                                                        <span>{_topic.status}</span>
-                                                    </li>       
-                                                ))}
-                                            </ul>
+                                        <ul>
+                                            {each_game.topics.map((_topic)=>(
+                                                <li>
+                                                    <span>{_topic.title}</span>
+                                                    <span>{_topic.status}</span>
+                                                </li>       
+                                            ))}
+                                        </ul>
                                         }
                                     </div>
                                 </li>
                             ))}
-                            </div>
+                            </ul>
                         )
                     }
                 })()

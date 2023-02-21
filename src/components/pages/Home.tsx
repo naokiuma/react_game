@@ -2,7 +2,7 @@ import { memo,FC,useContext,useEffect, useState,ChangeEvent} from "react";
 import { BrowserRouter,Route,Link,Routes } from "react-router-dom";//switch は Routesに変わった
 import { Topic } from "../atom/Topic";
 import { LoggedInContext } from "../global/LoggedInProvider";
-// import { TotalGameCountContext } from "../global/TotalGameCountProvider";
+import { TotalGameCountContext } from "../global/TotalGameCountProvider";
 import { ChakraProvider } from '@chakra-ui/react'
 
 
@@ -61,27 +61,29 @@ export const Home:FC = memo(() => {
             set_result_topics(default_topics)
         }
     },[selecged_tag])
-
-
         return (
             <>
                 <section className="hero" style={{ backgroundImage: "url(/img/top_billboard.jpg)" }}>
                     <div className="inner">
-                        <div className="_left_area">
-                            <h1>Enjog</h1>
-                            <p>
-                                記録を残そう。<br/>
-                                もっとやりたいゲームをシェアしよう！
-                            </p>
-                        </div>
-                        <div className="_right_area">
-                            <ul>
-                                <li>a</li>
-                                <li>i</li>
-                                <li>u</li>
+                            <h1>Game </h1>
 
-                            </ul>
-                        </div>
+                            <h3>プレイログを残す。</h3>
+                            <p>
+                                プレイ中のゲームのリアルタイムのメモ、攻略情報、感想を残そう。
+                                自分のマイページをカスタマイズして、
+                            </p>
+
+                            <h3>探す</h3>
+                            <p>
+                                エモい」「繰り返し遊べる」「コスパ最高」「指痛」<br/>
+                                同じカテゴリーの次にやるゲームを探すのにも使えるぞ。
+                            </p>
+
+                            <h3>みんなで崩そう</h3>
+                            <p>
+                                みんなのゲーム数をカウント。<br/>
+                                終わらないゲーム生活を続けていこう。
+                            </p>
                     </div>
                     {/* みんなの積みゲー数数:{TotalGameCount} */}
                 </section>
@@ -90,8 +92,6 @@ export const Home:FC = memo(() => {
                 namae:{username}
                 
                 <section className="home_section main_contents">
-                    {/* <ChakraProvider> */}
-
                     <div className="tags_search_wrap">
                         <ul>
                             {categories.map((_category)=>(
@@ -100,9 +100,6 @@ export const Home:FC = memo(() => {
                             <li onClick={() => set_tag('すべて')}>すべて</li>
                         </ul>
                     </div>
-                    {/* </ChakraProvider> */}
-
-
                     {
                         (() => {
                         if (!result_topics) {
@@ -145,7 +142,7 @@ export const Home:FC = memo(() => {
                 </section>
 
                 <div className="new_form_button">
-                    <button onClick={() => toggleModalActive(!modalActive)}>投稿</button>
+                    <button onClick={() => toggleModalActive(!modalActive)}>ゲームを探す</button>
                 </div>
             </>
         )
