@@ -63,27 +63,50 @@ export const Home:FC = memo(() => {
     },[selecged_tag])
         return (
             <>
-                <section className="hero" style={{ backgroundImage: "url(/img/top_billboard.jpg)" }}>
+                <section className="hero" style={{ backgroundImage: "url(/img/global/top_billboard.jpg)" }}>
                     <div className="inner">
-                            <h1>Game </h1>
+                        <h1>Game Enhance</h1>
+                        <section className="main_info_wrap">
+                            <div className="_each">
+                                <div>
+                                    <h3>プレイログを残す。</h3>
+                                    <p>
+                                        プレイ中のゲームのリアルタイムのメモ、攻略情報、感想を残そう。<br/>
+                                        マイページをカスタマイズして、一目でわかるゲーム状況を作ろう。
+                                    </p>
+                                </div>
+                                <figure>
+                                    <img src="/img/top/top_billboard.jpg" alt="" />
+                                </figure>
+                            </div>
+                            <div className="_each">
+                                <figure>
+                                    <img src="/img/top/top_billboard.jpg" alt="" />
+                                </figure>
+                                
+                                <div>
+                                    <h3>探す</h3>
+                                    <p>
+                                        エモい」「繰り返し遊べる」「コスパ最高」「指痛」<br/>
+                                        同じカテゴリーの次にやるゲームを探すのにも使えるぞ。
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="_each">
 
-                            <h3>プレイログを残す。</h3>
-                            <p>
-                                プレイ中のゲームのリアルタイムのメモ、攻略情報、感想を残そう。
-                                自分のマイページをカスタマイズして、
-                            </p>
+                                <div>
 
-                            <h3>探す</h3>
-                            <p>
-                                エモい」「繰り返し遊べる」「コスパ最高」「指痛」<br/>
-                                同じカテゴリーの次にやるゲームを探すのにも使えるぞ。
-                            </p>
-
-                            <h3>みんなで崩そう</h3>
-                            <p>
-                                みんなのゲーム数をカウント。<br/>
-                                終わらないゲーム生活を続けていこう。
-                            </p>
+                                    <h3>みんなで崩そう</h3>
+                                    <p>
+                                        みんなのゲーム数をカウント。<br/>
+                                        終わらないゲーム生活を続けていこう。
+                                    </p>
+                                </div>
+                                <figure>
+                                    <img src="/img/top/top_billboard.jpg" alt="" />
+                                </figure>
+                            </div>
+                        </section>
                     </div>
                     {/* みんなの積みゲー数数:{TotalGameCount} */}
                 </section>
@@ -142,7 +165,7 @@ export const Home:FC = memo(() => {
                 </section>
 
                 <div className="new_form_button">
-                    <button onClick={() => toggleModalActive(!modalActive)}>ゲームを探す</button>
+                    <button onClick={() => toggleModalActive(!modalActive)}>投稿</button>
                 </div>
             </>
         )
