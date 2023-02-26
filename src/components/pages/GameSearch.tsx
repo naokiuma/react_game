@@ -1,17 +1,19 @@
 import { ChangeEvent,memo,FC,useState,useEffect } from "react";
-import {SearchGame} from "../../fooks/useGame";
+// import {SearchGame} from "../../fooks/useGame";
+import genres from '../../utils/game_genre'
 
+import GameDriverImpl from "../../driver/gameDriver";//追加
+const GameRepogitory = new GameDriverImpl();//追加
 
 
 export const GameSearch:FC = memo(() => {
 
 
-    const {fetchGame} = SearchGame();
-
-   
-
     const [keyword, setKeyword] = useState("");
     const [result, setResult] = useState([]);
+
+    // console.log('ジャンル')
+    // console.log(genres)
 
 
     const changeKeyword = (e:ChangeEvent<HTMLInputElement>) => {
@@ -19,18 +21,22 @@ export const GameSearch:FC = memo(() => {
     }
 
     const submit = ():void => {
-        fetchGame(keyword).then((data) =>{
+        GameRepogitory.SearchGame(keyword).then((data)=>{
             setResult(data)
             console.log('result')
-            console.log(result)
+            console.log(data)
         })
+        
+        // SearchGame(keyword).then((data) =>{
+        //     setResult(data)
+        //     console.log('result')
+        //     console.log(result)
+        // })
 
     }
 
 
-
-    return (
-        
+    return (        
         <section className="main_contents">
             <div className="search_input_wrap">
                 <span>
@@ -50,13 +56,14 @@ export const GameSearch:FC = memo(() => {
                             {result.map((each_game)=>(
                                 <li key={each_game.id}>
                                     <div className="">
-                                        ゲーム名：{each_game.game_name}
+                                        ゲーム名：{each_game.game_name}<br/>
+                                        ジャンル：{genres[each_game.genres]}
                                         {each_game.topics && 
                                         <ul>
                                             {each_game.topics.map((_topic)=>(
                                                 <li>
-                                                    <span>{_topic.title}</span>
-                                                    <span>{_topic.status}</span>
+                                                    <span>名前：{_topic.title}</span><br/>
+                                                    <span>状況：{_topic.status}</span><br/>
                                                 </li>       
                                             ))}
                                         </ul>
