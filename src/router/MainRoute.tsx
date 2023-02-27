@@ -20,6 +20,7 @@ export const MainRoute = () => {
         <Routes>
             <Route index element={<Home />} />
             <Route path="/topics/:id" element={<TopicDetail />} />
+            <Route path="/topic/create" element={<Login/>} />
             <Route path="/login/" element={<Login/>} />
             <Route path="/register/" element={<Register/>} />
             <Route path="/about/" element={<About/>} />

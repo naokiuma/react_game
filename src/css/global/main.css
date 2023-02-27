@@ -89,7 +89,11 @@ header ul {
 }
 
 header ul li {
+  height: 100%;
   margin-left: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 header .login_block {
@@ -100,6 +104,39 @@ header .login_block {
 
 header .login_block div {
   margin-left: 20px;
+}
+
+header .game_menu {
+  position: relative;
+}
+
+header .game_menu .sub_menu {
+  display: none;
+  padding: 5px 10px;
+  border: 1px solid #fff;
+  background-color: #555;
+  position: absolute;
+  top: 70px;
+  width: 200px;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: 0.7s;
+  cursor: pointer;
+}
+
+header .game_menu .sub_menu:hover {
+  opacity: 0.8;
+  display: flex;
+  transition: 0.7s;
+}
+
+header .game_menu:hover {
+  opacity: 0.8;
+}
+
+header .game_menu:hover .sub_menu {
+  display: flex;
+  transition: 0.7s;
 }
 
 footer {

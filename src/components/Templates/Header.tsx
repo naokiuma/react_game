@@ -19,8 +19,12 @@ export const Header:FC = () => {
                 <li>
                     <Link to="/">トップ</Link>
                 </li>
-                <li>
-                    <Link to="/search">ゲームをさがす</Link>
+                <li className='game_menu'>
+                    ゲーム
+                    <div className='sub_menu'>
+                        <Link to="/search">探す</Link>
+                        <Link to="/search">書く</Link>
+                    </div>
                 </li>
                 <li>
                     <Link to="/about">サービスについて</Link>

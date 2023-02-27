@@ -6,7 +6,7 @@ import axios from "axios";
 import {API_BASE_URL} from "../config/url"
 
 export default class GameDriverImpl implements GameeDriver {
-  SearchGame = async(keyword:string) => {
+  SearchGame = async(keyword:string):Promise<GamesJsons> => {
     try{
       let FetchURL = `${API_BASE_URL}/game/search?game=${keyword}`;
       let target_URL = FetchURL

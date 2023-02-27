@@ -64,8 +64,9 @@ export const TopicForm:FC<Props> = memo((props) => {
     const submit = (data:FormInputs) => {
         postTopics(data.Title,data.Body,data.Status,imgData).then(() =>{
             fetchTopics().then((data) => {
+                console.log(data)
                 set_result_topics(data);
-                window.location.reload()
+                // window.location.reload()
             });
         })
     }

@@ -22,7 +22,7 @@ export const GameSearch:FC = memo(() => {
 
     const submit = ():void => {
         GameRepogitory.SearchGame(keyword).then((data)=>{
-            setResult(data)
+            setResult([data])
             console.log('result')
             console.log(data)
         })
