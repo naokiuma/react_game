@@ -63,7 +63,7 @@ export const Home:FC = memo(() => {
     },[selecged_tag])
         return (
             <>
-                <section className="hero" style={{ backgroundImage: "url(/img/global/top_billboard.jpg)" }}>
+                <section className="hero" style={{ backgroundImage: "url(./img/global/top_billboard1.jpg)" }}>
                     <div className="inner">
                         <h1>Game Enhance</h1>
                         <section className="main_info_wrap">
@@ -76,12 +76,12 @@ export const Home:FC = memo(() => {
                                     </p>
                                 </div>
                                 <figure>
-                                    <img src="/img/top/top_billboard.jpg" alt="" />
+                                    <img src="/img/top/top_billboard1.jpg" alt="" />
                                 </figure>
                             </div>
                             <div className="_each">
                                 <figure>
-                                    <img src="/img/top/top_billboard.jpg" alt="" />
+                                    <img src="/img/top/top_billboard2.jpg" alt="" />
                                 </figure>
                                 
                                 <div>
@@ -103,7 +103,7 @@ export const Home:FC = memo(() => {
                                     </p>
                                 </div>
                                 <figure>
-                                    <img src="/img/top/top_billboard.jpg" alt="" />
+                                    <img src="/img/top/top_billboard3.jpg" alt="" />
                                 </figure>
                             </div>
                         </section>
@@ -114,7 +114,8 @@ export const Home:FC = memo(() => {
                 contextのuser_id:{userid}
                 namae:{username}
                 
-                <section className="home_section main_contents">
+                <section className="home_section">
+                    <h2>みんなのプレイログ</h2>
                     <div className="tags_search_wrap">
                         <ul>
                             {categories.map((_category)=>(
