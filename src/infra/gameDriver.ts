@@ -1,11 +1,10 @@
-import GameeDriver, { GamesJsons } from "../interface/gameDriver";
+import GameeDriver_I, { GamesJsons } from "../interface/gameDriver";
 
-// todo：この方を指定する
 
 import axios from "axios";
 import {API_BASE_URL} from "../config/url"
 
-export default class GameDriverImpl implements GameeDriver {
+export default class GameDriver implements GameeDriver_I {
   SearchGame = async(keyword:string):Promise<GamesJsons> => {
     try{
       let FetchURL = `${API_BASE_URL}/game/search?game=${keyword}`;

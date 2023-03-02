@@ -1,19 +1,18 @@
 import { ChangeEvent,memo,FC,useState,useEffect } from "react";
+// import { Game_Type } from "../../domain/game";
 // import {SearchGame} from "../../fooks/useGame";
-import genres from '../../utils/game_genre'
+import {SearchGame} from "../../useCase/gameusecase";
 
-import GameDriverImpl from "../../driver/gameDriver";//追加
-const GameRepogitory = new GameDriverImpl();//追加
+import genres from '../../utils/game_genre'
+// import GameDriver from "../../infra/gameDriver";
+// import GameRepogitory from "../../infra/gameDriver";
+
+
 
 
 export const GameSearch:FC = memo(() => {
-
-
     const [keyword, setKeyword] = useState("");
     const [result, setResult] = useState([]);
-
-    // console.log('ジャンル')
-    // console.log(genres)
 
 
     const changeKeyword = (e:ChangeEvent<HTMLInputElement>) => {
@@ -21,17 +20,17 @@ export const GameSearch:FC = memo(() => {
     }
 
     const submit = ():void => {
-        GameRepogitory.SearchGame(keyword).then((data)=>{
-            setResult([data])
-            console.log('result')
-            console.log(data)
-        })
-        
-        // SearchGame(keyword).then((data) =>{
-        //     setResult(data)
+        // GameRepogitory.SearchGame(keyword).then((data)=>{
+        //     setResult([data])
         //     console.log('result')
-        //     console.log(result)
+        //     console.log(data)
         // })
+        
+        SearchGame(keyword).then((data) =>{
+            setResult(data)
+            console.log('result')
+            console.log(result)
+        })
 
     }
 

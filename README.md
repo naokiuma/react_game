@@ -16,3 +16,45 @@
 
 ## ユースケース図
 ![usecaseイメージ](git_images/usecase.png)
+
+
+(仮)アーキテクチャ<br/>
+<br/> 
+ドメイン層<br/> 
+typeの指定。
+
+<br/> 
+他：インターフェイス<br/> 
+インフラ層で使うクラスをここで作成する？<br/> 
+
+//メモ
+// GameRepogitory.SearchGame(keyword).then((data)=>{
+//     setResult([data])
+//     console.log('result')
+//     console.log(data)
+// })
+
+<br/> 
+インフラ層：infra(仮)<br/> 
+現状は使っていない。
+テストしやすいよう、ユースケースで使うドライバーのクラスをここで作る？
+
+<br/> 
+ユースケース層：usecase<br/> 
+fooks、関数の記載<br/>
+
+<br/> 
+プレゼンテーション層：component<br/>
+ビュー。最終ロジックもここに記載。<br/>
+
+
+
+
+
+
+<br/><br/><br/>
+
+
+
+参考：https://www.gixo.jp/blog/16133/<br/>
+

@@ -114,7 +114,7 @@ export const Home:FC = memo(() => {
                 contextのuser_id:{userid}
                 namae:{username}
                 
-                <section className="home_section">
+                <section className="home_section main_contents">
                     <h2>みんなのプレイログ</h2>
                     <div className="tags_search_wrap">
                         <ul>
