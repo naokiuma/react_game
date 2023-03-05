@@ -2,16 +2,16 @@ import axios from "axios";
 import {API_BASE_URL,API_SANCTUM_URL} from "../config/url"
 
 import {useState} from "react";
-import { TopicsType } from "../types/topicsType"
+import { TopicType } from "../types/topicType"
 
 
 const GetTopics = () => {
 	let base_URL =  `${API_BASE_URL}/topics`;
-	const [topics,setTopics] = useState<Array<TopicsType>>([]);
+	const [topics,setTopics] = useState<Array<TopicType>>([]);
 
 	const fetchTopics = async (topic_ID?:number) => {
 		let target_URL = topic_ID == undefined ? base_URL : `${base_URL}/${topic_ID}`;
-		const res = await axios.get<Array<TopicsType>>(target_URL)
+		const res = await axios.get<Array<TopicType>>(target_URL)
 		return res.data;
 	}
 

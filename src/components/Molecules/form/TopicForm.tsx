@@ -1,10 +1,10 @@
 import { memo,FC,useState,useEffect } from "react";
 import { useForm } from 'react-hook-form';
 import {ImgPreview} from "../../Templates/ImgPreview"
-import {CreateTopics} from "../../../fooks/useTopics"
 
 //インフラ
-import { GetCategory } from "../../../fooks/useCategory"
+import {createTopics} from "../../../infrastructure/topicDriver";
+import {GetCategory} from "../../../infrastructure/categoryDriver";
 
 
 //Form用の情報
@@ -34,10 +34,14 @@ export const TopicForm:FC<Props> = memo((props) => {
 
 
     console.log('topicformです')
-    //既存カテゴリーの取得
-    const {fetchCategories,categories} = GetCategory();  
+
+    //既存カテゴリーの取得--------------
+    let [categories,set_category] = useState([])
     useEffect(() => {
-        fetchCategories()
+        // fetchCategories()
+        GetCategory().then((data) => {
+            set_category(data);
+        });
     },[])
 
 
@@ -51,10 +55,8 @@ export const TopicForm:FC<Props> = memo((props) => {
     } = useForm<FormInputs>({
     });
 
-
     //モーダル表示フラグ
     let isActive = props.isActive
-    const {postTopics} = CreateTopics();//importした関数の場合はこの書き方
     const fetchTopics = props.fetchTopics;//propsで渡した関数の場合はこの書き方
     const set_result_topics = props.set_result_topics
 
@@ -62,13 +64,15 @@ export const TopicForm:FC<Props> = memo((props) => {
     const [imgData, setImg] = useState(null);
 
     const submit = (data:FormInputs) => {
-        postTopics(data.Title,data.Body,data.Status,imgData).then(() =>{
-            fetchTopics().then((data) => {
-                console.log(data)
-                set_result_topics(data);
-                // window.location.reload()
-            });
-        })
+        createTopics(data.Title,data.Body,data.Status,imgData)
+        window.location.reload()
+
+        // createTopics(data.Title,data.Body,data.Status,imgData).then(() =>{
+            // fetchTopics().then((data) => {
+                //console.log(data)
+                // set_result_topics(data);
+            // });
+    
     }
 
     return (

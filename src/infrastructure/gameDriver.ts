@@ -1,11 +1,8 @@
-import GameeDriver_I, { GamesJsons } from "../interface/gameDriver";
-
-
 import axios from "axios";
 import {API_BASE_URL} from "../config/url"
+import { GameType } from "../domain/game";
 
-export default class GameDriver implements GameeDriver_I {
-  SearchGame = async(keyword:string):Promise<GamesJsons> => {
+export const SearchGame = async(keyword:string):Promise<[GameType]> => {
     try{
       let FetchURL = `${API_BASE_URL}/game/search?game=${keyword}`;
       let target_URL = FetchURL
@@ -15,5 +12,4 @@ export default class GameDriver implements GameeDriver_I {
       console.log('400 Error!!')
       console.log(e)
     }
-  }
 }

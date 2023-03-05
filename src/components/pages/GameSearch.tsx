@@ -1,11 +1,7 @@
 import { ChangeEvent,memo,FC,useState,useEffect } from "react";
-// import { Game_Type } from "../../domain/game";
-// import {SearchGame} from "../../fooks/useGame";
-import {SearchGame} from "../../useCase/gameusecase";
-
 import genres from '../../utils/game_genre'
-// import GameDriver from "../../infra/gameDriver";
-// import GameRepogitory from "../../infra/gameDriver";
+import {SearchGame} from "../../infrastructure/gameDriver";
+
 
 
 
@@ -19,13 +15,7 @@ export const GameSearch:FC = memo(() => {
         setKeyword(e.target.value)
     }
 
-    const submit = ():void => {
-        // GameRepogitory.SearchGame(keyword).then((data)=>{
-        //     setResult([data])
-        //     console.log('result')
-        //     console.log(data)
-        // })
-        
+    const submit = ():void => {        
         SearchGame(keyword).then((data) =>{
             setResult(data)
             console.log('result')
@@ -74,14 +64,7 @@ export const GameSearch:FC = memo(() => {
                         )
                     }
                 })()
-            }
-
-
-
-
-
-
-                
+            } 
         </section>
     )
 

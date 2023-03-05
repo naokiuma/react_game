@@ -3,32 +3,34 @@ import { BrowserRouter,Route,Link,Routes } from "react-router-dom";//switch は 
 import { Topic } from "../atom/Topic";
 import { LoggedInContext } from "../global/LoggedInProvider";
 import { TotalGameCountContext } from "../global/TotalGameCountProvider";
-import { ChakraProvider } from '@chakra-ui/react'
 
 
 //新規form
 import { TopicForm } from "../Molecules/form/TopicForm"
 //インフラ
 import { GetTopics} from "../../fooks/useTopics"//topic一覧
-import { GetCategory } from "../../fooks/useCategory"//カテゴリー情報
-
+// import { GetCategory } from "../../fooks/useCategory"//カテゴリー情報
+import {GetCategory} from "../../infrastructure/categoryDriver";
 //css
 import '../../css/pages/top.css';
 
 
 export const Home:FC = memo(() => {
 
-    const {fetchCategories,categories} = GetCategory();  
+    // const {GetCategory,categories} = GetCategory();  
     useEffect(() => {
-        fetchCategories()
-        console.log(categories)
+        GetCategory().then((data) => {
+            set_category(data);
+        });
     },[])
 
     // const {TotalGameCount} = useContext(LoggedInContext);
     const [modalActive,toggleModalActive] = useState(false)
-    let [selecged_tag,set_tag] = useState(null)
+    let [categories,set_category] = useState([])
     let [result_topics,set_result_topics] = useState([]);//ここでnullは渡すな
     let [default_topics,set_default_topics] = useState([]);
+    let [selecged_tag,set_tag] = useState(null)
+
 
     const { username } = useContext(LoggedInContext); 
     const { userid } = useContext(LoggedInContext);

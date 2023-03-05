@@ -1,4 +1,4 @@
-export type TopicsType = {
+export type TopicType = {
     id:number;
     parent_user_id:number;
     title:string;
@@ -8,4 +8,4 @@ export type TopicsType = {
     image_path:string;
     created_at?:string;
     updated_at?:string;
-};
+}
