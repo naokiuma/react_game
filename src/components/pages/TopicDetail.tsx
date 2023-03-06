@@ -5,9 +5,6 @@ import { useLocation } from "react-router-dom";
 
 import {LoggedInContext} from "../global/LoggedInProvider";
 
-//編集用フォーム
-import { TopicForm } from "../Molecules/form/TopicForm"
-
 //新規form
 import { CommentForm } from "../Molecules/form/CommentForm"
 

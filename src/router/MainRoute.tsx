@@ -10,6 +10,8 @@ import { GameSearch } from "../components/pages/GameSearch";
 import { Setting } from "../components/pages/Setting";
 import { TopicDetail } from '../components/pages/TopicDetail';
 import { Login } from '../components/pages/Login';
+import { TopicForm } from '../components/pages/TopicForm';
+
 import { Register } from '../components/pages/Register';
 import { Nomatch } from '../components/pages/Nomatch';
 
@@ -22,7 +24,7 @@ export const MainRoute = () => {
         <Routes>
             <Route index element={<Home />} />
             <Route path="/topics/:id" element={<TopicDetail />} />
-            <Route path="/topic/create" element={<Login/>} />
+            <Route path="/topic/create" element={<TopicForm/>} />
             <Route path="/login/" element={<Login/>} />
             <Route path="/register/" element={<Register/>} />
             <Route path="/about/" element={<About/>} />

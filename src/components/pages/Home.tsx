@@ -158,13 +158,12 @@ export const Home:FC = memo(() => {
                         })()
                     }
                  
-                    <TopicForm
+                    {/* <TopicForm
                         form_title='トピックを追加'
                         isActive={modalActive}
-                        fetchTopics={fetchTopics}
                         set_result_topics={set_result_topics}
                         toggleModalActive={toggleModalActive}
-                    />
+                    /> */}
                 </section>
 
                 <div className="new_form_button">

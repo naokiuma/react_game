@@ -1,10 +1,11 @@
+
 import { memo,FC,useState,useEffect } from "react";
 import { useForm } from 'react-hook-form';
-import {ImgPreview} from "../../Templates/ImgPreview"
+import {ImgPreview} from "../Templates/ImgPreview"
 
 //インフラ
-import {createTopics} from "../../../infrastructure/topicDriver";
-import {GetCategory} from "../../../infrastructure/categoryDriver";
+import {createTopics} from "../../infrastructure/topicDriver";
+import {GetCategory} from "../../infrastructure/categoryDriver";
 
 
 //Form用の情報
@@ -29,7 +30,7 @@ type Props = {
 }
 
 
-export const TopicForm:FC<Props> = memo((props) => {
+export const TopicForm = memo((props) => {
 
     //既存カテゴリーの取得--------------
     let [categories,set_category] = useState([])
@@ -54,8 +55,8 @@ export const TopicForm:FC<Props> = memo((props) => {
     });
 
     //モーダル表示フラグ
-    let isActive = props.isActive
-    const set_result_topics = props.set_result_topics
+    // let isActive = props.isActive
+    // const set_result_topics = props.set_result_topics
 
     //画像のみ別途用意
     const [imgData, setImg] = useState(null);
@@ -66,17 +67,12 @@ export const TopicForm:FC<Props> = memo((props) => {
     }
 
     return (
-        <form className={'modal_wrap ' + (isActive == true ? 'isActive' : '')} onSubmit={handleSubmit(submit)}>
-            <div className="ovarlay" onClick={() =>  props.toggleModalActive(false)}></div>
-            <div className='modal'>
-                <div className="close_btn_wrap">
-                    <div className="close_btn" onClick={() =>  props.toggleModalActive(false)}>
-                    </div>
-                </div>
+        <form onSubmit={handleSubmit(submit)}>
+            <div className=''>
                 <div>
                     <div className="write_area" >
                         <span className="fw_b _title">
-                            {props.form_title}
+                            新しいトピックを投稿する
                         </span>
                         <br/>
                         <input className="mt10" {...register('Title', { required: 'タイトルは必須です' })}/>
