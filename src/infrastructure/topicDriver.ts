@@ -5,9 +5,9 @@ import { TopicType } from "../domain/topic";
 
 
 
-export const createTopics = (title,body,status,imgData?) => {
+export const createTopics = async (title,body,status,imgData?) => {
     const target_URL =  `${API_BASE_URL}/topics/create`;
-    const res = axios//csrf保護の初期化
+    const res = await axios//csrf保護の初期化
         .get(API_SANCTUM_URL, { withCredentials: true })
         .then((res) => {
             axios.post(target_URL,
@@ -15,10 +15,11 @@ export const createTopics = (title,body,status,imgData?) => {
                 {headers:
                     {'Content-Type': 'multipart/form-data',},//画像を送る際にはこの指定が必要
                     withCredentials:true,
-                },
-            )
-            return res
-        })
+                }).then((res) =>{
+                    console.log('これ何？')
+                    return res
+                })
+            })
 }
 
 

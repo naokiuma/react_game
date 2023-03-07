@@ -18,19 +18,19 @@ type FormInputs = {
 };
 
 
-type Props = {
-    form_title:string,//formの題名
-    isActive:boolean,//modal表示フラグ
-    set_result_topics:Function
-    toggleModalActive:Function,
-    is_edit?:boolean,
-    title?:string,
-    body?:string,
-    status?:string    
-}
+// type Props = {
+//     form_title:string,//formの題名
+//     isActive:boolean,//modal表示フラグ
+//     set_result_topics:Function
+//     toggleModalActive:Function,
+//     is_edit?:boolean,
+//     title?:string,
+//     body?:string,
+//     status?:string    
+// }
 
 
-export const TopicForm = memo((props) => {
+export const TopicForm = memo(() => {
 
     //既存カテゴリーの取得--------------
     let [categories,set_category] = useState([])
@@ -63,54 +63,66 @@ export const TopicForm = memo((props) => {
 
     const submit = (data:FormInputs) => {
         createTopics(data.Title,data.Body,data.Status,imgData)
-        window.location.reload()
+        
+        console.log('完了2！')
+        // console.log(result)
+
+        // window.location.reload()
+        
+            // window.location.href('');
+            // document.location = "/";
+            // window.location.reload()
+        
+        
     }
 
     return (
-        <form onSubmit={handleSubmit(submit)}>
-            <div className=''>
-                <div>
-                    <div className="write_area" >
-                        <span className="fw_b _title">
-                            新しいトピックを投稿する
-                        </span>
-                        <br/>
-                        <input className="mt10" {...register('Title', { required: 'タイトルは必須です' })}/>
-                        <p className="_attention_msg">{errors.Title?.message}</p> {/* エラー表示 */}
-                    </div>
-                    
-                    <select className="write_area" {...register('Status')}>
-                        <option value="プレイ中">プレイ中</option>
-                        <option value="クリア">クリア</option>
-                        <option value="やり込み中">やり込み中</option>
-                    </select>
+        <div className="main_contents">
+            <form onSubmit={handleSubmit(submit)}>
+                <div className=''>
+                    <div>
+                        <div className="write_area" >
+                            <span className="fw_b _title">
+                                新しいトピックを投稿する
+                            </span>
+                            <br/>
+                            <input className="mt10" {...register('Title', { required: 'タイトルは必須です' })}/>
+                            <p className="_attention_msg">{errors.Title?.message}</p> {/* エラー表示 */}
+                        </div>
+                        
+                        <select className="write_area" {...register('Status')}>
+                            <option value="プレイ中">プレイ中</option>
+                            <option value="クリア">クリア</option>
+                            <option value="やり込み中">やり込み中</option>
+                        </select>
 
-                    <div className="write_area game_name">
-                        <span>ゲーム名
-                            <span className="_attention_msg">※似たタイトルを探します</span>
-                        </span><br/>
-                        <input {...register('GameName', { required: 'ゲーム名は必須です' })}/>
-                        <p className="_attention_msg">{errors.GameName?.message}</p> {/* エラー表示 */}
-                    </div>
+                        <div className="write_area game_name">
+                            <span>ゲーム名
+                                <span className="_attention_msg">※似たタイトルを探します</span>
+                            </span><br/>
+                            <input {...register('GameName', { required: 'ゲーム名は必須です' })}/>
+                            <p className="_attention_msg">{errors.GameName?.message}</p> {/* エラー表示 */}
+                        </div>
 
-                    <div className="write_area game_name">
-                        <span>参考URL</span><br/>
-                        <input placeholder="https://" {...register('URL')} value="https://"/>
-                    </div>
+                        <div className="write_area game_name">
+                            <span>参考URL</span><br/>
+                            <input placeholder="https://" {...register('URL')} value="https://"/>
+                        </div>
 
-                    <div className="write_area" >
-                        <span>ゲームへの思いを書きましょう！</span>
-                        <textarea {...register('Body', { required: '本文は必須です' })}/>
+                        <div className="write_area" >
+                            <span>ゲームへの思いを書きましょう！</span>
+                            <textarea {...register('Body', { required: '本文は必須です' })}/>
+                        </div>
+                        <p className="_attention_msg">{errors.Body?.message}</p> {/* エラー表示 */}
+                        
+                        <div className="write_area">
+                            <ImgPreview setImage = {setImg}/>
+                        </div>
+                        <button className="submit_btn">投稿！</button>
                     </div>
-                    <p className="_attention_msg">{errors.Body?.message}</p> {/* エラー表示 */}
-                    
-                    <div className="write_area">
-                        <ImgPreview setImage = {setImg}/>
-                    </div>
-                    <button className="submit_btn">投稿！</button>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     )
 
 })

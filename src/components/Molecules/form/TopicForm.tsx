@@ -1,9 +1,13 @@
 import { memo,FC,useState,useEffect } from "react";
+import  Navigate  from "react-router-dom";
 import { useForm } from 'react-hook-form';
 import {ImgPreview} from "../../Templates/ImgPreview"
+import {CreateTopics} from "../../../fooks/useTopics"
+
 
 //インフラ
-import {createTopics} from "../../../infrastructure/topicDriver";
+// import {createTopics} from "../../../infrastructure/topicDriver";
+
 import {GetCategory} from "../../../infrastructure/categoryDriver";
 
 
@@ -20,6 +24,7 @@ type FormInputs = {
 type Props = {
     form_title:string,//formの題名
     isActive:boolean,//modal表示フラグ
+    fetchTopics:Function,//topicを取得
     set_result_topics:Function
     toggleModalActive:Function,
     is_edit?:boolean,
@@ -55,14 +60,24 @@ export const TopicForm:FC<Props> = memo((props) => {
 
     //モーダル表示フラグ
     let isActive = props.isActive
+    const {postTopics} = CreateTopics();//importした関数の場合はこの書き方
+    const fetchTopics = props.fetchTopics;//propsで渡した関数の場合はこの書き方
+
+
     const set_result_topics = props.set_result_topics
 
     //画像のみ別途用意
     const [imgData, setImg] = useState(null);
 
     const submit = (data:FormInputs) => {
-        createTopics(data.Title,data.Body,data.Status,imgData)
-        window.location.reload()
+        postTopics(data.Title,data.Body,data.Status,imgData).then(() =>{
+            fetchTopics().then((data) => {
+                set_result_topics(data);
+                window.location.reload()
+            });
+        })
+        // createTopics(data.Title,data.Body,data.Status,imgData)
+        // window.location.reload();
     }
 
     return (
