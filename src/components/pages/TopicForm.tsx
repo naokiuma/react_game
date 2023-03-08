@@ -7,7 +7,6 @@ import {ImgPreview} from "../Templates/ImgPreview"
 import {createTopics} from "../../infrastructure/topicDriver";
 import {GetCategory} from "../../infrastructure/categoryDriver";
 
-
 //Form用の情報
 type FormInputs = {
     Title: string;
@@ -54,24 +53,11 @@ export const TopicForm = memo(() => {
     } = useForm<FormInputs>({
     });
 
-    //モーダル表示フラグ
-    // let isActive = props.isActive
-    // const set_result_topics = props.set_result_topics
-
     //画像のみ別途用意
     const [imgData, setImg] = useState(null);
 
     const submit = (data:FormInputs) => {
         createTopics(data.Title,data.Body,data.Status,imgData)
-        
-        console.log('完了2！')
-        // console.log(result)
-
-        // window.location.reload()
-        
-            // window.location.href('');
-            // document.location = "/";
-            // window.location.reload()
         
         
     }

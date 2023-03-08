@@ -25,6 +25,7 @@ type Props = {
     form_title:string,//formの題名
     isActive:boolean,//modal表示フラグ
     fetchTopics:Function,//topicを取得
+
     set_result_topics:Function
     toggleModalActive:Function,
     is_edit?:boolean,
@@ -71,10 +72,12 @@ export const TopicForm:FC<Props> = memo((props) => {
 
     const submit = (data:FormInputs) => {
         postTopics(data.Title,data.Body,data.Status,imgData).then(() =>{
-            fetchTopics().then((data) => {
-                set_result_topics(data);
-                window.location.reload()
-            });
+            window.location.reload()
+
+            // fetchTopics().then((data) => {
+            //     set_result_topics(data);
+            //     window.location.reload()
+            // });
         })
         // createTopics(data.Title,data.Body,data.Status,imgData)
         // window.location.reload();

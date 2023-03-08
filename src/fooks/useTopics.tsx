@@ -22,6 +22,8 @@ const GetTopics = () => {
 
 const CreateTopics = () => {
 	let target_URL =  `${API_BASE_URL}/topics/create`;
+
+
 	const postTopics = (title,body,status,fetchTopics?,imgData?) => {
 			const res = axios//csrf保護の初期化
 			.get(API_SANCTUM_URL, { withCredentials: true })
@@ -36,9 +38,56 @@ const CreateTopics = () => {
 			})
 			return res
 	}
+
+
+
 	return {postTopics}
 }
 
 
 
 export {GetTopics,CreateTopics}
+
+
+// import axios from "axios";	
+// import { useState } from "react";	
+// import { UserProfile } from "../types/userProfile";	
+// import { User } from "../types/api/user";	
+	
+
+
+
+// //全ユーザーを取得するカスタムフック	
+// export const useAllUsers = () => {	
+// const [userProfiles, setUserProfiles] = useState<Array<UserProfile>>([]);	
+// const [loading, setLoading] = useState(false);	
+// const [error, setError] = useState(false);	
+	
+// const getUsers = () => {	
+// setLoading(true);	
+// setError(false);	
+	
+// axios	
+// 	.get<Array<User>>("https://jsonplaceholder.typicode.com/users")	
+// 	.then((res) => {	
+// 		console.log(res);	
+// 		const data = res.data.map((user) => ({	
+// 		id: user.id,	
+// 		name: `${user.name}(${user.username})`,	
+// 		email: user.email,	
+// 		address: `${user.address.city}${user.address.suite}${user.address.street}`	
+// 		}));	
+// 		setUserProfiles(data);	
+// 	})	
+// 	.catch(() => {	
+// 		//エラー時にはエラーstateをfalseに	
+// 		setError(true);	
+// 	})	
+// 	.finally(() => {	
+// 		//どちらの場合もloadingはfalseに	
+// 		setLoading(false);	
+// 	});	
+// };	
+	
+// return { getUsers, userProfiles, loading, error };	
+// };	
