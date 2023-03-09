@@ -206,38 +206,45 @@ footer {
   border-radius: 10px;
 }
 
-.modal .write_area {
+.modal .write_area,
+.form_wrap .write_area {
   margin-top: 10px;
 }
 
-.modal .write_area ._title {
+.modal .write_area ._title,
+.form_wrap .write_area ._title {
   font-size: 24px;
 }
 
-.modal .write_area input {
+.modal .write_area input,
+.form_wrap .write_area input {
   width: 80%;
-  padding: 10px;
+  padding: 15px 10px;
   line-height: 1;
 }
 
-.modal .write_area textarea {
+.modal .write_area textarea,
+.form_wrap .write_area textarea {
   width: 100%;
   padding: 10px;
   line-height: 1.5;
   height: 15em;
 }
 
-.modal .submit_btn {
+.modal .submit_btn,
+.form_wrap .submit_btn {
   margin-top: 20px;
 }
 
-.modal .close_btn_wrap {
+.modal .close_btn_wrap,
+.form_wrap .close_btn_wrap {
   position: absolute;
   top: -20px;
   right: -20px;
 }
 
-.modal .close_btn {
+.modal .close_btn,
+.form_wrap .close_btn {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -248,13 +255,15 @@ footer {
   transition: 0.2s;
 }
 
-.modal .close_btn:hover {
+.modal .close_btn:hover,
+.form_wrap .close_btn:hover {
   transform: scale(1.1);
   transition: 0.2s;
   cursor: pointer;
 }
 
-.modal .close_btn::before {
+.modal .close_btn::before,
+.form_wrap .close_btn::before {
   content: "";
   position: absolute;
   top: 50%;
@@ -265,7 +274,8 @@ footer {
   transform: translate(-50%, -50%) rotate(45deg);
 }
 
-.modal .close_btn::after {
+.modal .close_btn::after,
+.form_wrap .close_btn::after {
   content: "";
   position: absolute;
   top: 50%;
@@ -397,6 +407,13 @@ footer {
   padding: 20px;
   min-height: 400px;
   margin-top: 60px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.search_result_area .each_game {
+  width: 30%;
+  border: 1px solid #555;
 }
 
 .mt10 {

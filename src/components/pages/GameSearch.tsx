@@ -17,9 +17,12 @@ export const GameSearch:FC = memo(() => {
 
     const submit = ():void => {        
         SearchGame(keyword).then((data) =>{
-            setResult(data)
-            console.log('result')
-            console.log(result)
+            if(data.length > 0){
+                setResult(data)                
+            }else{
+                setResult([]);
+                console.log('データが見つかりませんでした')
+            }
         })
 
     }
@@ -42,24 +45,26 @@ export const GameSearch:FC = memo(() => {
                     if(result){
                         return(
                             <ul className="search_result_area">
-                            {result.map((each_game)=>(
-                                <li key={each_game.id}>
-                                    <div className="">
-                                        ゲーム名：{each_game.game_name}<br/>
-                                        ジャンル：{genres[each_game.genres]}
-                                        {each_game.topics && 
-                                        <ul>
-                                            {each_game.topics.map((_topic)=>(
-                                                <li>
-                                                    <span>名前：{_topic.title}</span><br/>
-                                                    <span>状況：{_topic.status}</span><br/>
-                                                </li>       
-                                            ))}
-                                        </ul>
-                                        }
-                                    </div>
-                                </li>
-                            ))}
+                                {result.map((each_game)=>(
+                                    <li className="each_game" key={each_game.id}>
+                                        <div>
+                                            ゲーム名：{each_game.game_name}<br/>
+                                            ジャンル：{genres[each_game.genres]}
+                                            {each_game.topics && 
+                                            <ul className="_topics">
+                                                {each_game.topics.map((_topic)=>(
+                                                    <li>
+                                                        <a href="">
+                                                            <span>名前：{_topic.title}</span><br/>
+                                                            <span>状況：{_topic.status}</span><br/>
+                                                        </a>
+                                                    </li>       
+                                                ))}
+                                            </ul>
+                                            }
+                                        </div>
+                                    </li>
+                                ))}
                             </ul>
                         )
                     }

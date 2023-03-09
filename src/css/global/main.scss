@@ -180,6 +180,7 @@ footer{
     display: none;
 }
 
+
 .modal{
     min-width: 600px;
     max-width: 80vw;
@@ -194,6 +195,15 @@ footer{
     padding: 20px;
     z-index: 100;
     border-radius: 10px;
+}
+
+.form_wrap{
+
+}
+
+.modal,
+.form_wrap{
+   
     .write_area{
         margin-top: 10px;
         ._title{
@@ -202,7 +212,7 @@ footer{
         }
         input{
             width: 80%;
-            padding: 10px;
+            padding: 15px 10px;
             line-height: 1;
         }
         textarea{
@@ -377,12 +387,24 @@ footer{
     }
 }
 
+
 .search_result_area{
     border:1px solid;
     background-color: #fff;
     padding: 20px;
     min-height: 400px;
     margin-top: 60px;
+    display: flex;
+    justify-content: flex-start;
+    .each_game{
+        width: 30%;
+        border: 1px solid #555;
+        ._topics{
+            li{
+            }
+        }
+    }
+
     
 }
 

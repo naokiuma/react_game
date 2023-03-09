@@ -63,7 +63,7 @@ export const TopicForm = memo(() => {
     }
 
     return (
-        <div className="main_contents">
+        <div className="main_contents form_wrap">
             <form onSubmit={handleSubmit(submit)}>
                 <div className=''>
                     <div>
