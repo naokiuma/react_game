@@ -29,6 +29,9 @@ export const getTopics = async(topic_ID?:number) => {
         let FetchURL = `${API_BASE_URL}/topics`;
         let target_URL = topic_ID == undefined ? FetchURL : `${FetchURL}/${topic_ID}`;
         const res = await axios.get(target_URL)
+        console.log('gettopicsの中');
+        console.log(res.data)
+
         return res.data;
       }catch(e){
         console.log('400 Error!!')

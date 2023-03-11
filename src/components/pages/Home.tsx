@@ -4,12 +4,11 @@ import { Topic } from "../atom/Topic";
 import { LoggedInContext } from "../global/LoggedInProvider";
 import { TotalGameCountContext } from "../global/TotalGameCountProvider";
 
-
 //新規form
 import { TopicForm } from "../Molecules/form/TopicForm"
 //インフラ
-import { GetTopics} from "../../fooks/useTopics"//topic一覧
-// import { GetCategory } from "../../fooks/useCategory"//カテゴリー情報
+import {getTopics} from "../../infrastructure/topicDriver";
+
 import {GetCategory} from "../../infrastructure/categoryDriver";
 //css
 import '../../css/pages/top.css';
@@ -17,14 +16,8 @@ import '../../css/pages/top.css';
 
 export const Home:FC = memo(() => {
 
-    // const {GetCategory,categories} = GetCategory();  
-    useEffect(() => {
-        GetCategory().then((data) => {
-            set_category(data);
-        });
-    },[])
+   
 
-    // const {TotalGameCount} = useContext(LoggedInContext);
     const [modalActive,toggleModalActive] = useState(false)
     let [categories,set_category] = useState([])
     let [result_topics,set_result_topics] = useState([]);//ここでnullは渡すな
@@ -35,15 +28,17 @@ export const Home:FC = memo(() => {
     const { username } = useContext(LoggedInContext); 
     const { userid } = useContext(LoggedInContext);
     
-    //インフラ
-    const {fetchTopics} = GetTopics();
-    
-
     //topicsを取得
     useEffect(() => {
-        fetchTopics().then((data) => {
+        getTopics().then((data) => {
             set_default_topics(data);
             set_result_topics(data);
+        });
+    },[])
+
+     useEffect(() => {
+        GetCategory().then((data) => {
+            set_category(data);
         });
     },[])
 
@@ -158,14 +153,6 @@ export const Home:FC = memo(() => {
                         }
                         })()
                     }
-                 
-                    <TopicForm
-                        form_title='トピックを追加'
-                        isActive={modalActive}
-                        fetchTopics={fetchTopics}
-                        set_result_topics={set_result_topics}
-                        toggleModalActive={toggleModalActive}
-                    />
                 </section>
 
                 <div className="new_form_button">
