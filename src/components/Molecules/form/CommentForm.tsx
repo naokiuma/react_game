@@ -1,9 +1,8 @@
 import {ChangeEvent,useState,useContext,memo,FC} from 'react'
 import {ImgPreview} from "../../Templates/ImgPreview"
-import { LoggedInContext } from "../../global/LoggedInProvider";
+import { LoggedInContext } from "../../../provider/LoggedInProvider";
 
-//Customhooks
-import {CreateComments} from "../../../fooks/useComments"
+import {createComment} from "../../../infrastructure/commentDriver"
 
 
 type Props ={
@@ -11,7 +10,6 @@ type Props ={
     isActive:boolean,
     topic_id:number,
     toggleModalActive:Function,
-    fetchComments:Function
 }
 
 export const CommentForm:FC<Props> = memo((props) => {
@@ -27,14 +25,6 @@ export const CommentForm:FC<Props> = memo((props) => {
     let topic_id = props.topic_id
     let user_id = userid;
 
-
-    const fetchComments = props.fetchComments;//propsで渡した関数の場合はこの書き方
-
-    //画像
-    const [imgData, setImg] = useState(null);
-    console.log('画像。')
-    console.log(imgData)
-
     //投稿者
     const [name,setName] = useState(username)
     const changeName = (e:ChangeEvent<HTMLInputElement>) => {
@@ -47,13 +37,9 @@ export const CommentForm:FC<Props> = memo((props) => {
         setBody(e.target.value)
     }
 
-   
-
-    let {postComments} = CreateComments();
-
 
     const submit = ():void => {
-        postComments(topic_id,user_id,name,text,fetchComments,imgData);
+        createComment(topic_id,user_id,name,text);
         props.toggleModalActive(false);
 
     }
@@ -77,9 +63,6 @@ export const CommentForm:FC<Props> = memo((props) => {
                     <textarea onChange={changeBody}/>
                 </div>
                
-                <div className="write_area">
-                    <ImgPreview setImage = {setImg}/>
-                 </div>
                 <button className="submit_btn" onClick={submit}>投稿！</button>
             </div>
         </div>

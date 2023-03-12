@@ -1,5 +1,4 @@
 import { Route,Routes,BrowserRouter } from "react-router-dom";//switch は Routesに変わった
-//プロバイダー。この中でグローバルstateを利用可能
 import { Home } from "../components/pages/Home";
 import { PrivateRoute } from "../../src/router/PrivateRoute";
 import { About } from "../components/pages/About";

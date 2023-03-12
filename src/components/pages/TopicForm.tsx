@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import {ImgPreview} from "../Templates/ImgPreview"
 
 //インフラ
-import {createTopics} from "../../infrastructure/topicDriver";
+import {createTopic} from "../../infrastructure/topicDriver";
 import {GetCategory} from "../../infrastructure/categoryDriver";
 
 //Form用の情報
@@ -56,10 +56,9 @@ export const TopicForm = memo(() => {
     //画像のみ別途用意
     const [imgData, setImg] = useState(null);
 
+    
     const submit = (data:FormInputs) => {
-        createTopics(data.Title,data.Body,data.Status,imgData)
-        
-        
+        createTopic(data.Title,data.Body,data.Status,imgData)  
     }
 
     return (

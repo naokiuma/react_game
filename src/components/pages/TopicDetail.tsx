@@ -3,57 +3,47 @@ import { memo,FC,useContext } from "react";
 import { useEffect,useState } from 'react';
 import { useLocation } from "react-router-dom";
 
-import {LoggedInContext} from "../global/LoggedInProvider";
+import {LoggedInContext} from "../../provider/LoggedInProvider";
 
 //新規form
 import { CommentForm } from "../Molecules/form/CommentForm"
 
 //インフラ
-import { GetComments } from "../../fooks/useComments"
-import { GetTopics} from "../../fooks/useTopics"
-
+import {getComments} from "../../infrastructure/commentDriver";
+import {getTopics} from "../../infrastructure/topicDriver";
 
 
 export const TopicDetail:FC = memo(() => {
 
-
-    let [topic,set_result_topic] = useState([]);
+    let [topic,setTopic] = useState([]);
+    let [comments,setComment] = useState([])
     
     //user_id
     const { userid } = useContext(LoggedInContext);
     console.log('userid')
     console.log(userid)
 
-    
+    //topic_id
     const locationVal = useLocation();
     let tempID = locationVal.pathname
-    tempID = tempID.replace('/topics/', '');
-    let topic_id = Number(tempID)//topi_id
-
+    let topic_id = Number(tempID.replace('/topics/', ''))//topi_id
 
     //トピック編集用モーダル
     const [EditmodalActive,toggleEditModalActive] = useState(false)
-
-
-    // コメントデータ取得
-    let {fetchComments,comments} = GetComments(topic_id) 
-    const {fetchTopics} = GetTopics();
-    //コメントフォーム
     const [modalActive,toggleModalActive] = useState(false)
+    
 
-    // console.log('取得コメント');
-    // console.log(comments);
-
-    //この記述で初回のみ実行される
     useEffect(() => {
-        fetchComments()
-        fetchTopics(topic_id).then((data) => {
-            set_result_topic(data)
+        getTopics(topic_id).then((data) => {
+            setTopic(data)
         })
+        getComments(topic_id).then((data) => {
+            setComment(data);
+        });
     },[])
 
-    console.log('初回_fetchtopicsで取得したデータ')
-    console.log(topic)
+    // console.log('初回_fetchtopicsで取得したデータ')
+    // console.log(topic)
 
     //左辺がtrueなら右辺を返す。 
     let title = topic[0] && topic[0]['title'];//タイトル
@@ -133,7 +123,6 @@ export const TopicDetail:FC = memo(() => {
                 <CommentForm 
                     form_title ='コメントを投稿'
                     isActive={modalActive} 
-                    fetchComments={fetchComments}
                     topic_id={topic_id}
                     toggleModalActive={toggleModalActive}
                 />

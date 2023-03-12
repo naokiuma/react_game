@@ -6,8 +6,8 @@ import { ChakraProvider } from '@chakra-ui/react'
 
 
 //プロバイダー。この中でグローバルstateを利用可能
-import { LoggedInProvider} from "./components/global/LoggedInProvider";
-// import { TotalGameCountProvider} from "./components/global/TotalGameCountProvider";
+import { LoggedInProvider} from "./provider/LoggedInProvider";
+// import { TotalGameCountProvider} from "./provider/TotalGameCountProvider";
 
 import { Header } from './components/Templates/Header';
 import { Footer } from './components/Templates/Footer';

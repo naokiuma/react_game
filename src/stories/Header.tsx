@@ -3,6 +3,7 @@ import React from 'react';
 import { Button } from './Button';
 import './header.css';
 
+//test記載
 type User = {
   name: string;
 };

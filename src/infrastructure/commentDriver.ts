@@ -1,16 +1,16 @@
 import axios from "axios";
 import {API_BASE_URL,API_SANCTUM_URL} from "../config/url"
+import { CommentsType } from "../types/commentsType"
 
-import { TopicType } from "../domain/topic";
 
-
-export const createTopic = (title,body,status,imgData?) => {
-    const target_URL =  `${API_BASE_URL}/topics/create`;
+export const createComment = (topic_id,user_id,name,text) => {
+    const target_URL =  `${API_BASE_URL}/comments/create`;
     const res = axios//csrf保護の初期化
         .get(API_SANCTUM_URL, { withCredentials: true })
         .then(() => {
             axios.post(target_URL,
-                {title: title,body: body,status: status,file:imgData},
+                {topic_id: topic_id,name:name,text: text,user_id: user_id},
+
                 {headers:
                     {'Content-Type': 'multipart/form-data',},//画像を送る際にはこの指定が必要
                     withCredentials:true,
@@ -23,14 +23,11 @@ export const createTopic = (title,body,status,imgData?) => {
 }
 
 
-export const getTopics = async(topic_ID?:number) => {
+export const getComments = async(topic_ID?:number) => {
     try{
-        let FetchURL = `${API_BASE_URL}/topics`;
+        let FetchURL = `${API_BASE_URL}/comments`;
         let target_URL = topic_ID == undefined ? FetchURL : `${FetchURL}/${topic_ID}`;
-        const res = await axios.get(target_URL)
-        console.log('gettopicsの中');
-        console.log(res.data)
-
+        const res = await axios.get<Array<CommentsType>>(target_URL)
         return res.data;
       }catch(e){
         console.log('400 Error!!')

@@ -47,3 +47,5 @@ DBとの通信を伴う実際の関数。<br/>
 
 参考：https://www.gixo.jp/blog/16133/<br/>
 
+## テストのスクリプト
+yarn run test

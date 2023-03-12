@@ -1,6 +1,6 @@
 import { memo,FC } from "react";
 import {ChangeEvent,useState} from 'react'
-import {LoggedInContext} from "../global/LoggedInProvider";
+import {LoggedInContext} from "../../provider/LoggedInProvider";
 
 
 

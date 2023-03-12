@@ -2,7 +2,9 @@ import axios from 'axios'
 import { ChangeEvent, useState,useContext} from 'react'
 import { useLocation,useNavigate } from "react-router-dom";
 
-import {LoggedInContext} from "../global/LoggedInProvider";
+import {LoggedInContext} from "../../provider/LoggedInProvider";
+import {LogInUser} from '../../infrastructure/authDriver'
+
 
 type LoginParams = {
     email:string;
@@ -12,12 +14,13 @@ type LoginParams = {
 export const Login = () => {
 
     const location = useLocation();
-    console.log(location)
 
     //ログイン状態
     const IsLogged = useContext(LoggedInContext);
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
+
+    //グローバルな値
     const { username,setUserName } = useContext(LoggedInContext);
     const { userid,setUserID } = useContext(LoggedInContext);
     const { userAuth,setUserAuth } = useContext(LoggedInContext);
@@ -31,47 +34,45 @@ export const Login = () => {
         setPassword(e.target.value)
     }
 
-
-    // SPA認証済みではないとアクセスできないAPI
-    const handleUserClick = () => {
-        axios.get('http://localhost:8888/api/user', { withCredentials: true }).then((response) => {
-            console.log('ログイン状態')
-            console.log(userAuth)
-        })
-    }
-
-
     const handleLoginClick = () => {
         const loginParams:LoginParams = {email,password}
+        // console.log('loginします')
+        // console.log(loginParams)
+        LogInUser(loginParams,setUserName,setUserID,setUserAuth,setUseremail)
 
-        axios//csrf保護の初期化
-            .get('http://localhost:8888/sanctum/csrf-cookie', { withCredentials: true })
-            .then((response) => {
-                //ログイン処理
-                axios
-                .post(
-                    'http://localhost:8888/api/login',
-                    loginParams,
-                    {withCredentials:true}
-                )
-                .then((response) => {
-                    setUserName(response.data.name);
-                    setUserID(response.data.user_id);
-                    setUseremail(response.data.email);
-                    setUserAuth(true);
-                    // navigate(url)//リダイレクト
-                    //ローカルストレージに保存する場合-------------------------------------
-                    // ローカルストレージにキーを指定して、それに紐づく値を保存
-                    // localStorage.setItem('userName', response.data.name);
-                    // localStorage.setItem('userEmail', response.data.email);
 
-                    // // ローカルストレージからキーを指定して取得
-                    // var cat = localStorage.getItem("myCat");
-                    // // ローカルストレージから対象のキーに紐づく値を削除
-                    // localStorage.removeItem("myCat");
-                })
-            })
-        }
+
+
+        // axios//csrf保護の初期化
+        // .get('http://localhost:8888/sanctum/csrf-cookie', { withCredentials: true })
+        // .then((response) => {
+        //     //ログイン処理
+        //     axios
+        //     .post(
+        //         'http://localhost:8888/api/login',
+        //         loginParams,
+        //         {withCredentials:true}
+        //     )
+        //     .then((response) => {
+        //         setUserName(response.data.name);
+        //         setUserID(response.data.user_id);
+        //         setUseremail(response.data.email);
+        //         setUserAuth(true);
+        // // navigate(url)//リダイレクト
+        // // ローカルストレージに保存する場合-------------------------------------
+        // // ローカルストレージにキーを指定して、それに紐づく値を保存
+        // // localStorage.setItem('userName', response.data.name);
+        // // localStorage.setItem('userEmail', response.data.email);
+
+        // // ローカルストレージからキーを指定して取得
+        // var cat = localStorage.getItem("myCat");
+        // // ローカルストレージから対象のキーに紐づく値を削除
+        // localStorage.removeItem("myCat");
+        //     })
+        // })
+
+
+    }
 
 
     return(
@@ -81,8 +82,6 @@ export const Login = () => {
             </h1>
             {username}
             {userid}
-
-
             <div>
                 メールアドレス
                 <input onChange={changeEmail}/>

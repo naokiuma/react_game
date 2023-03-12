@@ -1,6 +1,6 @@
 import { ChangeEvent,memo,FC,useState,useEffect } from "react";
 import genres from '../../utils/game_genre'
-import {SearchGame} from "../../infrastructure/gameDriver";
+import {searchGame} from "../../infrastructure/gameDriver";
 
 
 
@@ -16,7 +16,7 @@ export const GameSearch:FC = memo(() => {
     }
 
     const submit = ():void => {        
-        SearchGame(keyword).then((data) =>{
+        searchGame(keyword).then((data) =>{
             if(data.length > 0){
                 setResult(data)                
             }else{

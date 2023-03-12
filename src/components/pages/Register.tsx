@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { ChangeEvent, useState,useContext,useEffect} from 'react'
 import { useLocation,useNavigate } from "react-router-dom";
-import {LoggedInContext} from "../global/LoggedInProvider";
+import {LoggedInContext} from "../../provider/LoggedInProvider";
 
 type RegisterParams = {
     username:string;

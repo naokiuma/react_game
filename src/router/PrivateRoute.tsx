@@ -1,6 +1,6 @@
 import { Outlet,Navigate,useNavigate,useLocation } from "react-router-dom";
 import { useContext} from 'react'
-import { LoggedInContext} from "../components/global/LoggedInProvider";
+import { LoggedInContext} from "../provider/LoggedInProvider";
 
 
 /**

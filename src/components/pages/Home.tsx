@@ -1,11 +1,10 @@
 import { memo,FC,useContext,useEffect, useState,ChangeEvent} from "react";
-import { BrowserRouter,Route,Link,Routes } from "react-router-dom";//switch は Routesに変わった
+import { Link } from "react-router-dom";//switch は Routesに変わった
 import { Topic } from "../atom/Topic";
-import { LoggedInContext } from "../global/LoggedInProvider";
-import { TotalGameCountContext } from "../global/TotalGameCountProvider";
+import { LoggedInContext } from "../../provider/LoggedInProvider";
+import { TotalGameCountContext } from "../../provider/TotalGameCountProvider";
 
-//新規form
-import { TopicForm } from "../Molecules/form/TopicForm"
+
 //インフラ
 import {getTopics} from "../../infrastructure/topicDriver";
 
@@ -20,7 +19,7 @@ export const Home:FC = memo(() => {
 
     const [modalActive,toggleModalActive] = useState(false)
     let [categories,set_category] = useState([])
-    let [result_topics,set_result_topics] = useState([]);//ここでnullは渡すな
+    let [result_topics,set_result_topics] = useState([]);
     let [default_topics,set_default_topics] = useState([]);
     let [selecged_tag,set_tag] = useState(null)
 

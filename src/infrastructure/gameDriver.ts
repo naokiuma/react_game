@@ -2,7 +2,7 @@ import axios from "axios";
 import {API_BASE_URL} from "../config/url"
 import { GameType } from "../domain/game";
 
-export const SearchGame = async(keyword:string):Promise<[GameType]> => {
+export const searchGame = async(keyword:string):Promise<[GameType]> => {
     try{
       let FetchURL = `${API_BASE_URL}/game/search?game=${keyword}`;
       let target_URL = FetchURL

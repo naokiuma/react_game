@@ -4,20 +4,20 @@ import {useState} from "react";
 import { CommentsType } from "../types/commentsType"
 
 
-const GetComments = (topic_ID?:number) => {
-  let FetchURL = `${API_BASE_URL}/comments`;
-  let target_URL = topic_ID == undefined ? FetchURL : `${FetchURL}/${topic_ID}`;
-  const [comments,setComments] = useState<Array<CommentsType>>([]);
-  const fetchComments = () => {
-	axios
-		.get<Array<CommentsType>>(target_URL)
-		.then((res) => {
-			console.log('getcomments')
-			setComments(res.data);
-		})
-  }
-    return {fetchComments,comments}
-}
+// const GetComments = (topic_ID?:number) => {
+//   let FetchURL = `${API_BASE_URL}/comments`;
+//   let target_URL = topic_ID == undefined ? FetchURL : `${FetchURL}/${topic_ID}`;
+//   const [comments,setComments] = useState<Array<CommentsType>>([]);
+//   const fetchComments = () => {
+// 	axios
+// 		.get<Array<CommentsType>>(target_URL)
+// 		.then((res) => {
+// 			console.log('getcomments')
+// 			setComments(res.data);
+// 		})
+//   }
+//     return {fetchComments,comments}
+// }
 
 
 const CreateComments = () => {
@@ -44,5 +44,5 @@ const CreateComments = () => {
 }
 
 
-export {GetComments,CreateComments}
+export {CreateComments}
 
