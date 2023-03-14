@@ -7,6 +7,8 @@ import { ChakraProvider } from '@chakra-ui/react'
 
 //プロバイダー。この中でグローバルstateを利用可能
 import { LoggedInProvider} from "./provider/LoggedInProvider";
+import { ModalProvider} from "./provider/ModalProvider";
+
 // import { TotalGameCountProvider} from "./provider/TotalGameCountProvider";
 
 import { Header } from './components/Templates/Header';
@@ -27,9 +29,11 @@ function App() {
           <main>
           {/* <TotalGameCountProvider>  */}
             <LoggedInProvider>
+              <ModalProvider>
                 <Header />
-                <MainRoute />
+                 <MainRoute />
                 <Footer />
+              </ModalProvider>
             </LoggedInProvider>
           {/* </TotalGameCountProvider> */}
           </main>

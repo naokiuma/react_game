@@ -7,7 +7,7 @@
   width: 1280px;
   height: 100%;
   margin: auto;
-  padding: 150px 40px 200px;
+  padding: 100px 40px 100px;
   border-bottom: 2px solid #33333347;
 }
 
@@ -27,6 +27,8 @@
 
 .hero .inner .main_info_wrap ._each figure {
   width: 500px;
+  border-radius: 30px;
+  overflow: hidden;
 }
 
 .home_section {
