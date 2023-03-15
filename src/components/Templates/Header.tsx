@@ -9,6 +9,9 @@ import {LogOutUser} from '../../infrastructure/authDriver'
 import {Link } from "react-router-dom";
 import { NoticeModal } from "../global/NoticeModal"
 
+import { Searchbox } from "../Molecules/form/Searchbox"
+
+
 
 
 
@@ -39,7 +42,7 @@ export const Header:FC = () => {
                         <Link to="/">トップ</Link>
                     </li>
                     <li>
-                        <Link to="/search">ゲーム</Link>
+                        <Link to="/search">ゲームを探す</Link>
                     </li>
                     {/* <li className='game_menu'>
                         ゲーム
@@ -73,10 +76,15 @@ export const Header:FC = () => {
                             </div>
                         </>
                     }
+                    <div>
+                        <span><i className="fa-solid fa-magnifying-glass"></i></span>
+                    </div>
                 </div>
+                
             </header>
 
             {  modalcontext.Modalmsg !== '' ? (<NoticeModal msg={modalcontext.Modalmsg} modalActive={true}/>) : (<></>)}
+            <Searchbox/>
 
          
             

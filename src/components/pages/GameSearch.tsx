@@ -6,9 +6,17 @@ import {searchGame} from "../../infrastructure/gameDriver";
 
 
 export const GameSearch:FC = memo(() => {
-    const [keyword, setKeyword] = useState("");
+
+
+    let url = new URL(window.location.href);
+    let params = url.searchParams;
+    let defaultValue = params.get('game') ? params.get('game') : '';
+
+    const [keyword, setKeyword] = useState(defaultValue);
     const [result, setResult] = useState([]);
     const { Modalmsg,setModalMsg } = useContext(ModalContext);
+
+
 
     const changeKeyword = (e:ChangeEvent<HTMLInputElement>) => {
         setKeyword(e.target.value)
@@ -29,10 +37,19 @@ export const GameSearch:FC = memo(() => {
         })
     }
 
+    
+    useEffect(() => {
+        searchGame(keyword).then((data) =>{
+            if(data.length > 0){
+                setResult(data)                
+            }
+        })
+    },[])
+
 
     return (        
         <>
-            <section className="main_contents">
+            <section className="main_contents game_search">
                 <div className="search_input_wrap">
                     <span>
                         ゲームを探そう！

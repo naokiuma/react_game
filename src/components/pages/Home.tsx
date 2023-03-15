@@ -62,7 +62,7 @@ export const Home:FC = memo(() => {
             <>
                 <section className="hero" style={{ backgroundImage: "url(./img/global/top_billboard1.jpg)" }}>
                     <div className="inner">
-                        <h1>Game Enhance</h1>
+                        <h1>Keep Game</h1>
                         <section className="main_info_wrap">
                             <div className="_each">
                                 <div>
