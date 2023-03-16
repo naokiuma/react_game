@@ -1,8 +1,12 @@
 import {useState,memo,FC} from 'react'
 
+interface SearchboxProps {
+    modalStatus: boolean;
+  }
 
 
-export const Searchbox:FC= memo(() => {
+export const Searchbox:FC<SearchboxProps>= memo((props) => {
+    const modalStatus = props.modalStatus
 
     let url = new URL(window.location.href);
     let params = url.searchParams;
@@ -23,7 +27,7 @@ export const Searchbox:FC= memo(() => {
 
 
     return (
-        <div className='search_box_wrap'>
+        <div className={'search_box_wrap ' + (modalStatus == true ? 'active' : '')} >
             <form onSubmit={handleSubmit}>
             <i className="fa-solid fa-magnifying-glass" onClick={handleSubmit}></i>
                 <input type="text" value={inputValue} onChange={handleInputChange} placeholder='ゲームの名前'/>

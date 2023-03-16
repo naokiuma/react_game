@@ -1,29 +1,44 @@
-a{
-    &:hover{
-        opacity: 0.8;
-    }
+*{
+    font-family: sans-serif;
 }
 
 html{
     position: relative;
 }
 
+a{
+    &:hover{
+        opacity: 0.8;
+    }
+}
+
+
+
+.search_icon_wrap{
+    cursor: pointer;
+    &:hover{
+        opacity: 0.8;
+    }
+}
 .search_box_wrap{
-    // display: none;
+    display: none;
     position: fixed;
     top: 90px;
     right: 20px;
     height: 40px;
-    display: flex;
     align-items: center;
-    display: flex;
-    align-items: center;
-    // padding: 15px 20px;
     background-color: #fff;
     border: 1px solid #525252;
+    transition: 0.3s;
+    
     i{
         border-right: 1px solid #525252;
         padding: 10px 10px;
+        cursor: pointer;
+        &:hover{
+            opacity: 0.8;
+            background-color: #72dfea9e;
+        }
     }
     form{
         height: 38px;
@@ -32,6 +47,12 @@ html{
             padding-left: 5px;
             height: 100%;
         }
+    }
+    &.active{
+        display: flex;
+        animation: fadeIn 0.3s ease 0.2s 1 normal backwards;
+
+
     }
 }
 
@@ -85,12 +106,12 @@ h1{
     margin-top: 20px;
 }
 .tag{
-    color: #555;
     display: inline-block;
-    background-color: fff;
-    padding: 2px 5px;
+    background-color: #9ac8f9;
+    color: #fff;
+    padding: 10px 10px;
+    line-height: 1;
     margin-left: 10px;
-    box-shadow: 1px 1px 1px #555;
     cursor: pointer;
     &:first-child{
         margin-left: 0;
@@ -496,4 +517,24 @@ footer{
         opacity: 0;
         transform: translateY(-70px);
       }
+}
+
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateX(200px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
   }
+
+
+
+/*topic詳細ページ*/
+.topic_detail{
+    .main_contents{
+        padding-top: 100px;
+    }
+}

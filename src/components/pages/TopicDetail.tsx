@@ -2,6 +2,7 @@
 import { memo,FC,useContext } from "react";
 import { useEffect,useState } from 'react';
 import { useLocation } from "react-router-dom";
+import styled from "styled-components"
 
 import {LoggedInContext} from "../../provider/LoggedInProvider";
 
@@ -11,6 +12,7 @@ import { CommentForm } from "../Molecules/form/CommentForm"
 //インフラ
 import {getComments} from "../../infrastructure/commentDriver";
 import {getTopics} from "../../infrastructure/topicDriver";
+
 
 
 export const TopicDetail:FC = memo(() => {
@@ -59,9 +61,9 @@ export const TopicDetail:FC = memo(() => {
         main_img = '';
     }
 
-    const tags = ['ホラー','アクション']
+    const tags = ['ローグライク','泣ける']
     return (
-        <section className="topic">
+        <section className="topic_detail">
             <div className="billboard"
                 style={{ 
                 backgroundImage: `url(${main_img})`
@@ -73,14 +75,24 @@ export const TopicDetail:FC = memo(() => {
             </div>
            
             <div className="main_contents">
-                <h2 className="game_title">         
-                    タイトル：{title}
+                <h2 className="topic_title">         
+                    {title}
                 </h2>
-                id：{topic_id}
+                {/* id：{topic_id} */}
 
-                <div>
+                <div className="tags">
+                    {
+                        tags.map((tag:string)=>(
+                            <span className="tag" key={tag}>
+                                {tag}
+                            </span>
+                        ))
+                    }
+                </div>
+
+                <div className="main_text">
                     <p>
-                        本文：{body}
+                        {body}
                     </p>
                 </div>
                 
@@ -98,15 +110,7 @@ export const TopicDetail:FC = memo(() => {
                         </figure>
                     </div>
                 }
-                <div className="tags">
-                    {
-                        tags.map((tag:string)=>(
-                            <span className="tag" key={tag}>
-                                {tag}
-                            </span>
-                        ))
-                    }
-                </div>
+              
                 <div className="status_label mt10">
                     {status}
                 </div>

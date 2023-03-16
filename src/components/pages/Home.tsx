@@ -7,15 +7,12 @@ import { TotalGameCountContext } from "../../provider/TotalGameCountProvider";
 
 //インフラ
 import {getTopics} from "../../infrastructure/topicDriver";
-
 import {GetCategory} from "../../infrastructure/categoryDriver";
 //css
 import '../../css/pages/top.css';
 
 
 export const Home:FC = memo(() => {
-
-   
 
     const [modalActive,toggleModalActive] = useState(false)
     let [categories,set_category] = useState([])

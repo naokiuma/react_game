@@ -3,7 +3,7 @@ import axios from 'axios'
 import {LoggedInContext} from "../../provider/LoggedInProvider";
 import {ModalContext} from "../../provider/ModalProvider";
 
-import {useContext,FC} from 'react'
+import {useContext,FC,useState} from 'react'
 // import {Logout} from '../../fooks/useLogout'
 import {LogOutUser} from '../../infrastructure/authDriver'
 import {Link } from "react-router-dom";
@@ -21,8 +21,8 @@ export const Header:FC = () => {
     let modalcontext = useContext(ModalContext)
    
 
-    //デフォルト
-    // const handleLogout = Logout()
+    let [searcIsActive,setSearchBox] = useState(false)
+
 
 
     ///最新
@@ -32,6 +32,8 @@ export const Header:FC = () => {
             setUserName('');
         })
     }
+
+    const toggleSearchBox = () =>setSearchBox(!searcIsActive)
 
     return(
         <>
@@ -44,13 +46,6 @@ export const Header:FC = () => {
                     <li>
                         <Link to="/search">ゲームを探す</Link>
                     </li>
-                    {/* <li className='game_menu'>
-                        ゲーム
-                        <div className='sub_menu'>
-                            <Link to="/search">探す</Link>
-                            <Link to="/search">書く</Link>
-                        </div>
-                    </li> */}
                     <li>
                         <Link to="/about">サービスについて</Link>
                     </li>
@@ -76,15 +71,16 @@ export const Header:FC = () => {
                             </div>
                         </>
                     }
-                    <div>
-                        <span><i className="fa-solid fa-magnifying-glass"></i></span>
+                    <div onClick={toggleSearchBox}>
+                        <span className="search_icon_wrap"><i className="fa-solid fa-magnifying-glass"></i></span>
                     </div>
                 </div>
                 
             </header>
 
             {  modalcontext.Modalmsg !== '' ? (<NoticeModal msg={modalcontext.Modalmsg} modalActive={true}/>) : (<></>)}
-            <Searchbox/>
+            <Searchbox modalStatus={searcIsActive}/>
+
 
          
             

@@ -7,6 +7,7 @@ import {searchGame} from "../../infrastructure/gameDriver";
 
 export const GameSearch:FC = memo(() => {
 
+    
 
     let url = new URL(window.location.href);
     let params = url.searchParams;
