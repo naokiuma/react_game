@@ -41,11 +41,12 @@ a{
         }
     }
     form{
-        height: 38px;
+        // height: 38px;
         input{
             border: none;
             padding-left: 5px;
             height: 100%;
+            outline: aliceblue;
         }
     }
     &.active{
@@ -57,7 +58,7 @@ a{
 }
 
 .game_search{
-    padding-top: 200px;
+    padding: 140px 40px 70px 40px;
 }
 .main_contents{
     max-width: 1280px;
@@ -255,26 +256,29 @@ footer{
     border-radius: 10px;
 }
 
-.form_wrap{
 
-}
 
 .modal,
 .form_wrap{
+    form{
+        margin: auto;
+        width: 1080px;
+        padding: 0 40px;
+    }
+    ._title{
+        font-size: 24px;
+    }
    
     .write_area{
         margin-top: 10px;
-        ._title{
-            font-size: 24px;
-
-        }
+        
         input{
-            width: 80%;
-            padding: 15px 10px;
+            width: 40%;
+            padding: 10px;
             line-height: 1;
         }
         textarea{
-            width: 100%;
+            width: 80%;
             padding: 10px;
             line-height: 1.5;
             height: 15em;
@@ -283,6 +287,11 @@ footer{
 
     .submit_btn{
         margin-top: 20px;
+        border: none;
+        background-color: #1565c0;
+        padding: 10px 20px;
+        color: #fff;
+        box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12);
     }
     .close_btn_wrap{
         position: absolute;
@@ -377,7 +386,7 @@ footer{
 
 .status_label{
     font-weight: bold;
-    border: 1px solid #4ad5e3;
+    border: 1px solid #525252;
     padding: 5px 14px;
     display: inline-block;
     font-size: 12px;
@@ -484,6 +493,9 @@ footer{
     margin-top: 20px;
 }
 
+
+
+/*上部のモーダル*/
 .notice_modal{
     position: fixed;
     top: 0;
@@ -536,5 +548,21 @@ footer{
 .topic_detail{
     .main_contents{
         padding-top: 100px;
+        padding-bottom: 100px;
+    }
+}
+
+/*フォームページ*/
+.game_form,
+.topic_form{
+    padding: 200px 0px;
+}
+
+.topic_form{
+    .game_id{
+        input{
+            display: none;
+        }
+
     }
 }

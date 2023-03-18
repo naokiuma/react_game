@@ -4,25 +4,6 @@ import {API_BASE_URL,API_SANCTUM_URL} from "../config/url"
 import { TopicType } from "../domain/topic";
 
 
-export const createTopic = (title,body,status,imgData?) => {
-    const target_URL =  `${API_BASE_URL}/topics/create`;
-    const res = axios//csrf保護の初期化
-        .get(API_SANCTUM_URL, { withCredentials: true })
-        .then(() => {
-            axios.post(target_URL,
-                {title: title,body: body,status: status,file:imgData},
-                {headers:
-                    {'Content-Type': 'multipart/form-data',},//画像を送る際にはこの指定が必要
-                    withCredentials:true,
-                },
-            ).then(()=>{
-                window.location.reload();
-            })
-        })
-        return res;
-}
-
-
 export const getTopics = async(topic_ID?:number) => {
     try{
         let FetchURL = `${API_BASE_URL}/topics`;
@@ -36,5 +17,23 @@ export const getTopics = async(topic_ID?:number) => {
         console.log('400 Error!!')
         console.log(e)
       }
+}
 
+
+export const createTopic = (game_id,title,body,status,imgData?) => {
+    const target_URL =  `${API_BASE_URL}/topics/create`;
+    const res = axios//csrf保護の初期化
+        .get(API_SANCTUM_URL, { withCredentials: true })
+        .then(() => {
+            axios.post(target_URL,
+                {game_id: game_id,title: title,body: body,status: status,file:imgData},
+                {headers:
+                    {'Content-Type': 'multipart/form-data',},//画像を送る際にはこの指定が必要
+                    withCredentials:true,
+                },
+            ).then(()=>{
+                // window.location.reload();
+            })
+        })
+        return res;
 }

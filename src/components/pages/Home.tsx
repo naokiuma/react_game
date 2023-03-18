@@ -128,7 +128,7 @@ export const Home:FC = memo(() => {
                                 {
                                     result_topics.map((topic)=>(
                                         <li key={topic.id}>
-                                            <Link to={"/topics/" + topic.id} state={topic}>
+                                            <Link to={"/topic/" + topic.id} state={topic}>
                                                 <Topic
                                                     id={topic.id}
                                                     title={topic.title}

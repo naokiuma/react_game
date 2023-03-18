@@ -16,7 +16,7 @@ export const Searchbox:FC<SearchboxProps>= memo((props) => {
     const handleSubmit = (event) => {
       event.preventDefault();
       const queryParams = `?game=${inputValue}`;
-      const url = '/search' + queryParams;
+      const url = '/game/search' + queryParams;
       console.log(url)
       window.location.href = url;
     };

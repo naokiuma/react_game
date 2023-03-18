@@ -3,6 +3,20 @@ import {API_BASE_URL,API_SANCTUM_URL} from "../config/url"
 import { CommentsType } from "../types/commentsType"
 
 
+export const getComments = async(topic_ID?:number) => {
+    try{
+        let FetchURL = `${API_BASE_URL}/comments`;
+        let target_URL = topic_ID == undefined ? FetchURL : `${FetchURL}/${topic_ID}`;
+        const res = await axios.get<Array<CommentsType>>(target_URL)
+        return res.data;
+      }catch(e){
+        console.log('400 Error!!')
+        console.log(e)
+      }
+
+}
+
+
 export const createComment = (topic_id,user_id,name,text) => {
     const target_URL =  `${API_BASE_URL}/comments/create`;
     const res = axios//csrf保護の初期化
@@ -22,16 +36,3 @@ export const createComment = (topic_id,user_id,name,text) => {
         return res;
 }
 
-
-export const getComments = async(topic_ID?:number) => {
-    try{
-        let FetchURL = `${API_BASE_URL}/comments`;
-        let target_URL = topic_ID == undefined ? FetchURL : `${FetchURL}/${topic_ID}`;
-        const res = await axios.get<Array<CommentsType>>(target_URL)
-        return res.data;
-      }catch(e){
-        console.log('400 Error!!')
-        console.log(e)
-      }
-
-}

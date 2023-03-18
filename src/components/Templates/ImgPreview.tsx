@@ -13,8 +13,7 @@ export const ImgPreview = ({setImage}) => {
         if (e.target.files?.length === 0) {
             return
         }
-        
-
+    
         if(files && files[0]) {
             let file = files[0]
             const reader = new FileReader()
@@ -38,7 +37,6 @@ export const ImgPreview = ({setImage}) => {
                 onChange={changeFile}/>
             <div>
                 <img className="setted_img_frame" src={imagePreview} />
-
             </div>
         </div>
     ); 

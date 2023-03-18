@@ -28,7 +28,7 @@ export const TopicDetail:FC = memo(() => {
     //topic_id
     const locationVal = useLocation();
     let tempID = locationVal.pathname
-    let topic_id = Number(tempID.replace('/topics/', ''))//topi_id
+    let topic_id = Number(tempID.replace('/topic/', ''))//topic_id
 
     //トピック編集用モーダル
     const [EditmodalActive,toggleEditModalActive] = useState(false)

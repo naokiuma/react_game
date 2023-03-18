@@ -44,7 +44,7 @@ export const Header:FC = () => {
                         <Link to="/">トップ</Link>
                     </li>
                     <li>
-                        <Link to="/search">ゲームを探す</Link>
+                        <Link to="/game/search">ゲームを探す</Link>
                     </li>
                     <li>
                         <Link to="/about">サービスについて</Link>

@@ -1,6 +1,8 @@
 import {ModalContext} from "../../provider/ModalProvider";
 
 import { ChangeEvent,memo,FC,useState,useEffect,useContext} from "react";
+import {Link } from "react-router-dom";
+
 import genres from '../../utils/game_genre'
 import {searchGame} from "../../infrastructure/gameDriver";
 
@@ -16,6 +18,14 @@ export const GameSearch:FC = memo(() => {
     const [keyword, setKeyword] = useState(defaultValue);
     const [result, setResult] = useState([]);
     const { Modalmsg,setModalMsg } = useContext(ModalContext);
+
+    useEffect(() => {
+        searchGame(keyword).then((data) =>{
+            if(data.length > 0){
+                setResult(data)                
+            }
+        })
+    },[])
 
 
 
@@ -38,15 +48,6 @@ export const GameSearch:FC = memo(() => {
         })
     }
 
-    
-    useEffect(() => {
-        searchGame(keyword).then((data) =>{
-            if(data.length > 0){
-                setResult(data)                
-            }
-        })
-    },[])
-
 
     return (        
         <>
@@ -62,6 +63,8 @@ export const GameSearch:FC = memo(() => {
                     />
                     <button className="submit_btn"onClick={submit}>探す</button>
                 </div>
+
+
                 {
                     (()=>{
                         if(result){
@@ -71,20 +74,23 @@ export const GameSearch:FC = memo(() => {
                                         <li className="each_game" key={each_game.id}>
                                             <div>
                                                 ゲーム名：{each_game.game_name}<br/>
-                                                ジャンル：{genres[each_game.genres]}
-                                                {each_game.topics && 
-                                                <ul className="_topics">
-                                                    {each_game.topics.map((_topic)=>(
-                                                        <li>
-                                                            <a href="">
-                                                                <span>名前：{_topic.title}</span><br/>
-                                                                <span>状況：{_topic.status}</span><br/>
-                                                            </a>
-                                                        </li>       
-                                                    ))}
-                                                </ul>
-                                                }
+                                                {genres[each_game.genres]}
                                             </div>
+                                                {each_game.topics && 
+                                                <>
+                                                    <span>このゲームの話題</span>
+                                                    <ul className="_topics">
+                                                        {each_game.topics.map((_topic)=>(
+                                                            <li>
+                                                                <a href="">
+                                                                    <span>名前：{_topic.title}</span><br/>
+                                                                    <span>状況：{_topic.status}</span><br/>
+                                                                </a>
+                                                            </li>       
+                                                        ))}
+                                                    </ul>
+                                                </>
+                                                }
                                         </li>
                                     ))}
                                 </ul>
@@ -92,6 +98,12 @@ export const GameSearch:FC = memo(() => {
                         }
                     })()
                 } 
+
+                <div>
+                    <Link to="/game/create">ゲームを新しく登録する</Link>
+                </div>
+
+
             </section>
         </>
     )
