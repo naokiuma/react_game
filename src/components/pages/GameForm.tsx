@@ -2,6 +2,8 @@
 import { memo,FC,useState,useEffect } from "react";
 import { useForm } from 'react-hook-form';
 import {ImgPreview} from "../Templates/ImgPreview"
+import {ImgsPreview} from "../Templates/ImgsPreview"
+
 import genres from '../../utils/game_genre'
 
 
@@ -43,11 +45,15 @@ export const GameForm = memo(() => {
     });
 
     //画像のみ別途用意
-    const [imgData, setImg] = useState(null);
+    const [imgData, setImg] = useState<File>(null);
+
+    const [images, setImages] = useState<File[]>([]);
 
     
     const submit = (data:FormInputs) => {
-        createGame(data.GameName,data.GameGenre,imgData)  
+        console.log('送るでーた')
+        console.log(imgData)
+        createGame(data.GameName,data.GameGenre,['ローグライク','泣ける'],images)  
     }
 
     return (
@@ -75,7 +81,9 @@ export const GameForm = memo(() => {
                     
                     
                     <div className="write_area">
-                        <ImgPreview setImage = {setImg}/>
+                        {/* <ImgPreview setImage = {setImg}/> */}
+                        <ImgsPreview images ={images} setImages = {setImages}/>
+
                     </div>
                     <button className="submit_btn">投稿</button>
                 </div>

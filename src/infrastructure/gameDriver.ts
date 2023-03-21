@@ -35,8 +35,10 @@ export const createGame = (name:string,genres:string,category:Array<string>,imgD
   const res = axios//csrf保護の初期化
       .get(API_SANCTUM_URL, { withCredentials: true })
       .then(() => {
+        console.log('送るデータ')
+        console.log(genres)
           axios.post(target_URL,
-              {name:name,genres: genres,category: category,file:imgData},
+              {game_name:name,genres: genres,category: category,file:imgData},
 
               {headers:
                   {'Content-Type': 'multipart/form-data',},//画像を送る際にはこの指定が必要

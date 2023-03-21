@@ -8,6 +8,7 @@ export const ImgPreview = ({setImage}) => {
     const setImg = setImage;
     const changeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
         const files = e.target.files;
+        
 
          // 何も選択されなかったら処理中断
         if (e.target.files?.length === 0) {
