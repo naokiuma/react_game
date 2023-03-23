@@ -31,12 +31,16 @@ export const getGame = async(game_ID?:number) => {
 
 
 export const createGame = (name:string,genres:string,category:Array<string>,imgData?) => {
+
+  
   const target_URL =  `${API_BASE_URL}/game/create`;
   const res = axios//csrf保護の初期化
       .get(API_SANCTUM_URL, { withCredentials: true })
       .then(() => {
         console.log('送るデータ')
         console.log(genres)
+        console.log(category)
+
           axios.post(target_URL,
               {game_name:name,genres: genres,category: category,file:imgData},
 

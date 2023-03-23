@@ -3,6 +3,9 @@
   font-family: sans-serif;
 }
 
+/* Primary: Green Wrasse */
+/* Accent: Rackham Red */
+/* Neutral */
 html {
   position: relative;
 }
@@ -119,7 +122,7 @@ h1 {
 header {
   width: 100%;
   height: 70px;
-  background-color: #000;
+  background-color: #09A612;
   color: #fff;
   display: flex;
   justify-content: flex-start;
@@ -129,6 +132,7 @@ header {
 
 header a, header .header_btn {
   color: #fff;
+  font-weight: bold;
 }
 
 header .header_btn {
@@ -201,19 +205,19 @@ footer {
   height: 60px;
   position: fixed;
   bottom: 0;
-  background-color: #000;
+  background-color: #09A612;
 }
 
 .topics_wrap {
   display: flex;
   flex-wrap: wrap;
+  justify-content: flex-start;
 }
 
 .topics_wrap li {
-  width: 30%;
+  width: 31%;
   margin-top: 20px;
-  border: 1px solid #555;
-  box-shadow: 1px 1px 2px;
+  border: 1px solid #CCD6CE;
 }
 
 .topics_wrap li:nth-child(3n) {
@@ -562,5 +566,40 @@ footer {
 
 .topic_form .game_id input {
   display: none;
+}
+
+/*ヒーロ*/
+.hero {
+  width: 100%;
+  background-size: cover;
+  background: linear-gradient("45deg", #87F9A1, #027C02);
+}
+
+.hero .inner {
+  width: 1280px;
+  height: 100%;
+  margin: auto;
+  padding: 100px 40px 100px;
+  border-bottom: 2px solid #33333347;
+}
+
+.hero .inner .main_info_wrap {
+  margin-top: 170px;
+}
+
+.hero .inner .main_info_wrap ._each {
+  margin-top: 120px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.hero .inner .main_info_wrap ._each h3 {
+  font-size: 30px;
+}
+
+.hero .inner .main_info_wrap ._each figure {
+  width: 500px;
+  border-radius: 30px;
+  overflow: hidden;
 }
 /*# sourceMappingURL=main.css.map */

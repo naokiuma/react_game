@@ -51,32 +51,40 @@ export const GameForm = memo(() => {
 
     
     const submit = (data:FormInputs) => {
-        console.log('送るでーた')
-        console.log(imgData)
-        createGame(data.GameName,data.GameGenre,['ローグライク','泣ける'],images)  
+        // console.log('送るでーた')
+        // console.log(images)
+        // console.log(data.GameName)
+        // console.log(data.GameGenre)
+
+        createGame(data.GameName,data.GameGenre,['1','2'],images)  
     }
 
     return (
-        <div className="main_contents form_wrap game_form">
+        <section className="main_contents form_wrap game_form">
+
+            <h1>ゲームを登録する</h1>
             <form onSubmit={handleSubmit(submit)}>
                 <div className=''>
-                    <div className="write_area game_name">
-                        <span className="value_title">ゲーム名</span><br/>
-                        <input {...register('GameName', { required: 'ゲーム名は必須です' })}/>
-                        <p className="_attention_msg">{errors.GameName?.message}</p> {/* エラー表示 */}
-                    </div>
+                    <dl className="write_area game_name">
+                        <dt className="value_title">ゲーム名</dt>
+                        <dd>
+                            <input {...register('GameName', { required: 'ゲーム名は必須です' })}/>
+                            <p className="_attention_msg">{errors.GameName?.message}</p> {/* エラー表示 */}
+                        </dd>
+                    </dl>
 
-                    <div className="write_area">
-                        <span className="value_title">ジャンル</span><br/>
-                        <select {...register('GameGenre', { required: 'ジャンルは必須です' })}>
-                            {
-                                genres.map((genre)=>(
-                                    <option value={genres[genre]}>{genre}</option>
-                                ))
-                            }
-                          
-                        </select>
-                    </div>
+                    <dl className="write_area">
+                        <dt className="value_title">ジャンル</dt>
+                        <dd>
+                            <select {...register('GameGenre', { required: 'ジャンルは必須です' })}>
+                                {
+                                    genres.map((genre)=>(
+                                        <option value={genres[genre]}>{genre}</option>
+                                        ))
+                                    }
+                            </select>
+                        </dd>
+                    </dl>
 
                     
                     
@@ -88,7 +96,7 @@ export const GameForm = memo(() => {
                     <button className="submit_btn">投稿</button>
                 </div>
             </form>
-        </div>
+        </section>
     )
 
 })

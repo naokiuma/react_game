@@ -19,7 +19,7 @@ export const ImgsPreview = ({images,setImages}) => {
         
         if (!e.target.files) return;
 
-        setImages([...images, files]);
+        // setImages([...images, files]);
 
         for(let i = 0; i < files.length; i++){
             let target = files[i];
