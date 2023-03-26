@@ -1,37 +1,16 @@
-// .hero{
-//     width: 100%;
-//     background-size: cover;
-//     // background-color: #1BD130;
-//     background: linear-gradient($primary-300, $primary-700);
 
-//     .inner{
-//         width: 1280px;
-//         height: 100%;
-//         margin: auto;
-//         padding: 100px 40px 100px;
-//         border-bottom: 2px solid #33333347;
-        
-//         .main_info_wrap{
-//             margin-top: 170px;
-//             ._each{
-//                 margin-top: 120px;
-//                 display: flex;
-//                 justify-content: space-between;
-//                 h3{
-//                     font-size: 30px;
-//                 }
-//                 figure{
-//                     width: 500px;
-//                     border-radius: 30px;
-//                     overflow: hidden;
-//                 }
-//             }
-//         }
-//     }
-// }
+.first_info{
+    h1{
+        text-align-last: left;
+
+    }
+    span{
+        font-size: 40px;
+    }
+}
 
 .home_section{
-    margin-top: 100px;
+    // margin-top: 100px;
     h2{
         font-size: 40px;
         text-align: center;

@@ -64,7 +64,7 @@ a:hover {
 .main_contents {
   max-width: 1280px;
   margin: auto;
-  padding: 0 40px;
+  padding: 100px 40px;
   width: 100%;
 }
 
@@ -122,16 +122,23 @@ h1 {
 header {
   width: 100%;
   height: 70px;
-  background-color: #09A612;
-  color: #fff;
+  background-color: #BDFED0;
+  color: #525252;
   display: flex;
   justify-content: flex-start;
-  padding: 0 20px;
+  align-items: center;
+  padding: 10px 20px;
   position: fixed;
+  border-bottom: 1px solid #525252;
+  box-shadow: 0 1px 0px #52525282;
+}
+
+header .header_logo {
+  width: 200px;
 }
 
 header a, header .header_btn {
-  color: #fff;
+  color: #525252;
   font-weight: bold;
 }
 
@@ -205,7 +212,7 @@ footer {
   height: 60px;
   position: fixed;
   bottom: 0;
-  background-color: #09A612;
+  background-color: #BDFED0;
 }
 
 .topics_wrap {

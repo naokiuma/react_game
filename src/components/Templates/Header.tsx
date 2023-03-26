@@ -19,12 +19,7 @@ import { Searchbox } from "../Molecules/form/Searchbox"
 export const Header:FC = () => {
     const { userAuth,username,setUserAuth,setUserName } = useContext(LoggedInContext);
     let modalcontext = useContext(ModalContext)
-   
-
     let [searcIsActive,setSearchBox] = useState(false)
-
-
-
     ///最新
     const handleLogout = () => {
         LogOutUser().then((data) =>{
@@ -38,7 +33,7 @@ export const Header:FC = () => {
     return(
         <>
             <header>
-                <img src="/img/global/logo.png" alt="Logo" />
+                <img src="/img/global/header_logo.png" className="header_logo" alt="Logo" />
                 <ul>
                     <li>
                         <Link to="/">トップ</Link>

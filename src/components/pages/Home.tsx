@@ -21,6 +21,7 @@ export const Home:FC = memo(() => {
     let [selecged_tag,set_tag] = useState(null)
 
 
+
     const { username } = useContext(LoggedInContext); 
     const { userid } = useContext(LoggedInContext);
     
@@ -30,17 +31,19 @@ export const Home:FC = memo(() => {
             set_default_topics(data);
             set_result_topics(data);
         });
-    },[])
-
-     useEffect(() => {
         GetCategory().then((data) => {
             set_category(data);
         });
     },[])
 
+    //  useEffect(() => {
+    //     // GetCategory().then((data) => {
+    //     //     set_category(data);
+    //     // });
+    // },[])
+
     //タグが選ばれた際
     useEffect(() => {
-        console.log(default_topics)
         if(selecged_tag != 'すべて'){
             let temp_array = [];
             default_topics.filter( _topic => {
@@ -56,17 +59,27 @@ export const Home:FC = memo(() => {
         }
     },[selecged_tag])
         return (
-            <>
-                <section className="hero" style={{ backgroundImage: "url(./img/global/top_billboard1.jpg)" }}>
+            <div className="top_page">
+                <section className="hero">
                     <div className="inner">
-                        <h1>Keep Game</h1>
+
+                        <div className="top_topics">
+
+
+                        </div>
+
+                        <div className="first_info">
+                            <h1>ゲームを積んで、残して、広げよう。</h1>
+                            <p>ゲームスプレッドは、ゲームの楽しみをもっと増やすためのサービスです。</p>
+                        </div>
+
                         <section className="main_info_wrap">
                             <div className="_each">
                                 <div>
-                                    <h3>プレイログを残す。</h3>
+                                    <h3>書く</h3>
                                     <p>
-                                        プレイ中のゲームのリアルタイムのメモ、攻略情報、感想を残そう。<br/>
-                                        マイページをカスタマイズして、一目でわかるゲーム状況を作ろう。
+                                        ゲームの感想、攻略メモを残そう。<br/>
+                                        ネタバレ有無の設定もできるよ！
                                     </p>
                                 </div>
                                 <figure>
@@ -102,11 +115,7 @@ export const Home:FC = memo(() => {
                             </div>
                         </section>
                     </div>
-                    {/* みんなの積みゲー数数:{TotalGameCount} */}
                 </section>
-
-                contextのuser_id:{userid}
-                namae:{username}
                 
                 <section className="home_section main_contents">
                     <h2>みんなのプレイログ</h2>
@@ -154,7 +163,7 @@ export const Home:FC = memo(() => {
                 <div className="new_form_button">
                     <button onClick={() => toggleModalActive(!modalActive)}>投稿</button>
                 </div>
-            </>
+            </div>
         )
     // }
 
