@@ -138,8 +138,8 @@ h1{
 
 .login{
     width: 1080px;
-    margin: 100px auto auto;
-    padding: 0 40px;
+    margin:auto;
+    padding: 200px 40px 100px;
 }
 
 .tags{
@@ -428,6 +428,11 @@ footer{
     color: #535353;
     ._title{
         font-size: 20px;
+        span{
+            display: block;
+            font-size: 16px;
+            font-weight: lighter;
+        }
     }
 }
 
@@ -437,13 +442,13 @@ footer{
     padding: 5px 14px;
     display: inline-block;
     font-size: 12px;
+    line-height: 1;
 }
 
 .tags_wrap{
     display: flex;
     margin-top: 10px;
     span{
-        border: 1px solid;
         font-size: 12px;
         margin-left: 10px;
         padding: 3px;
@@ -457,16 +462,17 @@ footer{
     ul{
         display: flex;
         flex-direction: row;
-        li{
-            background-color: #C6F6D5;
-            cursor: pointer;
-            margin-left: 10px;
-            border-radius: 10px;
-            padding: 5px 10px;
-        }
-
     }
 }
+
+.category_label{
+    background-color: #C6F6D5;
+    cursor: pointer;
+    margin-left: 10px;
+    border-radius: 10px;
+    padding: 5px 10px;
+}
+
 
 
 
@@ -626,9 +632,8 @@ footer{
 
     .inner{
         width: 1280px;
-        height: 100%;
         margin: auto;
-        padding: 100px 40px 100px;
+        padding: 200px 40px 100px;
         border-bottom: 2px solid #33333347;
         
         .main_info_wrap{
@@ -637,6 +642,9 @@ footer{
                 margin-top: 120px;
                 display: flex;
                 justify-content: space-between;
+                i{
+                    margin-right: 10px;
+                }
                 h3{
                     font-size: 30px;
                 }

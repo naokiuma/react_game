@@ -97,8 +97,8 @@ h1 {
 
 .login {
   width: 1080px;
-  margin: 100px auto auto;
-  padding: 0 40px;
+  margin: auto;
+  padding: 200px 40px 100px;
 }
 
 .tags {
@@ -413,12 +413,19 @@ footer {
   font-size: 20px;
 }
 
+.topic_card_wrap ._title span {
+  display: block;
+  font-size: 16px;
+  font-weight: lighter;
+}
+
 .status_label {
   font-weight: bold;
   border: 1px solid #525252;
   padding: 5px 14px;
   display: inline-block;
   font-size: 12px;
+  line-height: 1;
 }
 
 .tags_wrap {
@@ -427,7 +434,6 @@ footer {
 }
 
 .tags_wrap span {
-  border: 1px solid;
   font-size: 12px;
   margin-left: 10px;
   padding: 3px;
@@ -442,7 +448,7 @@ footer {
   flex-direction: row;
 }
 
-.tags_search_wrap ul li {
+.category_label {
   background-color: #C6F6D5;
   cursor: pointer;
   margin-left: 10px;
@@ -584,9 +590,8 @@ footer {
 
 .hero .inner {
   width: 1280px;
-  height: 100%;
   margin: auto;
-  padding: 100px 40px 100px;
+  padding: 200px 40px 100px;
   border-bottom: 2px solid #33333347;
 }
 
@@ -598,6 +603,10 @@ footer {
   margin-top: 120px;
   display: flex;
   justify-content: space-between;
+}
+
+.hero .inner .main_info_wrap ._each i {
+  margin-right: 10px;
 }
 
 .hero .inner .main_info_wrap ._each h3 {

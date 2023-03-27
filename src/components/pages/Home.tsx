@@ -76,7 +76,10 @@ export const Home:FC = memo(() => {
                         <section className="main_info_wrap">
                             <div className="_each">
                                 <div>
-                                    <h3>書く</h3>
+                                    <h3>
+                                        <i className="fa-sharp fa-regular fa-pen-to-square"></i>
+                                        書く
+                                    </h3>
                                     <p>
                                         ゲームの感想、攻略メモを残そう。<br/>
                                         ネタバレ有無の設定もできるよ！
@@ -92,7 +95,10 @@ export const Home:FC = memo(() => {
                                 </figure>
                                 
                                 <div>
-                                    <h3>探す</h3>
+                                    <h3>
+                                        <i className="fa-solid fa-magnifying-glass"></i>
+                                        探す
+                                    </h3>
                                     <p>
                                         エモい」「繰り返し遊べる」「コスパ最高」「指痛」<br/>
                                         同じカテゴリーの次にやるゲームを探すのにも使えるぞ。
@@ -103,7 +109,10 @@ export const Home:FC = memo(() => {
 
                                 <div>
 
-                                    <h3>みんなで崩そう</h3>
+                                    <h3>
+                                        <i className="fa-sharp fa-regular fa-handshake"></i>
+                                        みんなで崩そう
+                                    </h3>
                                     <p>
                                         みんなのゲーム数をカウント。<br/>
                                         終わらないゲーム生活を続けていこう。
@@ -122,9 +131,9 @@ export const Home:FC = memo(() => {
                     <div className="tags_search_wrap">
                         <ul>
                             {categories.map((_category)=>(
-                                <li key={_category.category_id} onClick={() => set_tag(_category.name)}>{_category.name}</li>
+                                <li className="category_label" key={_category.category_id} onClick={() => set_tag(_category.name)}>{_category.name}</li>
                             ))}
-                            <li onClick={() => set_tag('すべて')}>すべて</li>
+                            <li className="category_label" onClick={() => set_tag('すべて')}>すべて</li>
                         </ul>
                     </div>
                     {
@@ -147,7 +156,7 @@ export const Home:FC = memo(() => {
                                                     image_path={topic.image_path}
                                                 />
                                             </Link>
-                                            parent_uder_id:{topic.parent_user_id}
+                                            {/* parent_uder_id:{topic.parent_user_id} */}
 
                                             {(username !== 'ゲスト' && userid === topic.parent_user_id) && <span>編集</span>}
                                         </li>

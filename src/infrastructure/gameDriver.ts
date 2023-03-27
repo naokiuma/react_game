@@ -31,7 +31,6 @@ export const getGame = async(game_ID?:number) => {
 
 
 export const createGame = (name:string,genres:string,category:Array<string>,imgData?) => {
-
   
   const target_URL =  `${API_BASE_URL}/game/create`;
   const res = axios//csrf保護の初期化

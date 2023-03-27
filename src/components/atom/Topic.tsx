@@ -12,12 +12,17 @@
 
 export const Topic = (TopicType) => {
     let { id,title,user_id,tags,status,image_path} = TopicType;
+    let game_name = 'ゼルダの伝説';
+    let game_hard = 'Nintendo Switch';
+
 
     return (
         <div className="topic_card_wrap">
             <h4 className="_title">
                 {title}
+                <span className="game_name">{game_name} / {game_hard}</span>
             </h4>
+
             
             <div className="sub_info">
                 <div className="status_label">
@@ -26,7 +31,7 @@ export const Topic = (TopicType) => {
                 {tags && 
                     <div className="tags_wrap">
                     {tags.map((tag) => (
-                        <span key={tag.name} className='tag_button' style={{ background: `{${tag.color}}`}}>
+                        <span className="category_label" key={tag.name} style={{ background: `{${tag.color}}`}}>
                             {tag.name}
                         </span>
                     ))}
