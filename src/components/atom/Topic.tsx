@@ -1,3 +1,4 @@
+import {BASE_URL} from "../../config/url"
 
 // type Topic_C_Type = {
 //     id: number;
@@ -39,7 +40,7 @@ export const Topic = (TopicType) => {
                 }
             </div>
 
-            {image_path != null && <img src={"http://localhost:8888/" + image_path.replace("public","storage")} alt="" />}
+            {image_path != null && <img src={BASE_URL + image_path.replace("public","storage")} alt="" />}
         </div>
         
     )

@@ -6,6 +6,9 @@ import {Link } from "react-router-dom";
 import genres from '../../utils/game_genre'
 import {searchGame} from "../../infrastructure/gameDriver";
 
+import {BASE_URL} from "../../config/url"
+
+
 
 export const GameSearch:FC = memo(() => {
 
@@ -43,7 +46,6 @@ export const GameSearch:FC = memo(() => {
                 setTimeout(() => {
                     setModalMsg('');
                 }, 4000);
-                console.log('データが見つかりませんでした')
             }
         })
     }
@@ -76,21 +78,33 @@ export const GameSearch:FC = memo(() => {
                                                 ゲーム名：{each_game.game_name}<br/>
                                                 {genres[each_game.genres]}
                                             </div>
-                                                {each_game.topics && 
-                                                <>
-                                                    <span>このゲームの話題</span>
-                                                    <ul className="_topics">
-                                                        {each_game.topics.map((_topic)=>(
-                                                            <li>
-                                                                <a href="">
-                                                                    <span>名前：{_topic.title}</span><br/>
-                                                                    <span>状況：{_topic.status}</span><br/>
-                                                                </a>
-                                                            </li>       
-                                                        ))}
-                                                    </ul>
-                                                </>
-                                                }
+
+
+                                            {each_game.images != null && 
+                                            <div>
+                                                {each_game.images.map((_img)=>(
+                                                    <img src={BASE_URL + _img.image_file_name.replace("public","storage")} alt="" />     
+                                                ))}
+                                            </div>
+                                            
+                                                // <img src={BASE_URL + each_game.image_file_name.replace("public","storage")} alt="" />
+                                            }
+
+                                            {each_game.topics && 
+                                            <>
+                                                <span>このゲームの話題</span>
+                                                <ul className="_topics">
+                                                    {each_game.topics.map((_topic)=>(
+                                                        <li>
+                                                            <a href="">
+                                                                <span>名前：{_topic.title}</span><br/>
+                                                                <span>状況：{_topic.status}</span><br/>
+                                                            </a>
+                                                        </li>       
+                                                    ))}
+                                                </ul>
+                                            </>
+                                            }
                                         </li>
                                     ))}
                                 </ul>
