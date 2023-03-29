@@ -6,6 +6,8 @@ import { UserDetail } from "../components/pages/UserDetail";
 
 import { GameSearch } from "../components/pages/GameSearch";
 import { GameForm } from '../components/pages/GameForm';
+import { GameDetail } from '../components/pages/GameDetail';
+
 
 
 import { Setting } from "../components/pages/Setting";
@@ -34,6 +36,8 @@ export const MainRoute = () => {
 
             <Route path="/game/search/" element={<GameSearch/>} />
             <Route path="/game/create/" element={<GameForm/>} />
+            <Route path="/game/:id" element={<GameDetail />} />
+
 
 
             <Route path="/topic/:id" element={<TopicDetail />} />

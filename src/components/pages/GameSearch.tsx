@@ -1,27 +1,38 @@
 import {ModalContext} from "../../provider/ModalProvider";
-
 import { ChangeEvent,memo,FC,useState,useEffect,useContext} from "react";
 import {Link } from "react-router-dom";
-
+import Slider from "react-slick";
 import genres from '../../utils/game_genre'
 import {searchGame} from "../../infrastructure/gameDriver";
-
 import {BASE_URL} from "../../config/url"
 
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 
 export const GameSearch:FC = memo(() => {
 
-    
 
     let url = new URL(window.location.href);
     let params = url.searchParams;
-    let defaultValue = params.get('game') ? params.get('game') : '';
+    let defaultparam = params.get('game') ? params.get('game') : '';
 
-    const [keyword, setKeyword] = useState(defaultValue);
+    const [keyword, setKeyword] = useState(defaultparam);
     const [result, setResult] = useState([]);
     const { Modalmsg,setModalMsg } = useContext(ModalContext);
 
+    let settings = {
+        dots: false,
+        autoplay:true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1
+      };
+
+      
+
+    
     useEffect(() => {
         searchGame(keyword).then((data) =>{
             if(data.length > 0){
@@ -74,25 +85,28 @@ export const GameSearch:FC = memo(() => {
                                 <ul className="search_result_area">
                                     {result.map((each_game)=>(
                                         <li className="each_game" key={each_game.id}>
-                                            <div>
-                                                ゲーム名：{each_game.game_name}<br/>
-                                                {genres[each_game.genres]}
+                                            <div className="_first">
+                                                <Link to={"/game/" + each_game.id} state={each_game}>
+                                                    {each_game.game_name}<br/>
+                                                </Link>
+
+                                                <span>{genres[each_game.genres]}</span>
                                             </div>
 
-
+                                            {/* 画像 */}
                                             {each_game.images != null && 
-                                            <div>
+                                            <Slider {...settings}>
                                                 {each_game.images.map((_img)=>(
-                                                    <img src={BASE_URL + _img.image_file_name.replace("public","storage")} alt="" />     
-                                                ))}
-                                            </div>
-                                            
-                                                // <img src={BASE_URL + each_game.image_file_name.replace("public","storage")} alt="" />
+                                                    <div className="img_wrap">
+                                                        <img src={BASE_URL + _img.image_file_name.replace("public","storage")} alt="" />     
+                                                    </div>
+                                                    ))}
+                                            </Slider>
                                             }
 
                                             {each_game.topics && 
-                                            <>
-                                                <span>このゲームの話題</span>
+                                            <div className="game_each_topic">
+                                                <span>話題</span>
                                                 <ul className="_topics">
                                                     {each_game.topics.map((_topic)=>(
                                                         <li>
@@ -103,7 +117,7 @@ export const GameSearch:FC = memo(() => {
                                                         </li>       
                                                     ))}
                                                 </ul>
-                                            </>
+                                            </div>
                                             }
                                         </li>
                                     ))}

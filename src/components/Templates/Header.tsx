@@ -36,16 +36,14 @@ export const Header:FC = () => {
                 <img src="/img/global/header_logo.png" className="header_logo" alt="Logo" />
                 <ul>
                     <li>
-                        <Link to="/">トップ</Link>
+                        <Link to="/game/search">ゲーム</Link>
                     </li>
                     <li>
-                        <Link to="/game/search">ゲームを探す</Link>
+                        <Link to="/about">アバウト</Link>
                     </li>
+                    {/* todo ↓ログインしていれば出す */}
                     <li>
-                        <Link to="/about">サービスについて</Link>
-                    </li>
-                    <li>
-                        <Link to="/setting">Setting</Link>
+                        <Link to="/setting">設定</Link>
                     </li>
                 </ul>
 
