@@ -2,6 +2,8 @@ import { Route,Routes,BrowserRouter } from "react-router-dom";//switch は Route
 
 import {render,screen,logDOM}from '@testing-library/react'
 import { Header } from '../components/Templates/Header'
+import { Footer } from '../components/Templates/Footer'
+
 
 test('Header レンダリング test',()=>{
     render(
@@ -10,5 +12,11 @@ test('Header レンダリング test',()=>{
         </BrowserRouter>
 
     )
-    logDOM(screen.getByText('トップ'))
+    logDOM(screen.getByText('ゲーム'))
+})
+
+
+test('Footer rendring test',()=>{
+    render(<Footer/>)
+    logDOM(screen.getByText('フッターパーツ'))
 })

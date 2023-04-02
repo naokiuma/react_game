@@ -13,6 +13,7 @@ import "slick-carousel/slick/slick-theme.css";
 export const GameSearch:FC = memo(() => {
 
 
+    //getパラメータの取得
     let url = new URL(window.location.href);
     let params = url.searchParams;
     let defaultparam = params.get('game') ? params.get('game') : '';

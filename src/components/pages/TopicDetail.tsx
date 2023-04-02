@@ -2,6 +2,8 @@
 import { memo,FC,useContext } from "react";
 import { useEffect,useState } from 'react';
 import { useLocation } from "react-router-dom";
+import {getidfromURL} from '../../utils/getidfromURL'
+
 
 import {LoggedInContext} from "../../provider/LoggedInProvider";
 
@@ -26,8 +28,16 @@ export const TopicDetail:FC = memo(() => {
 
     //topic_id
     const locationVal = useLocation();
-    let tempID = locationVal.pathname
-    let topic_id = Number(tempID.replace('/topic/', ''))//topic_id
+    let thisURL = locationVal.pathname
+    console.log(thisURL)
+
+    
+    // let topic_id = Number(thisURL.replace('/topic/', ''))//topic_id
+    let topic_id = getidfromURL(thisURL,'topic');
+    console.log('topicidは？')
+    console.log(topic_id)
+
+
 
     //トピック編集用モーダル
     const [EditmodalActive,toggleEditModalActive] = useState(false)
