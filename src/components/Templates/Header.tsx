@@ -33,7 +33,9 @@ export const Header:FC = () => {
     return(
         <>
             <header>
-                <img src="/img/global/header_logo.png" className="header_logo" alt="Logo" />
+                <Link to="/">
+                    <img src="/img/global/header_logo.png" className="header_logo" alt="Logo" />
+                </Link>
                 <ul>
                     <li>
                         <Link to="/game/search">ゲーム</Link>

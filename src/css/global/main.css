@@ -448,7 +448,7 @@ footer {
 }
 
 .category_label {
-  background-color: #C6F6D5;
+  /* background-color: #C6F6D5; */
   cursor: pointer;
   margin-left: 10px;
   border-radius: 10px;

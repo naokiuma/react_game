@@ -12,8 +12,7 @@ import {BASE_URL} from "../../config/url"
 
 
 export const Topic = (TopicType) => {
-    let { id,title,user_id,tags,status,image_path} = TopicType;
-    let game_name = 'ゼルダの伝説';
+    let { id,title,user_id,game_name,tags,status,image_path} = TopicType;
     let game_hard = 'Nintendo Switch';
 
 

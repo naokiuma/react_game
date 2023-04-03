@@ -1,8 +1,10 @@
 import { memo,FC,useContext,useEffect, useState,ChangeEvent} from "react";
 import { Link } from "react-router-dom";//switch は Routesに変わった
 import { Topic } from "../atom/Topic";
+import {CategoryLabel } from "../atom/CategoryLabel";
+
 import { LoggedInContext } from "../../provider/LoggedInProvider";
-import { TotalGameCountContext } from "../../provider/TotalGameCountProvider";
+// import { TotalGameCountContext } from "../../provider/TotalGameCountProvider";
 
 
 //インフラ
@@ -30,17 +32,14 @@ export const Home:FC = memo(() => {
         getTopics().then((data) => {
             set_default_topics(data);
             set_result_topics(data);
+            console.log(data);
         });
-        GetCategory().then((data) => {
-            set_category(data);
+        GetCategory().then((data_c) => {
+            console.log(data_c);
+            set_category(data_c);
         });
     },[])
 
-    //  useEffect(() => {
-    //     // GetCategory().then((data) => {
-    //     //     set_category(data);
-    //     // });
-    // },[])
 
     //タグが選ばれた際
     useEffect(() => {
@@ -62,12 +61,6 @@ export const Home:FC = memo(() => {
             <div className="top_page">
                 <section className="hero">
                     <div className="inner">
-
-                        <div className="top_topics">
-
-
-                        </div>
-
                         <div className="first_info">
                             <h1>ゲームを積んで、残して、広げよう。</h1>
                             <p>ゲームスプレッドは、ゲームの楽しみをもっと増やすためのサービスです。</p>
@@ -129,12 +122,13 @@ export const Home:FC = memo(() => {
                 <section className="home_section main_contents">
                     <h2>みんなのプレイログ</h2>
                     <div className="tags_search_wrap">
-                        <ul>
+                        <div>
                             {categories.map((_category)=>(
-                                <li className="category_label" key={_category.category_id} onClick={() => set_tag(_category.name)}>{_category.name}</li>
+                                <CategoryLabel name={_category.name} func={set_tag} bgc={_category.color}/>
+                                // <span className="category_label" key={_category.category_id} onClick={() => set_tag(_category.name)}>{_category.name}</span>
                             ))}
-                            <li className="category_label" onClick={() => set_tag('すべて')}>すべて</li>
-                        </ul>
+                            <span className="category_label" onClick={() => set_tag('すべて')}>すべて</span>
+                        </div>
                     </div>
                     {
                         (() => {
@@ -149,6 +143,7 @@ export const Home:FC = memo(() => {
                                             <Link to={"/topic/" + topic.id} state={topic}>
                                                 <Topic
                                                     id={topic.id}
+                                                    game_name={topic.game_name}
                                                     title={topic.title}
                                                     user_id={topic.parent_user_id}
                                                     tags={topic.tags}
