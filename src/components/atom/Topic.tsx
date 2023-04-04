@@ -14,6 +14,12 @@ import {BASE_URL} from "../../config/url"
 export const Topic = (TopicType) => {
     let { id,title,user_id,game_name,tags,status,image_path} = TopicType;
     let game_hard = 'Nintendo Switch';
+    if(image_path == null){
+        image_path = 'img/top/sample_topic.jpg';
+    }else{
+        image_path = BASE_URL + image_path.replace("public","storage");
+    }
+    console.log(BASE_URL)
 
 
     return (
@@ -39,7 +45,7 @@ export const Topic = (TopicType) => {
                 }
             </div>
 
-            {image_path != null && <img src={BASE_URL + image_path.replace("public","storage")} alt="" />}
+            {image_path != null && <img className="topic_img" src={image_path} alt="" />}
         </div>
         
     )

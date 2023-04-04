@@ -1,10 +1,8 @@
 import axios from "axios";
 import {API_BASE_URL,API_SANCTUM_URL} from "../config/url"
 
-import { TopicType } from "../domain/topic";
 
-
-export const getTopics = async(topic_ID?:number) => {
+export const getTopics = async(topic_ID?:number,limit?:number) => {
     try{
         let FetchURL = `${API_BASE_URL}/topics`;
         let target_URL = topic_ID == undefined ? FetchURL : `${FetchURL}/${topic_ID}`;

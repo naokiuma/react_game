@@ -6,7 +6,6 @@ import {CategoryLabel } from "../atom/CategoryLabel";
 import { LoggedInContext } from "../../provider/LoggedInProvider";
 // import { TotalGameCountContext } from "../../provider/TotalGameCountProvider";
 
-
 //インフラ
 import {getTopics} from "../../infrastructure/topicDriver";
 import {GetCategory} from "../../infrastructure/categoryDriver";
@@ -21,7 +20,6 @@ export const Home:FC = memo(() => {
     let [result_topics,set_result_topics] = useState([]);
     let [default_topics,set_default_topics] = useState([]);
     let [selecged_tag,set_tag] = useState(null)
-
 
 
     const { username } = useContext(LoggedInContext); 

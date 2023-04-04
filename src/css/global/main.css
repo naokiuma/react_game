@@ -410,13 +410,25 @@ footer {
 }
 
 .topic_card_wrap ._title {
-  font-size: 20px;
+  font-size: 24px;
+  font-weight: bold;
 }
 
 .topic_card_wrap ._title span {
   display: block;
   font-size: 16px;
   font-weight: lighter;
+}
+
+.topic_card_wrap .sub_info {
+  margin: 10px 0;
+}
+
+.topic_card_wrap .topic_img {
+  border: 3px solid black;
+  width: 322px;
+  height: 200px;
+  object-fit: cover;
 }
 
 .status_label {
@@ -448,7 +460,7 @@ footer {
 }
 
 .category_label {
-  /* background-color: #C6F6D5; */
+  background-color: #C6F6D5;
   cursor: pointer;
   margin-left: 10px;
   border-radius: 10px;
@@ -641,5 +653,21 @@ footer {
   width: 500px;
   border-radius: 30px;
   overflow: hidden;
+}
+
+.user_detail .detail_wrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.user_detail .playing_side {
+  width: 70%;
+}
+
+.user_detail .playing_side ._status {
+  display: flex;
+  flex-direction: row;
+  padding: 0;
 }
 /*# sourceMappingURL=main.css.map */

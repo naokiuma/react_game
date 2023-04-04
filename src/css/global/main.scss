@@ -427,12 +427,22 @@ footer{
     padding: 24px;
     color: #535353;
     ._title{
-        font-size: $main_title;
+        font-size: 24px;
+        font-weight: bold;
         span{
             display: block;
             font-size: 16px;
             font-weight: lighter;
         }
+    }
+    .sub_info{
+        margin: 10px 0;
+    }
+    .topic_img{
+        border: 3px solid black;
+        width: 322px;
+        height: 200px;
+        object-fit: cover;
     }
 }
 
@@ -677,5 +687,25 @@ footer{
             }
         }
     }
+}
+
+
+.user_detail{
+    .detail_wrap{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .playing_side{
+        width: 70%;
+        ._status{
+            display: flex;
+            flex-direction: row;
+            padding: 0;
+
+
+        }
+    }
+
 }
 

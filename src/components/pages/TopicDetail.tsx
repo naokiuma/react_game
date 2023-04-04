@@ -53,8 +53,6 @@ export const TopicDetail:FC = memo(() => {
         });
     },[])
 
-    // console.log('初回_fetchtopicsで取得したデータ')
-    // console.log(topic)
 
     //左辺がtrueなら右辺を返す。 
     let title = topic[0] && topic[0]['title'];//タイトル
@@ -71,6 +69,8 @@ export const TopicDetail:FC = memo(() => {
     }
 
     const tags = ['ローグライク','泣ける']
+
+    
     return (
         <section className="topic_detail">
             <div className="billboard"
@@ -87,8 +87,6 @@ export const TopicDetail:FC = memo(() => {
                 <h2 className="topic_title">         
                     {title}
                 </h2>
-                {/* id：{topic_id} */}
-
                 <div className="tags">
                     {
                         tags.map((tag:string)=>(
@@ -100,9 +98,7 @@ export const TopicDetail:FC = memo(() => {
                 </div>
 
                 <div className="main_text">
-                    <p>
-                        {body}
-                    </p>
+                    <p>{body}</p>
                 </div>
                 
 
