@@ -31,9 +31,6 @@ export const GameSearch:FC = memo(() => {
         slidesToScroll: 1
       };
 
-      
-
-    
     useEffect(() => {
         searchGame(keyword).then((data) =>{
             if(data.length > 0){
@@ -61,7 +58,6 @@ export const GameSearch:FC = memo(() => {
             }
         })
     }
-
 
     return (        
         <>

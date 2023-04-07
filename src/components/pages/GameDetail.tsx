@@ -27,20 +27,19 @@ export const GameDetail:FC = memo(() => {
 
     useEffect(() => {
         getGame(game_id).then((data) => {
-            setGame(data)
+            console.log('取得ゲーム')
+            console.log(data)
+            setGame(data[0])
         })
     },[])
 
     const tags = ['ローグライク','泣ける']
     return (
         <section className="topic_detail">
-         
-           
             <div className="main_contents">
-                <h2 className="topic_title">         
-                    タイトル
+                <h2 className="topic_title">  
+                    {game['game_name']}
                 </h2>
-                {/* id：{topic_id} */}
 
                 <div className="tags">
                     {
@@ -51,19 +50,12 @@ export const GameDetail:FC = memo(() => {
                         ))
                     }
                 </div>
-
+                {/* 
                 <div className="main_text">
                     <p>
                         body
                     </p>
-                </div>
-                
-
-                {/* topicのユーザーidがログイン中urser_idと同じなら編集可能 */}
-                {/* {(topic[0] && (topic[0]['parent_user_id'] != userid) ) && 
-                    <button onClick={() => toggleEditModalActive(!EditmodalActive)}>記事を編集</button>
-                } */}
-
+                </div> */}
 
             </div>
             <div className="new_form_button">

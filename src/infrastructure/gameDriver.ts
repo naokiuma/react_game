@@ -16,8 +16,11 @@ export const searchGame = async(keyword:string):Promise<[GameType]> => {
 }
 
 export const getGame = async(game_ID?:number) => {
-    try{
-        let target_URL = `${API_BASE_URL}/game/${game_ID}`;
+  // game_ID = 4;
+  try{
+        console.log('かいし')
+        let target_URL = game_ID !== undefined ? `${API_BASE_URL}/game/${game_ID}` : `${API_BASE_URL}/game`;
+        console.log(target_URL)
         const res = await axios.get(target_URL)
         console.log('getGame');
         console.log(res.data)

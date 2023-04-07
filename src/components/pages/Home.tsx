@@ -2,7 +2,7 @@ import { memo,FC,useContext,useEffect, useState,ChangeEvent} from "react";
 import { Link } from "react-router-dom";//switch は Routesに変わった
 import { Topic } from "../atom/Topic";
 import {CategoryLabel } from "../atom/CategoryLabel";
-
+import {getGame} from "../../infrastructure/gameDriver";
 import { LoggedInContext } from "../../provider/LoggedInProvider";
 // import { TotalGameCountContext } from "../../provider/TotalGameCountProvider";
 
@@ -17,6 +17,8 @@ export const Home:FC = memo(() => {
 
     const [modalActive,toggleModalActive] = useState(false)
     let [categories,set_category] = useState([])
+    let [games,set_game] = useState([])
+
     let [result_topics,set_result_topics] = useState([]);
     let [default_topics,set_default_topics] = useState([]);
     let [selecged_tag,set_tag] = useState(null)
@@ -36,6 +38,15 @@ export const Home:FC = memo(() => {
             console.log(data_c);
             set_category(data_c);
         });
+
+        getGame().then((data_g) =>{
+            if(data_g.length > 0){
+                console.log('game')
+                console.log(data_g)    
+                set_game(data_g);            
+            }
+        })
+
     },[])
 
 
@@ -123,7 +134,6 @@ export const Home:FC = memo(() => {
                         <div>
                             {categories.map((_category)=>(
                                 <CategoryLabel name={_category.name} func={set_tag} bgc={_category.color}/>
-                                // <span className="category_label" key={_category.category_id} onClick={() => set_tag(_category.name)}>{_category.name}</span>
                             ))}
                             <span className="category_label" onClick={() => set_tag('すべて')}>すべて</span>
                         </div>
@@ -160,6 +170,40 @@ export const Home:FC = memo(() => {
                         }
                         })()
                     }
+                </section>
+
+
+
+                <section className="home_section main_contents">
+                    <h2>ゲーム一覧</h2>
+                        <div>
+                            {games.map((_game)=>(
+                                <div>
+                                    <h3>{_game.game_name}</h3>
+                                    <span>{_game.genres}</span>
+
+                                    {}
+                            
+                                       
+
+                                    {_game.images != null && 
+                                        _game.images.map((_img)=>(
+                                            <div className="img_wrap">
+                                                {_img.image_file_name}
+                                                {/* <img src={ + _img.image_file_name.replace("public","storage")} alt="" />      */}
+                                            </div>
+                                        ))
+                                    }
+
+                                            
+                                            
+                                            
+
+
+                                </div>
+                                
+                            ))}
+                        </div>
                 </section>
 
                 <div className="new_form_button">
