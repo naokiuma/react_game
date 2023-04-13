@@ -1,13 +1,14 @@
 import axios from "axios";
 import {API_BASE_URL,API_SANCTUM_URL} from "../config/url"
-import { GameType } from "../domain/game";
+import { GameType } from "../types/game";
+import {checkApiUrl} from "../utils/checkApiUrl"
+
 
 export const searchGame = async(keyword:string):Promise<[GameType]> => {
     try{
       let FetchURL = `${API_BASE_URL}/game/search?game=${keyword}`;
-      let target_URL = FetchURL
-      const res = await axios.get(target_URL)
-      console.log(res)
+      checkApiUrl(FetchURL)
+      const res = await axios.get(FetchURL)
       return res.data;
     }catch(e){
       console.log('400 Error!!')
@@ -16,15 +17,12 @@ export const searchGame = async(keyword:string):Promise<[GameType]> => {
 }
 
 export const getGame = async(game_ID?:number) => {
-  // game_ID = 4;
   try{
-        console.log('かいし')
-        let target_URL = game_ID !== undefined ? `${API_BASE_URL}/game/${game_ID}` : `${API_BASE_URL}/game`;
-        console.log(target_URL)
-        const res = await axios.get(target_URL)
+        let FetchURL = game_ID !== undefined ? `${API_BASE_URL}/game/${game_ID}` : `${API_BASE_URL}/game`;
+        checkApiUrl(FetchURL)
+        const res = await axios.get(FetchURL)
         console.log('getGame');
         console.log(res.data)
-
         return res.data;
       }catch(e){
         console.log('400 Error!!')
@@ -35,7 +33,8 @@ export const getGame = async(game_ID?:number) => {
 
 export const createGame = (name:string,genres:string,category:Array<string>,imgData?) => {
   
-  const target_URL =  `${API_BASE_URL}/game/create`;
+  const FetchURL =  `${API_BASE_URL}/game/create`;
+  checkApiUrl(FetchURL)
   const res = axios//csrf保護の初期化
       .get(API_SANCTUM_URL, { withCredentials: true })
       .then(() => {
@@ -43,7 +42,7 @@ export const createGame = (name:string,genres:string,category:Array<string>,imgD
         console.log(genres)
         console.log(category)
 
-          axios.post(target_URL,
+          axios.post(FetchURL,
               {game_name:name,genres: genres,category: category,file:imgData},
 
               {headers:

@@ -181,27 +181,14 @@ export const Home:FC = memo(() => {
                                 <div>
                                     <h3>{_game.game_name}</h3>
                                     <span>{_game.genres}</span>
-
-                                    {}
-                            
-                                       
-
                                     {_game.images != null && 
                                         _game.images.map((_img)=>(
                                             <div className="img_wrap">
                                                 {_img.image_file_name}
-                                                {/* <img src={ + _img.image_file_name.replace("public","storage")} alt="" />      */}
                                             </div>
                                         ))
                                     }
-
-                                            
-                                            
-                                            
-
-
                                 </div>
-                                
                             ))}
                         </div>
                 </section>

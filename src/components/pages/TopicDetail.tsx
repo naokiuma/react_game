@@ -34,9 +34,6 @@ export const TopicDetail:FC = memo(() => {
     
     // let topic_id = Number(thisURL.replace('/topic/', ''))//topic_id
     let topic_id = getidfromURL(thisURL,'topic');
-    console.log('topicidは？')
-    console.log(topic_id)
-
 
 
     //トピック編集用モーダル

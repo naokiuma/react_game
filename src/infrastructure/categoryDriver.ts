@@ -1,14 +1,13 @@
 import axios from "axios";
 import {API_BASE_URL,API_SANCTUM_URL} from "../config/url"
-import {useState} from "react";
 import { CategoryType } from "../types/categoryType"
-
+import {checkApiUrl} from "../utils/checkApiUrl"
 
 export const GetCategory = async() => {
     try{
         let FetchURL = `${API_BASE_URL}/categories`;
-        let target_URL = FetchURL
-        const res = await axios.get(target_URL)
+        checkApiUrl(FetchURL)
+        const res = await axios.get(FetchURL)
         return res.data;
       }catch(e){
         console.log('400 Error!!')

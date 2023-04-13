@@ -2,17 +2,16 @@ import axios from "axios";
 import {useContext} from "react";
 import {LoggedInContext} from "../provider/LoggedInProvider";
 import {API_BASE_URL,API_SANCTUM_URL} from "../config/url"
-import { useNavigate } from "react-router-dom";
-
-
+import {checkApiUrl} from "../utils/checkApiUrl"
 
 
 export const LogInUser = (loginParams,setUserName,setUserID,setUserAuth,setUseremail) =>{
 
     const {email,password} = loginParams;
+    const FetchURL = `${API_BASE_URL}/login`;
 
     try{
-
+        checkApiUrl(FetchURL);
         const res = axios//csrf保護の初期化
         .get(API_SANCTUM_URL, { withCredentials: true })
         .then((response) => {
