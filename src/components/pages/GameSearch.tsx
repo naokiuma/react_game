@@ -86,11 +86,9 @@ export const GameSearch:FC = memo(() => {
                                                 <Link to={"/game/" + each_game.id} state={each_game}>
                                                     {each_game.game_name}<br/>
                                                 </Link>
-
                                                 <span>{genres[each_game.genres]}</span>
                                             </div>
 
-                                            {/* 画像 */}
                                             {each_game.images != null && 
                                             <Slider {...settings}>
                                                 {each_game.images.map((_img)=>(

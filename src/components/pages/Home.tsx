@@ -4,6 +4,10 @@ import { Topic } from "../atom/Topic";
 import {CategoryLabel } from "../atom/CategoryLabel";
 import {getGame} from "../../infrastructure/gameDriver";
 import { LoggedInContext } from "../../provider/LoggedInProvider";
+import genres from '../../utils/game_genre'
+import {BASE_URL} from "../../config/url"
+
+
 // import { TotalGameCountContext } from "../../provider/TotalGameCountProvider";
 
 //インフラ
@@ -42,7 +46,8 @@ export const Home:FC = memo(() => {
         getGame().then((data_g) =>{
             if(data_g.length > 0){
                 console.log('game')
-                console.log(data_g)    
+                // console.log(data_g[0].images[0].image_file_name)
+
                 set_game(data_g);            
             }
         })
@@ -176,21 +181,19 @@ export const Home:FC = memo(() => {
 
                 <section className="home_section main_contents">
                     <h2>ゲーム一覧</h2>
-                        <div>
-                            {games.map((_game)=>(
-                                <div>
-                                    <h3>{_game.game_name}</h3>
-                                    <span>{_game.genres}</span>
-                                    {_game.images != null && 
-                                        _game.images.map((_img)=>(
-                                            <div className="img_wrap">
-                                                {_img.image_file_name}
-                                            </div>
-                                        ))
-                                    }
-                                </div>
-                            ))}
-                        </div>
+                    <div className="games">
+                        {games.map((_game)=>(
+                            <div>
+                                <h3>{_game.game_name}</h3>
+                                <span>{genres[_game.genres]}</span>
+                                {_game.images.length > 0  && 
+                                    <div className="img_wrap">
+                                        <img src={BASE_URL + _game.images[0].image_file_name.replace("public","storage")} alt="" />     
+                                    </div>
+                                }
+                            </div>
+                        ))}
+                    </div>
                 </section>
 
                 <div className="new_form_button">
