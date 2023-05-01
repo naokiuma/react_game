@@ -6,6 +6,8 @@ import {getGame} from "../../infrastructure/gameDriver";
 import { LoggedInContext } from "../../provider/LoggedInProvider";
 import genres from '../../utils/game_genre'
 import {BASE_URL} from "../../config/url"
+import Slider from "react-slick";
+
 
 
 // import { TotalGameCountContext } from "../../provider/TotalGameCountProvider";
@@ -30,6 +32,15 @@ export const Home:FC = memo(() => {
 
     const { username } = useContext(LoggedInContext); 
     const { userid } = useContext(LoggedInContext);
+
+    let settings = {
+        dots: false,
+        autoplay:true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 1
+    };
     
     //topicsを取得
     useEffect(() => {
@@ -164,8 +175,6 @@ export const Home:FC = memo(() => {
                                                     image_path={topic.image_path}
                                                 />
                                             </Link>
-                                            {/* parent_uder_id:{topic.parent_user_id} */}
-
                                             {(username !== 'ゲスト' && userid === topic.parent_user_id) && <span>編集</span>}
                                         </li>
                                     ))
@@ -179,20 +188,26 @@ export const Home:FC = memo(() => {
 
 
 
-                <section className="home_section main_contents">
+                <section className="top_games">
                     <h2>ゲーム一覧</h2>
                     <div className="games">
-                        {games.map((_game)=>(
-                            <div>
-                                <h3>{_game.game_name}</h3>
-                                <span>{genres[_game.genres]}</span>
-                                {_game.images.length > 0  && 
-                                    <div className="img_wrap">
-                                        <img src={BASE_URL + _game.images[0].image_file_name.replace("public","storage")} alt="" />     
-                                    </div>
-                                }
-                            </div>
-                        ))}
+                        <Slider {...settings}>
+                            {games.map((_game)=>(
+                                <div className="_each">
+                                    <h3>{_game.game_name}</h3>
+                                    <span>{genres[_game.genres]}</span>
+                                    <figure className="img_wrap">
+                                        {_game.images.length > 0
+                                            ? <img src={BASE_URL + _game.images[0].image_file_name.replace("public","storage")} alt="" />
+                                            : <img src="/img/global/sample_game.jpg" alt="" />
+                                        }
+                                    </figure>
+
+
+                                </div>
+                            ))}
+                        </Slider>
+
                     </div>
                 </section>
 

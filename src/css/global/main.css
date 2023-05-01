@@ -72,6 +72,39 @@ a:hover {
   width: 80%;
 }
 
+.main_contents .img_wrap {
+  width: 400px;
+}
+
+.top_games {
+  width: 100%;
+}
+
+.top_games h2 {
+  font-size: 40px;
+  text-align: center;
+}
+
+.top_games .games {
+  padding: 0;
+}
+
+.top_games .games ._each {
+  width: 400px;
+}
+
+.top_games .games ._each h3 {
+  font-size: 20p;
+}
+
+.top_games .games ._each span {
+  font-size: 14px;
+}
+
+.top_games .games ._each figure {
+  width: 400px;
+}
+
 .billboard {
   width: 100%;
   height: 500px;

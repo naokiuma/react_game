@@ -2,6 +2,9 @@
     font-family: sans-serif;
 }
 
+$primary_text:60px;
+$secondary_text:40px;
+
 body{
     // background-color: red;
 
@@ -113,6 +116,37 @@ a{
 
         }
     }
+    .img_wrap{
+        width: 400px;
+    }
+    
+}
+
+.top_games{
+    width: 100%;
+    h2{
+        font-size: $secondary_text;
+        text-align: center;
+    }
+    .games{
+        padding: 0;
+        // display: flex;
+        // flex-wrap: nowrap;
+        // flex-direction: row;
+        ._each{
+            width: 400px;
+            h3{
+                font-size: 20p;
+            }
+            span{
+                font-size: 14px;
+            }
+            figure{
+                width: 400px;
+            }
+
+        }
+    }
 }
 
 
@@ -128,7 +162,7 @@ a{
     align-items: center;
 }
 h1{
-    font-size: 60px;
+    font-size: $primary_text;
 }
 
 .fw_b{
@@ -520,7 +554,7 @@ footer{
 .search_input_wrap{
     text-align: center;
     span{
-        font-size: 40px;
+        font-size: $secondary_text;
         font-weight: bold;
         display: block;
         text-align: center;

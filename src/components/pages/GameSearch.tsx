@@ -29,7 +29,7 @@ export const GameSearch:FC = memo(() => {
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1
-      };
+    };
 
     useEffect(() => {
         searchGame(keyword).then((data) =>{
