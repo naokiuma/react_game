@@ -33,6 +33,8 @@ export const Home:FC = memo(() => {
     const { username } = useContext(LoggedInContext); 
     const { userid } = useContext(LoggedInContext);
 
+    
+
     let settings = {
         dots: false,
         autoplay:true,
@@ -55,7 +57,7 @@ export const Home:FC = memo(() => {
         });
 
         getGame().then((data_g) =>{
-            if(data_g.length > 0){
+            if(typeof data_g !== 'undefined' && data_g.length > 0){
                 console.log('game')
                 // console.log(data_g[0].images[0].image_file_name)
 
@@ -147,12 +149,26 @@ export const Home:FC = memo(() => {
                 <section className="home_section main_contents">
                     <h2>みんなのプレイログ</h2>
                     <div className="tags_search_wrap">
-                        <div>
-                            {categories.map((_category)=>(
-                                <CategoryLabel name={_category.name} func={set_tag} bgc={_category.color}/>
-                            ))}
-                            <span className="category_label" onClick={() => set_tag('すべて')}>すべて</span>
-                        </div>
+
+                        {
+                            (() => {
+                            if (typeof categories !== 'undefined') {
+                                return(
+                                    <div>
+                                        {categories.map((_category)=>(
+                                            <CategoryLabel name={_category.name} func={set_tag} bgc={_category.color}/>
+                                        ))}
+                                        <span className="category_label" onClick={() => set_tag('すべて')}>すべて</span>
+                                    </div>
+                                );
+                            }else{
+                                return(
+                                    <div>カテゴリーがありません。</div>
+                                )
+                            }
+                            })()
+                        }
+                       
                     </div>
                     {
                         (() => {
@@ -186,8 +202,6 @@ export const Home:FC = memo(() => {
                     }
                 </section>
 
-
-
                 <section className="top_games">
                     <h2>ゲーム一覧</h2>
                     <div className="games">
@@ -216,6 +230,5 @@ export const Home:FC = memo(() => {
                 </div>
             </div>
         )
-    // }
 
 })
