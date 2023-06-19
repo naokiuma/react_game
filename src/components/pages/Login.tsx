@@ -34,11 +34,22 @@ export const Login = () => {
         setPassword(e.target.value)
     }
 
-    const handleLoginClick = () => {
+    const handleLoginClick = async () => {
         const loginParams:LoginParams = {email,password}
         // console.log('loginします')
         // console.log(loginParams)
-        LogInUser(loginParams,setUserName,setUserID,setUserAuth,setUseremail)
+        await LogInUser(loginParams)
+		.then((response)=>{
+
+			setUserName(response.data.name);
+			setUserID(response.data.user_id);
+			setUseremail(response.data.email);
+			setUserAuth(true);
+
+			console.log('帰ってきたものは')
+			// console.log(res.data);
+
+		})
 
 
 

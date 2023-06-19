@@ -43,4 +43,3 @@ export const createComment = async (topic_id,user_id,name,text) => {
 	// 	throw new Error('コメントの作成に失敗しました');
 	//   }
 }
-
