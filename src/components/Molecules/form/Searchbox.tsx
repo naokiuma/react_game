@@ -12,8 +12,7 @@ export const Searchbox:FC<SearchboxProps>= memo((props) => {
     let params = url.searchParams;
     let defaultValue = params.get('game') ? params.get('game') : '';
     const [inputValue, setInputValue] = useState(defaultValue);
-
-    const handleSubmit = (event) => {
+    const handleSubmit = (event:React.MouseEvent<HTMLElement, MouseEvent>|React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
       const queryParams = `?game=${inputValue}`;
       const url = '/game/search' + queryParams;

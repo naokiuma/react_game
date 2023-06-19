@@ -1,14 +1,12 @@
-import { FC } from "react"
+import { FC,ReactElement } from "react"
 
-type Prop ={
-    name?:string,
+type CategoryType ={
+    name:string,
     bgc?:string,
-    func?:Function,
-    key?:number
-
+    func:Function,
 }
 
-export const CategoryLabel:FC<Prop> = (Prop) => {
+export const CategoryLabel:FC<CategoryType> = (Prop):ReactElement => {
 
     return(
         <span className="category_label"
@@ -19,3 +17,4 @@ export const CategoryLabel:FC<Prop> = (Prop) => {
         </span>
     )
 }
+

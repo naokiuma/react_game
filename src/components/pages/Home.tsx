@@ -9,12 +9,10 @@ import {BASE_URL} from "../../config/url"
 import Slider from "react-slick";
 
 
-
-// import { TotalGameCountContext } from "../../provider/TotalGameCountProvider";
-
 //インフラ
-import {getTopics} from "../../infrastructure/topicDriver";
+import {GetTopics} from "../../infrastructure/topicDriver";
 import {GetCategory} from "../../infrastructure/categoryDriver";
+
 //css
 import '../../css/pages/top.css';
 
@@ -33,9 +31,8 @@ export const Home:FC = memo(() => {
     const { username } = useContext(LoggedInContext); 
     const { userid } = useContext(LoggedInContext);
 
-    
 
-    let settings = {
+    let SliderSettings = {
         dots: false,
         autoplay:true,
         infinite: true,
@@ -46,21 +43,16 @@ export const Home:FC = memo(() => {
     
     //topicsを取得
     useEffect(() => {
-        getTopics().then((data) => {
+        GetTopics().then((data) => {
             set_default_topics(data);
             set_result_topics(data);
-            console.log(data);
         });
         GetCategory().then((data_c) => {
-            console.log(data_c);
             set_category(data_c);
         });
 
         getGame().then((data_g) =>{
             if(typeof data_g !== 'undefined' && data_g.length > 0){
-                console.log('game')
-                // console.log(data_g[0].images[0].image_file_name)
-
                 set_game(data_g);            
             }
         })
@@ -205,7 +197,7 @@ export const Home:FC = memo(() => {
                 <section className="top_games">
                     <h2>ゲーム一覧</h2>
                     <div className="games">
-                        <Slider {...settings}>
+                        <Slider {...SliderSettings}>
                             {games.map((_game)=>(
                                 <div className="_each">
                                     <h3>{_game.game_name}</h3>

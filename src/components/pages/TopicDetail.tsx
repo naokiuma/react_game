@@ -12,7 +12,7 @@ import { CommentForm } from "../Molecules/form/CommentForm"
 
 //インフラ
 import {getComments} from "../../infrastructure/commentDriver";
-import {getTopics} from "../../infrastructure/topicDriver";
+import {GetTopics} from "../../infrastructure/topicDriver";
 
 
 
@@ -42,7 +42,7 @@ export const TopicDetail:FC = memo(() => {
     
 
     useEffect(() => {
-        getTopics(topic_id).then((data) => {
+        GetTopics(topic_id).then((data) => {
             setTopic(data)
         })
         getComments(topic_id).then((data) => {

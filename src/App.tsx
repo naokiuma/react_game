@@ -1,5 +1,5 @@
 // import { useContext} from 'react'
-import { Route,Routes,BrowserRouter } from "react-router-dom";//switch は Routesに変わった
+import { BrowserRouter } from "react-router-dom";//switch は Routesに変わった
 import { MainRoute } from "../src/router/MainRoute";
 import { ChakraProvider } from '@chakra-ui/react'
 

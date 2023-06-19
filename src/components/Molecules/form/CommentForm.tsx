@@ -1,18 +1,18 @@
 import {ChangeEvent,useState,useContext,memo,FC} from 'react'
-import {ImgPreview} from "../../Templates/ImgPreview"
+// import {ImgPreview} from "../../Templates/ImgPreview"
 import { LoggedInContext } from "../../../provider/LoggedInProvider";
 
 import {createComment} from "../../../infrastructure/commentDriver"
 
 
-type Props ={
+type CommentFormProp ={
     form_title:string,//formの題名
     isActive:boolean,
     topic_id:number,
     toggleModalActive:Function,
 }
 
-export const CommentForm:FC<Props> = memo((props) => {
+export const CommentForm:FC<CommentFormProp> = memo((props) => {
     console.log("コメントフォーム");
     console.log(props);
 
@@ -38,8 +38,17 @@ export const CommentForm:FC<Props> = memo((props) => {
     }
 
 
-    const submit = ():void => {
-        createComment(topic_id,user_id,name,text);
+	type CommentType ={
+		topic_id:number,
+		user_id:number,
+		name:string,
+		text:string,
+		setfunc?:Function[]
+	}
+    const submit = async () => {
+        let result = await createComment(topic_id,user_id,name,text);
+		console.log('結果は２')
+		console.log(result)
         props.toggleModalActive(false);
 
     }

@@ -20,23 +20,27 @@ export const getComments = async(topic_ID?:number) => {
 }
 
 
-export const createComment = (topic_id,user_id,name,text) => {
+export const createComment = async (topic_id,user_id,name,text) => {
     const target_URL =  `${API_BASE_URL}/comments/create`;
     checkApiUrl(target_URL)
-    const res = axios//csrf保護の初期化
-        .get(API_SANCTUM_URL, { withCredentials: true })
-        .then(() => {
-            axios.post(target_URL,
-                {topic_id: topic_id,name:name,text: text,user_id: user_id},
-
-                {headers:
-                    {'Content-Type': 'multipart/form-data',},//画像を送る際にはこの指定が必要
-                    withCredentials:true,
-                },
-            ).then(()=>{
-                window.location.reload();
-            })
-        })
-        return res;
+	// try {
+		await axios.get(API_SANCTUM_URL, { withCredentials: true }) // CSRFトークンの初期化
+	
+		const response = await axios.post(
+		  target_URL,
+		  { topic_id: topic_id, name: name, text: text, user_id: user_id },
+		  {
+			headers: {
+			  'Content-Type': 'multipart/form-data', // 画像を送る際にはこの指定が必要
+			},
+			withCredentials: true,
+		  }
+		);
+	
+		return response.data; // レスポンスのデータを返す
+	//   } catch (error) {
+	// 	console.error(error);
+	// 	throw new Error('コメントの作成に失敗しました');
+	//   }
 }
 

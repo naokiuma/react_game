@@ -9,6 +9,7 @@ export default {
   component: Topic_S,
 } as ComponentMeta<typeof Topic_S>;
 
+
 const Template: ComponentStory<typeof Topic_S> = (args) => <Topic_S {...args} />;
 
 export const Primary = Template.bind({});

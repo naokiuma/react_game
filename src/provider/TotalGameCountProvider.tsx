@@ -1,8 +1,6 @@
 import  {useState,createContext} from "react";
 
-// export const TotalGameCountContext = createContext<Number>(0);
-export const TotalGameCountContext = createContext<Number>(0);
-
+export const TotalGameCountContext = createContext(0);
 export const TotalGameCountProvider = (props) => {
     const { children } = props;//一般的に、どんなものでも囲えるようにchildrecなpropsにする
 
@@ -15,8 +13,3 @@ export const TotalGameCountProvider = (props) => {
         </TotalGameCountContext.Provider>
     )
 }
-
-
-
-
-// // わかった、ちゃんとvalueで渡す必要があるのだ

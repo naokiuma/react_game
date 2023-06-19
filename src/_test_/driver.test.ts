@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {getTopics} from "../infrastructure/topicDriver";
+import {GetTopics} from "../infrastructure/topicDriver";
 
 jest.mock('axios')
 
@@ -10,4 +10,4 @@ test('should fetch all topics', async () => {
     // axios.get.mockResolvedValue(resp)//通常はこれ書く
     // axios.get.mockImplementation(() => Promise.resolve(resp)) // 上記のmockResolvedValueと同 じ設定
 
-    await expect(getTopics()).resolves.toEqual(topics) })
+    await expect(GetTopics()).resolves.toEqual(topics) })

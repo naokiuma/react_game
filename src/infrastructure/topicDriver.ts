@@ -3,7 +3,7 @@ import {API_BASE_URL,API_SANCTUM_URL} from "../config/url"
 import {checkApiUrl} from "../utils/checkApiUrl"
 
 
-export const getTopics = async(topic_ID?:number,limit?:number) => {
+export const GetTopics = async(topic_ID?:number,limit?:number) => {
     try{
         let FetchURL = `${API_BASE_URL}/topics`;
         let target_URL = topic_ID == undefined ? FetchURL : `${FetchURL}/${topic_ID}`;
