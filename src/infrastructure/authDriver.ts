@@ -13,7 +13,6 @@ export const LogInUser = (loginParams) =>{
     try{
         checkApiUrl(FetchURL);
 		axios.get(API_SANCTUM_URL, { withCredentials: true }) // CSRFトークンの初期化
-
 		const response = axios.post(
 			`${API_BASE_URL}/login`,
 			{email,password},

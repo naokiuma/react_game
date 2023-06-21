@@ -1,7 +1,6 @@
 
 import { memo,FC,useState,useEffect } from "react";
 import { useForm } from 'react-hook-form';
-import {ImgPreview} from "../Templates/ImgPreview"
 import {ImgsPreview} from "../Templates/ImgsPreview"
 
 import genres from '../../utils/game_genre'
@@ -13,8 +12,10 @@ import {GetCategory} from "../../infrastructure/categoryDriver";
 
 //Form用の情報
 type FormInputs = {
-    GameName:string;
-    GameGenre:string;
+    name:string;
+    genre:string;
+
+	imgData?;
 };
 
 
@@ -45,18 +46,16 @@ export const GameForm = memo(() => {
     });
 
     //画像のみ別途用意
-    const [imgData, setImg] = useState<File>(null);
+    // const [imgData, setImg] = useState<File>(null);
 
     const [images, setImages] = useState<File[]>([]);
 
     
-    const submit = (data:FormInputs) => {
-        // console.log('送るでーた')
-        // console.log(images)
-        // console.log(data.GameName)
-        // console.log(data.GameGenre)
+    const submit = async (data:FormInputs) => {
+		// let result = await createComment({topic_id,user_id,name,text});
 
-        createGame(data.GameName,data.GameGenre,['1','2'],images)  
+        let result = await createGame(data.name,data.genre,['1','2'],images)
+		console.log(result);
     }
 
     return (
@@ -68,15 +67,15 @@ export const GameForm = memo(() => {
                     <dl className="write_area game_name">
                         <dt className="value_title">ゲーム名</dt>
                         <dd>
-                            <input {...register('GameName', { required: 'ゲーム名は必須です' })}/>
-                            <p className="_attention_msg">{errors.GameName?.message}</p> {/* エラー表示 */}
+                            <input {...register('name', { required: 'ゲーム名は必須です' })}/>
+                            <p className="_attention_msg">{errors.name?.message}</p> {/* エラー表示 */}
                         </dd>
                     </dl>
 
                     <dl className="write_area">
                         <dt className="value_title">ジャンル</dt>
                         <dd>
-                            <select {...register('GameGenre', { required: 'ジャンルは必須です' })}>
+                            <select {...register('genre', { required: 'ジャンルは必須です' })}>
                                 {
                                     genres.map((genre)=>(
                                         <option value={genres[genre]}>{genre}</option>
@@ -93,7 +92,7 @@ export const GameForm = memo(() => {
                         <ImgsPreview images ={images} setImages = {setImages}/>
 
                     </div>
-                    <button className="submit_btn">投稿</button>
+                    <button className="submit_btn">投稿します</button>
                 </div>
             </form>
         </section>

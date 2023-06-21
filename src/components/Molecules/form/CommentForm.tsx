@@ -1,6 +1,7 @@
 import {ChangeEvent,useState,useContext,memo,FC} from 'react'
 // import {ImgPreview} from "../../Templates/ImgPreview"
 import { LoggedInContext } from "../../../provider/LoggedInProvider";
+import {CommentsType} from "types/commentsType"
 
 import {createComment} from "../../../infrastructure/commentDriver"
 
@@ -10,6 +11,7 @@ type CommentFormProp ={
     isActive:boolean,
     topic_id:number,
     toggleModalActive:Function,
+	handleValueChange?:Function
 }
 
 export const CommentForm:FC<CommentFormProp> = memo((props) => {
@@ -38,17 +40,11 @@ export const CommentForm:FC<CommentFormProp> = memo((props) => {
     }
 
 
-	type CommentType ={
-		topic_id:number,
-		user_id:number,
-		name:string,
-		text:string,
-		setfunc?:Function[]
-	}
     const submit = async () => {
-        let result = await createComment(topic_id,user_id,name,text);
+        let result = await createComment({topic_id,user_id,name,text});
 		console.log('結果は２')
 		console.log(result)
+		props.handleValueChange(result);
         props.toggleModalActive(false);
 
     }

@@ -1,8 +1,7 @@
 import axios from "axios";
 import {API_BASE_URL,API_SANCTUM_URL} from "../config/url"
-import { CommentsType } from "../types/commentsType"
 import {checkApiUrl} from "../utils/checkApiUrl"
-
+import {CommentsType} from "types/commentsType"
 
 
 export const getComments = async(topic_ID?:number) => {
@@ -20,26 +19,57 @@ export const getComments = async(topic_ID?:number) => {
 }
 
 
-export const createComment = async (topic_id,user_id,name,text) => {
+export const createComment = async (props:CommentsType) => {
     const target_URL =  `${API_BASE_URL}/comments/create`;
     checkApiUrl(target_URL)
-	// try {
-		await axios.get(API_SANCTUM_URL, { withCredentials: true }) // CSRFトークンの初期化
-	
-		const response = await axios.post(
-		  target_URL,
-		  { topic_id: topic_id, name: name, text: text, user_id: user_id },
-		  {
-			headers: {
-			  'Content-Type': 'multipart/form-data', // 画像を送る際にはこの指定が必要
-			},
+	await axios.get(API_SANCTUM_URL, { withCredentials: true }) // CSRFトークンの初期化
+	const response = await axios.post(
+		target_URL,
+		{ topic_id: props.topic_id, name: props.name, text: props.text, user_id: props.user_id },
+		{headers:
+			{'Content-Type': 'multipart/form-data'},// 画像を送る際にはこの指定が必要
 			withCredentials: true,
-		  }
-		);
+		}
+	);
+
+	return response.data; // レスポンスのデータを返す
 	
-		return response.data; // レスポンスのデータを返す
-	//   } catch (error) {
-	// 	console.error(error);
-	// 	throw new Error('コメントの作成に失敗しました');
-	//   }
 }
+
+
+// export const createComment = async (props:CommentsType) => {
+//     const target_URL =  `${API_BASE_URL}/comments/create`;
+//     checkApiUrl(target_URL)
+// 	await axios.get(API_SANCTUM_URL, { withCredentials: true }) // CSRFトークンの初期化
+// 	const response = await axios.post(
+// 		target_URL,
+// 		{ topic_id: props.topic_id, name: props.name, text: props.text, user_id: props.user_id },
+// 		{headers:
+// 			{'Content-Type': 'multipart/form-data'},// 画像を送る際にはこの指定が必要
+// 			withCredentials: true,
+// 		}
+// 	);
+
+// 	return response.data; // レスポンスのデータを返す
+	
+// }
+
+
+
+// export const createComment = async (props:CommentsType) => {
+//     const target_URL =  `${API_BASE_URL}/comments/create`;
+//     checkApiUrl(target_URL)
+// 	// await axios.get(API_SANCTUM_URL, { withCredentials: true }) // CSRFトークンの初期化
+// 	const response = await axios.get(API_SANCTUM_URL, { withCredentials: true })
+// 		.then(res => {
+// 			axios.post(target_URL,
+// 				{ topic_id: props.topic_id, name: props.name, text: props.text, user_id: props.user_id },
+// 				{headers:{'Content-Type': 'multipart/form-data'},// 画像を送る際にはこの指定が必要
+// 				withCredentials: true,
+// 				}
+// 			)
+// 		})
+// 	);
+
+// 	return response.data; // レスポンスのデータを返す
+	

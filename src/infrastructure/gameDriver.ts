@@ -31,7 +31,7 @@ export const getGame = async(game_ID?:number) => {
 }
 
 
-export const createGame = (name:string,genres:string,category:Array<string>,imgData?) => {
+export const createGame = (name:string,genre:string,category:Array<string>,imgData?) => {
   
   const FetchURL =  `${API_BASE_URL}/game/create`;
   checkApiUrl(FetchURL)
@@ -39,19 +39,20 @@ export const createGame = (name:string,genres:string,category:Array<string>,imgD
       .get(API_SANCTUM_URL, { withCredentials: true })
       .then(() => {
         console.log('送るデータ')
-        console.log(genres)
+        console.log(genre)
         console.log(category)
 
-          axios.post(FetchURL,
-              {game_name:name,genres: genres,category: category,file:imgData},
-
-              {headers:
-                  {'Content-Type': 'multipart/form-data',},//画像を送る際にはこの指定が必要
-                  withCredentials:true,
-              },
-          ).then(()=>{
-              window.location.reload();
-          })
+          axios.post(FetchURL,{
+				game_name:name,
+				genres: genre,
+				category: category,
+				file:imgData
+			},
+            {headers:
+                {'Content-Type': 'multipart/form-data',},//画像を送る際にはこの指定が必要
+                withCredentials:true,
+            },
+          )
       })
       return res;
 }

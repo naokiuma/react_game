@@ -3,6 +3,8 @@ import { memo,FC,useContext } from "react";
 import { useEffect,useState } from 'react';
 import { useLocation } from "react-router-dom";
 import {getidfromURL} from '../../utils/getidfromURL'
+import {CommentsType} from "types/commentsType"
+
 
 
 import {LoggedInContext} from "../../provider/LoggedInProvider";
@@ -18,8 +20,11 @@ import {GetTopics} from "../../infrastructure/topicDriver";
 
 export const TopicDetail:FC = memo(() => {
 
-    let [topic,setTopic] = useState([]);
-    let [comments,setComment] = useState([])
+    const [topic,setTopic] = useState([]);
+    const [comments,setComment] = useState<CommentsType[]>([])
+	const handleValueChange = (newValue) =>{
+		setComment([...comments,newValue])
+	}
     
     //user_id
     const { userid } = useContext(LoggedInContext);
@@ -46,6 +51,8 @@ export const TopicDetail:FC = memo(() => {
             setTopic(data)
         })
         getComments(topic_id).then((data) => {
+			console.log('ここでのデータ')
+			console.log(data)
             setComment(data);
         });
     },[])
@@ -56,8 +63,10 @@ export const TopicDetail:FC = memo(() => {
     let body = topic[0] && topic[0]['body'];//本文
     let status = topic[0] && topic[0]['status'];//ステータス
 
+
+
     //背景画像
-    let main_img
+    let main_img;
     if(topic[0] && topic[0]['image_path'] != null){
         let temp_image_path = topic[0]['image_path'];
         main_img = 'http://localhost:8888/' + temp_image_path.replace("public","storage");
@@ -120,7 +129,8 @@ export const TopicDetail:FC = memo(() => {
                 <div className="comments_wrap">
                     {
                         comments.map((comment) => (
-                            <div className={'text ' + (topic[0] && comment.user_id === topic[0]['parent_user_id'] ? 'left' : 'right') } key={comment.comment_id}>
+                            <div className={'text ' + (topic[0] && comment.user_id === topic[0]['parent_user_id'] ? 'left' : 'right') }
+							 key={comment.comment_id}>
                                 {comment.text}
                             </div>                                
                         ))
@@ -131,6 +141,7 @@ export const TopicDetail:FC = memo(() => {
                     isActive={modalActive} 
                     topic_id={topic_id}
                     toggleModalActive={toggleModalActive}
+					handleValueChange ={handleValueChange}
                 />
 
             </div>
