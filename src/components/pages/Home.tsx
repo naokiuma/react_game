@@ -7,7 +7,7 @@ import { LoggedInContext } from "../../provider/LoggedInProvider";
 import genres from '../../utils/game_genre'
 import {BASE_URL} from "../../config/url"
 import Slider from "react-slick";
-
+import styled from 'styled-components';
 
 //インフラ
 import {GetTopics} from "../../infrastructure/topicDriver";
@@ -15,6 +15,43 @@ import {GetCategory} from "../../infrastructure/categoryDriver";
 
 //css
 import '../../css/pages/top.css';
+
+
+const S_mainInfo = styled.section`
+	margin: 170px auto 0;
+	width:1000px;
+	._each{
+		margin-top: 120px;
+		display: flex;
+		justify-content: space-between;
+		i{
+			margin-right: 10px;
+		}
+		h3{
+			font-size: 30px;
+		}
+		figure{
+			width: 500px;
+			border-radius: 30px;
+			overflow: hidden;
+		}
+		div{
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
+			p{
+				margin-top:20px;
+			}
+		}
+	}
+}`
+
+
+const Wrapper = styled.div`
+  text-align: center;
+`;
 
 
 export const Home:FC = memo(() => {
@@ -85,7 +122,7 @@ export const Home:FC = memo(() => {
                             <p>ゲームスプレッドは、ゲームの楽しみをもっと増やすためのサービスです。</p>
                         </div>
 
-                        <section className="main_info_wrap">
+                        <S_mainInfo>
                             <div className="_each">
                                 <div>
                                     <h3>
@@ -134,7 +171,7 @@ export const Home:FC = memo(() => {
                                     <img src="/img/top/top_billboard3.jpg" alt="" />
                                 </figure>
                             </div>
-                        </section>
+                        </S_mainInfo>
                     </div>
                 </section>
                 
@@ -224,3 +261,7 @@ export const Home:FC = memo(() => {
         )
 
 })
+
+
+
+

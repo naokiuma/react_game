@@ -14,12 +14,8 @@ import {GetCategory} from "../../infrastructure/categoryDriver";
 type FormInputs = {
     name:string;
     genre:string;
-
 	imgData?;
 };
-
-
-
 
 
 export const GameForm = memo(() => {
