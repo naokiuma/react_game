@@ -1,6 +1,7 @@
 import {ModalContext} from "../../provider/ModalProvider";
 import { ChangeEvent,memo,FC,useState,useEffect,useContext} from "react";
-import {Link } from "react-router-dom";
+import {Link} from "react-router-dom";
+// import { Outlet } from 'react-router-dom';
 import Slider from "react-slick";
 import genres from '../../utils/game_genre'
 import {searchGame} from "../../infrastructure/gameDriver";
@@ -39,8 +40,6 @@ export const GameSearch:FC = memo(() => {
         })
     },[])
 
-
-
     const changeKeyword = (e:ChangeEvent<HTMLInputElement>) => {
         setKeyword(e.target.value)
     }
@@ -59,13 +58,13 @@ export const GameSearch:FC = memo(() => {
         })
     }
 
-    return (        
+    return (
         <>
             <section className="main_contents game_search">
                 <div className="search_input_wrap">
-                    <span>
+                    <h1>
                         ゲームを探そう！
-                    </span>
+                    </h1>
                     <input type="text" 
                         value={keyword}
                         onChange={changeKeyword}
@@ -73,8 +72,6 @@ export const GameSearch:FC = memo(() => {
                     />
                     <button className="submit_btn"onClick={submit}>探す</button>
                 </div>
-
-
                 {
                     (()=>{
                         if(result){
@@ -121,12 +118,7 @@ export const GameSearch:FC = memo(() => {
                         }
                     })()
                 } 
-
-                <div>
-                    <Link to="/game/create">ゲームを新しく登録する</Link>
-                </div>
-
-
+                
             </section>
         </>
     )

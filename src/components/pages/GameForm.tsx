@@ -48,14 +48,12 @@ export const GameForm = memo(() => {
 
     
     const submit = async (data:FormInputs) => {
-		// let result = await createComment({topic_id,user_id,name,text});
-
         let result = await createGame(data.name,data.genre,['1','2'],images)
 		console.log(result);
     }
 
     return (
-        <section className="main_contents form_wrap game_form">
+        <section className="form_wrap game_form">
 
             <h1>ゲームを登録する</h1>
             <form onSubmit={handleSubmit(submit)}>

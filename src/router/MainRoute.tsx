@@ -4,12 +4,11 @@ import { PrivateRoute } from "../../src/router/PrivateRoute";
 import { About } from "../components/pages/About";
 import { UserDetail } from "../components/pages/UserDetail";
 
+import { GameWrap } from "../components/pages/GameWrap";
+
 import { GameSearch } from "../components/pages/GameSearch";
 import { GameForm } from '../components/pages/GameForm';
 import { GameDetail } from '../components/pages/GameDetail';
-
-
-
 import { Setting } from "../components/pages/Setting";
 import { TopicDetail } from '../components/pages/TopicDetail';
 import { Login } from '../components/pages/Login';
@@ -17,6 +16,11 @@ import { TopicForm } from '../components/pages/TopicForm';
 
 import { Register } from '../components/pages/Register';
 import { Nomatch } from '../components/pages/Nomatch';
+
+
+
+import { Header } from '../components/Templates/Header';
+import { Footer } from '../components/Templates/Footer';
 
 /**
  * 
@@ -34,9 +38,11 @@ export const MainRoute = () => {
             <Route path="/about/" element={<About/>} />
             <Route path="/user/" element={<UserDetail/>} />
 
-            <Route path="/game/search/" element={<GameSearch/>} />
-            <Route path="/game/create/" element={<GameForm/>} />
-            <Route path="/game/:id" element={<GameDetail />} />
+            <Route path="/game" element={<GameWrap/>}>
+				<Route path="search" element={<GameSearch/>} />
+				<Route path="create" element={<GameForm/>} />
+				<Route path=":id" element={<GameDetail />} />
+			</Route>
 
 
 
