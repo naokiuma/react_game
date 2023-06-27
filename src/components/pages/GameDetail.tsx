@@ -1,8 +1,9 @@
 
 import { memo,FC,useContext } from "react";
 import { useEffect,useState } from 'react';
-import { useLocation } from "react-router-dom";
+import { useLocation,useNavigate } from "react-router-dom";
 import {LoggedInContext} from "../../provider/LoggedInProvider";
+import { Helmet } from 'react-helmet';
 //インフラ
 import {getGame} from "../../infrastructure/gameDriver";
 
@@ -17,6 +18,11 @@ export const GameDetail:FC = memo(() => {
 
     //game_id todo id取得関数を作る
     const locationVal = useLocation();
+	console.log('これ')
+	const history = useNavigate();
+	console.log(locationVal)
+	console.log(history)
+
     let tempID = locationVal.pathname
     let game_id = Number(tempID.replace('/game/', ''))//topic_id
 
@@ -35,7 +41,14 @@ export const GameDetail:FC = memo(() => {
 
     const tags = ['ローグライク','泣ける']
     return (
+		<>
+		<Helmet>
+				<title>Runtime Title</title>
+			</Helmet>
+		
         <section className="topic_detail">
+			aaaa
+			
             <div className="main_contents">
                 <h2 className="topic_title">  
                     {game['game_name']}
@@ -50,18 +63,14 @@ export const GameDetail:FC = memo(() => {
                         ))
                     }
                 </div>
-                {/* 
-                <div className="main_text">
-                    <p>
-                        body
-                    </p>
-                </div> */}
+                
 
             </div>
             <div className="new_form_button">
                 <button onClick={() => toggleModalActive(!modalActive)}>投稿</button>
             </div>
         </section>
+		</>
     )
 
 })

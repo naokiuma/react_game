@@ -1,4 +1,4 @@
-import { memo,FC,useContext,useEffect, useState,ChangeEvent} from "react";
+import { memo,FC,useContext,useEffect, useState} from "react";
 import { Link } from "react-router-dom";//switch は Routesに変わった
 import { Topic } from "../atom/Topic";
 import {CategoryLabel } from "../atom/CategoryLabel";
@@ -212,7 +212,7 @@ export const Home:FC = memo(() => {
                                             <Link to={"/topic/" + topic.id} state={topic}>
                                                 <Topic
                                                     id={topic.id}
-                                                    game_name={topic.game_name}
+                                                    game_title={topic.game_name}
                                                     title={topic.title}
                                                     user_id={topic.parent_user_id}
                                                     tags={topic.tags}

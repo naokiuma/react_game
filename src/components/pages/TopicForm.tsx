@@ -2,6 +2,8 @@
 import { memo,FC,useState,useEffect } from "react";
 import { useForm } from 'react-hook-form';
 import {ImgPreview} from "../Templates/ImgPreview"
+import {ImgsPreview} from "../Templates/ImgsPreview"
+
 import { useNavigate } from 'react-router-dom';
 
 //インフラ
@@ -88,6 +90,8 @@ export const TopicForm = memo((props) => {
 
     //画像のみ別途用意
     const [imgData, setImg] = useState(null);
+    const [images, setImages] = useState<File[]>([]);
+
 
     
     const submit = (data:FormInputs) => {

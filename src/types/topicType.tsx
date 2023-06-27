@@ -1,9 +1,14 @@
-export type TopicType = {
+
+export type topicType = {
     id:number;
-    parent_user_id:number;
     title:string;
-    body:string;
-    tags?:string[];
+    user_id:number;
+	game_title:string
+    body?:string;
+    tags?:{
+		name:string,
+		color:string
+	}[];
     status:string;
     image_path:string;
     created_at?:string;

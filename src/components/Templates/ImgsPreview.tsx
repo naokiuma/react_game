@@ -16,9 +16,6 @@ export const ImgsPreview = ({images,setImages}) => {
         console.log(files.length);
         console.log(files);
 
-        
-        if (!e.target.files) return;
-
         // setImages([...images, files]);
 
         for(let i = 0; i < files.length; i++){
@@ -45,21 +42,7 @@ export const ImgsPreview = ({images,setImages}) => {
            
         }
     }
-    
-        // if(files && files[0]) {
-        //     let file = files[0]
-        //     const reader = new FileReader()
-        //     reader.onload = (e) => {
 
-        //         // imagePreviewに読み込み結果（データURL）を代入する
-        //         // imagePreviewに値を入れると<output>に画像が表示される
-        //         setImagePreview(e.target?.result)//表示用画像
-        //         setImg(file)//送信用画像
-        //         setImages([...images, ...e.target.files]);
-        //     };
-        //     reader.readAsDataURL(e.target?.files[0])
-        // }
-        // }
 
     return (
         <div>画像ファイルを選択

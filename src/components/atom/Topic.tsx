@@ -1,18 +1,10 @@
 import {BASE_URL} from "../../config/url"
-
-// type Topic_C_Type = {
-//     id: number;
-//     title: string;
-//     user_id?:number;
-//     tags?:string[];
-//     participants?:number
-//     status:string
-//     image_path:string
-// };
+import {topicType} from "../../types/topicType"
 
 
-export const Topic = (TopicType) => {
-    let { id,title,user_id,game_name,tags,status,image_path} = TopicType;
+
+export const Topic = (Props:topicType) => {
+    let { id,title,user_id,game_title,body,tags,status,image_path} = Props;
     let game_hard = 'Nintendo Switch';
     if(image_path == null){
         image_path = 'img/top/sample_topic.jpg';
@@ -26,7 +18,7 @@ export const Topic = (TopicType) => {
         <div className="topic_card_wrap">
             <h4 className="_title">
                 {title}
-                <span className="game_name">{game_name} / {game_hard}</span>
+                <span className="game_name">{game_title} / {game_hard}</span>
             </h4>
 
             

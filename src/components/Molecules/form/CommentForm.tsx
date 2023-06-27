@@ -1,5 +1,4 @@
 import {ChangeEvent,useState,useContext,memo,FC} from 'react'
-// import {ImgPreview} from "../../Templates/ImgPreview"
 import { LoggedInContext } from "../../../provider/LoggedInProvider";
 import {CommentsType} from "types/commentsType"
 

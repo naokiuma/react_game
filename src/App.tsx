@@ -24,7 +24,6 @@ import './css/global/main.css';
 function App() {
   return (
     <>
-    {/* <ChakraProvider resetCSS={false}> */}
       <BrowserRouter>
           <main>
           {/* <TotalGameCountProvider>  */}
@@ -38,7 +37,6 @@ function App() {
           {/* </TotalGameCountProvider> */}
           </main>
       </BrowserRouter>
-    {/* </ChakraProvider> */}
 
     </>
   );

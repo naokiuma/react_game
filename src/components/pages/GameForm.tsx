@@ -11,10 +11,10 @@ import {createGame} from "../../infrastructure/gameDriver";
 import {GetCategory} from "../../infrastructure/categoryDriver";
 
 //Form用の情報
-type FormInputs = {
+type GameFormInputs = {
     name:string;
     genre:string;
-	imgData?;
+	imgData?:File[];
 };
 
 
@@ -38,7 +38,7 @@ export const GameForm = memo(() => {
         reset,
         watch,
         formState: { errors }
-    } = useForm<FormInputs>({
+    } = useForm<GameFormInputs>({
     });
 
     //画像のみ別途用意
@@ -47,7 +47,7 @@ export const GameForm = memo(() => {
     const [images, setImages] = useState<File[]>([]);
 
     
-    const submit = async (data:FormInputs) => {
+    const submit = async (data:GameFormInputs) => {
         let result = await createGame(data.name,data.genre,['1','2'],images)
 		console.log(result);
     }
@@ -82,7 +82,6 @@ export const GameForm = memo(() => {
                     
                     
                     <div className="write_area">
-                        {/* <ImgPreview setImage = {setImg}/> */}
                         <ImgsPreview images ={images} setImages = {setImages}/>
 
                     </div>
