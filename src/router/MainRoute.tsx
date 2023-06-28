@@ -19,8 +19,11 @@ import { Nomatch } from '../components/pages/Nomatch';
 
 
 
-import { Header } from '../components/Templates/Header';
-import { Footer } from '../components/Templates/Footer';
+// import { Header } from '../components/Templates/Header';
+// import { Footer } from '../components/Templates/Footer';
+
+import { Layout } from '../components/Templates/Layout';
+
 
 /**
  * 
@@ -29,30 +32,26 @@ import { Footer } from '../components/Templates/Footer';
 export const MainRoute = () => {
     return(
         <Routes>
-            <Route index element={<Home />} />
+  			<Route element={<Layout />}>
+				<Route index element={<Home />} />
+				<Route path="/login/" element={<Login/>} />
+				<Route path="/register/" element={<Register/>} />
+				<Route path="/about/" element={<About/>} />
+				<Route path="/user/" element={<UserDetail/>} />
 
-            
+				<Route path="/game" element={<GameWrap/>}>
+					<Route path="search" element={<GameSearch/>} />
+					<Route path="create" element={<GameForm/>} />
+					<Route path=":id" element={<GameDetail />} />
+				</Route>
+				<Route path="/topic/:id" element={<TopicDetail />} />
+				<Route path="/topic/create" element={<TopicForm/>} />
 
-            <Route path="/login/" element={<Login/>} />
-            <Route path="/register/" element={<Register/>} />
-            <Route path="/about/" element={<About/>} />
-            <Route path="/user/" element={<UserDetail/>} />
-
-            <Route path="/game" element={<GameWrap/>}>
-				<Route path="search" element={<GameSearch/>} />
-				<Route path="create" element={<GameForm/>} />
-				<Route path=":id" element={<GameDetail />} />
+				<Route element={<PrivateRoute />}>
+				<Route path="/setting" element={<Setting/>}/>
+				</Route>
+				<Route path="*" element={<Nomatch />} />
 			</Route>
-
-
-
-            <Route path="/topic/:id" element={<TopicDetail />} />
-            <Route path="/topic/create" element={<TopicForm/>} />
-
-            <Route element={<PrivateRoute />}>
-              <Route path="/setting" element={<Setting/>}/>
-            </Route>
-            <Route path="*" element={<Nomatch />} />
         </Routes>
 
     )

@@ -1,22 +1,17 @@
-import axios from 'axios'
-
-import {LoggedInContext} from "../../provider/LoggedInProvider";
-import {ModalContext} from "../../provider/ModalProvider";
 
 import {useContext,FC,useState} from 'react'
-// import {Logout} from '../../fooks/useLogout'
+import {Link, Outlet } from "react-router-dom";
+import {LoggedInContext} from "../../provider/LoggedInProvider";
+import {ModalContext} from "../../provider/ModalProvider";
 import {LogOutUser} from '../../infrastructure/authDriver'
-import {Link } from "react-router-dom";
 import { NoticeModal } from "../global/NoticeModal"
-
 import { Searchbox } from "../Molecules/form/Searchbox"
 
 
 
 
 
-
-export const Header:FC = () => {
+export const Layout:FC = () => {
     const { userAuth,username,setUserAuth,setUserName } = useContext(LoggedInContext);
     let modalcontext = useContext(ModalContext)
     let [searcIsActive,setSearchBox] = useState(false)
@@ -75,6 +70,20 @@ export const Header:FC = () => {
 
             {  modalcontext.Modalmsg !== '' ? (<NoticeModal msg={modalcontext.Modalmsg} modalActive={true}/>) : (<></>)}
             <Searchbox modalStatus={searcIsActive}/>
+
+
+			<Outlet/>
+
+
+
+
+
+
+			<footer>
+				<span>
+				フッターパーツ
+				</span>
+			</footer>
 
 
          
