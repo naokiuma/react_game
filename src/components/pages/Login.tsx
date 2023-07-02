@@ -46,8 +46,8 @@ export const Login = () => {
 			setUseremail(response.data.email);
 			setUserAuth(true);
 
-			console.log('帰ってきたものは')
-			// console.log(res.data);
+			console.log('login successed')
+			// console.log(response.data);
 
 		})
 

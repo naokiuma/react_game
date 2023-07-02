@@ -7,3 +7,12 @@ export type CommentsType = {
     created_at?:string;
     updated_at?:string;
 };
+
+
+export type CommentFormType ={
+    form_title:string,//formの題名
+    isActive:boolean,
+    topic_id:number,
+    toggleModalActive:Function,
+	handleValueChange?:Function
+}

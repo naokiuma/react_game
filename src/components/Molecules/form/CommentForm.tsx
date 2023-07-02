@@ -1,19 +1,12 @@
 import {ChangeEvent,useState,useContext,memo,FC} from 'react'
 import { LoggedInContext } from "../../../provider/LoggedInProvider";
-import {CommentsType} from "types/commentsType"
-
+import {CommentFormType} from "types/commentsType"
 import {createComment} from "../../../infrastructure/commentDriver"
 
 
-type CommentFormProp ={
-    form_title:string,//formの題名
-    isActive:boolean,
-    topic_id:number,
-    toggleModalActive:Function,
-	handleValueChange?:Function
-}
 
-export const CommentForm:FC<CommentFormProp> = memo((props) => {
+
+export const CommentForm:FC<CommentFormType> = (props) => {
     console.log("コメントフォーム");
     console.log(props);
 
@@ -72,4 +65,4 @@ export const CommentForm:FC<CommentFormProp> = memo((props) => {
         </div>
     )
 
-})
+}

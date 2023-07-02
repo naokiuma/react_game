@@ -151,7 +151,7 @@ export const TopicDetail:FC = memo(() => {
                     toggleModalActive={toggleModalActive}
 					handleValueChange ={handleValueChange}
                 /> */}
-				{MemoedForm}
+				{/* {MemoedForm} */}
 
             </div>
             <div className="new_form_button">
