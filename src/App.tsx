@@ -9,14 +9,18 @@ import { ModalProvider} from "./provider/ModalProvider";
 import './App.css';
 import './css/global/reset.css';
 import './css/global/main.css';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 
 
+const queryClient = new QueryClient();
 
 
 function App() {
   return (
     <>
-      <BrowserRouter>
+	<QueryClientProvider client={queryClient}>
+    	<BrowserRouter>
           <main>
             <LoggedInProvider>
               <ModalProvider>
@@ -24,7 +28,9 @@ function App() {
               </ModalProvider>
             </LoggedInProvider>
           </main>
-      </BrowserRouter>
+    	</BrowserRouter>
+		<ReactQueryDevtools />
+	</QueryClientProvider>
     </>
   );
 }

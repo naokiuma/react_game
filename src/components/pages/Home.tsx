@@ -1,4 +1,5 @@
 import { memo,FC,useContext,useEffect, useState} from "react";
+import { useQuery } from 'react-query';
 import { Link } from "react-router-dom";//switch は Routesに変わった
 import { Topic } from "../atom/Topic";
 import {CategoryLabel } from "../atom/CategoryLabel";
@@ -17,7 +18,7 @@ import {GetCategory} from "../../infrastructure/categoryDriver";
 import '../../css/pages/top.css';
 
 
-const S_mainInfo = styled.section`
+const SMainInfo = styled.section`
 	margin: 170px auto 0;
 	width:1000px;
 	._each{
@@ -49,11 +50,6 @@ const S_mainInfo = styled.section`
 }`
 
 
-const Wrapper = styled.div`
-  text-align: center;
-`;
-
-
 export const Home:FC = memo(() => {
 
     const [modalActive,toggleModalActive] = useState(false)
@@ -78,12 +74,28 @@ export const Home:FC = memo(() => {
         slidesToScroll: 1
     };
     
+
+	const { isLoading, error, data } = useQuery(
+		'topics',
+		() => GetTopics()
+	);
+
+	console.log('useqyeru')
+	console.log(isLoading)
+	console.log(data)
+
+	
+
+
+
     //topicsを取得
     useEffect(() => {
-        GetTopics().then((data) => {
-            set_default_topics(data);
-            set_result_topics(data);
-        });
+		
+
+        // GetTopics().then((data) => {
+        //     set_default_topics(data);
+        //     set_result_topics(data);
+        // });
         GetCategory().then((data_c) => {
             set_category(data_c);
         });
@@ -122,7 +134,7 @@ export const Home:FC = memo(() => {
                             <p>ゲームスプレッドは、ゲームの楽しみをもっと増やすためのサービスです。</p>
                         </div>
 
-                        <S_mainInfo>
+                        <SMainInfo>
                             <div className="_each">
                                 <div>
                                     <h3>
@@ -171,7 +183,7 @@ export const Home:FC = memo(() => {
                                     <img src="/img/top/top_billboard3.jpg" alt="" />
                                 </figure>
                             </div>
-                        </S_mainInfo>
+                        </SMainInfo>
                     </div>
                 </section>
                 
@@ -201,13 +213,14 @@ export const Home:FC = memo(() => {
                     </div>
                     {
                         (() => {
-                        if (!result_topics) {
+                        // if (!result_topics) {
+                        if (isLoading) {
                             return( <div>loading</div> );
                         } else {
                             return ( 
                             <ul className="topics_wrap">
                                 {
-                                    result_topics.map((topic)=>(
+                                    data.map((topic)=>(
                                         <li key={topic.id}>
                                             <Link to={"/topic/" + topic.id} state={topic}>
                                                 <Topic

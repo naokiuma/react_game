@@ -10,6 +10,8 @@ export const GetTopics = async(topic_ID?:number,limit?:number) => {
         checkApiUrl(target_URL)
 
         const res = await axios.get(target_URL)
+		console.log('ここでのres')
+		console.log(res)
         return res.data;
       }catch(e){
         console.log('400 Error!!')
