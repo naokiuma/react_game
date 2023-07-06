@@ -8,7 +8,7 @@ import {CommentsType} from "types/commentsType"
 import {LoggedInContext} from "../../provider/LoggedInProvider";
 
 //新規form
-import { CommentForm } from "../Molecules/form/CommentForm"
+import { CommentForm } from "../form/CommentForm"
 
 //インフラ
 import {getComments} from "../../infrastructure/commentDriver";

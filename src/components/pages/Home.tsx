@@ -8,7 +8,6 @@ import { LoggedInContext } from "../../provider/LoggedInProvider";
 import genres from '../../utils/game_genre'
 import {BASE_URL} from "../../config/url"
 import Slider from "react-slick";
-import styled from 'styled-components';
 
 //インフラ
 import {GetTopics} from "../../infrastructure/topicDriver";
@@ -17,37 +16,7 @@ import {GetCategory} from "../../infrastructure/categoryDriver";
 //css
 import '../../css/pages/top.css';
 
-
-const SMainInfo = styled.section`
-	margin: 170px auto 0;
-	width:1000px;
-	._each{
-		margin-top: 120px;
-		display: flex;
-		justify-content: space-between;
-		i{
-			margin-right: 10px;
-		}
-		h3{
-			font-size: 30px;
-		}
-		figure{
-			width: 500px;
-			border-radius: 30px;
-			overflow: hidden;
-		}
-		div{
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-			text-align: center;
-			p{
-				margin-top:20px;
-			}
-		}
-	}
-}`
+import { SMainInfo } from './Home_css';
 
 
 export const Home:FC = memo(() => {
@@ -56,9 +25,9 @@ export const Home:FC = memo(() => {
     let [categories,set_category] = useState([])
     let [games,set_game] = useState([])
 
-    let [result_topics,set_result_topics] = useState([]);
-    let [default_topics,set_default_topics] = useState([]);
-    let [selecged_tag,set_tag] = useState(null)
+    const [filtedTopics,setTopics] = useState([]);
+    // let [default_topics,set_default_topics] = useState([]);
+    let [selecged_tag,set_tag] = useState<null |string>(null)
 
 
     const { username } = useContext(LoggedInContext); 
@@ -75,14 +44,17 @@ export const Home:FC = memo(() => {
     };
     
 
-	const { isLoading, error, data } = useQuery(
+	const { isLoading, error, data:topics = [] } = useQuery(
 		'topics',
 		() => GetTopics()
 	);
 
+	//取得トピックをフィルターする
+	
+	// let filted_topics = topics;
+
 	console.log('useqyeru')
 	console.log(isLoading)
-	console.log(data)
 
 	
 
@@ -90,12 +62,7 @@ export const Home:FC = memo(() => {
 
     //topicsを取得
     useEffect(() => {
-		
-
-        // GetTopics().then((data) => {
-        //     set_default_topics(data);
-        //     set_result_topics(data);
-        // });
+		console.log('初回useeffects')
         GetCategory().then((data_c) => {
             set_category(data_c);
         });
@@ -106,25 +73,81 @@ export const Home:FC = memo(() => {
             }
         })
 
+
     },[])
 
 
-    //タグが選ばれた際
-    useEffect(() => {
-        if(selecged_tag != 'すべて'){
-            let temp_array = [];
-            default_topics.filter( _topic => {
+	//タグが選ばれた際
+    // useEffect(() => {
+    //     if(selecged_tag != 'すべて'){
+    //         let temp = [];
+	// 		console.log('seletedは' + selecged_tag)
+    //         topics.filter( _topic => {
+    //             _topic.tags.forEach(each_tags => {
+    //                 if(Object.values(each_tags).includes(selecged_tag)){
+    //                     temp.push(_topic)
+    //                 }
+    //             })
+    //         })
+	// 		console.log('filterd')
+	// 		console.log(temp)
+    //         setTopics(temp);
+    //     }
+    // },[selecged_tag])
+
+
+	useEffect(() => {
+		if (topics) {
+			setTopics(topics); // 初回のレンダリング時にデータを表示するため、フィルタリングせずにそのまま設定します
+		}
+	}, [topics]);
+
+
+
+	const handleTagFilter = (orgs:string) =>{
+		if(orgs != 'すべて'){
+            let temp = [];
+			console.log('seletedは' + orgs)
+            topics.filter( _topic => {
                 _topic.tags.forEach(each_tags => {
-                    if(Object.values(each_tags).includes(selecged_tag)){
-                        temp_array.push(_topic)
+                    if(Object.values(each_tags).includes(orgs)){
+                        temp.push(_topic)
                     }
                 })
             })
-            set_result_topics(temp_array);
+			console.log('filterd')
+			console.log(temp)
+            setTopics(temp);
         }else{
-            set_result_topics(default_topics)
-        }
-    },[selecged_tag])
+			console.log('ここ')
+			setTopics(topics);
+		}
+
+	}
+
+
+    //タグが選ばれた際
+    // useEffect(() => {
+    //     if(selecged_tag != 'すべて'){
+    //         let temp = [];
+	// 		console.log('seletedは' + selecged_tag)
+    //         topics.filter( _topic => {
+    //             _topic.tags.forEach(each_tags => {
+    //                 if(Object.values(each_tags).includes(selecged_tag)){
+    //                     temp.push(_topic)
+    //                 }
+    //             })
+    //         })
+	// 		console.log('filterd')
+	// 		console.log(temp)
+    //         setTopics(temp);
+    //     }else{
+	// 		console.log('ここ')
+	// 		setTopics(topics);
+	// 	}
+    // },[selecged_tag])
+
+
         return (
             <div className="top_page">
                 <section className="hero">
@@ -190,16 +213,17 @@ export const Home:FC = memo(() => {
                 <section className="home_section main_contents">
                     <h2>みんなのプレイログ</h2>
                     <div className="tags_search_wrap">
-
                         {
                             (() => {
                             if (typeof categories !== 'undefined') {
                                 return(
                                     <div>
                                         {categories.map((_category)=>(
-                                            <CategoryLabel name={_category.name} func={set_tag} bgc={_category.color}/>
+                                            <CategoryLabel name={_category.name} func={handleTagFilter} bgc={_category.color}/>
                                         ))}
-                                        <span className="category_label" onClick={() => set_tag('すべて')}>すべて</span>
+                                        {/* <span className="category_label" onClick={() => set_tag('すべて')}>すべて</span> */}
+                                        <span className="category_label" onClick={() => handleTagFilter('すべて')}>すべて</span>
+
                                     </div>
                                 );
                             }else{
@@ -211,16 +235,16 @@ export const Home:FC = memo(() => {
                         }
                        
                     </div>
+					あ
                     {
                         (() => {
-                        // if (!result_topics) {
-                        if (isLoading) {
+                        if (!filtedTopics) {
                             return( <div>loading</div> );
                         } else {
                             return ( 
                             <ul className="topics_wrap">
                                 {
-                                    data.map((topic)=>(
+                                    filtedTopics.map((topic)=>(
                                         <li key={topic.id}>
                                             <Link to={"/topic/" + topic.id} state={topic}>
                                                 <Topic

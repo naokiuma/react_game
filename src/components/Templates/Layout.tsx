@@ -5,7 +5,7 @@ import {LoggedInContext} from "../../provider/LoggedInProvider";
 import {ModalContext} from "../../provider/ModalProvider";
 import {LogOutUser} from '../../infrastructure/authDriver'
 import { NoticeModal } from "../global/NoticeModal"
-import { Searchbox } from "../Molecules/form/Searchbox"
+import { Searchbox } from "../form/Searchbox"
 
 
 
