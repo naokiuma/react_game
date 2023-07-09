@@ -21,18 +21,23 @@ import { SMainInfo } from './Home_css';
 
 export const Home:FC = memo(() => {
 
+
+	const { isLoading, error, data:topics = [] } = useQuery(
+		'topics',
+		() => GetTopics()
+	);
+	
     const [modalActive,toggleModalActive] = useState(false)
     let [categories,set_category] = useState([])
     let [games,set_game] = useState([])
 
-    const [filtedTopics,setTopics] = useState([]);
-    // let [default_topics,set_default_topics] = useState([]);
-    let [selecged_tag,set_tag] = useState<null |string>(null)
+    const [filtedTopics,setTopics] = useState(topics);
+    // const [filtedTopics,setTopics] = useState([]);
 
+    let [selecged_tag,set_tag] = useState<null |string>(null)
 
     const { username } = useContext(LoggedInContext); 
     const { userid } = useContext(LoggedInContext);
-
 
     let SliderSettings = {
         dots: false,
@@ -44,25 +49,8 @@ export const Home:FC = memo(() => {
     };
     
 
-	const { isLoading, error, data:topics = [] } = useQuery(
-		'topics',
-		() => GetTopics()
-	);
 
-	//取得トピックをフィルターする
-	
-	// let filted_topics = topics;
-
-	console.log('useqyeru')
-	console.log(isLoading)
-
-	
-
-
-
-    //topicsを取得
     useEffect(() => {
-		console.log('初回useeffects')
         GetCategory().then((data_c) => {
             set_category(data_c);
         });
@@ -72,80 +60,25 @@ export const Home:FC = memo(() => {
                 set_game(data_g);            
             }
         })
-
-
     },[])
-
-
-	//タグが選ばれた際
-    // useEffect(() => {
-    //     if(selecged_tag != 'すべて'){
-    //         let temp = [];
-	// 		console.log('seletedは' + selecged_tag)
-    //         topics.filter( _topic => {
-    //             _topic.tags.forEach(each_tags => {
-    //                 if(Object.values(each_tags).includes(selecged_tag)){
-    //                     temp.push(_topic)
-    //                 }
-    //             })
-    //         })
-	// 		console.log('filterd')
-	// 		console.log(temp)
-    //         setTopics(temp);
-    //     }
-    // },[selecged_tag])
-
-
-	useEffect(() => {
-		if (topics) {
-			setTopics(topics); // 初回のレンダリング時にデータを表示するため、フィルタリングせずにそのまま設定します
-		}
-	}, [topics]);
 
 
 
 	const handleTagFilter = (orgs:string) =>{
-		if(orgs != 'すべて'){
-            let temp = [];
-			console.log('seletedは' + orgs)
-            topics.filter( _topic => {
+		if(orgs === 'すべて'){
+			setTopics(topics);
+        }else{
+			let temp = [];
+            topics.forEach( _topic => {
                 _topic.tags.forEach(each_tags => {
                     if(Object.values(each_tags).includes(orgs)){
                         temp.push(_topic)
                     }
                 })
             })
-			console.log('filterd')
-			console.log(temp)
             setTopics(temp);
-        }else{
-			console.log('ここ')
-			setTopics(topics);
 		}
-
 	}
-
-
-    //タグが選ばれた際
-    // useEffect(() => {
-    //     if(selecged_tag != 'すべて'){
-    //         let temp = [];
-	// 		console.log('seletedは' + selecged_tag)
-    //         topics.filter( _topic => {
-    //             _topic.tags.forEach(each_tags => {
-    //                 if(Object.values(each_tags).includes(selecged_tag)){
-    //                     temp.push(_topic)
-    //                 }
-    //             })
-    //         })
-	// 		console.log('filterd')
-	// 		console.log(temp)
-    //         setTopics(temp);
-    //     }else{
-	// 		console.log('ここ')
-	// 		setTopics(topics);
-	// 	}
-    // },[selecged_tag])
 
 
         return (
@@ -156,7 +89,6 @@ export const Home:FC = memo(() => {
                             <h1>ゲームを積んで、残して、広げよう。</h1>
                             <p>ゲームスプレッドは、ゲームの楽しみをもっと増やすためのサービスです。</p>
                         </div>
-
                         <SMainInfo>
                             <div className="_each">
                                 <div>
@@ -223,7 +155,6 @@ export const Home:FC = memo(() => {
                                         ))}
                                         {/* <span className="category_label" onClick={() => set_tag('すべて')}>すべて</span> */}
                                         <span className="category_label" onClick={() => handleTagFilter('すべて')}>すべて</span>
-
                                     </div>
                                 );
                             }else{
@@ -235,8 +166,31 @@ export const Home:FC = memo(() => {
                         }
                        
                     </div>
-					あ
-                    {
+					トピックス
+				
+					<ul className="topics_wrap">
+						{
+							filtedTopics.map((topic)=>(
+								<li key={topic.id}>
+									<Link to={"/topic/" + topic.id} state={topic}>
+										<Topic
+											id={topic.id}
+											game_title={topic.game_name}
+											title={topic.title}
+											user_id={topic.parent_user_id}
+											tags={topic.tags}
+											status={topic.status}
+											image_path={topic.image_path}
+										/>
+									</Link>
+									{(username !== 'ゲスト' && userid === topic.parent_user_id) && <span>編集</span>}
+								</li>
+							))
+						}  
+					</ul>                                
+                           
+                    
+                    {/* {
                         (() => {
                         if (!filtedTopics) {
                             return( <div>loading</div> );
@@ -265,7 +219,7 @@ export const Home:FC = memo(() => {
                             );
                         }
                         })()
-                    }
+                    } */}
                 </section>
 
                 <section className="top_games">
@@ -298,6 +252,7 @@ export const Home:FC = memo(() => {
         )
 
 })
+
 
 
 
