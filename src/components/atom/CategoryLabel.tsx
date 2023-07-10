@@ -3,7 +3,7 @@ import { FC,ReactElement } from "react"
 type CategoryType ={
     name:string,
     bgc?:string,
-    func:Function,
+    func?:Function,
 }
 
 export const CategoryLabel:FC<CategoryType> = (Prop):ReactElement => {

@@ -13,7 +13,14 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+	defaultOptions: {
+		queries: {
+			refetchOnMount: false,
+			suspense: true,  // ここでsuspenseモードを全体で有効化する
+		},
+	},
+});
 
 
 function App() {

@@ -20,18 +20,7 @@ type FormInputs = {
     Status: string;
 };
 
-
-// type Props = {
-//     form_title:string,//formの題名
-//     isActive:boolean,//modal表示フラグ
-//     set_result_topics:Function
-//     toggleModalActive:Function,
-//     is_edit?:boolean,
-//     title?:string,
-//     body?:string,
-//     status?:string    
-// }
-
+// todo 次ここ
 export const TopicForm = memo((props) => {
 
     let url = new URL(window.location.href);

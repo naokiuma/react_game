@@ -2,16 +2,17 @@ import axios from "axios";
 import {API_BASE_URL,API_SANCTUM_URL} from "../config/url"
 import {checkApiUrl} from "../utils/checkApiUrl"
 
+function sleep(ms: number) {
+	return new Promise(resolve => setTimeout(resolve, ms));
+  }
+  
 
 export const GetTopics = async(topic_ID?:number,limit?:number) => {
     try{
         let FetchURL = `${API_BASE_URL}/topics`;
         let target_URL = topic_ID == undefined ? FetchURL : `${FetchURL}/${topic_ID}`;
         checkApiUrl(target_URL)
-
         const res = await axios.get(target_URL)
-		console.log('ここでのres')
-		console.log(res)
         return res.data;
       }catch(e){
         console.log('400 Error!!')

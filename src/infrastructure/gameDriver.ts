@@ -18,7 +18,7 @@ export const searchGame = async(keyword:string):Promise<[GameType]> => {
 
 export const getGame = async(game_ID?:number) => {
   try{
-        let FetchURL = game_ID !== undefined ? `${API_BASE_URL}/game/${game_ID}` : `${API_BASE_URL}/game`;
+        let FetchURL = game_ID === undefined ? `${API_BASE_URL}/game` : `${API_BASE_URL}/game/${game_ID}`;
         checkApiUrl(FetchURL)
         const res = await axios.get(FetchURL)
         console.log('getGame');
@@ -30,6 +30,20 @@ export const getGame = async(game_ID?:number) => {
       }
 }
 
+
+export const getGames = async(game_ID?:number) => {
+	try{
+		  let FetchURL = game_ID === undefined ? `${API_BASE_URL}/game` : `${API_BASE_URL}/game/${game_ID}`;
+		  checkApiUrl(FetchURL)
+		  const res = await axios.get(FetchURL)
+		  console.log('getGame');
+		  console.log(res.data)
+		  return res.data;
+		}catch(e){
+		  console.log('400 Error!!')
+		  console.log(e)
+		}
+  }
 
 export const createGame = (name:string,genre:string,category:Array<string>,imgData?) => {
   
