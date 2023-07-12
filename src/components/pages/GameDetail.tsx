@@ -1,6 +1,5 @@
 
-import { memo,FC,useContext,useState } from "react";
-import { useQuery } from 'react-query';
+import { memo,FC,useContext,useState,Suspense,useEffect } from "react";
 
 import { useLocation,useNavigate } from "react-router-dom";
 import {LoggedInContext} from "../../provider/LoggedInProvider";
@@ -19,32 +18,34 @@ export const GameDetail:FC = memo(() => {
 
     //game_id todo id取得関数を作る
     const locationVal = useLocation();
-	const history = useNavigate();
-
     let tempID = locationVal.pathname//　「game/4」など
     const gameId = Number(tempID.replace('/game/', ''))//game_id
 
-    // //トピック編集用モーダル
-    // const [EditmodalActive,toggleEditModalActive] = useState(false)
+    //トピック編集用モーダル
     const [modalActive,toggleModalActive] = useState(false)
-    
-	// const {data:game = []}
-	const {data:game } = useQuery(
-		'game',
-		() => getGames(gameId),
-	);
+    let [game,setGame] = useState([]);
+
+
+	useEffect(() => {
+        getGames(gameId).then((data) => {
+            console.log('取得ゲーム')
+            console.log(data)
+            setGame(data[0])
+        })
+    },[])
 
 
     const tags = ['ローグライク','泣ける']
+
+
     return (
 		<>
 			<Helmet>
 				<title>Runtime Title</title>
 			</Helmet>
 		
-			<section className="topic_detail">
-				aaaa
-				
+		
+			<section className="topic_detail">				
 				<div className="main_contents">
 					<h2 className="topic_title">  
 						{game['game_name']}

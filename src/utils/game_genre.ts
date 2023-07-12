@@ -1,6 +1,6 @@
 const genres:string[] = [
     'アクション',
-    'RPG',
+	'RPG',
     'シュミレーション',
     'パズル',
 ]

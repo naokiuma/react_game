@@ -16,15 +16,7 @@ import { TopicForm } from '../components/pages/TopicForm';
 
 import { Register } from '../components/pages/Register';
 import { Nomatch } from '../components/pages/Nomatch';
-
-
-
-// import { Header } from '../components/Templates/Header';
-// import { Footer } from '../components/Templates/Footer';
-
 import { Layout } from '../components/Templates/Layout';
-
-
 
 
 /**

@@ -3,13 +3,16 @@ import { memo,FC,useState,useEffect } from "react";
 import { useForm } from 'react-hook-form';
 import {ImgPreview} from "../Templates/ImgPreview"
 import {ImgsPreview} from "../Templates/ImgsPreview"
+import { useQuery } from 'react-query';
+
 
 import { useNavigate } from 'react-router-dom';
 
 //インフラ
 import {createTopic} from "../../infrastructure/topicDriver";
 import {GetCategory} from "../../infrastructure/categoryDriver";
-import {getGame} from "../../infrastructure/gameDriver";
+import {getGames} from "../../infrastructure/gameDriver";
+
 
 
 //Form用の情報
@@ -23,27 +26,31 @@ type FormInputs = {
 // todo 次ここ
 export const TopicForm = memo((props) => {
 
+	console.log('それぞれ')
     let url = new URL(window.location.href);
+	console.log(url)
     let params = url.searchParams;
+	console.log(params)
     let target_game_id;
 
     const navigate = useNavigate();
-    if(params.get('game_id') ===  ''){
+    if(params.get('game_id') === ''){
         navigate('/game/search');
     }else{
-        // let defaultValue = params.get('game_id') ? params.get('game_id') : '';
         target_game_id = params.get('game_id');
     }
 
+	const {data:game_data = []} = useQuery(
+		'game',
+		() => getGames(target_game_id)
+	)
 
-    //数字のみ
-    const numberRegExp = /^[0-9]+$/ 
 
     //既存カテゴリーの取得--------------
     let [categories,set_category] = useState([])
     
     //ゲームデータの取得----------------
-    let [game_data,set_game] = useState([])
+    // let [game_data,set_game] = useState([])
 
     //ローディング例
     const [isLoading, setIsLoading] = useState(true);
@@ -53,18 +60,18 @@ export const TopicForm = memo((props) => {
             set_category(data);//ローグライクとか。
             console.log(data)
         });
-        getGame(target_game_id).then((data)=>{
-            set_game(data);
-             //ゲーム情報が取得できなければリダイレクト
-             if(!data[0]){
-                 console.log('ないよ〜〜')
-                 console.log(data[0])
-                navigate('/game/search');
-            }
-            // console.log('取得したゲーム情報')
-            // console.log(game_data[0])
-            setIsLoading(false);
-        })
+        // getGames(target_game_id).then((data)=>{
+        //     set_game(data);
+        //      //ゲーム情報が取得できなければリダイレクト
+        //      if(!data[0]){
+        //          console.log('ないよ〜〜')
+        //          console.log(data[0])
+        //         navigate('/game/search');
+        //     }
+        //     // console.log('取得したゲーム情報')
+        //     // console.log(game_data[0])
+        //     setIsLoading(false);
+        // })
     },[])
 
     //useformの初期化
@@ -108,16 +115,13 @@ export const TopicForm = memo((props) => {
                     </select>
 
                     <div className="write_area game_id">
-                        {isLoading ? (
-                            <p>Loading...</p>
-                        ) : (
-                            <>
-                                <span className="value_title">
-                                    {game_data[0].game_name}
-                                </span><br/>
-                                <input {...register('Gameid')}　value={game_data[0].id}/>
-                            </>
-                        )}
+						<>
+							<span className="value_title">
+								{game_data[0].game_name}
+							</span><br/>
+							<input {...register('Gameid')}　value={game_data[0].id}/>
+						</>
+					
                     </div>
 
                     <div className="write_area" >

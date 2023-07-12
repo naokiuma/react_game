@@ -188,28 +188,32 @@ export const Home:FC = memo(() => {
 				
 			</section>
 
-			<section className="top_games">
-				<h2>ゲーム一覧</h2>
-				<div className="games">
-					<Slider {...SliderSettings}>
-						{games.map((_game)=>(
-							<div className="_each">
-								<h3>{_game.game_name}</h3>
-								<span>{genres[_game.genres]}</span>
-								<figure className="img_wrap">
-									{_game.images.length > 0
-										? <img src={BASE_URL + _game.images[0].image_file_name.replace("public","storage")} alt="" />
-										: <img src="/img/global/sample_game.jpg" alt="" />
-									}
-								</figure>
+			<Suspense fallback={<div>Game Loading...</div>}>
+
+				<section className="top_games">
+					<h2>ゲーム一覧</h2>
+					<div className="games">
+						<Slider {...SliderSettings}>
+							{games.map((_game)=>(
+								<div className="_each">
+									<h3>{_game.game_name}</h3>
+									<span>{genres[_game.genres]}</span>
+									<figure className="img_wrap">
+										{_game.images.length > 0
+											? <img src={BASE_URL + _game.images[0].image_file_name.replace("public","storage")} alt="" />
+											: <img src="/img/global/sample_game.jpg" alt="" />
+										}
+									</figure>
 
 
-							</div>
-						))}
-					</Slider>
+								</div>
+							))}
+						</Slider>
 
-				</div>
-			</section>
+					</div>
+				</section>
+			</Suspense>
+
 
 			<div className="new_form_button">
 				<button onClick={() => toggleModalActive(!modalActive)}>投稿</button>
