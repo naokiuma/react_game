@@ -1,5 +1,5 @@
-import {BASE_URL} from "../../config/url"
-import {topicType} from "../../types/topicType"
+import {BASE_URL} from "config/url"
+import {topicType} from "types/topicType"
 
 
 
@@ -20,8 +20,6 @@ export const Topic = (Props:topicType) => {
                 {title}
                 <span className="game_name">{game_title} / {game_hard}</span>
             </h4>
-
-            
             <div className="sub_info">
                 <div className="status_label">
                     {status}

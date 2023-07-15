@@ -1,18 +1,15 @@
-import { FC,ReactElement } from "react"
+import React, { FC,ReactElement } from "react"
 
 type CategoryType ={
     name:string,
     bgc?:string,
-    func?:Function,
+    func?:(name)=>void
 }
 
 export const CategoryLabel:FC<CategoryType> = (Prop):ReactElement => {
 
     return(
-        <span className="category_label"
-            // style={{backgroundColor:Prop.bgc}}
-            onClick={()=>Prop.func(Prop.name) }
-        >
+        <span className="category_label" onClick={()=>Prop.func(Prop.name)}>
             {Prop.name}
         </span>
     )

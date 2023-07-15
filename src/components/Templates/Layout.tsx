@@ -4,7 +4,7 @@ import {Link, Outlet } from "react-router-dom";
 import {LoggedInContext} from "../../provider/LoggedInProvider";
 import {ModalContext} from "../../provider/ModalProvider";
 import {LogOutUser} from '../../infrastructure/authDriver'
-import { NoticeModal } from "../global/NoticeModal"
+import { NoticeModal } from "components/modal/NoticeModal"
 import { Searchbox } from "../form/Searchbox"
 
 

@@ -1,9 +1,13 @@
 import { memo,FC } from "react";
-import {ChangeEvent,useState} from 'react'
 
 
 
-export const NoticeModal:FC<{msg:string,modalActive:boolean}> = memo((props) => {
+type NoticeModal = {
+	msg:string,
+	modalActive:boolean
+}
+
+export const NoticeModal:FC<NoticeModal> = memo((props) => {
     let msg = props.msg;
     let isActive = props.modalActive
 

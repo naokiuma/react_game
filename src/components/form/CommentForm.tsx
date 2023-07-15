@@ -1,7 +1,7 @@
 import {ChangeEvent,useState,useContext,memo,FC} from 'react'
-import { LoggedInContext } from "../../provider/LoggedInProvider";
+import { LoggedInContext } from "provider/LoggedInProvider";
 import {CommentFormType} from "types/commentsType"
-import {createComment} from "../../infrastructure/commentDriver"
+import {createComment} from "infrastructure/commentDriver"
 
 
 

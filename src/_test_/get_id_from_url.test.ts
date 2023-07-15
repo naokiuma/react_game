@@ -1,4 +1,4 @@
-import {getidfromURL} from '../utils/getidfromURL'
+import {getidfromURL} from 'utils/getidfromURL'
 
 
 test('urlからidを取得1',()=>{

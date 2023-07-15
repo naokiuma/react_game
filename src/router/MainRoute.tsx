@@ -1,22 +1,20 @@
-import { Route,Routes,BrowserRouter } from "react-router-dom";//switch は Routesに変わった
-import { Home } from "../components/pages/Home";
-import { PrivateRoute } from "../../src/router/PrivateRoute";
-import { About } from "../components/pages/About";
-import { UserDetail } from "../components/pages/UserDetail";
+import { Route,Routes} from "react-router-dom";
+import { PrivateRoute } from "router/PrivateRoute";
+import { Home } from "components/pages/Home";
+import { About } from "components/pages/About";
+import { UserDetail } from "components/pages/UserDetail";
+import { GameWrap } from "components/pages/GameWrap";
+import { GameSearch } from "components/pages/GameSearch";
+import { GameForm } from 'components/pages/GameForm';
+import { GameDetail } from 'components/pages/GameDetail';
+import { Setting } from "components/pages/Setting";
+import { TopicDetail } from 'components/pages/TopicDetail';
+import { Login } from 'components/pages/Login';
+import { TopicForm } from 'components/pages/TopicForm';
 
-import { GameWrap } from "../components/pages/GameWrap";
-
-import { GameSearch } from "../components/pages/GameSearch";
-import { GameForm } from '../components/pages/GameForm';
-import { GameDetail } from '../components/pages/GameDetail';
-import { Setting } from "../components/pages/Setting";
-import { TopicDetail } from '../components/pages/TopicDetail';
-import { Login } from '../components/pages/Login';
-import { TopicForm } from '../components/pages/TopicForm';
-
-import { Register } from '../components/pages/Register';
-import { Nomatch } from '../components/pages/Nomatch';
-import { Layout } from '../components/Templates/Layout';
+import { Register } from 'components/pages/Register';
+import { Nomatch } from 'components/pages/Nomatch';
+import { Layout } from 'components/templates/Layout';
 
 
 /**
@@ -42,7 +40,7 @@ export const MainRoute = () => {
 				<Route path="/topic/create" element={<TopicForm/>} />
 
 				<Route element={<PrivateRoute />}>
-				<Route path="/setting" element={<Setting/>}/>
+					<Route path="/setting" element={<Setting/>}/>
 				</Route>
 				<Route path="*" element={<Nomatch />} />
 			</Route>

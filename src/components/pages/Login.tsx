@@ -2,8 +2,8 @@ import axios from 'axios'
 import { ChangeEvent, useState,useContext} from 'react'
 import { useLocation,useNavigate } from "react-router-dom";
 
-import {LoggedInContext} from "../../provider/LoggedInProvider";
-import {LogInUser} from '../../infrastructure/authDriver'
+import {LoggedInContext} from "provider/LoggedInProvider";
+import {LogInUser} from 'infrastructure/authDriver'
 
 
 type LoginParams = {

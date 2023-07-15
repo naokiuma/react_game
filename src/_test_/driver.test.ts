@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {GetTopics} from "../infrastructure/topicDriver";
+import {GetTopics} from "infrastructure/topicDriver";
 
 //モジュール名を渡すことで、モジュール全体をモック化できる。p71
 jest.mock('axios')

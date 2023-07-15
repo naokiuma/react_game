@@ -10,7 +10,7 @@ export const GetCategory = async() => {
         const res = await axios.get(FetchURL)
         return res.data;
       }catch(e){
-        console.log('400 Error!!')
+        console.log('category error')
         console.log(e)
       }
 

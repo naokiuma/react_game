@@ -1,14 +1,14 @@
 
 import { memo,FC,useState,useEffect } from "react";
 import { useForm } from 'react-hook-form';
-import {ImgsPreview} from "../Templates/ImgsPreview"
+import {ImgPreview} from "components/templates/ImgPreview"
 
-import genres from '../../utils/game_genre'
+import genres from 'utils/game_genre'
 
 
 //インフラ
-import {createGame} from "../../infrastructure/gameDriver";
-import {GetCategory} from "../../infrastructure/categoryDriver";
+import {createGame} from "infrastructure/gameDriver";
+import {GetCategory} from "infrastructure/categoryDriver";
 
 //Form用の情報
 type GameFormInputs = {
@@ -42,19 +42,16 @@ export const GameForm = memo(() => {
     });
 
     //画像のみ別途用意
-    // const [imgData, setImg] = useState<File>(null);
-
     const [images, setImages] = useState<File[]>([]);
 
-    
     const submit = async (data:GameFormInputs) => {
         let result = await createGame(data.name,data.genre,['1','2'],images)
 		console.log(result);
     }
 
+
     return (
         <section className="form_wrap game_form">
-
             <h1>ゲームを登録する</h1>
             <form onSubmit={handleSubmit(submit)}>
                 <div className=''>
@@ -79,13 +76,10 @@ export const GameForm = memo(() => {
                         </dd>
                     </dl>
 
-                    
-                    
                     <div className="write_area">
-                        <ImgsPreview images ={images} setImages = {setImages}/>
-
+                        <ImgPreview images ={images} setImages = {setImages}/>
                     </div>
-                    <button className="submit_btn">投稿します</button>
+                    <button className="submit_btn">投稿</button>
                 </div>
             </form>
         </section>

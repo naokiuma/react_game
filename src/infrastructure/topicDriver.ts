@@ -2,10 +2,7 @@ import axios from "axios";
 import {API_BASE_URL,API_SANCTUM_URL} from "../config/url"
 import {checkApiUrl} from "../utils/checkApiUrl"
 
-function sleep(ms: number) {
-	return new Promise(resolve => setTimeout(resolve, ms));
-  }
-  
+
 
 export const GetTopics = async(topic_ID?:number,limit?:number) => {
     try{
@@ -13,15 +10,20 @@ export const GetTopics = async(topic_ID?:number,limit?:number) => {
         let target_URL = topic_ID == undefined ? FetchURL : `${FetchURL}/${topic_ID}`;
         checkApiUrl(target_URL)
         const res = await axios.get(target_URL)
-        return res.data;
-      }catch(e){
-        console.log('400 Error!!')
-        console.log(e)
-      }
+		console.log('gettopicsの取得データ')
+		console.log(res.data);
+		return res.data;
+	
+
+    }catch(e){
+		console.log('network')
+        console.log(e.response)
+
+    }
 }
 
 
-export const createTopic = (game_id,title,body,status,imgData?) => {
+export const CreateTopic = (game_id,title,body,status,imgData?) => {
     const target_URL =  `${API_BASE_URL}/topics/create`;
     checkApiUrl(target_URL);
     const res = axios//csrf保護の初期化

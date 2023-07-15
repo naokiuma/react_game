@@ -1,4 +1,4 @@
-import genres from '../utils/game_genre'
+import genres from 'utils/game_genre'
 
 
 describe('ゲームジャンル',() =>{

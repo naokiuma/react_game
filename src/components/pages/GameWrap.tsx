@@ -7,7 +7,6 @@ export const GameWrap:FC = () => {
 		<div className="main_contents">
 			ゲームラップです
 		 	<Outlet/>
-
 			<div>
                 <Link to="/game/create">ゲームを新しく登録する</Link><br/>
                 <Link to="/game/search">ゲームを探す</Link><br/>
