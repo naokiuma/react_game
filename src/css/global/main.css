@@ -162,7 +162,6 @@ header {
   align-items: center;
   padding: 10px 20px;
   position: fixed;
-  border-bottom: 1px solid #525252;
   box-shadow: 0 1px 0px #52525282;
 }
 
@@ -559,7 +558,7 @@ footer {
   background-color: gray;
 }
 
-.search_result_area {
+.game_card_wrap {
   background-color: #fff;
   padding: 20px;
   min-height: 400px;
@@ -567,37 +566,38 @@ footer {
   justify-content: space-around;
 }
 
-.search_result_area .each_game {
+.game_card_wrap .each_game {
   width: 30%;
   border: 1px solid #CCD6CE;
   box-shadow: 0 2px 2px #525252;
 }
 
-.search_result_area .each_game ._first {
+.game_card_wrap .each_game ._first {
   font-size: 20px;
   padding: 10px;
   font-weight: bold;
 }
 
-.search_result_area .each_game ._first span {
+.game_card_wrap .each_game ._first span {
   font-size: 16px;
 }
 
-.search_result_area .each_game ._first a {
+.game_card_wrap .each_game ._first a {
   color: #525252;
   font-weight: bold;
 }
 
-.search_result_area .each_game ._topics {
+.game_card_wrap .each_game ._topics {
   padding: 10px;
 }
 
-.search_result_area .each_game .img_wrap {
+.game_card_wrap .each_game .img_wrap {
   position: relative;
   height: 280px;
+  padding: 10px;
 }
 
-.search_result_area .each_game .img_wrap img {
+.game_card_wrap .each_game .img_wrap img {
   width: 100%;
   height: 100%;
   object-fit: cover;

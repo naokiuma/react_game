@@ -209,7 +209,6 @@ header{
     align-items: center;
     padding: 10px 20px;
     position: fixed;
-    border-bottom: 1px solid #525252;
     box-shadow: 0 1px 0px #52525282;
     .header_logo{
         width: 200px;
@@ -584,7 +583,7 @@ footer{
 
 
 
-.search_result_area{
+.game_card_wrap{
     background-color: #fff;
     padding: 20px;
     min-height: 400px;
@@ -617,6 +616,7 @@ footer{
         .img_wrap{
             position: relative;
             height: 280px;
+			padding: 10px;
             img{
                 width: 100%;
                 height: 100%;

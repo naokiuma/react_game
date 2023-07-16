@@ -18,7 +18,7 @@ type GameFormInputs = {
 };
 
 
-export const GameForm = memo(() => {
+export const GameRegist = memo(() => {
 
     //既存カテゴリーの取得--------------
     let [categories,set_category] = useState([])
@@ -46,6 +46,7 @@ export const GameForm = memo(() => {
 
     const submit = async (data:GameFormInputs) => {
         let result = await createGame(data.name,data.genre,['1','2'],images)
+		console.log('ゲームを登録！')
 		console.log(result);
     }
 

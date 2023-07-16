@@ -1,17 +1,13 @@
 
-import { memo,FC,useState,useEffect } from "react";
+import { memo,FC,useState,useEffect,Suspense } from "react";
 import { useForm } from 'react-hook-form';
-import {ImgPreview} from "../Templates/ImgPreview"
-import {ImgsPreview} from "../Templates/ImgsPreview"
-import { useQuery } from 'react-query';
-
-
+import {ImgPreview} from "components/templates/ImgPreview"
 import { useNavigate } from 'react-router-dom';
 
 //インフラ
-import {createTopic} from "../../infrastructure/topicDriver";
-import {GetCategory} from "../../infrastructure/categoryDriver";
-import {getGames} from "../../infrastructure/gameDriver";
+import {CreateTopic} from "infrastructure/topicDriver";
+import {GetCategory} from "infrastructure/categoryDriver";
+import {getGames} from "infrastructure/gameDriver";
 
 
 
@@ -24,7 +20,7 @@ type FormInputs = {
 };
 
 // todo 次ここ
-export const TopicForm = memo((props) => {
+export const TopicRegist = memo((props) => {
 
 	console.log('それぞれ')
     let url = new URL(window.location.href);
@@ -34,44 +30,40 @@ export const TopicForm = memo((props) => {
     let target_game_id;
 
     const navigate = useNavigate();
-    if(params.get('game_id') === ''){
-        navigate('/game/search');
-    }else{
-        target_game_id = params.get('game_id');
-    }
+    // if(params.get('game_id') === ''){
+    //     navigate('/game/search');
+    // }else{
+    //     target_game_id = params.get('game_id');
+    // }
 
-	const {isLoading, error, data:game_data = []} = useQuery(
-		'game',
-		() => getGames(target_game_id)
-	)
+	target_game_id = params.get('game_id');
+
 
 
     //既存カテゴリーの取得--------------
     let [categories,set_category] = useState([])
     
     //ゲームデータの取得----------------
-    // let [game_data,set_game] = useState([])
+    let [game_data,set_game] = useState([])
 
     //ローディング例
-    // const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         GetCategory().then((data) => {
             set_category(data);//ローグライクとか。
             console.log(data)
         });
-        // getGames(target_game_id).then((data)=>{
-        //     set_game(data);
-        //      //ゲーム情報が取得できなければリダイレクト
-        //      if(!data[0]){
-        //          console.log('ないよ〜〜')
-        //          console.log(data[0])
-        //         navigate('/game/search');
-        //     }
-        //     // console.log('取得したゲーム情報')
-        //     // console.log(game_data[0])
-        //     setIsLoading(false);
-        // })
+        getGames(target_game_id).then((data)=>{
+            set_game(data);
+             //ゲーム情報が取得できなければリダイレクト
+             if(!data[0]){
+                navigate('/game/search');
+            }
+            // console.log('取得したゲーム情報')
+            // console.log(game_data[0])
+            setIsLoading(false);
+        })
     },[])
 
     //useformの初期化
@@ -85,17 +77,15 @@ export const TopicForm = memo((props) => {
     });
 
     //画像のみ別途用意
-    const [imgData, setImg] = useState(null);
+    // const [imgData, setImg] = useState(null);
     const [images, setImages] = useState<File[]>([]);
 
 
     
     const submit = (data:FormInputs) => {
-        createTopic(data.Gameid,data.Title,data.Body,data.Status,imgData)  
+        CreateTopic(data.Gameid,data.Title,data.Body,data.Status,images)  
     }
 
-	if (isLoading) return <p>An error has occurred</p>;
-	if (error) return <p>Loading...</p>;
 	
 
     return (
@@ -120,12 +110,32 @@ export const TopicForm = memo((props) => {
 
                     <div className="write_area game_id">
 						<>
-							<span className="value_title">
-								{game_data[0].game_name}
-							</span><br/>
-							<input {...register('Gameid')}　value={game_data[0].id}/>
+						{
+							(() => {
+								if(game_data){
+									return(
+										<>
+											<span className="value_title">
+												{game_data[0].game_name}
+											</span><br/>
+											<input {...register('Gameid')}　value={game_data[0].id}/>
+										</>
+									)
+
+								}else{
+									return(
+										<div>bb</div>
+									)
+
+								}
+
+							})
+						}
+							
+						
 						</>
-					
+
+			
                     </div>
 
                     <div className="write_area" >
@@ -135,7 +145,7 @@ export const TopicForm = memo((props) => {
                     <p className="_attention_msg">{errors.Body?.message}</p> {/* エラー表示 */}
                     
                     <div className="write_area">
-                        <ImgPreview setImage = {setImg}/>
+                        <ImgPreview setImages = {setImages}/>
                     </div>
                     <button className="submit_btn">投稿</button>
                 </div>

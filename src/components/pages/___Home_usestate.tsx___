@@ -2,8 +2,6 @@ import { useMemo, FC, useContext,useEffect, useState, Suspense} from "react";
 import { Link } from "react-router-dom";
 import { Topic } from "components/atom/Topic";
 import { useQuery } from 'react-query';
-import { useTransition } from "react";
-
 
 import {CategoryLabel } from "components/atom/CategoryLabel";
 import {getGame} from "infrastructure/gameDriver";
@@ -14,12 +12,10 @@ import Slider from "react-slick";
 
 //インフラ
 import {GetTopics} from "infrastructure/topicDriver";
-import {UseFetch} from "infrastructure/interface/useFetch";
-
 import {GetCategory} from "infrastructure/categoryDriver";
 
 //css
-import 'css/pages/top.css';
+import '../../css/pages/top.css';
 import { SMainInfo } from './Home_css';
 
 
@@ -31,8 +27,9 @@ export const Home:FC = () => {
     let [result_topics,set_result_topics] = useState([]);
     let [default_topics,set_default_topics] = useState([]);
     let [categories,set_category] = useState([])
+
     let [games,set_game] = useState([])
-	// const [filtedTopics,setTopics] = useState([]);
+	const [filtedTopics,setTopics] = useState([]);
 
     let [selecged_tag,set_tag] = useState('すべて')
 
@@ -45,69 +42,37 @@ export const Home:FC = () => {
         slidesToScroll: 1
     };
 
-
+	// const { isLoading:topic_loading, error:topic_error, data:topics} = useQuery(
+	// 	'topics',
+	// 	() => GetTopics(),
+	// );
     
 
 	//初回処理
     useEffect(() => {
 
-		//デフォルト
-		// useFetch(GetTopics()).then(data) =>{
-		// GetTopics().then((data) => {
-        //     set_default_topics(data);
-        //     set_result_topics(data);
-        // });
-
-		//依存性を調整
-		const fetchTopicData = async () => {
-			await UseFetch({
-				fetcher: () => GetTopics().then((data) => {
-					set_default_topics(data);
-					set_result_topics(data);
-				})
-			})
-		}
-		fetchTopicData();
-		
-
-		
-
-
+		GetTopics().then((data) => {
+            set_default_topics(data);
+            set_result_topics(data);
+        });
         GetCategory().then((data_c) => {
             set_category(data_c);
         });
 
         getGame().then((data_g) =>{
-			console.log('くるか')
-			console.log(data_g)
             if(typeof data_g !== 'undefined' && data_g.length > 0){
-				console.log('くるか2')
-
                 set_game(data_g);            
             }
         })
 
-
     },[])
-
-
-	//react query版
-	// const { isLoading, error, data:topics} = useQuery(
-	// 	'topics_key',
-	// 	() => GetTopics(),
-	// );
-	
-	// console.log('まずはここまで来ているのか？');
-	// console.log(topics);
-
-	// const [filtedTopics,setTopics] = useState(topics);
 
 
 	// const filterTopics = useMemo(() =>{
 	// 	if(topics){
-	// 		console.log('返していくお')
 	// 		return topics.filter((_topic) => {
 	// 			if(selecged_tag === 'すべて' || selecged_tag === undefined) return true;
+
 	// 			return _topic.tags.some(_tag => _tag.name === selecged_tag)
 	// 		})
 	// 	}
@@ -230,13 +195,13 @@ export const Home:FC = () => {
 				{/* <Suspense fallback={<div>トピックスを取得中・・・</div>}> */}
 				{/* {
 					(() => {
-					if (error) {
-						return( <div>トピックスを取得中・・・</div> );
+					if (!filterTopics) {
+						return( <div>ピックスを取得中・・・</div> );
 					} else {
 						return ( 
 						<ul className="topics_wrap">
 							{
-								filtedTopics.map((topic)=>(
+								filterTopics.map((topic)=>(
 									<li key={topic.id}>
 										<Link to={"/topic/" + topic.id} state={topic}>
 											<Topic
@@ -261,7 +226,6 @@ export const Home:FC = () => {
 				{/* </Suspense> */}
 
 
-				{/* //通常盤 */}
 				{
 					(() => {
 					if (!result_topics) {
@@ -292,8 +256,9 @@ export const Home:FC = () => {
 					}
 					})()
 				}
-			</section>
+				
 
+			</section>
 
 			<section className="top_games">
 				<h2>ゲーム一覧</h2>
@@ -317,7 +282,6 @@ export const Home:FC = () => {
 
 				</div>
 			</section>
-
 
 			<div className="new_form_button">
 				<button onClick={() => toggleModalActive(!modalActive)}>投稿</button>

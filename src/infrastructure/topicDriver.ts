@@ -4,17 +4,17 @@ import {checkApiUrl} from "../utils/checkApiUrl"
 
 
 
+
 export const GetTopics = async(topic_ID?:number,limit?:number) => {
+
     try{
         let FetchURL = `${API_BASE_URL}/topics`;
         let target_URL = topic_ID == undefined ? FetchURL : `${FetchURL}/${topic_ID}`;
         checkApiUrl(target_URL)
-        const res = await axios.get(target_URL)
+		const res = await axios.get(target_URL)
 		console.log('gettopicsの取得データ')
 		console.log(res.data);
 		return res.data;
-	
-
     }catch(e){
 		console.log('network')
         console.log(e.response)
@@ -41,3 +41,5 @@ export const CreateTopic = (game_id,title,body,status,imgData?) => {
         })
         return res;
 }
+
+

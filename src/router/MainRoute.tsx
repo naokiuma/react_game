@@ -5,12 +5,12 @@ import { About } from "components/pages/About";
 import { UserDetail } from "components/pages/UserDetail";
 import { GameWrap } from "components/pages/GameWrap";
 import { GameSearch } from "components/pages/GameSearch";
-import { GameForm } from 'components/pages/GameForm';
+import { GameRegist } from 'components/pages/GameRegist';
 import { GameDetail } from 'components/pages/GameDetail';
 import { Setting } from "components/pages/Setting";
 import { TopicDetail } from 'components/pages/TopicDetail';
 import { Login } from 'components/pages/Login';
-import { TopicForm } from 'components/pages/TopicForm';
+import { TopicRegist } from 'components/pages/TopicRegist';
 
 import { Register } from 'components/pages/Register';
 import { Nomatch } from 'components/pages/Nomatch';
@@ -33,11 +33,11 @@ export const MainRoute = () => {
 
 				<Route path="/game" element={<GameWrap/>}>
 					<Route path="search" element={<GameSearch/>} />
-					<Route path="create" element={<GameForm/>} />
+					<Route path="create" element={<GameRegist/>} />
 					<Route path=":id" element={<GameDetail />} />
 				</Route>
 				<Route path="/topic/:id" element={<TopicDetail />} />
-				<Route path="/topic/create" element={<TopicForm/>} />
+				<Route path="/topic/create" element={<TopicRegist/>} />
 
 				<Route element={<PrivateRoute />}>
 					<Route path="/setting" element={<Setting/>}/>

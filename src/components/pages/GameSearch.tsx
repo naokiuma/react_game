@@ -76,14 +76,16 @@ export const GameSearch:FC = memo(() => {
                     (()=>{
                         if(result){
                             return(
-                                <ul className="search_result_area">
+                                <ul className="game_card_wrap">
                                     {result.map((each_game)=>(
                                         <li className="each_game" key={each_game.id}>
                                             <div className="_first">
                                                 <Link to={"/game/" + each_game.id} state={each_game}>
                                                     {each_game.game_name}<br/>
                                                 </Link>
-                                                <span>{genres[each_game.genres]}</span>
+                                                <span>
+													{genres[each_game.genres] ? genres[each_game.genres] : '未設定'}
+												</span>
                                             </div>
 
                                             {each_game.images != null && 
@@ -95,7 +97,6 @@ export const GameSearch:FC = memo(() => {
                                                     ))}
                                             </Slider>
                                             }
-
                                             {each_game.topics && 
                                             <div className="game_each_topic">
                                                 <span>話題</span>

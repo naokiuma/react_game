@@ -28,13 +28,11 @@ function App() {
     <>
 	<QueryClientProvider client={queryClient}>
     	<BrowserRouter>
-          <main>
             <LoggedInProvider>
               <ModalProvider>
                  <MainRoute />
               </ModalProvider>
             </LoggedInProvider>
-          </main>
     	</BrowserRouter>
 		<ReactQueryDevtools />
 	</QueryClientProvider>
