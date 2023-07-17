@@ -6,6 +6,7 @@ import {ModalContext} from "provider/ModalProvider";
 import {LogOutUser} from 'infrastructure/authDriver'
 import { NoticeModal } from "components/molecules/modal/NoticeModal"
 import { Searchbox } from "components/molecules/form/Searchbox"
+import { Footer } from './Footer';
 
 
 
@@ -69,23 +70,9 @@ export const Layout:FC = () => {
             {  modalcontext.Modalmsg !== '' ? (<NoticeModal msg={modalcontext.Modalmsg} modalActive={true}/>) : (<></>)}
             <Searchbox modalStatus={searcIsActive}/>
 
+				<Outlet/>
 
-			<Outlet/>
-
-
-
-
-
-
-			<footer>
-				<span>
-				フッターパーツ
-				</span>
-			</footer>
-
-
-         
-            
+			<Footer/>            
         </>
     )
 

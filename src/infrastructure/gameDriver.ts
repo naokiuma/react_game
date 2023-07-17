@@ -1,9 +1,12 @@
 import axios from "axios";
 import {API_BASE_URL,API_SANCTUM_URL} from "../config/url"
-import { GameType } from "../types/gameType";
-import {checkApiUrl} from "../utils/checkApiUrl"
+import { GameType } from "types/gameType";
+import {checkApiUrl} from "utils/checkApiUrl"
 
 
+/**
+ * 検索キーワードで取得
+ */
 export const searchGame = async(keyword:string):Promise<[GameType]> => {
     try{
       let FetchURL = `${API_BASE_URL}/game/search?game=${keyword}`;
@@ -16,21 +19,10 @@ export const searchGame = async(keyword:string):Promise<[GameType]> => {
     }
 }
 
-export const getGame = async(game_ID?:number) => {
-  try{
-        let FetchURL = game_ID === undefined ? `${API_BASE_URL}/game` : `${API_BASE_URL}/game/${game_ID}`;
-        checkApiUrl(FetchURL)
-        const res = await axios.get(FetchURL)
-        console.log('getGame');
-        console.log(res.data)
-        return res.data;
-      }catch(e){
-        console.log('400 Error!!')
-        console.log(e)
-      }
-}
 
-
+/**
+ * idから取得
+ */
 export const getGames = async(game_ID?:number) => {
 	try{
 		  let FetchURL = game_ID === undefined ? `${API_BASE_URL}/game` : `${API_BASE_URL}/game/${game_ID}`;

@@ -44,13 +44,11 @@ export const GameDetail:FC = memo(() => {
 				<title>Runtime Title</title>
 			</Helmet>
 		
-		
 			<section className="topic_detail">				
 				<div className="main_contents">
 					<h2 className="topic_title">  
 						{game['game_name']}
 					</h2>
-
 					<div className="tags">
 						{
 							tags.map((tag:string)=>(
@@ -60,8 +58,6 @@ export const GameDetail:FC = memo(() => {
 							))
 						}
 					</div>
-					
-
 				</div>
 				<div className="new_form_button">
 					<button onClick={() => toggleModalActive(!modalActive)}>投稿</button>

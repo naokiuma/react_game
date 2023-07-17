@@ -1,12 +1,14 @@
-import { useMemo, FC, useContext,useEffect, useState, Suspense} from "react";
+import { useMemo, FC, useContext,useEffect, useState} from "react";
 import { Link } from "react-router-dom";
 import { Topic } from "components/atom/Topic";
 import { useQuery } from 'react-query';
 import { useTransition } from "react";
+import {GameCard} from "components/molecules/card/GameCard"
+
 
 
 import {CategoryLabel } from "components/atom/CategoryLabel";
-import {getGame} from "infrastructure/gameDriver";
+import {getGames} from "infrastructure/gameDriver";
 import { LoggedInContext } from "provider/LoggedInProvider";
 import genres from 'utils/game_genre'
 import {BASE_URL} from "config/url"
@@ -71,13 +73,11 @@ export const Home:FC = () => {
 		
 
 		
-
-
         GetCategory().then((data_c) => {
             set_category(data_c);
         });
 
-        getGame().then((data_g) =>{
+        getGames().then((data_g) =>{
 			console.log('くるか')
 			console.log(data_g)
             if(typeof data_g !== 'undefined' && data_g.length > 0){
@@ -295,26 +295,12 @@ export const Home:FC = () => {
 			</section>
 
 
-			<section className="top_games">
+			<section className="top_games main_contents">
 				<h2>ゲーム一覧</h2>
-				<div className="games">
-					<Slider {...SliderSettings}>
-						{games.map((_game)=>(
-							<div className="_each">
-								<h3>{_game.game_name}</h3>
-								<span>{genres[_game.genres]}</span>
-								<figure className="img_wrap">
-									{_game.images.length > 0
-										? <img src={BASE_URL + _game.images[0].image_file_name.replace("public","storage")} alt="" />
-										: <img src="/img/global/sample_game.jpg" alt="" />
-									}
-								</figure>
-
-
-							</div>
-						))}
-					</Slider>
-
+				<div className="game_card_wrap">
+					{games.map((each_game)=>(
+						<GameCard key={each_game.id} {...each_game} />
+					))}
 				</div>
 			</section>
 

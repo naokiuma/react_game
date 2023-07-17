@@ -81,7 +81,7 @@ a:hover {
 }
 
 .top_games h2 {
-  font-size: 40px;
+  font-size: 30px;
   text-align: center;
 }
 
@@ -117,7 +117,7 @@ a:hover {
 }
 
 h1 {
-  font-size: 60px;
+  font-size: 40px;
 }
 
 .fw_b {
@@ -530,7 +530,7 @@ footer {
 }
 
 .search_input_wrap span {
-  font-size: 40px;
+  font-size: 30px;
   font-weight: bold;
   display: block;
   text-align: center;
@@ -555,7 +555,7 @@ footer {
 }
 
 .search_input_wrap .submit_btn:hover {
-  background-color: gray;
+  background-color: #4FEC6A;
 }
 
 .game_card_wrap {
@@ -563,41 +563,48 @@ footer {
   padding: 20px;
   min-height: 400px;
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 }
 
-.game_card_wrap .each_game {
-  width: 30%;
+.each_game {
+  width: 32%;
   border: 1px solid #CCD6CE;
-  box-shadow: 0 2px 2px #525252;
+  margin-right: 2%;
+  margin-top: 2%;
 }
 
-.game_card_wrap .each_game ._first {
+.each_game:nth-child(3n) {
+  margin-right: 0;
+}
+
+.each_game ._first {
   font-size: 20px;
   padding: 10px;
   font-weight: bold;
 }
 
-.game_card_wrap .each_game ._first span {
+.each_game ._first span {
   font-size: 16px;
 }
 
-.game_card_wrap .each_game ._first a {
+.each_game ._first a {
   color: #525252;
   font-weight: bold;
 }
 
-.game_card_wrap .each_game ._topics {
+.each_game ._topics {
   padding: 10px;
 }
 
-.game_card_wrap .each_game .img_wrap {
+.each_game .img_wrap {
   position: relative;
   height: 280px;
+  width: 100%;
   padding: 10px;
 }
 
-.game_card_wrap .each_game .img_wrap img {
+.each_game .img_wrap img {
   width: 100%;
   height: 100%;
   object-fit: cover;
