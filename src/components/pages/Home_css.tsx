@@ -11,7 +11,7 @@ export const SMainInfo = styled.section`
 			margin-right: 10px;
 		}
 		h3{
-			font-size: 30px;
+			font-size: 40px;
 		}
 		figure{
 			width: 500px;

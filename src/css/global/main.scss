@@ -57,6 +57,10 @@ a{
     }
 }
 
+h2{
+	font-size: 40px;
+}
+
 
 
 .search_icon_wrap{
@@ -107,7 +111,7 @@ a{
 .main_contents{
     max-width: 1280px;
     margin: auto;
-    padding: 100px 40px;
+    padding: 50px 40px;
     width: 100%;
     ._main_img_wrap{
         width: 80%;
@@ -124,7 +128,6 @@ a{
 .top_games{
     width: 100%;
     h2{
-        font-size: $secondary_text;
         text-align: center;
     }
     .games{
@@ -291,9 +294,7 @@ footer{
     li{
         width: 31%;
         margin-top: 20px;
-        border: 1px solid $neutral-400;
-        
-        box-shadow: 0 2px 2px #525252;
+        border: 1px solid $neutral-400;        
         &:nth-child(3n){
             margin-right: 0;
         }
@@ -600,18 +601,16 @@ footer{
 		font-size: $main_title;
 		padding: 10px;
 		font-weight: bold;
+		color: #525252;
 		span{
 			font-size: 16px;
-		}
-		a{
-			color: #525252;
-			font-weight: bold;
+			display: block;
+			font-weight: lighter;
 		}
 	}
 	._topics{
 		padding: 10px;
 		ul{
-			// padding: 10px;
 		}
 		li{
 		}
@@ -690,10 +689,7 @@ footer{
 
 /*topic詳細ページ*/
 .topic_detail{
-    .main_contents{
-        padding-top: 100px;
-        padding-bottom: 100px;
-    }
+
 }
 
 /*フォームページ*/

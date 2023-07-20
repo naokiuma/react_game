@@ -9,6 +9,7 @@ import {BASE_URL} from "config/url"
 
 export const GameCard:FC<GameType> = (props) => {
 
+
 	const slide_settings = {
         dots: false,
         autoplay:true,
@@ -24,7 +25,7 @@ export const GameCard:FC<GameType> = (props) => {
 
 			<div className="_first">
 					{props.game_name}
-				<span>
+				<span className="genre">
 					{genres[props.genres] ? genres[props.genres] : '未設定'}
 				</span>
 			</div>
@@ -32,8 +33,8 @@ export const GameCard:FC<GameType> = (props) => {
 			{props.images.length > 0 ?
 			<Slider {...slide_settings}>
 				{props.images.map((_img)=>(
-					<div className="img_wrap">
-						<img src={BASE_URL + _img.image_file_name.replace("public","storage")} alt="" />     
+					<div className="img_wrap" key={_img.image_file_name}>
+						<img src={BASE_URL + _img.image_file_name.replace("public","storage")} />     
 					</div>
 					))}
 			</Slider>
@@ -48,7 +49,7 @@ export const GameCard:FC<GameType> = (props) => {
 				<span>みんなの話題</span>
 				<ul className="_topics">
 					{props.topics.map((_topic)=>(
-						<li>
+						<li key={_topic.id}>
 							<span>名前：{_topic.title}</span><br/>
 							<span>状況：{_topic.status}</span><br/>
 							

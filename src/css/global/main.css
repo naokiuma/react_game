@@ -14,6 +14,10 @@ a:hover {
   opacity: 0.8;
 }
 
+h2 {
+  font-size: 40px;
+}
+
 .search_icon_wrap {
   cursor: pointer;
 }
@@ -64,7 +68,7 @@ a:hover {
 .main_contents {
   max-width: 1280px;
   margin: auto;
-  padding: 100px 40px;
+  padding: 50px 40px;
   width: 100%;
 }
 
@@ -81,7 +85,6 @@ a:hover {
 }
 
 .top_games h2 {
-  font-size: 30px;
   text-align: center;
 }
 
@@ -260,7 +263,6 @@ footer {
   width: 31%;
   margin-top: 20px;
   border: 1px solid #CCD6CE;
-  box-shadow: 0 2px 2px #525252;
 }
 
 .topics_wrap li:nth-child(3n) {
@@ -582,15 +584,13 @@ footer {
   font-size: 20px;
   padding: 10px;
   font-weight: bold;
+  color: #525252;
 }
 
 .each_game ._first span {
   font-size: 16px;
-}
-
-.each_game ._first a {
-  color: #525252;
-  font-weight: bold;
+  display: block;
+  font-weight: lighter;
 }
 
 .each_game ._topics {
@@ -664,11 +664,6 @@ footer {
 }
 
 /*topic詳細ページ*/
-.topic_detail .main_contents {
-  padding-top: 100px;
-  padding-bottom: 100px;
-}
-
 /*フォームページ*/
 .game_form,
 .topic_form {

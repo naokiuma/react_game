@@ -29,7 +29,6 @@ export const getGames = async(game_ID?:number) => {
 		  checkApiUrl(FetchURL)
 		  const res = await axios.get(FetchURL)
 		  console.log('getGame');
-		  console.log(res);
 		  console.log(res.data)
 		  return res.data;
 		}catch(e){

@@ -1,15 +1,26 @@
 
 import { memo,FC } from "react";
-import {LoggedInContext} from "../../provider/LoggedInProvider";
+import {Counter} from "components/study/Callback"
 
-export const About:FC = memo(() => {
+export const About = () => {
 	console.log('描写');
 	console.log('アバウトです');
 
     return (
         <section >
+
+			アバウトページです<br/>
+			アバウトページです<br/>
+			アバウトページです<br/>
+			アバウトページです<br/>
+			アバウトページです
+			アバウトページです
+			アバウトページです
+
             アバウトページです
+			<Counter />
+
         </section>
     )
 
-})
+}

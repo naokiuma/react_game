@@ -1,5 +1,7 @@
-export const BASE_URL = 'http://localhost:8888/'
-export const API_BASE_URL = 'http://localhost:8888/api'
-export const API_IMAGE_URL = 'http://localhost:8888/api'
-export const API_SANCTUM_URL = 'http://localhost:8888/sanctum/csrf-cookie'
+// // dev、本番ののurlを定義
+export const BASE_URL = process.env.REACT_APP_BASE_URL
+export const API_BASE_URL = process.env.REACT_APP_API_BASE_URL
+export const API_IMAGE_URL = process.env.REACT_APP_API_IMAGE_URL
+export const API_SANCTUM_URL = process.env.REACT_APP_API_SANCTUM_URL
+
 

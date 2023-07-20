@@ -5,7 +5,7 @@ import { useQuery } from 'react-query';
 import { useTransition } from "react";
 import {GameCard} from "components/molecules/card/GameCard"
 
-
+import top_billboard1 from 'assets/img/top_billboard1.jpg' 
 
 import {CategoryLabel } from "components/atom/CategoryLabel";
 import {getGames} from "infrastructure/gameDriver";
@@ -28,61 +28,34 @@ import { SMainInfo } from './Home_css';
 export const Home:FC = () => {
     const { username } = useContext(LoggedInContext); 
     const { userid } = useContext(LoggedInContext);
+	console.log('ない')
+	console.log( process.env.REACT_APP_BASE_URL)
+
 
     const [modalActive,toggleModalActive] = useState(false)
     let [result_topics,set_result_topics] = useState([]);
     let [default_topics,set_default_topics] = useState([]);
     let [categories,set_category] = useState([])
     let [games,set_game] = useState([])
-	// const [filtedTopics,setTopics] = useState([]);
-
     let [selecged_tag,set_tag] = useState('すべて')
-
-    let SliderSettings = {
-        dots: false,
-        autoplay:true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 3,
-        slidesToScroll: 1
-    };
-
-
-    
+	
+	// const [filtedTopics,setTopics] = useState([]);
 
 	//初回処理
     useEffect(() => {
-
 		//デフォルト
-		// useFetch(GetTopics()).then(data) =>{
-		// GetTopics().then((data) => {
-        //     set_default_topics(data);
-        //     set_result_topics(data);
-        // });
-
-		//依存性を調整
-		const fetchTopicData = async () => {
-			await UseFetch({
-				fetcher: () => GetTopics().then((data) => {
-					set_default_topics(data);
-					set_result_topics(data);
-				})
-			})
-		}
-		fetchTopicData();
-		
-
+		GetTopics().then((data) => {
+            set_default_topics(data);
+            set_result_topics(data);
+        });
 		
         GetCategory().then((data_c) => {
             set_category(data_c);
         });
 
         getGames().then((data_g) =>{
-			console.log('くるか')
 			console.log(data_g)
             if(typeof data_g !== 'undefined' && data_g.length > 0){
-				console.log('くるか2')
-
                 set_game(data_g);            
             }
         })
@@ -90,16 +63,19 @@ export const Home:FC = () => {
 
     },[])
 
+	//インターフェイスを使ったreactクエリ
+	// const {data:topics,error,isLoading} = UseFetch({key:'topics',fetcher:GetTopics});
+	// console.log('syutokude-ta')
+	// console.log(topics)
+	// console.log(error)
+	// console.log(isLoading)
+
 
 	//react query版
 	// const { isLoading, error, data:topics} = useQuery(
 	// 	'topics_key',
 	// 	() => GetTopics(),
 	// );
-	
-	// console.log('まずはここまで来ているのか？');
-	// console.log(topics);
-
 	// const [filtedTopics,setTopics] = useState(topics);
 
 
@@ -143,7 +119,7 @@ export const Home:FC = () => {
 			<section className="hero">
 				<div className="inner">
 					<div className="first_info">
-						<h1>ゲームを積んで、残して、広げよう。</h1>
+						<h1>ゲームを積んで、プレイして。</h1>
 						<p>ゲームスプレッドは、ゲームの楽しみをもっと増やすためのサービスです。</p>
 					</div>
 
@@ -160,7 +136,9 @@ export const Home:FC = () => {
 								</p>
 							</div>
 							<figure>
-								<img src="/img/top/top_billboard1.jpg" alt="" />
+								{/* <img src="/img/top/top_billboard1.jpg" alt="" /> */}
+
+								<img src={top_billboard1} alt="メイン画像" />
 							</figure>
 						</div>
 						<div className="_each">
@@ -174,8 +152,8 @@ export const Home:FC = () => {
 									探す
 								</h3>
 								<p>
-									エモい」「繰り返し遊べる」「コスパ最高」「指痛」<br/>
-									同じカテゴリーの次にやるゲームを探すのにも使えるぞ。
+									「エモい」「繰り返し遊べる」「コスパ最高」「指痛」<br/>
+									みんなの感想から、次にやるゲームも探そう！
 								</p>
 							</div>
 						</div>
@@ -210,7 +188,7 @@ export const Home:FC = () => {
 							return(
 								<div>
 									{categories.map((_category)=>(
-										<CategoryLabel name={_category.name} func={set_tag} bgc={_category.color}/>
+										<CategoryLabel name={_category.name} func={set_tag} bgc={_category.color} key={_category.category_id}/>
 									))}
 									<span className="category_label" onClick={() => set_tag('すべて')}>すべて</span>
 								</div>

@@ -1,9 +1,25 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import {API_BASE_URL,API_SANCTUM_URL} from "../config/url"
 import {checkApiUrl} from "../utils/checkApiUrl"
 
 
+type topicResponce = {
+	body: string
+	game_id: number
+	game_name: string
+	genres: string
+	hard: string
+	id: number
+	image_path: string
+	parent_user_id: number
+	status: string
+	tags:{
+		color:string,
+		name:string
+	}
+	title: string
 
+}
 
 export const GetTopics = async(topic_ID?:number,limit?:number) => {
 
@@ -11,9 +27,11 @@ export const GetTopics = async(topic_ID?:number,limit?:number) => {
         let FetchURL = `${API_BASE_URL}/topics`;
         let target_URL = topic_ID == undefined ? FetchURL : `${FetchURL}/${topic_ID}`;
         checkApiUrl(target_URL)
-		const res = await axios.get(target_URL)
+
+
+		const res:AxiosResponse = await axios.get(target_URL)
 		console.log('gettopicsの取得データ')
-		console.log(res.data);
+		console.log(res);
 		return res.data;
     }catch(e){
 		console.log('network')
