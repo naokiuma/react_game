@@ -15,7 +15,7 @@ import {BASE_URL} from "config/url"
 import Slider from "react-slick";
 
 //インフラ
-import {GetTopics} from "infrastructure/topicDriver";
+import {GetTopics,useGetTopics} from "infrastructure/topicDriver";
 import {UseFetch} from "infrastructure/interface/useFetch";
 
 import {GetCategory} from "infrastructure/categoryDriver";
@@ -41,13 +41,22 @@ export const Home:FC = () => {
 	
 	// const [filtedTopics,setTopics] = useState([]);
 
+	const { getTopics, loading, topics, error } = useGetTopics();
+	// const useGetTopicsFook = useGetTopics();
+	// useGetTopicsFook.getPosts();
+	// console.log('取得データ')
+	// console.log(useGetTopicsFook.posts)
+
 	//初回処理
     useEffect(() => {
-		//デフォルト
-		GetTopics().then((data) => {
-            set_default_topics(data);
-            set_result_topics(data);
-        });
+
+		getTopics();
+
+		// デフォルト
+		// GetTopics().then((data) => {
+        //     set_default_topics(data);
+        //     set_result_topics(data);
+        // });
 		
         GetCategory().then((data_c) => {
             set_category(data_c);
@@ -79,36 +88,33 @@ export const Home:FC = () => {
 	// const [filtedTopics,setTopics] = useState(topics);
 
 
-	// const filterTopics = useMemo(() =>{
-	// 	if(topics){
-	// 		console.log('返していくお')
-	// 		return topics.filter((_topic) => {
-	// 			if(selecged_tag === 'すべて' || selecged_tag === undefined) return true;
-	// 			return _topic.tags.some(_tag => _tag.name === selecged_tag)
-	// 		})
-	// 	}
-	// },[selecged_tag,topics])
-
-
-	
-
+	const filterTopics = useMemo(() =>{
+		if(topics){
+			console.log('返していくお')
+			return topics.filter((_topic) => {
+				if(selecged_tag === 'すべて' || selecged_tag === undefined) return true;
+				return _topic.tags.some(_tag => _tag.name === selecged_tag)
+			})
+		}
+	},[selecged_tag,topics])
 
     // //タグが選ばれた際(通常クエリで行う場合)
-    useEffect(() => {
-        if(selecged_tag != 'すべて'){
-            let temp_array = [];
-            default_topics.filter( _topic => {
-                _topic.tags.forEach(each_tags => {
-                    if(Object.values(each_tags).includes(selecged_tag)){
-                        temp_array.push(_topic)
-                    }
-                })
-            })
-            set_result_topics(temp_array);
-        }else{
-            set_result_topics(default_topics)
-        }
-    },[selecged_tag])
+    // useEffect(() => {
+    //     if(selecged_tag != 'すべて'){
+    //         let temp_array = [];
+    //         default_topics.filter( _topic => {
+    //             _topic.tags.forEach(each_tags => {
+    //                 if(Object.values(each_tags).includes(selecged_tag)){
+    //                     temp_array.push(_topic)
+    //                 }
+    //             })
+    //         })
+    //         set_result_topics(temp_array);
+    //     }else{
+    //         set_result_topics(default_topics)
+    //     }
+    // },[selecged_tag])
+
 
 	
 
@@ -241,14 +247,15 @@ export const Home:FC = () => {
 
 				{/* //通常盤 */}
 				{
+
 					(() => {
-					if (!result_topics) {
+					if (loading || error) {
 						return( <div>loading</div> );
 					} else {
 						return ( 
 						<ul className="topics_wrap">
 							{
-								result_topics.map((topic)=>(
+								filterTopics.map((topic)=>(
 									<li key={topic.id}>
 										<Link to={"/topic/" + topic.id} state={topic}>
 											<Topic
@@ -269,6 +276,40 @@ export const Home:FC = () => {
 						);
 					}
 					})()
+
+
+
+
+
+					//デフォルト
+					// (() => {
+					// if (!result_topics) {
+					// 	return( <div>loading</div> );
+					// } else {
+					// 	return ( 
+					// 	<ul className="topics_wrap">
+					// 		{
+					// 			result_topics.map((topic)=>(
+					// 				<li key={topic.id}>
+					// 					<Link to={"/topic/" + topic.id} state={topic}>
+					// 						<Topic
+					// 							id={topic.id}
+					// 							game_title={topic.game_name}
+					// 							title={topic.title}
+					// 							user_id={topic.parent_user_id}
+					// 							tags={topic.tags}
+					// 							status={topic.status}
+					// 							image_path={topic.image_path}
+					// 						/>
+					// 					</Link>
+					// 					{(username !== 'ゲスト' && userid === topic.parent_user_id) && <span>編集</span>}
+					// 				</li>
+					// 			))
+					// 		}  
+					// 	</ul>                                
+					// 	);
+					// }
+					// })()
 				}
 			</section>
 

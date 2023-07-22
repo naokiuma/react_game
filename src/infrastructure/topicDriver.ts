@@ -1,6 +1,7 @@
 import axios, { AxiosResponse } from "axios";
-import {API_BASE_URL,API_SANCTUM_URL} from "../config/url"
-import {checkApiUrl} from "../utils/checkApiUrl"
+import {API_BASE_URL,API_SANCTUM_URL} from "config/url"
+import { useState, useCallback} from "react";
+import {checkApiUrl} from "utils/checkApiUrl"
 
 
 type topicResponce = {
@@ -21,7 +22,37 @@ type topicResponce = {
 
 }
 
+export const useGetTopics = (topic_ID?) => {
+	const [topics,setTopics] = useState([]);
+	const [loading,setLoading] = useState(false);
+	const [error,setError] = useState(false);
+
+	let FetchURL = `${API_BASE_URL}/topics`;
+    let target_URL = topic_ID == undefined ? FetchURL : `${FetchURL}/${topic_ID}`;
+    checkApiUrl(target_URL)
+
+	const getTopics = useCallback(() =>{
+		setLoading(true)
+
+		axios.get(target_URL)
+		.then((res) => {
+			setTopics(res.data)
+		})
+		.catch(() => {
+			setError(true)
+		})
+		.finally(() => {
+			setLoading(false)
+
+		})
+	},[])
+	return {getTopics,loading,topics,error};
+}
+
+
+// export const GetTopics = async(topic_ID?:number,limit?:number):Promise<topicResponce> => {
 export const GetTopics = async(topic_ID?:number,limit?:number) => {
+
 
     try{
         let FetchURL = `${API_BASE_URL}/topics`;
@@ -29,7 +60,7 @@ export const GetTopics = async(topic_ID?:number,limit?:number) => {
         checkApiUrl(target_URL)
 
 
-		const res:AxiosResponse = await axios.get(target_URL)
+		const res: AxiosResponse= await axios.get(target_URL)
 		console.log('gettopicsの取得データ')
 		console.log(res);
 		return res.data;
