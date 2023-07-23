@@ -31,7 +31,7 @@ export const useGetTopics = (topic_ID?) => {
     let target_URL = topic_ID == undefined ? FetchURL : `${FetchURL}/${topic_ID}`;
     checkApiUrl(target_URL)
 
-	const getTopics = useCallback(() =>{
+	const getTopics = () =>{
 		setLoading(true)
 
 		axios.get(target_URL)
@@ -45,7 +45,7 @@ export const useGetTopics = (topic_ID?) => {
 			setLoading(false)
 
 		})
-	},[])
+	}
 	return {getTopics,loading,topics,error};
 }
 

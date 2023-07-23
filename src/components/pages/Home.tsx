@@ -5,19 +5,13 @@ import { useQuery } from 'react-query';
 import { useTransition } from "react";
 import {GameCard} from "components/molecules/card/GameCard"
 
-import top_billboard1 from 'assets/img/top_billboard1.jpg' 
-
 import {CategoryLabel } from "components/atom/CategoryLabel";
 import {getGames} from "infrastructure/gameDriver";
 import { LoggedInContext } from "provider/LoggedInProvider";
-import genres from 'utils/game_genre'
-import {BASE_URL} from "config/url"
-import Slider from "react-slick";
 
 //インフラ
-import {GetTopics,useGetTopics} from "infrastructure/topicDriver";
-import {UseFetch} from "infrastructure/interface/useFetch";
-
+import {useGetTopics} from "infrastructure/topicDriver";
+// import {GetTopics,useGetTopics} from "infrastructure/topicDriver";
 import {GetCategory} from "infrastructure/categoryDriver";
 
 //css
@@ -30,7 +24,6 @@ export const Home:FC = () => {
     const { userid } = useContext(LoggedInContext);
 	console.log('ない')
 	console.log( process.env.REACT_APP_BASE_URL)
-
 
     const [modalActive,toggleModalActive] = useState(false)
     let [result_topics,set_result_topics] = useState([]);
@@ -49,8 +42,8 @@ export const Home:FC = () => {
 
 	//初回処理
     useEffect(() => {
-
 		getTopics();
+
 
 		// デフォルト
 		// GetTopics().then((data) => {
@@ -90,7 +83,6 @@ export const Home:FC = () => {
 
 	const filterTopics = useMemo(() =>{
 		if(topics){
-			console.log('返していくお')
 			return topics.filter((_topic) => {
 				if(selecged_tag === 'すべて' || selecged_tag === undefined) return true;
 				return _topic.tags.some(_tag => _tag.name === selecged_tag)
@@ -142,9 +134,7 @@ export const Home:FC = () => {
 								</p>
 							</div>
 							<figure>
-								{/* <img src="/img/top/top_billboard1.jpg" alt="" /> */}
-
-								<img src={top_billboard1} alt="メイン画像" />
+								<img src="/img/top/top_billboard1.jpg" alt="" />
 							</figure>
 						</div>
 						<div className="_each">
@@ -188,23 +178,21 @@ export const Home:FC = () => {
 				<h2>みんなのプレイログ</h2>
 				<div className="tags_search_wrap">
 
+					{/* タグ */}
 					{
-						(() => {
-						if (typeof categories !== 'undefined') {
-							return(
+						typeof categories !== 'undefined' ? 
+							(
 								<div>
 									{categories.map((_category)=>(
 										<CategoryLabel name={_category.name} func={set_tag} bgc={_category.color} key={_category.category_id}/>
 									))}
 									<span className="category_label" onClick={() => set_tag('すべて')}>すべて</span>
 								</div>
-							);
-						}else{
-							return(
+							):
+							(
 								<div>カテゴリーがありません。</div>
 							)
-						}
-						})()
+						
 					}
 					
 				</div>
@@ -247,12 +235,9 @@ export const Home:FC = () => {
 
 				{/* //通常盤 */}
 				{
-
-					(() => {
-					if (loading || error) {
-						return( <div>loading</div> );
-					} else {
-						return ( 
+					loading || error ?
+					( <div>loading</div> ):
+					(
 						<ul className="topics_wrap">
 							{
 								filterTopics.map((topic)=>(
@@ -272,17 +257,12 @@ export const Home:FC = () => {
 									</li>
 								))
 							}  
-						</ul>                                
-						);
-					}
-					})()
-
-
-
-
-
-					//デフォルト
-					// (() => {
+						</ul>     
+					)
+				}
+					{/* //デフォルト */}
+					
+					{/* // (() => {
 					// if (!result_topics) {
 					// 	return( <div>loading</div> );
 					// } else {
@@ -309,8 +289,8 @@ export const Home:FC = () => {
 					// 	</ul>                                
 					// 	);
 					// }
-					// })()
-				}
+					// })() */}
+				
 			</section>
 
 

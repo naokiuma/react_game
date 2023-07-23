@@ -2,26 +2,24 @@
 import { memo,useMemo,FC,useContext } from "react";
 import { useEffect,useState } from 'react';
 import { useLocation } from "react-router-dom";
-import {getidfromURL} from '../../utils/getidfromURL'
+import {getidfromURL} from 'utils/getidfromURL'
 import {CommentsType} from "types/commentsType"
-
-import {LoggedInContext} from "../../provider/LoggedInProvider";
+import {LoggedInContext} from "provider/LoggedInProvider";
 
 //新規form
-import { CommentForm } from "../molecules/form/CommentForm"
-
+import { CommentForm } from "components/molecules/form/CommentForm"
 //インフラ
-import {getComments} from "../../infrastructure/commentDriver";
-import {GetTopics} from "../../infrastructure/topicDriver";
-
-
+import {getComments} from "infrastructure/commentDriver";
+// import {GetTopics} from "infrastructure/topicDriver";
+import {useGetTopics} from "infrastructure/topicDriver";
 
 
 
 
 export const TopicDetail:FC = memo(() => {
-	console.log('コンポーネント描写')
-    const [topic,setTopic] = useState([]);
+ 
+
+    // const [topic,setTopic] = useState([]);
     const [comments,setComment] = useState<CommentsType[]>([])
 	const handleValueChange = (newValue) =>{
 		setComment([...comments,newValue])
@@ -35,11 +33,15 @@ export const TopicDetail:FC = memo(() => {
     //topic_id
     const locationVal = useLocation();
     let thisURL = locationVal.pathname
-    console.log(thisURL)
 
-    
+	let topic_id = getidfromURL(thisURL,'topic');
+	const { getTopics, loading, topics, error } = useGetTopics(topic_id);
+
+	// getTopics()
+	console.log('取得データ')
+    console.log(topics)
     // let topic_id = Number(thisURL.replace('/topic/', ''))//topic_id
-    let topic_id = getidfromURL(thisURL,'topic');
+
 
 
     //トピック編集用モーダル
@@ -48,9 +50,7 @@ export const TopicDetail:FC = memo(() => {
     
 
     useEffect(() => {
-        GetTopics(topic_id).then((data) => {
-            setTopic(data)
-        })
+		getTopics();
         getComments(topic_id).then((data) => {
             setComment(data);
         });
@@ -69,15 +69,15 @@ export const TopicDetail:FC = memo(() => {
 
 
     //左辺がtrueなら右辺を返す。 
-    let title = topic[0] && topic[0]['title'];//タイトル
-    let body = topic[0] && topic[0]['body'];//本文
-    let status = topic[0] && topic[0]['status'];//ステータス
+    let title = topics[0] && topics[0]['title'];//タイトル
+    let body = topics[0] && topics[0]['body'];//本文
+    let status = topics[0] && topics[0]['status'];//ステータス
 
     //背景画像
     let main_img;
 
-    if(topic[0] && topic[0]['image_path'] != null){
-        let temp_image_path = topic[0]['image_path'];
+    if(topics[0] && topics[0]['image_path'] != null){
+        let temp_image_path = topics[0]['image_path'];
         main_img = 'http://localhost:8888/' + temp_image_path.replace("public","storage");
     }else{
         main_img = '';
@@ -117,7 +117,7 @@ export const TopicDetail:FC = memo(() => {
                 
 
                 {/* topicのユーザーidがログイン中urser_idと同じなら編集可能 */}
-                {(topic[0] && (topic[0]['parent_user_id'] != userid) ) && 
+                {(topics[0] && (topics[0]['parent_user_id'] != userid) ) && 
                     <button onClick={() => toggleEditModalActive(!EditmodalActive)}>記事を編集</button>
                 }
 
@@ -137,7 +137,7 @@ export const TopicDetail:FC = memo(() => {
                 <div className="comments_wrap">
                     {
                         comments.map((comment) => (
-                            <div className={'text ' + (topic[0] && comment.user_id === topic[0]['parent_user_id'] ? 'left' : 'right') }
+                            <div className={'text ' + (topics[0] && comment.user_id === topics[0]['parent_user_id'] ? 'left' : 'right') }
 							 key={comment.comment_id}>
                                 {comment.text}
                             </div>                                

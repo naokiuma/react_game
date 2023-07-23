@@ -58,7 +58,8 @@ export const TopicRegist = memo((props) => {
             set_game(data);
              //ゲーム情報が取得できなければリダイレクト
              if(!data[0]){
-                navigate('/game/search');
+				console.log('ゲームデータがありません')
+                // navigate('/game/search');
             }
             // console.log('取得したゲーム情報')
             // console.log(game_data[0])
@@ -110,32 +111,21 @@ export const TopicRegist = memo((props) => {
 
                     <div className="write_area game_id">
 						<>
-						{
-							(() => {
-								if(game_data){
-									return(
-										<>
-											<span className="value_title">
-												{game_data[0].game_name}
-											</span><br/>
-											<input {...register('Gameid')}　value={game_data[0].id}/>
-										</>
-									)
-
-								}else{
-									return(
-										<div>bb</div>
-									)
-
-								}
-
-							})
-						}
-							
-						
+							{
+								
+								game_data[0] ? 
+								(
+									<>
+										<span className="value_title">
+											{game_data[0].game_name}
+										</span><br/>
+										<input {...register('Gameid')}　value={game_data[0].id}/>
+									</>
+								):(
+									<div>ゲーム情報が取得できませんでした。</div>
+								)
+							}
 						</>
-
-			
                     </div>
 
                     <div className="write_area" >

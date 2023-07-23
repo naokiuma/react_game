@@ -66,14 +66,14 @@ h2 {
 }
 
 .main_contents {
-  max-width: 1280px;
+  max-width: 1180px;
   margin: auto;
   padding: 50px 40px;
   width: 100%;
 }
 
 .main_contents ._main_img_wrap {
-  width: 80%;
+  width: 100%;
 }
 
 .main_contents .img_wrap {
@@ -158,21 +158,28 @@ h1 {
 header {
   width: 100%;
   height: 70px;
-  background-color: #BDFED0;
+  background-color: #bdfed0;
   color: #525252;
+  padding: 10px 0;
+  position: fixed;
+  box-shadow: 0 1px 0px #52525282;
+}
+
+header .inner {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 10px 20px;
-  position: fixed;
-  box-shadow: 0 1px 0px #52525282;
+  width: 1280px;
+  padding: 0 40px;
+  margin: auto;
 }
 
 header .header_logo {
   width: 200px;
 }
 
-header a, header .header_btn {
+header a,
+header .header_btn {
   color: #525252;
   font-weight: bold;
 }
@@ -247,7 +254,7 @@ footer {
   height: 60px;
   position: fixed;
   bottom: 0;
-  background-color: #BDFED0;
+  background-color: #bdfed0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -262,7 +269,7 @@ footer {
 .topics_wrap li {
   width: 31%;
   margin-top: 20px;
-  border: 1px solid #CCD6CE;
+  border: 1px solid #ccd6ce;
 }
 
 .topics_wrap li:nth-child(3n) {
@@ -270,7 +277,7 @@ footer {
 }
 
 .comments_wrap {
-  width: 80%;
+  width: 100%;
   margin-top: 50px;
 }
 
@@ -511,7 +518,7 @@ footer {
 }
 
 .category_label {
-  background-color: #C6F6D5;
+  background-color: #c6f6d5;
   cursor: pointer;
   margin-left: 10px;
   border-radius: 10px;
@@ -557,7 +564,7 @@ footer {
 }
 
 .search_input_wrap .submit_btn:hover {
-  background-color: #4FEC6A;
+  background-color: #4fec6a;
 }
 
 .game_card_wrap {
@@ -571,7 +578,7 @@ footer {
 
 .each_game {
   width: 32%;
-  border: 1px solid #CCD6CE;
+  border: 1px solid #ccd6ce;
   margin-right: 2%;
   margin-top: 2%;
 }
@@ -678,7 +685,7 @@ footer {
 .hero {
   width: 100%;
   background-size: cover;
-  background: linear-gradient("45deg", #87F9A1, #027C02);
+  background: linear-gradient("45deg", #87f9a1, #027c02);
 }
 
 .hero .inner {
