@@ -1,11 +1,11 @@
-import {useState,memo,FC} from 'react'
+import {useState,memo} from 'react'
 
 interface SearchboxProps {
     modalStatus: boolean;
   }
 
 
-export const Searchbox:FC<SearchboxProps>= memo((props) => {
+export const Searchbox = memo((props:SearchboxProps) => {
     const modalStatus = props.modalStatus
 
     let url = new URL(window.location.href);

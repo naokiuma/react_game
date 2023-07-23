@@ -1,4 +1,3 @@
-import {FC} from "react";
 import Slider from "react-slick";
 import genres from 'utils/game_genre'
 import { GameType } from "types/gameType";
@@ -7,7 +6,7 @@ import {BASE_URL} from "config/url"
 
 
 
-export const GameCard:FC<GameType> = (props) => {
+export const GameCard = (props:GameType) => {
 
 
 	const slide_settings = {

@@ -1,4 +1,4 @@
-import {ChangeEvent,useState,useContext,memo,FC} from 'react'
+import {ChangeEvent,useState,useContext,memo} from 'react'
 import { LoggedInContext } from "provider/LoggedInProvider";
 import {CommentFormType} from "types/commentsType"
 import {createComment} from "infrastructure/commentDriver"
@@ -6,7 +6,7 @@ import {createComment} from "infrastructure/commentDriver"
 
 
 
-export const CommentForm:FC<CommentFormType> = (props) => {
+export const CommentForm = (props:CommentFormType) => {
     console.log("コメントフォーム");
     console.log(props);
 

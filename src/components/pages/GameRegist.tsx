@@ -1,5 +1,5 @@
 
-import { memo,FC,useState,useEffect } from "react";
+import { memo,useState,useEffect } from "react";
 import { useForm } from 'react-hook-form';
 import {ImgPreview} from "components/templates/ImgPreview"
 

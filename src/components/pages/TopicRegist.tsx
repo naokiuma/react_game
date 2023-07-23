@@ -1,5 +1,5 @@
 
-import { memo,FC,useState,useEffect,Suspense } from "react";
+import { memo,useState,useEffect,Suspense } from "react";
 import { useForm } from 'react-hook-form';
 import {ImgPreview} from "components/templates/ImgPreview"
 import { useNavigate } from 'react-router-dom';

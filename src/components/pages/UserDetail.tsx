@@ -1,9 +1,9 @@
-import { memo,FC } from "react";
+import { memo} from "react";
 //css
 import '../../css/pages/user.css';
 
 
-export const UserDetail:FC = () => {
+export const UserDetail = () => {
     return (
         <div className="main_contents user_detail">
             <h1>テスト<span>さん</span></h1>

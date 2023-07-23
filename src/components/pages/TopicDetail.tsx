@@ -1,5 +1,5 @@
 
-import { memo,useMemo,FC,useContext } from "react";
+import { memo,useMemo,useContext } from "react";
 import { useEffect,useState } from 'react';
 import { useLocation } from "react-router-dom";
 import {getidfromURL} from 'utils/getidfromURL'
@@ -16,7 +16,7 @@ import {useGetTopics} from "infrastructure/topicDriver";
 
 
 
-export const TopicDetail:FC = memo(() => {
+export const TopicDetail = memo(() => {
  
 
     // const [topic,setTopic] = useState([]);

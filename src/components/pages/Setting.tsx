@@ -1,8 +1,8 @@
-import { memo,FC } from "react";
+import { memo } from "react";
 
 
 
-export const Setting:FC = memo(() => {
+export const Setting = memo(() => {
     return (
         <section>
             セッティングページです

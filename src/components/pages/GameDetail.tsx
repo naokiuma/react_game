@@ -1,5 +1,5 @@
 
-import { memo,FC,useContext,useState,Suspense,useEffect } from "react";
+import { memo,useContext,useState,Suspense,useEffect } from "react";
 
 import { useLocation,useNavigate } from "react-router-dom";
 import {LoggedInContext} from "../../provider/LoggedInProvider";
@@ -10,7 +10,7 @@ import {getGames} from "../../infrastructure/gameDriver";
 
 
 
-export const GameDetail:FC = memo(() => {
+export const GameDetail = memo(() => {
     // let [game,setGame] = useState([]);
 
     //user_id

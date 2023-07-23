@@ -1,6 +1,6 @@
-import { memo,FC } from "react";
+import { memo } from "react";
 
-export const Contents:FC = memo(() => {
+export const Contents = memo(() => {
     return <section className="test">
         <p>
             contents_boxです

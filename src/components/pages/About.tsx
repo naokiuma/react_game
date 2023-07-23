@@ -1,5 +1,5 @@
 
-import { memo,FC } from "react";
+import { memo } from "react";
 import {Counter} from "components/study/Callback"
 
 export const About = () => {

@@ -1,5 +1,5 @@
 import {ModalContext} from "../../provider/ModalProvider";
-import { ChangeEvent,memo,FC,useState,useEffect,useContext,useMemo} from "react";
+import { ChangeEvent,memo,useState,useEffect,useContext,useMemo} from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import {searchGame} from "infrastructure/gameDriver";
@@ -7,7 +7,7 @@ import {GameCard} from "components/molecules/card/GameCard"
 
 
 
-export const GameSearch:FC = () => {
+export const GameSearch = () => {
 
     //getパラメータの取得
     let url = new URL(window.location.href);

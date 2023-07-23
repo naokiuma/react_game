@@ -1,8 +1,7 @@
-import {FC} from "react";
 import { Outlet,Link } from "react-router-dom"
 
 
-export const GameWrap:FC = () => {
+export const GameWrap = () => {
 	return(
 		<div className="main_contents">
 			ゲームラップです

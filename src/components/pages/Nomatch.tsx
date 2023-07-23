@@ -1,7 +1,7 @@
-import { memo,FC } from "react";
+import { memo } from "react";
 
 
-export const Nomatch:FC = memo(() => {
+export const Nomatch = memo(() => {
     return (
 
 		<section className="notfound">

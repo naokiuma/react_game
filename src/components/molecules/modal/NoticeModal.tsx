@@ -1,4 +1,4 @@
-import { memo,FC } from "react";
+import { memo } from "react";
 
 
 
@@ -7,7 +7,7 @@ type NoticeModal = {
 	modalActive:boolean
 }
 
-export const NoticeModal:FC<NoticeModal> = memo((props) => {
+export const NoticeModal = memo((props:NoticeModal) => {
     let msg = props.msg;
     let isActive = props.modalActive
 

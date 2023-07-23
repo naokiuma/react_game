@@ -1,5 +1,5 @@
 
-import {useContext,FC,useState} from 'react'
+import {useContext,useState} from 'react'
 import {Link, Outlet } from "react-router-dom";
 import {LoggedInContext} from "provider/LoggedInProvider";
 import {ModalContext} from "provider/ModalProvider";
@@ -10,7 +10,7 @@ import { Footer } from './Footer';
 
 
 
-export const Layout:FC = () => {
+export const Layout = () => {
     const { userAuth,username,setUserAuth,setUserName } = useContext(LoggedInContext);
     let modalcontext = useContext(ModalContext)
     let [searcIsActive,setSearchBox] = useState(false)

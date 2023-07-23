@@ -1,4 +1,4 @@
-import { useMemo, FC, useContext,useEffect, useState} from "react";
+import { useMemo, useContext,useEffect, useState} from "react";
 import { Link } from "react-router-dom";
 import { Topic } from "components/atom/Topic";
 import { useQuery } from 'react-query';
@@ -19,7 +19,7 @@ import 'css/pages/top.css';
 import { SMainInfo } from './Home_css';
 
 
-export const Home:FC = () => {
+export const Home = () => {
     const { username } = useContext(LoggedInContext); 
     const { userid } = useContext(LoggedInContext);
 	console.log('ない')

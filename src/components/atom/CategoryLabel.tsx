@@ -1,4 +1,4 @@
-import React, { FC,ReactElement } from "react"
+import React, {ReactElement } from "react"
 
 type CategoryType ={
     name:string,
@@ -6,7 +6,7 @@ type CategoryType ={
     func?:(name)=>void
 }
 
-export const CategoryLabel:FC<CategoryType> = (Prop):ReactElement => {
+export const CategoryLabel = (Prop:CategoryType):ReactElement => {
 
     return(
         <span className="category_label" onClick={()=>Prop.func(Prop.name)}>
