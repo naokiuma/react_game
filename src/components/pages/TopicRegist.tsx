@@ -88,7 +88,6 @@ export const TopicRegist = memo((props) => {
     }
 
 	
-
     return (
         <div className="main_contents form_wrap topic_form">
             <form onSubmit={handleSubmit(submit)}>
@@ -112,7 +111,6 @@ export const TopicRegist = memo((props) => {
                     <div className="write_area game_id">
 						<>
 							{
-								
 								game_data[0] ? 
 								(
 									<>

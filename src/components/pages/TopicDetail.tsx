@@ -35,7 +35,7 @@ export const TopicDetail = memo(() => {
     let thisURL = locationVal.pathname
 
 	let topic_id = getidfromURL(thisURL,'topic');
-	const { getTopics, loading, topics, error } = useGetTopics(topic_id);
+	const { loading, topics, error } = useGetTopics(topic_id);
 
 	// getTopics()
 	console.log('取得データ')
@@ -50,7 +50,6 @@ export const TopicDetail = memo(() => {
     
 
     useEffect(() => {
-		getTopics();
         getComments(topic_id).then((data) => {
             setComment(data);
         });

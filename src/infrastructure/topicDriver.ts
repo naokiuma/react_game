@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import {API_BASE_URL,API_SANCTUM_URL} from "config/url"
-import { useState, useCallback} from "react";
+import { useState, useCallback, useEffect} from "react";
 import {checkApiUrl} from "utils/checkApiUrl"
 
 
@@ -27,8 +27,8 @@ export const useGetTopics = (topic_ID?) => {
 	const [loading,setLoading] = useState(false);
 	const [error,setError] = useState(false);
 
-	let FetchURL = `${API_BASE_URL}/topics`;
-    let target_URL = topic_ID == undefined ? FetchURL : `${FetchURL}/${topic_ID}`;
+	const FetchURL = `${API_BASE_URL}/topics`;
+    const target_URL = topic_ID == undefined ? FetchURL : `${FetchURL}/${topic_ID}`;
     checkApiUrl(target_URL)
 
 	const getTopics = () =>{
@@ -46,6 +46,13 @@ export const useGetTopics = (topic_ID?) => {
 
 		})
 	}
+
+	//初回処理
+	useEffect(() => {
+		getTopics();
+	},[])
+
+
 	return {getTopics,loading,topics,error};
 }
 

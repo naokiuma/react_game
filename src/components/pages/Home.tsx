@@ -17,13 +17,12 @@ import {GetCategory} from "infrastructure/categoryDriver";
 //css
 import 'css/pages/top.css';
 import { SMainInfo } from './Home_css';
+import { JsxElement } from "typescript";
 
 
 export const Home = () => {
     const { username } = useContext(LoggedInContext); 
     const { userid } = useContext(LoggedInContext);
-	console.log('ない')
-	console.log( process.env.REACT_APP_BASE_URL)
 
     const [modalActive,toggleModalActive] = useState(false)
     let [result_topics,set_result_topics] = useState([]);
@@ -34,7 +33,7 @@ export const Home = () => {
 	
 	// const [filtedTopics,setTopics] = useState([]);
 
-	const { getTopics, loading, topics, error } = useGetTopics();
+	const { loading, topics, error } = useGetTopics();
 	// const useGetTopicsFook = useGetTopics();
 	// useGetTopicsFook.getPosts();
 	// console.log('取得データ')
@@ -42,7 +41,7 @@ export const Home = () => {
 
 	//初回処理
     useEffect(() => {
-		getTopics();
+		// getTopics();
 
 
 		// デフォルト
@@ -117,8 +116,10 @@ export const Home = () => {
 			<section className="hero">
 				<div className="inner">
 					<div className="first_info">
-						<h1>ゲームを積んで、プレイして。</h1>
-						<p>ゲームスプレッドは、ゲームの楽しみをもっと増やすためのサービスです。</p>
+						<h1>ゲームを楽しむためのメモ。</h1>
+						<p>
+							ゲームスプレッドは、楽しんでいるゲームの記録サービスです。
+						</p>
 					</div>
 
 					<SMainInfo>
@@ -149,7 +150,7 @@ export const Home = () => {
 								</h3>
 								<p>
 									「エモい」「繰り返し遊べる」「コスパ最高」「指痛」<br/>
-									みんなの感想から、次にやるゲームも探そう！
+									ゲームにつけた感想タグから、次にやるゲームも探そう！
 								</p>
 							</div>
 						</div>

@@ -36,7 +36,7 @@ export const Layout = () => {
 							<Link to="/game/search">ゲーム</Link>
 						</li>
 						<li>
-							<Link to="/about">アバウト</Link>
+							<Link to="/about">このサービスについて</Link>
 						</li>
 						{/* todo ↓ログインしていれば出す */}
 						<li>
@@ -51,13 +51,14 @@ export const Layout = () => {
 						{userAuth?
 							<div>
 								<button className="header_btn" onClick={handleLogout}>Logout</button>
-							</div>:
+							</div>
+							:
 							<>
 								<div>
-									<Link to="/login">Login</Link>
+									<Link to="/login">ログイン</Link>
 								</div>
 								<div>
-									<Link to="/register">Register</Link>
+									<Link to="/register">新規登録</Link>
 								</div>
 							</>
 						}
