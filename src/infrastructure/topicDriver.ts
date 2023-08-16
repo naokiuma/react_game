@@ -58,25 +58,25 @@ export const useGetTopics = (topic_ID?) => {
 
 
 // export const GetTopics = async(topic_ID?:number,limit?:number):Promise<topicResponce> => {
-export const GetTopics = async(topic_ID?:number,limit?:number) => {
+// export const GetTopics = async(topic_ID?:number,limit?:number) => {
 
 
-    try{
-        let FetchURL = `${API_BASE_URL}/topics`;
-        let target_URL = topic_ID == undefined ? FetchURL : `${FetchURL}/${topic_ID}`;
-        checkApiUrl(target_URL)
+//     try{
+//         let FetchURL = `${API_BASE_URL}/topics`;
+//         let target_URL = topic_ID == undefined ? FetchURL : `${FetchURL}/${topic_ID}`;
+//         checkApiUrl(target_URL)
 
 
-		const res: AxiosResponse= await axios.get(target_URL)
-		console.log('gettopicsの取得データ')
-		console.log(res);
-		return res.data;
-    }catch(e){
-		console.log('network')
-        console.log(e.response)
+// 		const res: AxiosResponse= await axios.get(target_URL)
+// 		console.log('gettopicsの取得データ')
+// 		console.log(res);
+// 		return res.data;
+//     }catch(e){
+// 		console.log('network')
+//         console.log(e.response)
 
-    }
-}
+//     }
+// }
 
 
 export const CreateTopic = (game_id,title,body,status,imgData?) => {

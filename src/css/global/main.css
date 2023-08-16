@@ -66,7 +66,7 @@ h2 {
 }
 
 .main_contents {
-  max-width: 1180px;
+  min-width: 1180px;
   margin: auto;
   padding: 50px 40px;
   width: 100%;
@@ -158,12 +158,13 @@ h1 {
 header {
   width: 100%;
   height: 70px;
-  background-color: #91ccff;
+  background-color: #ffffa6;
   color: #525252;
   padding: 15px 0 10px 0;
   position: fixed;
-  box-shadow: 0 1px 0px #52525282;
+  box-shadow: 1px 1px 1px #52525282;
   font-weight: bold;
+  z-index: 10;
 }
 
 header .inner {
@@ -255,7 +256,7 @@ footer {
   height: 60px;
   position: fixed;
   bottom: 0;
-  background-color: #91ccff;
+  background-color: #91dbff2e;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -265,15 +266,17 @@ footer {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
+  padding: 0;
 }
 
 .topics_wrap li {
-  width: 31%;
-  margin-top: 20px;
+  width: 23%;
+  margin-top: 10px;
+  margin-right: 2%;
   border: 1px solid #ccd6ce;
 }
 
-.topics_wrap li:nth-child(3n) {
+.topics_wrap li:nth-child(4n) {
   margin-right: 0;
 }
 
@@ -452,21 +455,20 @@ footer {
 }
 
 .topic_card_wrap {
-  padding: 24px;
-  min-height: 384px;
+  padding: 10px;
   color: #535353;
   display: flex;
   flex-direction: column;
 }
 
 .topic_card_wrap ._title {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
 }
 
 .topic_card_wrap ._title span {
   display: block;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: lighter;
 }
 
@@ -696,8 +698,16 @@ footer {
 .hero .inner {
   width: 1280px;
   margin: auto;
-  padding: 200px 40px 100px;
+  padding: 100px 40px 100px;
   border-bottom: 2px solid #33333347;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.hero .first_info {
+  width: 30%;
+  padding-top: 200px;
 }
 
 .user_detail .detail_wrap {

@@ -116,9 +116,13 @@ export const Home = () => {
 			<section className="hero">
 				<div className="inner">
 					<div className="first_info">
-						<h1>ゲームを楽しむためのメモ。</h1>
+						<h1>ツミシェア</h1>
 						<p>
-							ゲームスプレッドは、楽しんでいるゲームの記録サービスです。
+							積みゲーをシェアし、プレイし、<br/>
+							誰かに積みゲーを勧める。
+							<br/>
+							<br/>
+							ツミシェアは、ゲーム体験をどんどん広げていくサービスです。
 						</p>
 					</div>
 
@@ -127,12 +131,8 @@ export const Home = () => {
 							<div>
 								<h3>
 									<i className="fa-sharp fa-regular fa-pen-to-square"></i>
-									書く
+									積みゲーをプレイして
 								</h3>
-								<p>
-									ゲームの感想、攻略メモを残そう。<br/>
-									ネタバレ有無の設定もできるよ！
-								</p>
 							</div>
 							<figure>
 								<img src="/img/top/top_billboard1.jpg" alt="" />
@@ -142,30 +142,19 @@ export const Home = () => {
 							<figure>
 								<img src="/img/top/top_billboard2.jpg" alt="" />
 							</figure>
-							
 							<div>
 								<h3>
 									<i className="fa-solid fa-magnifying-glass"></i>
-									探す
+									情報をシェアして
 								</h3>
-								<p>
-									「エモい」「繰り返し遊べる」「コスパ最高」「指痛」<br/>
-									ゲームにつけた感想タグから、次にやるゲームも探そう！
-								</p>
 							</div>
 						</div>
 						<div className="_each">
-
 							<div>
-
 								<h3>
 									<i className="fa-sharp fa-regular fa-handshake"></i>
-									みんなで崩そう
+									また積みゲーを増やそう。
 								</h3>
-								<p>
-									みんなのゲーム数をカウント。<br/>
-									終わらないゲーム生活を続けていこう。
-								</p>
 							</div>
 							<figure>
 								<img src="/img/top/top_billboard3.jpg" alt="" />
@@ -176,10 +165,8 @@ export const Home = () => {
 			</section>
 			
 			<section className="home_section main_contents">
-				<h2>みんなのプレイログ</h2>
+				<h2>みんなの取り組み中ゲーム</h2>
 				<div className="tags_search_wrap">
-
-					{/* タグ */}
 					{
 						typeof categories !== 'undefined' ? 
 							(
@@ -238,28 +225,26 @@ export const Home = () => {
 				{
 					loading || error ?
 					( <div>loading</div> ):
-					(
-						<ul className="topics_wrap">
-							{
-								filterTopics.map((topic)=>(
-									<li key={topic.id}>
-										<Link to={"/topic/" + topic.id} state={topic}>
-											<Topic
-												id={topic.id}
-												game_title={topic.game_name}
-												title={topic.title}
-												user_id={topic.parent_user_id}
-												tags={topic.tags}
-												status={topic.status}
-												image_path={topic.image_path}
-											/>
-										</Link>
-										{(username !== 'ゲスト' && userid === topic.parent_user_id) && <span>編集</span>}
-									</li>
-								))
-							}  
-						</ul>     
-					)
+					(<ul className="topics_wrap">
+						{
+							filterTopics.map((topic)=>(
+								<li key={topic.id}>
+									<Link to={"/topic/" + topic.id} state={topic}>
+										<Topic
+											id={topic.id}
+											game_title={topic.game_name}
+											title={topic.title}
+											user_id={topic.parent_user_id}
+											tags={topic.tags}
+											status={topic.status}
+											image_path={topic.image_path}
+										/>
+									</Link>
+									{(username !== 'ゲスト' && userid === topic.parent_user_id) && <span>編集</span>}
+								</li>
+							))
+						}  
+					</ul>)
 				}
 					{/* //デフォルト */}
 					

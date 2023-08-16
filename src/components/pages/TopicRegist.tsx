@@ -1,14 +1,13 @@
 
 import { memo,useState,useEffect,Suspense } from "react";
 import { useForm } from 'react-hook-form';
+import { useParams } from 'react-router-dom';
 import {ImgPreview} from "components/templates/ImgPreview"
-import { useNavigate } from 'react-router-dom';
 
 //インフラ
 import {CreateTopic} from "infrastructure/topicDriver";
 import {GetCategory} from "infrastructure/categoryDriver";
 import {getGames} from "infrastructure/gameDriver";
-
 
 
 //Form用の情報
@@ -22,19 +21,16 @@ type FormInputs = {
 // todo 次ここ
 export const TopicRegist = memo((props) => {
 
-	console.log('それぞれ')
     let url = new URL(window.location.href);
+	console.log('データ');
 	console.log(url)
+	const {id} = useParams();
+	console.log(id);
+
     let params = url.searchParams;
 	console.log(params)
     let target_game_id;
 
-    const navigate = useNavigate();
-    // if(params.get('game_id') === ''){
-    //     navigate('/game/search');
-    // }else{
-    //     target_game_id = params.get('game_id');
-    // }
 
 	target_game_id = params.get('game_id');
 

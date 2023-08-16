@@ -1,20 +1,19 @@
 import styled from 'styled-components';
 
 export const SMainInfo = styled.section`
-	margin: 170px auto 0;
-	width:1000px;
+	width:60%;
 	._each{
-		margin-top: 120px;
+		margin-top: 30px;
 		display: flex;
 		justify-content: space-between;
 		i{
 			margin-right: 10px;
 		}
 		h3{
-			font-size: 40px;
+			font-size: 30px;
 		}
 		figure{
-			width: 500px;
+			width: 300px;
 			border-radius: 30px;
 			overflow: hidden;
 		}
