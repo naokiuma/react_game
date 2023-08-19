@@ -7,7 +7,6 @@ import {LogOutUser} from 'infrastructure/authDriver'
 import { NoticeModal } from "components/molecules/modal/NoticeModal"
 import { Searchbox } from "components/molecules/form/Searchbox"
 import { Footer } from './Footer';
-import { ImgPreview } from './ImgPreview';
 
 
 
