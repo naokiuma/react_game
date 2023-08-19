@@ -14,7 +14,7 @@ import { TopicRegist } from 'components/pages/TopicRegist';
 
 import { Register } from 'components/pages/Register';
 import { Nomatch } from 'components/pages/Nomatch';
-import { Layout } from 'components/templates/Layout';
+// import { Layout } from 'components/templates/Layout';
 
 
 /**
@@ -24,7 +24,7 @@ import { Layout } from 'components/templates/Layout';
 export const MainRoute = () => {
     return(
         <Routes>
-  			<Route element={<Layout />}>
+  			{/* <Route element={<Layout />}> */}
 				<Route index element={<Home />} />
 				<Route path="/login/" element={<Login/>} />
 				<Route path="/register/" element={<Register/>} />
@@ -44,7 +44,7 @@ export const MainRoute = () => {
 					<Route path="/setting" element={<Setting/>}/>
 				</Route>
 				<Route path="*" element={<Nomatch />} />
-			</Route>
+			{/* </Route> */}
         </Routes>
 
     )
