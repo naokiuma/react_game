@@ -22,6 +22,7 @@ export const Layout = () => {
         })
     }
 
+	//サーチボックスの表示非表示切り替え
     const toggleSearchBox = () =>setSearchBox(!searcIsActive)
 
     return(
@@ -33,7 +34,7 @@ export const Layout = () => {
 					</Link>
 					<ul>
 						<li>
-							<Link to="/game/search">ゲーム</Link>
+							<Link to="/game/list">ゲーム</Link>
 						</li>
 						<li>
 							<Link to="/about">このサービスについて</Link>
@@ -68,13 +69,11 @@ export const Layout = () => {
 					</div>
 
 				</div>
+            	<Searchbox modalStatus={searcIsActive} type="global"/>
             </header>
 
             {  modalcontext.Modalmsg !== '' ? (<NoticeModal msg={modalcontext.Modalmsg} modalActive={true}/>) : (<></>)}
-            <Searchbox modalStatus={searcIsActive}/>
-
-				<Outlet/>
-
+			<Outlet/>
 			<Footer/>            
         </>
     )

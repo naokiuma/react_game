@@ -1,25 +1,37 @@
+import { ClassNames } from '@emotion/react';
 import {useState,memo} from 'react'
+import { useNavigate } from 'react-router-dom';
 
 interface SearchboxProps {
-    modalStatus: boolean;
-  }
+    modalStatus?: boolean;
+	type:string;
+	func?:(newtext) => void;
+}
+
 
 
 export const Searchbox = memo((props:SearchboxProps) => {
+	console.log('サーチボックス');
     const modalStatus = props.modalStatus
-
+	const navigate = useNavigate()
     let url = new URL(window.location.href);
     let params = url.searchParams;
-    let defaultValue = params.get('game') ? params.get('game') : '';
+    const defaultValue = params.get('game') ? params.get('game') : '';
+
     const [inputValue, setInputValue] = useState(defaultValue);
-    const handleSubmit = (event:React.MouseEvent<HTMLElement, MouseEvent>|React.FormEvent<HTMLFormElement>) => {
-      event.preventDefault();
-      const queryParams = `?game=${inputValue}`;
-      const url = '/game/search' + queryParams;
-      console.log(url)
-      window.location.href = url;
-    };
-  
+
+	const handleSubmit:React.MouseEventHandler<HTMLElement> = (event) => {
+		event.preventDefault();
+		//同じページでの処理の場合は親から受け取った関数を実施
+		if(props.type == 'is_page'){
+			props.func(inputValue)
+		}else{
+			//globalではページ遷移
+			const url = `/game/list?game=${inputValue}`;
+			navigate(url);
+		}
+    };	
+
     const handleInputChange = (event) => {
       setInputValue(event.target.value);
     };
@@ -27,10 +39,10 @@ export const Searchbox = memo((props:SearchboxProps) => {
 
     return (
         <div className={'search_box_wrap ' + (modalStatus == true ? 'active' : '')} >
-            <form onSubmit={handleSubmit}>
-            <i className="fa-solid fa-magnifying-glass" onClick={handleSubmit}></i>
+            <div className="_inner">
+				<i className="fa-solid fa-magnifying-glass" onClick={handleSubmit}></i>
                 <input type="text" value={inputValue} onChange={handleInputChange} placeholder='ゲームの名前'/>
-            </form>
+            </div>
         </div>
     )
 

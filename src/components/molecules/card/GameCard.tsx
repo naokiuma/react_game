@@ -19,7 +19,7 @@ export const GameCard = (props:GameType) => {
     };
 
 	return(
-		<div className="each_game" key={props.id}>
+		<div className="game_card" key={props.id}>
 			<Link to={"/game/" + props.id} state={props}>
 
 			<div className="_first">
@@ -43,9 +43,10 @@ export const GameCard = (props:GameType) => {
 			</div>
 
 			}
-			{props.topics && 
+			{/* {props.topics && 
 			<div className="game_each_topic">
 				<span>みんなの話題</span>
+				<span>{props.topics.length}</span>
 				<ul className="_topics">
 					{props.topics.map((_topic)=>(
 						<li key={_topic.id}>
@@ -56,7 +57,7 @@ export const GameCard = (props:GameType) => {
 					))}
 				</ul>
 			</div>
-			}
+			} */}
 			</Link>
 
 		</div>

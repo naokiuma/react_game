@@ -4,7 +4,7 @@ import { Home } from "components/pages/Home";
 import { About } from "components/pages/About";
 import { UserDetail } from "components/pages/UserDetail";
 import { GameWrap } from "components/pages/GameWrap";
-import { GameSearch } from "components/pages/GameSearch";
+import { GameList } from "components/pages/GameList";
 import { GameRegist } from 'components/pages/GameRegist';
 import { GameDetail } from 'components/pages/GameDetail';
 import { Setting } from "components/pages/Setting";
@@ -32,11 +32,11 @@ export const MainRoute = () => {
 				<Route path="/user/" element={<UserDetail/>} />
 
 				<Route path="/game" element={<GameWrap/>}>
-					<Route path="search" element={<GameSearch/>} />
+					<Route path="list" element={<GameList/>} />
 					<Route path="create" element={<GameRegist/>} />
 					<Route path=":id" element={<GameDetail />} />
 				</Route>
-				<Route path="/topic/create/:id" element={<TopicRegist/>} />
+				<Route path="/topic/create/new" element={<TopicRegist/>} />
 				<Route path="/topic/:id" element={<TopicDetail />} />
 				{/* <Route path="/topic/create" element={<TopicRegist/>} /> */}
 

@@ -280,14 +280,14 @@ export const Home = () => {
 			</section>
 
 
-			<section className="top_games main_contents">
+			{/* <section className="top_games main_contents">
 				<h2>ゲーム一覧</h2>
 				<div className="game_card_wrap">
 					{games.map((each_game)=>(
 						<GameCard key={each_game.id} {...each_game} />
 					))}
 				</div>
-			</section>
+			</section> */}
 
 
 			<div className="new_form_button">

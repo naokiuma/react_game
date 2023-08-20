@@ -26,12 +26,16 @@ h2 {
   opacity: 0.8;
 }
 
-.search_box_wrap {
-  display: none;
+header .search_box_wrap {
   position: fixed;
   top: 90px;
   right: 20px;
   height: 40px;
+}
+
+.search_box_wrap {
+  width: 270px;
+  display: none;
   align-items: center;
   background-color: #fff;
   border: 1px solid #525252;
@@ -49,7 +53,7 @@ h2 {
   background-color: #72dfea9e;
 }
 
-.search_box_wrap form input {
+.search_box_wrap ._inner input {
   border: none;
   padding-left: 5px;
   height: 100%;
@@ -61,15 +65,15 @@ h2 {
   animation: fadeIn 0.3s ease 0.2s 1 normal backwards;
 }
 
-.game_search {
-  padding: 140px 40px 70px 40px;
+.game_list {
+  padding: 100px 0px 70px 0px;
 }
 
 .main_contents {
-  min-width: 1180px;
+  min-width: 1280px;
+  width: 1280px;
   margin: auto;
   padding: 50px 40px;
-  width: 100%;
 }
 
 .main_contents ._main_img_wrap {
@@ -271,7 +275,7 @@ footer {
 
 .topics_wrap li {
   width: 23%;
-  margin-top: 10px;
+  margin-top: 24px;
   margin-right: 2%;
   border: 1px solid #ccd6ce;
 }
@@ -576,49 +580,55 @@ footer {
 
 .game_card_wrap {
   background-color: #fff;
-  padding: 20px;
-  min-height: 400px;
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
+  margin-top: 40px;
 }
 
-.each_game {
-  width: 32%;
+.game_card {
+  width: 232px;
   border: 1px solid #ccd6ce;
-  margin-right: 2%;
-  margin-top: 2%;
+  margin-left: 10px;
 }
 
-.each_game:nth-child(3n) {
-  margin-right: 0;
+.game_card:first-child {
+  margin-left: 0;
 }
 
-.each_game ._first {
-  font-size: 20px;
+.game_card:nth-child(5n + 1) {
+  margin-left: 0;
+}
+
+.game_card:nth-child(n + 6) {
+  margin-top: 10px;
+}
+
+.game_card ._first {
+  font-size: 16px;
   padding: 10px;
   font-weight: bold;
   color: #525252;
 }
 
-.each_game ._first span {
-  font-size: 16px;
+.game_card ._first .genre {
+  font-size: 12px;
   display: block;
   font-weight: lighter;
 }
 
-.each_game ._topics {
+.game_card ._topics {
   padding: 10px;
 }
 
-.each_game .img_wrap {
+.game_card .img_wrap {
   position: relative;
-  height: 280px;
+  height: 120px;
   width: 100%;
-  padding: 10px;
+  padding: 0px 8px;
 }
 
-.each_game .img_wrap img {
+.game_card .img_wrap img {
   width: 100%;
   height: 100%;
   object-fit: cover;

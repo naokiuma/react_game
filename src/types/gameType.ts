@@ -7,4 +7,5 @@ export type GameType = {
     topics:topicType[];
     created_at: string;
 	images?:any[];
+	size?;string;
 }
