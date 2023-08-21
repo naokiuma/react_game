@@ -89,6 +89,9 @@ export const Home = () => {
 		}
 	},[selecged_tag,topics])
 
+	console.log('firuta')
+	console.log(filterTopics)
+
     // //タグが選ばれた際(通常クエリで行う場合)
     // useEffect(() => {
     //     if(selecged_tag != 'すべて'){
@@ -112,7 +115,7 @@ export const Home = () => {
 
 	
 	return (
-		<div className="top_page">
+		<main className="top_page">
 			<section className="hero">
 				<div className="inner">
 					<div className="first_info">
@@ -293,7 +296,7 @@ export const Home = () => {
 			<div className="new_form_button">
 				<button onClick={() => toggleModalActive(!modalActive)}>投稿</button>
 			</div>
-		</div>
+		</main>
 	)
 
 }

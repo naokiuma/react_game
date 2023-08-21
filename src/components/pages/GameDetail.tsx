@@ -24,46 +24,61 @@ export const GameDetail = memo(() => {
     //トピック編集用モーダル
     const [modalActive,toggleModalActive] = useState(false)
     let [game,setGame] = useState([]);
+    const [game_imgs,setImgs] = useState([]);
+
 
 
 	useEffect(() => {
         getGames(gameId).then((data) => {
             console.log('取得ゲーム')
-            console.log(data)
+            console.log(data[0])
+            console.log(data['images'])
+			
+
+			
             setGame(data[0])
+			setImgs(data['images'])
+			console.log('個onplayではきちんとセットされているか')
+			console.log(game_imgs);
         })
     },[])
 
 
-    const tags = ['ローグライク','泣ける']
+    const tags = ['ローグライク','泣ける!']
 
 
     return (
-		<>
-			<Helmet>
-				<title>Runtime Title</title>
-			</Helmet>
-		
-			<section className="topic_detail">				
-				<div className="main_contents">
-					<h2 className="topic_title">  
-						{game['game_name']}
-					</h2>
-					<div className="tags">
+		<main>
+			<section className="">				
+				<h2 className="topic_title">  
+					{game['game_name']}
+				</h2>
+				ここです！
+				{
+					game_imgs ? 
+					(<ul>
 						{
-							tags.map((tag:string)=>(
-								<span className="tag" key={tag}>
-									{tag}
-								</span>
-							))
+						game_imgs.map((_img) =>(
+							<span>
+								ここ{_img.image_file_name}
+							</span>
+							
+						))
 						}
-					</div>
-				</div>
+					</ul>
+					):(<span>検索中</span>)
+				}
+				なんで？？？
+				ゲームジャンル：{game['genres']}<br/>
+				ハード：{game['hard']}
+
+					
 				<div className="new_form_button">
 					<button onClick={() => toggleModalActive(!modalActive)}>投稿</button>
 				</div>
 			</section>
-		</>
+		</main>
     )
 
 })
+

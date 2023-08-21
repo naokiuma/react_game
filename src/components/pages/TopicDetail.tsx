@@ -85,7 +85,7 @@ export const TopicDetail = memo(() => {
     const tags = ['ローグライク','泣ける']
     
     return (
-        <section className="topic_detail test">
+        <section className="topic_detail">
             <div className="billboard"
                 style={{ 
                 backgroundImage: `url(${main_img})`

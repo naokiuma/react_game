@@ -14,14 +14,14 @@ export const searchGame = async(keyword:string):Promise<[GameType]> => {
       const res = await axios.get(FetchURL)
       return res.data;
     }catch(e){
-      console.log('400 Error!!')
+      console.log('400 Error!!!')
       console.log(e)
     }
 }
 
 
 /**
- * idから取得
+ * idから取得 or 全て取得
  */
 export const getGames = async(game_ID?:number) => {
 	try{
@@ -29,8 +29,8 @@ export const getGames = async(game_ID?:number) => {
 		  checkApiUrl(FetchURL)
 		  const res = await axios.get(FetchURL)
 		  console.log('getGame');
-		  console.log(res);
-		  console.log(res.data)
+		//   console.log(res);
+		//   console.log(res.data)
 		  return res.data;
 		}catch(e){
 		  console.log('400 Error!!')
