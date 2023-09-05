@@ -6,6 +6,8 @@ import {LoggedInContext} from "../../provider/LoggedInProvider";
 import { Helmet } from 'react-helmet';
 //インフラ
 import {getGames} from "../../infrastructure/gameDriver";
+import {BASE_URL} from "config/url"
+
 
 
 
@@ -49,28 +51,28 @@ export const GameDetail = memo(() => {
 
     return (
 		<main>
-			<section className="">				
-				<h2 className="topic_title">  
+			<section className="game_detail">				
+				<h2 className="">  
 					{game['game_name']}
 				</h2>
-				ここです！
-				{
-					game_imgs ? 
-					(<ul>
-						{
-						game_imgs.map((_img) =>(
-							<span>
-								ここ{_img.image_file_name}
-							</span>
-							
-						))
-						}
-					</ul>
-					):(<span>検索中</span>)
-				}
-				なんで？？？
-				ゲームジャンル：{game['genres']}<br/>
-				ハード：{game['hard']}
+				<div className="_inner">
+					{
+						game_imgs.length > 0 ? 
+						(<div className="game_imgs_wrap">
+							{
+							game_imgs.map((_img) =>(
+								<img src={BASE_URL + _img.image_file_name.replace("public","storage")} />   
+							))
+							}
+						</div>
+						):(<span>画像が未登録です。</span>)
+					}
+					<div className="_sub_info">
+						ゲームジャンル：{game['genres']}<br/>
+						ハード：{game['hard']}
+					</div>
+
+				</div>
 
 					
 				<div className="new_form_button">
