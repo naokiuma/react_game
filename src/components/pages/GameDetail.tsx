@@ -27,21 +27,23 @@ export const GameDetail = memo(() => {
     const [modalActive,toggleModalActive] = useState(false)
     let [game,setGame] = useState([]);
     const [game_imgs,setImgs] = useState([]);
-
+	const [main_img,setMainImg] = useState('');
 
 
 	useEffect(() => {
         getGames(gameId).then((data) => {
             console.log('取得ゲーム')
-            console.log(data[0])
-            console.log(data['images'])
+            // console.log(data[0])
+            console.log(data['images'][0].image_file_name)
 			
 
 			
             setGame(data[0])
 			setImgs(data['images'])
-			console.log('個onplayではきちんとセットされているか')
+			setMainImg(data['images'][0].image_file_name);
 			console.log(game_imgs);
+			console.log('ここには');
+			console.log(main_img)
         })
     },[])
 
@@ -50,7 +52,7 @@ export const GameDetail = memo(() => {
 
 
     return (
-		<main>
+		<>
 			<section className="game_detail">				
 				<h2 className="">  
 					{game['game_name']}
@@ -59,11 +61,16 @@ export const GameDetail = memo(() => {
 					{
 						game_imgs.length > 0 ? 
 						(<div className="game_imgs_wrap">
+							<div className="main_img">
+								<img src={BASE_URL + main_img.replace("public","storage")} alt="" />
+							</div>
+							<div className="sub_imgs">
 							{
-							game_imgs.map((_img) =>(
-								<img src={BASE_URL + _img.image_file_name.replace("public","storage")} />   
-							))
+								game_imgs.map((_img) =>(
+									<img src={BASE_URL + _img.image_file_name.replace("public","storage")} onClick={() => setMainImg(_img.image_file_name.replace("public","storage"))} />
+								))
 							}
+							</div>
 						</div>
 						):(<span>画像が未登録です。</span>)
 					}
@@ -79,7 +86,7 @@ export const GameDetail = memo(() => {
 					<button onClick={() => toggleModalActive(!modalActive)}>投稿</button>
 				</div>
 			</section>
-		</main>
+		</>
     )
 
 })

@@ -55,7 +55,7 @@ a {
 }
 
 h2 {
-  font-size: 40px;
+  font-size: 30px;
 }
 
 .search_icon_wrap {
@@ -292,7 +292,7 @@ footer {
   justify-content: flex-start;
   padding: 0;
   li {
-    width: 276px;
+    width: 240px;
     height: 350px;
     margin-top: 24px;
     margin-right: 2%;
@@ -479,7 +479,7 @@ footer {
   .topic_img {
     border: 3px solid #525252;
     width: 322px;
-    height: 200px;
+    height: 160px;
     object-fit: cover;
     margin-top: auto;
   }
@@ -628,16 +628,48 @@ footer {
   border: solid 1px #dcdcdc;
   border-radius: 6px;
   padding: 20px;
+  margin-top: 100px;
+  h2 {
+    line-height: 1;
+  }
 
   ._inner {
-    margin-top: 30px;
+    margin-top: 20px;
     display: flex;
     flex-direction: row;
     .game_imgs_wrap {
-      width: 340px;
-      img:first-child {
-        width: 300px;
+      width: 320px;
+      .main_img {
+        width: 100%;
+        height: 190px;
+        border-radius: 5px;
+        img {
+          width: 100%;
+          height: 100%;
+        }
       }
+      .sub_imgs {
+        display: flex;
+        justify-content: flex-start;
+        margin-top: 10px;
+        img {
+          width: 100px;
+          height: 60px;
+          object-fit: cover;
+          margin-left: 10px;
+          border-radius: 5px;
+          cursor: pointer;
+          &:hover {
+            opacity: 0.8;
+          }
+          &:first-child {
+            margin-left: 0;
+          }
+        }
+      }
+    }
+    ._sub_info {
+      margin-left: 20px;
     }
   }
 }
