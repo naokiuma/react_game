@@ -3,9 +3,8 @@ import { memo,useContext,useState,Suspense,useEffect } from "react";
 
 import { useLocation,useNavigate } from "react-router-dom";
 import {LoggedInContext} from "../../provider/LoggedInProvider";
-import { Helmet } from 'react-helmet';
 //インフラ
-import {getGames} from "../../infrastructure/gameDriver";
+import {getGames, getGames2} from "../../infrastructure/gameDriver";
 import {BASE_URL} from "config/url"
 
 
@@ -28,6 +27,12 @@ export const GameDetail = memo(() => {
     let [game,setGame] = useState([]);
     const [game_imgs,setImgs] = useState([]);
 	const [main_img,setMainImg] = useState('');
+
+
+	const form = ()=>{
+		getGames2({'type':'with_topic','target_game':gameId});
+
+	}
 
 
 	useEffect(() => {
@@ -75,16 +80,27 @@ export const GameDetail = memo(() => {
 						):(<span>画像が未登録です。</span>)
 					}
 					<div className="_sub_info">
-						ゲームジャンル：{game['genres']}<br/>
-						ハード：{game['hard']}
+						<span>ゲームジャンル：{game['genres']}</span><br/>
+						<span>ハード：{game['hard']}</span>
+						<div className="_btns">
+						{/* #dd2b05 */}
+						{/* #0cd1ec */}
+							<button className="_want">プレイしたい</button>
+							<button className="_now">プレイ中</button>
+						</div>
+						<div className="about_topics">
+							<span onClick={form}>このゲームの話題!</span>
+
+						</div>
 					</div>
+					
 
 				</div>
 
 					
-				<div className="new_form_button">
+				{/* <div className="new_form_button">
 					<button onClick={() => toggleModalActive(!modalActive)}>投稿</button>
-				</div>
+				</div> */}
 			</section>
 		</>
     )

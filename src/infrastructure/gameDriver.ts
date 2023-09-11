@@ -9,32 +9,70 @@ import {checkApiUrl} from "utils/checkApiUrl"
  */
 export const searchGame = async(keyword:string):Promise<[GameType]> => {
     try{
-      let FetchURL = `${API_BASE_URL}/game/search?game=${keyword}`;
-      checkApiUrl(FetchURL)
-      const res = await axios.get(FetchURL)
-      return res.data;
+		let FetchURL = `${API_BASE_URL}/game/search?game=${keyword}`;
+		checkApiUrl(FetchURL)
+		const res = await axios.get(FetchURL)
+		return res.data;
     }catch(e){
-      console.log('400 Error!!!')
-      console.log(e)
+		console.log('400 Error!!!')
+		console.log(e)
     }
 }
 
+/**
+ * 
+ * @param config type:string with_topic
+ */
+export const getGames2 = (config:{type:string,target_game:number}) => {
+	// console.log(API_BASE_URL);//http://localhost:8888/api
+	let post_data = config;
+	// post_data['type'] = config['type'];
+
+	console.log('送るデータ')
+	console.log(post_data)
+
+	const FetchURL =  `${API_BASE_URL}/game/get2`;
+	checkApiUrl(FetchURL)
+	const res = axios//csrf保護の初期化
+		.get(API_SANCTUM_URL, { withCredentials: true })
+		.then(() => {
+			axios.post(FetchURL,{
+				post_data
+			  },
+			  {headers:
+				  {'Content-Type': 'multipart/form-data',},
+				  withCredentials:true,
+			  },
+			)
+		})
+		return res;
+
+	
+}
+// 	// try{
+// 	// 	  let FetchURL = game_ID === undefined ? `${API_BASE_URL}/game` : `${API_BASE_URL}/game/${game_ID}`;
+// 	// 	  checkApiUrl(FetchURL)
+// 	// 	  const res = await axios.get(FetchURL)
+// 	// 	  return res.data;
+// 	// 	}catch(e){
+// 	// 	  console.log('400 Error!!')
+// 	// 	  console.log(e)
+// 	// 	}
+// }
 
 /**
  * idから取得 or 全て取得
  */
 export const getGames = async(game_ID?:number) => {
 	try{
-		  let FetchURL = game_ID === undefined ? `${API_BASE_URL}/game` : `${API_BASE_URL}/game/${game_ID}`;
-		  checkApiUrl(FetchURL)
-		  const res = await axios.get(FetchURL)
-		  console.log('getGame');
-		//   console.log(res);
-		//   console.log(res.data)
-		  return res.data;
+			// console.log(API_BASE_URL);//http://localhost:8888/api
+			let FetchURL = game_ID === undefined ? `${API_BASE_URL}/game` : `${API_BASE_URL}/game/${game_ID}`;
+			checkApiUrl(FetchURL)
+			const res = await axios.get(FetchURL)
+			return res.data;
 		}catch(e){
-		  console.log('400 Error!!')
-		  console.log(e)
+			console.log('400 Error!!')
+			console.log(e)
 		}
   }
 

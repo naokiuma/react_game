@@ -14,7 +14,9 @@ import { TopicRegist } from 'components/pages/TopicRegist';
 
 import { Register } from 'components/pages/Register';
 import { Nomatch } from 'components/pages/Nomatch';
-import { Layout } from 'components/templates/Layout';
+// import { Layout } from 'components/templates/Layout';
+import { Test } from 'components/templates/Test';
+
 
 
 /**

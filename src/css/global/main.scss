@@ -215,7 +215,7 @@ header {
   }
   a,
   .header_btn {
-    color: #525252;
+    color: #fff;
     font-weight: bold;
   }
   .header_btn {
@@ -241,6 +241,9 @@ header {
     margin-left: auto;
     display: flex;
     align-items: center;
+    li {
+      color: #fff;
+    }
     div {
       margin-left: 20px;
     }
@@ -638,10 +641,10 @@ footer {
     display: flex;
     flex-direction: row;
     .game_imgs_wrap {
-      width: 320px;
+      width: 500px;
       .main_img {
         width: 100%;
-        height: 190px;
+        height: 300px;
         border-radius: 5px;
         img {
           width: 100%;
@@ -669,7 +672,43 @@ footer {
       }
     }
     ._sub_info {
+      width: 500px;
       margin-left: 20px;
+      ._btns {
+        margin-top: 10px;
+        button {
+          font-size: 14px;
+
+          padding: 15px 20px;
+          line-height: 1;
+          width: 200px;
+          border: none;
+          cursor: pointer;
+          &:hover {
+            opacity: 0.8;
+          }
+        }
+        ._want {
+          background-color: #fff;
+          border: 1px solid #ff461e;
+        }
+
+        ._want.active {
+          background-color: #ff461e;
+          color: #fff;
+          border: none;
+        }
+        ._now {
+          margin-left: 10px;
+          background-color: #fff;
+          border: 1px solid #0cd1ec;
+        }
+        ._now.active {
+          background-color: #0cd1ec;
+          color: #fff;
+          border: none;
+        }
+      }
     }
   }
 }
