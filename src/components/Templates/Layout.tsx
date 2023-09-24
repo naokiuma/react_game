@@ -10,7 +10,7 @@ import { Footer } from './Footer';
 
 
 
-export const Test = () => {
+export const Layout = () => {
     const { userAuth,username,setUserAuth,setUserName } = useContext(LoggedInContext);
     let modalcontext = useContext(ModalContext)
     let [searcIsActive,setSearchBox] = useState(false)

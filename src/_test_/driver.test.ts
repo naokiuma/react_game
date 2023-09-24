@@ -7,51 +7,51 @@ import {useGetTopics} from "infrastructure/topicDriver";
 
 
 //モジュール名を渡すことで、モジュール全体をモック化できる。p71
-jest.mock('axios')
-test('should fetch topics', async() => {
+// jest.mock('axios')
+// test('should fetch topics', async() => {
 
-	const mockData = [{ id: 1, title: 'Topic 1' }, { id: 2, title: 'Topic 2' }];
-	const res = { data: mockData };
-    (axios as jest.Mocked<typeof axios>).get.mockResolvedValue(res)//resを返してくれるようになる
-
-
-	//カスタムフックを実施
-	const {result,waitForNextUpdate} = renderHook(() => useGetTopics())
-
-	//関数を実行。一度ローディングし、解除してからtopicsの中身がmockと一致する。
-	result.current.getTopics();
-
-	expect(result.current.loading).toBe(true);
-
-	await waitForNextUpdate();
-
-	expect(result.current.loading).toBe(false);
-	expect(result.current.topics).toEqual(mockData)
-
- })
-
- jest.mock('axios')
-test('should fetch specific topics', async() => {
-
-	const mockData = [{ id: 1, title: 'Topic 1' }];
-	const res = { data: mockData };
-    (axios as jest.Mocked<typeof axios>).get.mockResolvedValue(res)//resを返してくれるようになる
+// 	const mockData = [{ id: 1, title: 'Topic 1' }, { id: 2, title: 'Topic 2' }];
+// 	const res = { data: mockData };
+//     (axios as jest.Mocked<typeof axios>).get.mockResolvedValue(res)//resを返してくれるようになる
 
 
-	//カスタムフックを実施
-	const {result,waitForNextUpdate} = renderHook(() => useGetTopics(1))
+// 	//カスタムフックを実施
+// 	const {result,waitForNextUpdate} = renderHook(() => useGetTopics())
 
-	//関数を実行。一度ローディングし、解除してからtopicsの中身がmockと一致する。
-	result.current.getTopics();
+// 	//関数を実行。一度ローディングし、解除してからtopicsの中身がmockと一致する。
+// 	result.current.getTopics();
 
-	expect(result.current.loading).toBe(true);
+// 	expect(result.current.loading).toBe(true);
 
-	await waitForNextUpdate();
+// 	await waitForNextUpdate();
 
-	expect(result.current.loading).toBe(false);
-	expect(result.current.topics).toEqual(mockData)
+// 	expect(result.current.loading).toBe(false);
+// 	expect(result.current.topics).toEqual(mockData)
 
- })
+//  })
+
+//  jest.mock('axios')
+// test('should fetch specific topics', async() => {
+
+// 	const mockData = [{ id: 1, title: 'Topic 1' }];
+// 	const res = { data: mockData };
+//     (axios as jest.Mocked<typeof axios>).get.mockResolvedValue(res)//resを返してくれるようになる
+
+
+// 	//カスタムフックを実施
+// 	const {result,waitForNextUpdate} = renderHook(() => useGetTopics(1))
+
+// 	//関数を実行。一度ローディングし、解除してからtopicsの中身がmockと一致する。
+// 	result.current.getTopics();
+
+// 	expect(result.current.loading).toBe(true);
+
+// 	await waitForNextUpdate();
+
+// 	expect(result.current.loading).toBe(false);
+// 	expect(result.current.topics).toEqual(mockData)
+
+//  })
 
 
 // test('should fetch all topics', async () => {

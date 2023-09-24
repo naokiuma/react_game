@@ -89,7 +89,7 @@ export const GameDetail = memo(() => {
 							<button className="_now">プレイ中</button>
 						</div>
 						<div className="about_topics">
-							<span onClick={form}>このゲームの話題!</span>
+							<span onClick={form}>このゲームの話題</span>
 
 						</div>
 					</div>

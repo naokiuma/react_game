@@ -22,13 +22,22 @@ type topicResponce = {
 
 }
 
-export const useGetTopics = (topic_ID?) => {
+/**
+ * from:どちらのテーブル基準か
+ * targe_id:指定のidがあるか
+ */
+type TopicsProp = {
+	from:'games'|'topics',
+	target_id?:number
+}
+
+export const useGetTopics = ({from,target_id}:TopicsProp) => {
 	const [topics,setTopics] = useState([]);
 	const [loading,setLoading] = useState(false);
 	const [error,setError] = useState(false);
 
 	const FetchURL = `${API_BASE_URL}/topics`;
-    const target_URL = topic_ID == undefined ? FetchURL : `${FetchURL}/${topic_ID}`;
+    const target_URL = target_id == undefined ? FetchURL : `${FetchURL}/${target_id}`;
     checkApiUrl(target_URL)
 
 	const getTopics = () =>{
