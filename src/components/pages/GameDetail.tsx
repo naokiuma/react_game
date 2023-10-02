@@ -1,10 +1,10 @@
 
 import { memo,useContext,useState,Suspense,useEffect } from "react";
 
-import { useLocation,useNavigate } from "react-router-dom";
+import { useLocation,Link,useNavigate } from "react-router-dom";
 import {LoggedInContext} from "../../provider/LoggedInProvider";
 //インフラ
-import {getGames, getGames2} from "../../infrastructure/gameDriver";
+import {getGames, getGame_with_topic} from "../../infrastructure/gameDriver";
 import {BASE_URL} from "config/url"
 
 
@@ -24,31 +24,23 @@ export const GameDetail = memo(() => {
 
     //トピック編集用モーダル
     const [modalActive,toggleModalActive] = useState(false)
-    let [game,setGame] = useState([]);
+    let   [game,setGame] = useState([]);
     const [game_imgs,setImgs] = useState([]);
 	const [main_img,setMainImg] = useState('');
 
-
-	const form = ()=>{
-		getGames2({'type':'with_topic','target_game':gameId});
-
-	}
+	// const test = () => {
+	// 	console.log(game['topics']);
+		
+	// }
 
 
 	useEffect(() => {
-        getGames(gameId).then((data) => {
+        getGame_with_topic(gameId).then((data) => {
             console.log('取得ゲーム')
-            // console.log(data[0])
-            console.log(data['images'][0].image_file_name)
-			
-
-			
+            console.log(data[0])
             setGame(data[0])
-			setImgs(data['images'])
-			setMainImg(data['images'][0].image_file_name);
-			console.log(game_imgs);
-			console.log('ここには');
-			console.log(main_img)
+			setImgs(data[0]['images'])
+			setMainImg(data[0]['images'][0].image_file_name);
         })
     },[])
 
@@ -83,24 +75,35 @@ export const GameDetail = memo(() => {
 						<span>ゲームジャンル：{game['genres']}</span><br/>
 						<span>ハード：{game['hard']}</span>
 						<div className="_btns">
-						{/* #dd2b05 */}
-						{/* #0cd1ec */}
 							<button className="_want">プレイしたい</button>
 							<button className="_now">プレイ中</button>
 						</div>
-						<div className="about_topics">
-							<span onClick={form}>このゲームの話題</span>
-
-						</div>
+						{
+							game['topics'] && game['topics'].length > 0 ?
+							(
+								<div className="about_topics">
+									<span>{game['game_name']}の話題</span>
+									<ul>
+										{
+											game['topics'].map((topic) => (
+												<li>
+													<Link to={"/topic/" + topic.id} state={topic}>
+													{topic.title}
+													</Link>
+												</li>
+											))
+										}
+									</ul>
+								</div>
+							):(
+								<span>ない</span>
+							)
+						}
+						<Link to={`/topic/create/new/${gameId}`} >
+							新しく話題を登録
+						</Link>
 					</div>
-					
-
 				</div>
-
-					
-				{/* <div className="new_form_button">
-					<button onClick={() => toggleModalActive(!modalActive)}>投稿</button>
-				</div> */}
 			</section>
 		</>
     )

@@ -12,28 +12,17 @@ import {getGames} from "infrastructure/gameDriver";
 
 //Form用の情報
 type FormInputs = {
-    Title: string;
     Gameid:number;
+    Title: string;
     Body: string;
     Status: string;
 };
 
 // todo 次ここ
-export const TopicRegist = memo((props) => {
+export const TopicRegist = memo(() => {
 
-    let url = new URL(window.location.href);
-	console.log('データ');
-	console.log(url)
-	const {id} = useParams();
-	console.log(id);
-
-    let params = url.searchParams;
-	console.log(params)
-    let target_game_id;
-
-
-	target_game_id = params.get('game_id');
-
+	const { game_id } = useParams();
+    let target_game_id = Number(game_id);
 
 
     //既存カテゴリーの取得--------------
@@ -48,17 +37,13 @@ export const TopicRegist = memo((props) => {
     useEffect(() => {
         GetCategory().then((data) => {
             set_category(data);//ローグライクとか。
-            console.log(data)
         });
         getGames(target_game_id).then((data)=>{
             set_game(data);
              //ゲーム情報が取得できなければリダイレクト
              if(!data[0]){
 				console.log('ゲームデータがありません')
-                // navigate('/game/search');
             }
-            // console.log('取得したゲーム情報')
-            // console.log(game_data[0])
             setIsLoading(false);
         })
     },[])
@@ -80,6 +65,7 @@ export const TopicRegist = memo((props) => {
 
     
     const submit = (data:FormInputs) => {
+		console.log(data)
         CreateTopic(data.Gameid,data.Title,data.Body,data.Status,images)  
     }
 

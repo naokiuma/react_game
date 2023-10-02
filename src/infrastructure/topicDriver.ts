@@ -27,11 +27,11 @@ type topicResponce = {
  * targe_id:指定のidがあるか
  */
 type TopicsProp = {
-	from:'games'|'topics',
+	// from:'games'|'topics',
 	target_id?:number
 }
 
-export const useGetTopics = ({from,target_id}:TopicsProp) => {
+export const useGetTopics = (target_id?:number) => {
 	const [topics,setTopics] = useState([]);
 	const [loading,setLoading] = useState(false);
 	const [error,setError] = useState(false);

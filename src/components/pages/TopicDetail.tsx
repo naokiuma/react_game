@@ -35,7 +35,7 @@ export const TopicDetail = memo(() => {
     let thisURL = locationVal.pathname
 
 	let topic_id = getidfromURL(thisURL,'topic');
-	const { loading, topics, error } = useGetTopics({from:'topics',target_id:topic_id});
+	const { loading, topics, error } = useGetTopics(topic_id);
 
 	// getTopics()
 	console.log('取得データ')

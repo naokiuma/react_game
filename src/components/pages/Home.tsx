@@ -33,7 +33,7 @@ export const Home = () => {
 	
 	// const [filtedTopics,setTopics] = useState([]);
 
-	const { loading, topics, error } = useGetTopics({from:'topics'});
+	const { loading, topics, error } = useGetTopics();
 	// const useGetTopicsFook = useGetTopics();
 	// useGetTopicsFook.getPosts();
 	// console.log('取得データ')
