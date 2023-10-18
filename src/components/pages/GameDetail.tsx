@@ -12,7 +12,6 @@ import {BASE_URL} from "config/url"
 
 
 export const GameDetail = memo(() => {
-    // let [game,setGame] = useState([]);
 
     //user_id
     const { userid } = useContext(LoggedInContext);
@@ -23,15 +22,10 @@ export const GameDetail = memo(() => {
     const gameId = Number(tempID.replace('/game/', ''))//game_id
 
     //トピック編集用モーダル
-    const [modalActive,toggleModalActive] = useState(false)
     let   [game,setGame] = useState([]);
     const [game_imgs,setImgs] = useState([]);
 	const [main_img,setMainImg] = useState('');
 
-	// const test = () => {
-	// 	console.log(game['topics']);
-		
-	// }
 
 
 	useEffect(() => {
@@ -43,9 +37,6 @@ export const GameDetail = memo(() => {
 			setMainImg(data[0]['images'][0].image_file_name);
         })
     },[])
-
-
-    const tags = ['ローグライク','泣ける!']
 
 
     return (
@@ -72,17 +63,17 @@ export const GameDetail = memo(() => {
 						):(<span>画像が未登録です。</span>)
 					}
 					<div className="_sub_info">
-						<span>ゲームジャンル：{game['genres']}</span><br/>
-						<span>ハード：{game['hard']}</span>
+						<span><strong>ゲームジャンル：</strong>{game['genres']}</span><br/>
+						<span><strong>ハード：</strong>{game['hard']}</span>
 						<div className="_btns">
-							<button className="_want">プレイしたい</button>
-							<button className="_now">プレイ中</button>
+							<button className="_want sclae_btn">プレイしたい</button>
+							<button className="_now sclae_btn">プレイ中</button>
 						</div>
 						{
 							game['topics'] && game['topics'].length > 0 ?
 							(
 								<div className="about_topics">
-									<span>{game['game_name']}の話題</span>
+									<span className="_title">{game['game_name']}の話題</span>
 									<ul>
 										{
 											game['topics'].map((topic) => (
@@ -99,7 +90,7 @@ export const GameDetail = memo(() => {
 								<span>ない</span>
 							)
 						}
-						<Link to={`/topic/create/new/${gameId}`} >
+						<Link className="main_btn" to={`/topic/create/new/${gameId}`} >
 							新しく話題を登録
 						</Link>
 					</div>

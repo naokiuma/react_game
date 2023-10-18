@@ -1,6 +1,7 @@
 @charset "UTF-8";
 * {
   font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", "メイリオ", sans-serif;
+  color: black;
 }
 
 /* Primary: Green Wrasse */
@@ -26,6 +27,7 @@ h2 {
   opacity: 0.8;
 }
 
+/*汎用css*/
 main {
   padding-top: 70px;
 }
@@ -60,6 +62,36 @@ main {
 .search_box_wrap.active {
   display: flex;
   animation: fadeIn 0.3s ease 0.2s 1 normal backwards;
+}
+
+.main_btn,
+.secondly_btn {
+  display: block;
+  border: 2px solid #5f5f5f;
+  padding: 15px 20px;
+  line-height: 1;
+  font-size: 16px;
+  color: #5f5f5f;
+  text-align: center;
+  border-radius: 6px;
+}
+
+.main_btn {
+  background-color: #ffff76;
+}
+
+.secondly_btn {
+  background-color: #fff;
+}
+
+.sclae_btn:hover {
+  transform: scale(1.02);
+  transition: 0.3s all;
+}
+
+.btn_wrap {
+  display: flex;
+  flex-direction: row;
 }
 
 .game_list {
@@ -339,7 +371,7 @@ footer {
 .form_wrap form {
   margin: auto;
   width: 1080px;
-  padding: 0 40px;
+  margin-top: 50px;
 }
 
 .modal ._title,
@@ -349,7 +381,7 @@ footer {
 
 .modal .write_area,
 .form_wrap .write_area {
-  margin-top: 10px;
+  margin-top: ５px;
 }
 
 .modal .write_area input,
@@ -592,26 +624,22 @@ footer {
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
-  margin-top: 40px;
 }
 
 .game_card {
-  width: 232px;
+  width: 250px;
   height: 190px;
   border: 1px solid #ccd6ce;
-  margin-left: 10px;
+  margin-left: 20px;
+  margin-top: 20px;
 }
 
 .game_card:first-child {
   margin-left: 0;
 }
 
-.game_card:nth-child(5n + 1) {
+.game_card:nth-child(4n + 1) {
   margin-left: 0;
-}
-
-.game_card:nth-child(n + 6) {
-  margin-top: 10px;
 }
 
 .game_card ._first {
@@ -644,8 +672,20 @@ footer {
   object-fit: cover;
 }
 
+/*ゲームコンテンツ*/
+.game_content .btn_wrap {
+  margin-top: 20px;
+}
+
+.game_content .btn_wrap a {
+  margin-left: 10px;
+}
+
+.game_content .btn_wrap a:first-child {
+  margin-left: 0;
+}
+
 .game_detail {
-  border: solid 1px #dcdcdc;
   border-radius: 6px;
   padding: 20px;
   margin: 100px auto auto auto;
@@ -678,6 +718,7 @@ footer {
 .game_detail ._inner .game_imgs_wrap .main_img img {
   width: 540px;
   height: 300px;
+  object-fit: cover;
 }
 
 .game_detail ._inner .game_imgs_wrap .sub_imgs {
@@ -706,6 +747,14 @@ footer {
 .game_detail ._inner ._sub_info {
   width: 500px;
   margin-left: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+}
+
+.game_detail ._inner ._sub_info strong {
+  font-size: 20px;
 }
 
 .game_detail ._inner ._sub_info ._btns {
@@ -717,6 +766,7 @@ footer {
   padding: 15px 20px;
   line-height: 1;
   width: 220px;
+  border-radius: 6px;
   border: none;
   cursor: pointer;
 }
@@ -752,8 +802,23 @@ footer {
   margin-top: 20px;
 }
 
-.game_detail ._inner ._sub_info .about_topics span {
-  font-size: 14px;
+.game_detail ._inner ._sub_info .about_topics li {
+  margin-top: 5px;
+}
+
+.game_detail ._inner ._sub_info .about_topics li a {
+  line-height: 1;
+  color: #5f5f5f;
+  font-size: 18px;
+}
+
+.game_detail ._inner ._sub_info .about_topics ._title {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.game_detail ._inner ._sub_info .main_btn {
+  margin-top: auto;
 }
 
 .mt10 {
@@ -813,7 +878,7 @@ footer {
 /*フォームページ*/
 .game_form,
 .topic_form {
-  padding: 200px 0px;
+  margin-top: 100px;
 }
 
 .topic_form .game_id input {

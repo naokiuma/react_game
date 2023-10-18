@@ -71,15 +71,18 @@ export const TopicRegist = memo(() => {
 
 	
     return (
-        <div className="main_contents form_wrap topic_form">
-            <form onSubmit={handleSubmit(submit)}>
+        <div className="main_contents">
+			<div className="form_wrap topic_form">
+
+			
+            	<form onSubmit={handleSubmit(submit)}>
                 <div className=''>
                     <span className="fw_b _title">
-                            新しいトピックを投稿する
+                            {game_data[0].game_name}について投稿する
                     </span>
                     <div className="write_area game_name">
-                        <span className="value_title">タイトル</span>
-                        <input className="mt10" {...register('Title', { required: 'タイトルは必須です' })}/>
+                        <span className="value_title">話題</span><br/>
+                        <input className="mt10" {...register('Title', { required: 'タイトルは必須です' })} placeholder="タイトルを入力"/>
                         <p className="_attention_msg">{errors.Title?.message}</p> {/* エラー表示 */}
                     </div>
                     
@@ -91,7 +94,8 @@ export const TopicRegist = memo(() => {
                     </select>
 
                     <div className="write_area game_id">
-						<>
+						<input {...register('Gameid')}　value={game_data[0].id}/>
+						{/* <>
 							{
 								game_data[0] ? 
 								(
@@ -105,11 +109,11 @@ export const TopicRegist = memo(() => {
 									<div>ゲーム情報が取得できませんでした。</div>
 								)
 							}
-						</>
+						</> */}
                     </div>
 
                     <div className="write_area" >
-                        <span className="value_title">メモ・感想など</span>
+                        <span className="value_title">本文</span><br/>
                         <textarea {...register('Body', { required: '本文は必須です' })}/>
                     </div>
                     <p className="_attention_msg">{errors.Body?.message}</p> {/* エラー表示 */}
@@ -119,7 +123,8 @@ export const TopicRegist = memo(() => {
                     </div>
                     <button className="submit_btn">投稿</button>
                 </div>
-            </form>
+            	</form>
+			</div>
         </div>
     )
 

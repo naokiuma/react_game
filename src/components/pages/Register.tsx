@@ -1,4 +1,6 @@
 import axios from 'axios'
+import {API_BASE_URL,API_SANCTUM_URL} from "config/url"
+
 import { ChangeEvent, useState,useContext,useEffect} from 'react'
 import { useLocation,useNavigate } from "react-router-dom";
 import {LoggedInContext} from "../../provider/LoggedInProvider";
@@ -11,10 +13,6 @@ type RegisterParams = {
 
 export const Register = () => {
 
-    const location = useLocation();
-    // console.log('uselocationで取得したデータ')
-    // console.log(location)
-
     const navigate = useNavigate();
     const [username,setName] = useState('')
     const [email,setEmail] = useState('')
@@ -26,6 +24,8 @@ export const Register = () => {
         if (userAuth){
             navigate('/')
         }
+		console.log(API_BASE_URL);
+		console.log(API_SANCTUM_URL);
     },[])
 
   
@@ -46,12 +46,12 @@ export const Register = () => {
         const loginParams:RegisterParams = {username,email,password}
 
         axios//csrf保護の初期化
-            .get('http://localhost:8888/sanctum/csrf-cookie', { withCredentials: true })
+            .get(API_SANCTUM_URL, { withCredentials: true })
             .then((response) => {
                 //ログイン処理
                 axios
                 .post(
-                    'http://localhost:8888/api/register',
+                    API_BASE_URL + '/register',
                     loginParams,
                     {withCredentials:true}
                 )

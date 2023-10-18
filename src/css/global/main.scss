@@ -1,10 +1,13 @@
 * {
   font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Yu Gothic Medium",
     "游ゴシック", "Yu Gothic", "メイリオ", sans-serif;
+  color: black;
 }
 
 $primary_text: 40px;
 $secondary_text: 30px;
+$basic_radius: 6px;
+$main_blue: #4ea6cc;
 
 body {
   // background-color: red;
@@ -65,6 +68,7 @@ h2 {
   }
 }
 
+/*汎用css*/
 main {
   padding-top: 70px;
 }
@@ -97,6 +101,37 @@ main {
     display: flex;
     animation: fadeIn 0.3s ease 0.2s 1 normal backwards;
   }
+}
+
+.main_btn,
+.secondly_btn {
+  display: block;
+  border: 2px solid #5f5f5f;
+  padding: 15px 20px;
+  line-height: 1;
+  font-size: 16px;
+  color: #5f5f5f;
+  text-align: center;
+  border-radius: $basic_radius;
+}
+.main_btn {
+  background-color: #ffff76;
+}
+
+.secondly_btn {
+  background-color: #fff;
+}
+
+.sclae_btn {
+  &:hover {
+    transform: scale(1.02);
+    transition: 0.3s all;
+  }
+}
+
+.btn_wrap {
+  display: flex;
+  flex-direction: row;
 }
 
 .game_list {
@@ -186,7 +221,7 @@ h1 {
 header {
   width: 100%;
   height: 70px;
-  background-color: #4ea6cc;
+  background-color: $main_blue;
   color: #525252;
   padding: 15px 0 10px 0;
   position: fixed;
@@ -348,14 +383,15 @@ footer {
   form {
     margin: auto;
     width: 1080px;
-    padding: 0 40px;
+    margin-top: 50px;
+    // padding: 0 40px;
   }
   ._title {
     font-size: 24px;
   }
 
   .write_area {
-    margin-top: 10px;
+    margin-top: ５px;
 
     input {
       width: 40%;
@@ -575,24 +611,22 @@ footer {
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
-  margin-top: 40px;
 }
 
 .game_card {
-  width: 232px;
+  width: 250px;
   height: 190px;
   border: 1px solid #ccd6ce;
-  margin-left: 10px;
+  margin-left: 20px;
+  margin-top: 20px;
+
   &:first-child {
     margin-left: 0;
   }
-  &:nth-child(5n + 1) {
+  &:nth-child(4n + 1) {
     margin-left: 0;
   }
 
-  &:nth-child(n + 6) {
-    margin-top: 10px;
-  }
   ._first {
     font-size: 16px;
     padding: 10px;
@@ -624,8 +658,21 @@ footer {
   }
 }
 
+/*ゲームコンテンツ*/
+
+.game_content {
+  .btn_wrap {
+    margin-top: 20px;
+    a {
+      margin-left: 10px;
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+}
+
 .game_detail {
-  border: solid 1px #dcdcdc;
   border-radius: 6px;
   padding: 20px;
   margin: 100px auto auto auto;
@@ -647,10 +694,9 @@ footer {
         border-radius: 5px;
         border: 2px #5f5f5f;
         img {
-          //   width: 100%;
-          //   height: 100%;
           width: 540px;
           height: 300px;
+          object-fit: cover;
         }
       }
       .sub_imgs {
@@ -676,15 +722,22 @@ footer {
     ._sub_info {
       width: 500px;
       margin-left: 20px;
+      font-size: 16px;
+      font-weight: bold;
+      display: flex;
+      flex-direction: column;
+      strong {
+        font-size: 20px;
+      }
 
       ._btns {
         margin-top: 10px;
         button {
           font-size: 14px;
-
           padding: 15px 20px;
           line-height: 1;
           width: 220px;
+          border-radius: $basic_radius;
           border: none;
           cursor: pointer;
           &:hover {
@@ -714,9 +767,21 @@ footer {
       }
       .about_topics {
         margin-top: 20px;
-        span {
-          font-size: 14px;
+        li {
+          margin-top: 5px;
+          a {
+            line-height: 1;
+            color: #5f5f5f;
+            font-size: 18px;
+          }
         }
+        ._title {
+          font-weight: bold;
+          font-size: 20px;
+        }
+      }
+      .main_btn {
+        margin-top: auto;
       }
     }
   }
@@ -783,7 +848,8 @@ footer {
 /*フォームページ*/
 .game_form,
 .topic_form {
-  padding: 200px 0px;
+  margin-top: 100px;
+  //   : 100px 0px;
 }
 
 .topic_form {

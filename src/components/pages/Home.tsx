@@ -121,10 +121,6 @@ export const Home = () => {
 					<div className="first_info">
 						<h1>ツミシェア</h1>
 						<p>
-							積みゲーをシェアし、プレイし、<br/>
-							誰かに積みゲーを勧める。
-							<br/>
-							<br/>
 							ツミシェアは、ゲーム体験をどんどん広げていくサービスです。
 						</p>
 					</div>
@@ -156,7 +152,7 @@ export const Home = () => {
 							<div>
 								<h3>
 									<i className="fa-sharp fa-regular fa-handshake"></i>
-									また積みゲーを増やそう。
+									また積みゲーを増やす
 								</h3>
 							</div>
 							<figure>

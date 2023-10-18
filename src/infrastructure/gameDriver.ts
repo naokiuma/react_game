@@ -1,5 +1,5 @@
 import axios from "axios";
-import {API_BASE_URL,API_SANCTUM_URL} from "../config/url"
+import {API_BASE_URL,API_SANCTUM_URL} from "config/url"
 import { GameType } from "types/gameType";
 import {checkApiUrl} from "utils/checkApiUrl"
 
