@@ -11,12 +11,10 @@ import { Setting } from "components/pages/Setting";
 import { TopicDetail } from 'components/pages/TopicDetail';
 import { Login } from 'components/pages/Login';
 import { TopicRegist } from 'components/pages/TopicRegist';
-import { Header } from 'components/templates/Header';
+import { Header } from 'components/layouts/Header';
 
 import { Register } from 'components/pages/Register';
 import { Nomatch } from 'components/pages/Nomatch';
-import { Layout } from 'components/templates/Layout';
-import { Test } from 'components/templates/Test';
 
 
 
