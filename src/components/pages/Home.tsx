@@ -1,7 +1,7 @@
 import { useMemo, useContext,useEffect, useState} from "react";
 import { Link } from "react-router-dom";
 import { Topic } from "components/atom/Topic";
-import { Layout } from 'components/templates/Layout';
+import { Layout } from 'components/commons/Layout';
 
 import { useQuery } from 'react-query';
 import { useTransition } from "react";

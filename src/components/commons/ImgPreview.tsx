@@ -25,9 +25,8 @@ export const ImgPreview = (props:ImgPreviewProps) => {
             reader.onload = (e) => {
                 // imagePreviewに読み込み結果（データURL）を代入する
                 // imagePreviewに値を入れると<output>に画像が表示される
-
-                console.log('最終画像の中身')
-                console.log(Previews)
+                // console.log('最終画像の中身')
+                // console.log(Previews)
 
                 setPreviews(
                     (previmgs)=>[...previmgs,e.target?.result]

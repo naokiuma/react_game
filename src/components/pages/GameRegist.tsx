@@ -1,7 +1,7 @@
 
 import { memo,useState,useEffect } from "react";
 import { useForm } from 'react-hook-form';
-import {ImgPreview} from "components/templates/ImgPreview"
+import {ImgPreview} from "components/commons/ImgPreview"
 
 import genres from 'utils/game_genre'
 

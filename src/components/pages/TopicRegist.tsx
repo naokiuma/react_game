@@ -2,7 +2,7 @@
 import { memo,useState,useEffect,Suspense } from "react";
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
-import {ImgPreview} from "components/templates/ImgPreview"
+import {ImgPreview} from "components/commons/ImgPreview"
 
 //インフラ
 import {CreateTopic} from "infrastructure/topicDriver";
