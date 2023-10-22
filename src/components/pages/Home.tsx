@@ -83,7 +83,9 @@ export const Home = () => {
 
 
 	const filterTopics = useMemo(() =>{
-		if(topics){
+		if(topics.length > 0){
+			console.log('topicsの中身');
+			console.log(topics);
 			return topics.filter((_topic) => {
 				if(selecged_tag === 'すべて' || selecged_tag === undefined) return true;
 				return _topic.tags.some(_tag => _tag.name === selecged_tag)
@@ -91,8 +93,6 @@ export const Home = () => {
 		}
 	},[selecged_tag,topics])
 
-	console.log('firuta')
-	console.log(filterTopics)
 
     // //タグが選ばれた際(通常クエリで行う場合)
     // useEffect(() => {
@@ -225,8 +225,7 @@ export const Home = () => {
 
 				{/* //通常盤 */}
 				{
-					loading || error ?
-					( <div>loading</div> ):
+					filterTopics ? 
 					(<ul className="topics_wrap">
 						{
 							filterTopics.map((topic)=>(
@@ -246,7 +245,9 @@ export const Home = () => {
 								</li>
 							))
 						}  
-					</ul>)
+					</ul>):
+					( <div>データがありません。</div> )
+					// loading || error ?
 				}
 					{/* //デフォルト */}
 					
