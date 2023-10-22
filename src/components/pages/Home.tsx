@@ -170,7 +170,7 @@ export const Home = () => {
 				<h2>みんなの取り組み中ゲーム</h2>
 				<div className="tags_search_wrap">
 					{
-						typeof categories !== 'undefined' ? 
+						categories ? 
 							(
 								<div>
 									{categories.map((_category)=>(
