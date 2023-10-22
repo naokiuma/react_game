@@ -11,6 +11,7 @@ import { Setting } from "components/pages/Setting";
 import { TopicDetail } from 'components/pages/TopicDetail';
 import { Login } from 'components/pages/Login';
 import { TopicRegist } from 'components/pages/TopicRegist';
+import { Header } from 'components/templates/Header';
 
 import { Register } from 'components/pages/Register';
 import { Nomatch } from 'components/pages/Nomatch';
@@ -25,8 +26,10 @@ import { Test } from 'components/templates/Test';
  */
 export const MainRoute = () => {
     return(
+		<>
+		<Header/>
         <Routes>
-  			<Route path="/" element={<Layout />}>
+  			{/* <Route path="/" element={<Layout />}> */}
 				<Route index element={<Home />} />
 				<Route path="/login/" element={<Login/>} />
 				<Route path="/register/" element={<Register/>} />
@@ -45,8 +48,10 @@ export const MainRoute = () => {
 					<Route path="/setting" element={<Setting/>}/>
 				</Route>
 				<Route path="*" element={<Nomatch />} />
-			</Route>
+			{/* </Route> */}
         </Routes>
+		</>
+
 
     )
 };
