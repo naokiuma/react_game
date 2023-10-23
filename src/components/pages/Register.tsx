@@ -17,6 +17,7 @@ export const Register = () => {
     const [username,setName] = useState('')
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
+	const [errMsg,setErrMsg] = useState('やあ')
     const { userAuth,setUserAuth } = useContext(LoggedInContext);
 
     //すでにログイン済みならtopへ。
@@ -56,10 +57,16 @@ export const Register = () => {
                     {withCredentials:true}
                 )
                 .then((response) => {
-                    // console.log('登録後のデータ')
-                    // console.log(response.data)
-                    setName(response.data.name);
-                    setUseremail(response.data.email);
+					if(response.data.result){
+						// console.log('登録後のデータ')
+						// console.log(response.data)
+						setName(response.data.name);
+						setUseremail(response.data.email);
+					}else{
+						setErrMsg(response.data.msg)
+
+					}
+                  
                     
                 })
             })
@@ -86,6 +93,7 @@ export const Register = () => {
             <div>
                 <button onClick={handleLoginClick}>ログイン</button>
             </div>
+
         </section>
     )
 }

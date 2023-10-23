@@ -1,6 +1,5 @@
-import axios from 'axios'
 import { ChangeEvent, useState,useContext} from 'react'
-import { useLocation,useNavigate } from "react-router-dom";
+import { Navigate, useLocation,useNavigate } from "react-router-dom";
 
 import {LoggedInContext} from "provider/LoggedInProvider";
 import {LogInUser} from 'infrastructure/authDriver'
@@ -19,8 +18,11 @@ export const Login = () => {
     const IsLogged = useContext(LoggedInContext);
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
+	const [errMsg,setErrMsg] = useState('')
+	const navigate = useNavigate();
 
-    //グローバルな値
+	
+
     const { username,setUserName } = useContext(LoggedInContext);
     const { userid,setUserID } = useContext(LoggedInContext);
     const { userAuth,setUserAuth } = useContext(LoggedInContext);
@@ -40,14 +42,19 @@ export const Login = () => {
         // console.log(loginParams)
         await LogInUser(loginParams)
 		.then((response)=>{
-
+			console.log('then')
 			setUserName(response.data.name);
 			setUserID(response.data.user_id);
 			setUseremail(response.data.email);
 			setUserAuth(true);
+			navigate('/')
+		})
+		.catch((response) => {
+			console.log('キャッチ')
+			console.log(response)
+			setErrMsg('ログインに失敗しました。メールアドレスとパスワードが正しいかご確認下さい。');
 
-			console.log('login successed')
-			// console.log(response.data);
+
 
 		})
 
@@ -104,6 +111,7 @@ export const Login = () => {
             <div>
                 <button onClick={handleLoginClick}>ログイン</button>
             </div>
+			{errMsg}
         </section>
     )
 }

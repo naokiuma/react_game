@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosResponse, AxiosError } from "axios";
 import {useContext} from "react";
 import {LoggedInContext} from "../provider/LoggedInProvider";
 import {API_BASE_URL,API_SANCTUM_URL} from "../config/url"
@@ -9,48 +9,28 @@ export const LogInUser = (loginParams) =>{
 
     const {email,password} = loginParams;
     const FetchURL = `${API_BASE_URL}/login`;
+	checkApiUrl(FetchURL);
+	axios.get(API_SANCTUM_URL, { withCredentials: true }) // CSRFトークンの初期化
+	const response = axios.post(
+		`${API_BASE_URL}/login`,
+		{email,password},
+		{withCredentials:true}	
+	)
+	return response;
 
-    try{
-        checkApiUrl(FetchURL);
-		axios.get(API_SANCTUM_URL, { withCredentials: true }) // CSRFトークンの初期化
-		const response = axios.post(
-			`${API_BASE_URL}/login`,
-			{email,password},
-			{withCredentials:true}	
-		)
-		return response;
-
-        // const res = axios//csrf保護の初期化
-        // .get(API_SANCTUM_URL, { withCredentials: true })
-        // .then((response) => {
-        //     //ログアウト処理
-        //     const res = axios
-        //     .post(
-        //         `${API_BASE_URL}/login`,
-        //         {email,password},
-        //         {withCredentials:true}
-        //         ).then((response) =>{
-		// 			return response.data
-        //             // console.log('成功');
-        //             // console.log(response)
-        //             // setUserName(response.data.name);
-        //             // setUserID(response.data.user_id);
-        //             // setUseremail(response.data.email);
-        //             // setUserAuth(true);
-        //             // ローカルストレージに保存する場合-------------------------------------
-        //             // ローカルストレージにキーを指定して、それに紐づく値を保存
-        //             // localStorage.setItem('userName', response.data.name);
-        //             // localStorage.setItem('userEmail', response.data.email);
-
-        //             // window.location.reload();
-                        
-        //         })
-        //     })
-        // return res;
-    }catch(e){
-        console.log('400 Error!!')
-        console.log(e)
-    }
+    // try{
+    //     checkApiUrl(FetchURL);
+	// 	axios.get(API_SANCTUM_URL, { withCredentials: true }) // CSRFトークンの初期化
+	// 	const response = axios.post(
+	// 		`${API_BASE_URL}/login`,
+	// 		{email,password},
+	// 		{withCredentials:true}	
+	// 	)
+	// 	return response;      
+    // }catch(e){
+    //     console.log('400 Error!!')
+    //     console.log(e)
+    // }
 }
     
 

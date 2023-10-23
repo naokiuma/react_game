@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from "axios";
+import axios, { AxiosResponse, AxiosError } from "axios";
 import {API_BASE_URL,API_SANCTUM_URL} from "config/url"
 import { useState, useCallback, useEffect} from "react";
 import {checkApiUrl} from "utils/checkApiUrl"
@@ -35,57 +35,31 @@ export const useGetTopics = (target_id?:number) => {
 	const [topics,setTopics] = useState([]);
 	const [loading,setLoading] = useState(false);
 	const [error,setError] = useState(false);
-
 	const FetchURL = `${API_BASE_URL}/topics`;
     const target_URL = target_id == undefined ? FetchURL : `${FetchURL}/${target_id}`;
     checkApiUrl(target_URL)
 
+
 	const getTopics = () =>{
 		setLoading(true)
-
 		axios.get(target_URL)
-		.then((res) => {
-			setTopics(res.data)
-		})
-		.catch(() => {
-			setError(true)
-		})
-		.finally(() => {
-			setLoading(false)
-
-		})
+			.then((res:AxiosResponse) => {
+				setTopics(res.data)
+			})
+			.catch((e:AxiosError) => {
+				setError(true)
+			})
+			.finally(() => {
+				setLoading(false)
+			})
 	}
 
 	//初回処理
 	useEffect(() => {
 		getTopics();
 	},[])
-
-
 	return {getTopics,loading,topics,error};
 }
-
-
-// export const GetTopics = async(topic_ID?:number,limit?:number):Promise<topicResponce> => {
-// export const GetTopics = async(topic_ID?:number,limit?:number) => {
-
-
-//     try{
-//         let FetchURL = `${API_BASE_URL}/topics`;
-//         let target_URL = topic_ID == undefined ? FetchURL : `${FetchURL}/${topic_ID}`;
-//         checkApiUrl(target_URL)
-
-
-// 		const res: AxiosResponse= await axios.get(target_URL)
-// 		console.log('gettopicsの取得データ')
-// 		console.log(res);
-// 		return res.data;
-//     }catch(e){
-// 		console.log('network')
-//         console.log(e.response)
-
-//     }
-// }
 
 
 export const CreateTopic = (game_id,title,body,status,imgData?) => {
