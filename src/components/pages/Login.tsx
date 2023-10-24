@@ -1,5 +1,7 @@
 import { ChangeEvent, useState,useContext} from 'react'
-import { Navigate, useLocation,useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useForm } from 'react-hook-form';
+
 
 import {LoggedInContext} from "provider/LoggedInProvider";
 import {LogInUser} from 'infrastructure/authDriver'
@@ -10,9 +12,12 @@ type LoginParams = {
     password:string;
 }
 
-export const Login = () => {
+type LoginInputs = {
+	email:string;
+    password:string;
+}
 
-    const location = useLocation();
+export const Login = () => {
 
     //ログイン状態
     const IsLogged = useContext(LoggedInContext);
@@ -27,6 +32,43 @@ export const Login = () => {
     const { userid,setUserID } = useContext(LoggedInContext);
     const { userAuth,setUserAuth } = useContext(LoggedInContext);
     const { setUseremail } = useContext(LoggedInContext);
+
+	//useformの初期化
+	const {
+			register,
+			handleSubmit,
+			formState: { errors }
+		} = useForm<LoginInputs>({
+	});
+
+
+	// バリデーション処理がOKの場合に呼ばれる関数
+	const isValid = async (data: LoginInputs) => {
+		console.log(data);
+		await LogInUser(data)
+			.then((response)=>{
+				console.log('then')
+				setUserName(response.data.name);
+				setUserID(response.data.user_id);
+				setUseremail(response.data.email);
+				setUserAuth(true);
+				navigate('/')
+			})
+			.catch((response) => {
+				console.log('キャッチ')
+				console.log(response)
+				setErrMsg('ログインに失敗しました。メールアドレスとパスワードが正しいかご確認下さい。');
+			})
+	};
+	
+	// バリデーション処理がNGの場合に呼ばれる関数
+	const isInValid = (erros: any) => {
+		console.log(errors);
+		console.log("Fail Login");
+	};
+	
+
+
 
 
     const changeEmail = (e:ChangeEvent<HTMLInputElement>) => {
@@ -53,42 +95,7 @@ export const Login = () => {
 			console.log('キャッチ')
 			console.log(response)
 			setErrMsg('ログインに失敗しました。メールアドレスとパスワードが正しいかご確認下さい。');
-
-
-
 		})
-
-
-
-
-        // axios//csrf保護の初期化
-        // .get('http://localhost:8888/sanctum/csrf-cookie', { withCredentials: true })
-        // .then((response) => {
-        //     //ログイン処理
-        //     axios
-        //     .post(
-        //         'http://localhost:8888/api/login',
-        //         loginParams,
-        //         {withCredentials:true}
-        //     )
-        //     .then((response) => {
-        //         setUserName(response.data.name);
-        //         setUserID(response.data.user_id);
-        //         setUseremail(response.data.email);
-        //         setUserAuth(true);
-        // // navigate(url)//リダイレクト
-        // // ローカルストレージに保存する場合-------------------------------------
-        // // ローカルストレージにキーを指定して、それに紐づく値を保存
-        // // localStorage.setItem('userName', response.data.name);
-        // // localStorage.setItem('userEmail', response.data.email);
-
-        // // ローカルストレージからキーを指定して取得
-        // var cat = localStorage.getItem("myCat");
-        // // ローカルストレージから対象のキーに紐づく値を削除
-        // localStorage.removeItem("myCat");
-        //     })
-        // })
-
 
     }
 
@@ -100,18 +107,27 @@ export const Login = () => {
             </h1>
             {username}
             {userid}
-            <div>
-                メールアドレス
-                <input onChange={changeEmail}/>
-            </div>
-            <div>
-                パスワード
-                <input onChange={changePassword}/>
-            </div>
-            <div>
-                <button onClick={handleLoginClick}>ログイン</button>
-            </div>
-			{errMsg}
+			<form onSubmit={handleSubmit(isValid,isInValid)}>
+
+				<div>
+					メールアドレス
+					<input {...register('email', { required: 'emailは必須です' })} placeholder="example@example.com"/>
+					<p className="_attention_msg">{errors.email?.message}</p>
+
+				</div>
+				<div>
+					パスワード
+					<input {...register('password', { required: 'passwordは必須です' })} placeholder="**********"/>
+					<p className="_attention_msg">{errors.password?.message}</p>
+				</div>
+
+
+				<div>
+					<button type="submit">LOGIN</button>
+				</div>
+				{errMsg}
+			</form>
+
         </section>
     )
 }

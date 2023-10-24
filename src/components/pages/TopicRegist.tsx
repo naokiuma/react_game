@@ -50,12 +50,10 @@ export const TopicRegist = memo(() => {
 
     //useformの初期化
     const {
-        register,
-        handleSubmit,
-        reset,
-        watch,
-        formState: { errors }
-    } = useForm<FormInputs>({
+			register,
+			handleSubmit,
+			formState: { errors }
+		} = useForm<FormInputs>({
     });
 
     //画像のみ別途用意
@@ -73,7 +71,6 @@ export const TopicRegist = memo(() => {
     return (
         <div className="main_contents">
 			<div className="form_wrap topic_form">
-
 			
             	<form onSubmit={handleSubmit(submit)}>
                 <div className=''>
@@ -95,21 +92,6 @@ export const TopicRegist = memo(() => {
 
                     <div className="write_area game_id">
 						<input {...register('Gameid')}　value={game_data[0].id}/>
-						{/* <>
-							{
-								game_data[0] ? 
-								(
-									<>
-										<span className="value_title">
-											{game_data[0].game_name}
-										</span><br/>
-										<input {...register('Gameid')}　value={game_data[0].id}/>
-									</>
-								):(
-									<div>ゲーム情報が取得できませんでした。</div>
-								)
-							}
-						</> */}
                     </div>
 
                     <div className="write_area" >
