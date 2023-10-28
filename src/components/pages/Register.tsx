@@ -14,10 +14,11 @@ type RegisterParams = {
 export const Register = () => {
 
     const navigate = useNavigate();
+
     const [username,setName] = useState('')
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
-	const [errMsg,setErrMsg] = useState('やあ')
+	const [errMsg,setErrMsg] = useState('')
     const { userAuth,setUserAuth } = useContext(LoggedInContext);
 
     //すでにログイン済みならtopへ。

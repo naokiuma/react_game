@@ -1,16 +1,16 @@
-import  {useState,createContext} from "react";
+import  {useState,createContext,useEffect} from "react";
+import {LogInCheck} from 'infrastructure/authDriver'
 
 
 type LoggedInContextType ={
     setUserAuth:(value:boolean) => void;
-    userAuth:boolean;
     setUserName: (value: string) => void;
-    username: string;
     setUserID: (value: number) => void;
-    userid: number;
     setUseremail: (value: string) => void;
+    userAuth:boolean;
+    userid: number;
+    username: string;
     useremail: string;
-    // TotalGameCount:number;
   }
   
 //ログイン有無のcontextを作成
@@ -23,15 +23,33 @@ export const LoggedInProvider = (props) => {
     const { children } = props;//一般的に、どんなものでも囲えるようにchildrecなpropsにする
 
      // 全体のステートオブジェクト、デフォルトの値を作成
-     const [username, setUserName] = useState<string>('名無し');
+     const [username, setUserName] = useState<string>('');
      const [userid, setUserID] = useState<number>(0);     
      const [useremail, setUseremail] = useState<string>('');
      const [userAuth, setUserAuth] = useState<boolean>(false);//ログイン有無
     //  const [TotalGameCount, setTotalGameCount] = useState(0);
 
+	useEffect(()=>{
+		LogInCheck().
+			then((res) => {
+				// console.log('初回処理')
+				// console.log(res)
+				setUserName(res.data.name);
+				setUserID(res.data.user_id);
+				setUseremail(res.data.email);
+				setUserAuth(true);
+			})
+			.catch(()=>{
+				// console.log('エラー')
+			})
+
+	},[])
+
 
     return (
         <LoggedInContext.Provider value={{username,setUserName,userid,setUserID,useremail,setUseremail,userAuth,setUserAuth}}>
+        {/* <LoggedInContext.Provider value={{setUserAuth,username,userid,useremail,userAuth}}> */}
+
             {children}
         </LoggedInContext.Provider>
     )

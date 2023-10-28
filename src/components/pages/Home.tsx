@@ -168,16 +168,16 @@ export const Home = () => {
 			
 			<section className="home_section main_contents">
 				<h2>みんなの取り組み中ゲーム</h2>
-				<div className="tags_search_wrap">
+				<div className="tags_wrap">
 					{
 						categories ? 
 							(
-								<div>
+								<>
 									{categories.map((_category)=>(
 										<CategoryLabel name={_category.name} func={set_tag} bgc={_category.color} key={_category.category_id}/>
 									))}
 									<span className="category_label" onClick={() => set_tag('すべて')}>すべて</span>
-								</div>
+								</>
 							):
 							(
 								<div>カテゴリーがありません。</div>

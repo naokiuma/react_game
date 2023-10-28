@@ -1,26 +1,27 @@
-import {Link, Outlet } from "react-router-dom";
+import {Link} from "react-router-dom";
 import {useContext,useState} from 'react'
 import {LoggedInContext} from "provider/LoggedInProvider";
 import {LogOutUser} from 'infrastructure/authDriver'
 import { Searchbox } from "components/molecules/form/Searchbox"
 
 
-
-
 export const Header = () => {
-
 	const toggleSearchBox = () =>setSearchBox(!searcIsActive)
-    const { userAuth,username,setUserAuth,setUserName } = useContext(LoggedInContext);
-
+    const { userAuth,username,setUserName,setUserID,setUserAuth } = useContext(LoggedInContext);
 	let [searcIsActive,setSearchBox] = useState(false)
+
 	const handleLogout = () => {
-        LogOutUser().then((data) =>{
-            setUserAuth(false)
-            setUserName('');
-        })
+		LogOutUser()
+			.then((res)=>{
+				console.log('ログアウトしました');
+				console.log(res);
+				setUserName('');
+				setUserID(0);
+				setUserAuth(false);
+			}).catch(()=>{
+				alert('ログアウトに失敗しました。時間をあけて再実行してください')
+			})
     }
-
-
 
     return(
 		<header>
@@ -43,23 +44,20 @@ export const Header = () => {
 
 				<ul className="login_block">
 					<li className="user_info">
-						{username !== 'undefined' ? username + 'さん' : 'ゲスト'}
+						{username !== '' ? username : 'ゲスト'}
 					</li>
 					{userAuth?
-						<li>
+						<li className="btn_wrap">
 							<button className="header_btn" onClick={handleLogout}>Logout</button>
 						</li>
 						:
 						<>
-							{/* <ul> */}
-
-								<li>
-									<Link to="/login">ログイン</Link>
-								</li>
-								<li>
-									<Link to="/register">新規登録</Link>
-								</li>
-							{/* </ul> */}
+							<li>
+								<Link to="/login">ログイン</Link>
+							</li>
+							<li>
+								<Link to="/register">新規登録</Link>
+							</li>
 						</>
 					}
 					<div onClick={toggleSearchBox}>
