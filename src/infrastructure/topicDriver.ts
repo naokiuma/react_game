@@ -31,6 +31,29 @@ type TopicsProp = {
 	target_id?:number
 }
 
+
+export const fetchAlbums = async () => {
+	const result = await axios.get(
+	  "https://jsonplaceholder.typicode.com/albums"
+	);
+	return result.data;
+  };
+
+  
+
+
+/*tanstack用にクエリを切り出したもの*/
+export const getTopic = async(target_id?:number) => {
+	const FetchURL = `${API_BASE_URL}/topics`;
+    const target_URL = target_id == undefined ? FetchURL : `${FetchURL}/${target_id}`;
+    checkApiUrl(target_URL)
+	const result = await axios.get(target_URL)
+	console.log('getTopicTanstack の　resultに入っているデータ')
+	console.log(result);
+	return result.data
+	
+}
+
 export const useGetTopics = (target_id?:number) => {
 	const [topics,setTopics] = useState([]);
 	const [loading,setLoading] = useState(false);

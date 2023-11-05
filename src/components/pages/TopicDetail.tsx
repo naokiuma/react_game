@@ -17,6 +17,7 @@ import {useGetTopics} from "infrastructure/topicDriver";
 
 
 export const TopicDetail = memo(() => {
+	console.log('topicdetailの描写')
  
 
     // const [topic,setTopic] = useState([]);

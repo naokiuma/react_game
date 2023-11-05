@@ -11,7 +11,7 @@ type LoggedInContextType ={
     userid: number;
     username: string;
     useremail: string;
-  }
+}
   
 //ログイン有無のcontextを作成
 // export const LoggedInContext = createContext(false);//valueの初期値はfalse
@@ -48,8 +48,6 @@ export const LoggedInProvider = (props) => {
 
     return (
         <LoggedInContext.Provider value={{username,setUserName,userid,setUserID,useremail,setUseremail,userAuth,setUserAuth}}>
-        {/* <LoggedInContext.Provider value={{setUserAuth,username,userid,useremail,userAuth}}> */}
-
             {children}
         </LoggedInContext.Provider>
     )

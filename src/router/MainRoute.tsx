@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { Route,Routes} from "react-router-dom";
 import { PrivateRoute } from "router/PrivateRoute";
 import { Home } from "components/pages/Home";
@@ -20,7 +21,7 @@ import { Layout } from 'components/commons/Layout';
 
 /**
  * 
- * ログインユーザーのみアクセス可能
+ * PrivateRouteはprovateユーザーのみアクセス可能
  */
 export const MainRoute = () => {
     return(
