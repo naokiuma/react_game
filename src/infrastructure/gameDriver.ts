@@ -7,6 +7,18 @@ import {checkApiUrl} from "utils/checkApiUrl"
 /**
  * 検索キーワードで取得
  */
+ export const searchGames = async(keyword:string):Promise<GameType[]> => {
+    try{
+		let FetchURL = `${API_BASE_URL}/game/search?game=${keyword}`;
+		checkApiUrl(FetchURL)
+		const res = await axios.get(FetchURL)
+		return res.data;
+    }catch(err){
+		// throw err;
+		return err
+    }
+}
+
 export const searchGame = async(keyword:string):Promise<[GameType]> => {
     try{
 		let FetchURL = `${API_BASE_URL}/game/search?game=${keyword}`;

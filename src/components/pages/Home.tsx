@@ -1,17 +1,13 @@
 import { useMemo, useContext,useEffect, useState} from "react";
 import { Link } from "react-router-dom";
 import { Topic } from "components/atom/Topic";
-// import { GameCard } from 'components/molecules/card/GameCard'
-
 import { useQuery } from 'react-query';
 
 import {CategoryLabel } from "components/atom/CategoryLabel";
 import { LoggedInContext } from "provider/LoggedInProvider";
 
 //インフラ
-// import {GetTopics,useGetTopics} from "infrastructure/topicDriver";
-// import {getGames} from "infrastructure/gameDriver";
-import {useGetTopics,getTopic} from "infrastructure/topicDriver";
+import {getTopic} from "infrastructure/topicDriver";
 import {GetCategory} from "infrastructure/categoryDriver";
 
 //css
@@ -26,16 +22,17 @@ export const Home = () => {
 	//各データ取得
 	const {data :topics} = useQuery({
 		queryKey:['topics'] ,
-		queryFn:() => getTopic()
+		queryFn:async () => {
+			return getTopic();
+		}
 	});
+
 	const { data :categories} = useQuery({
 		queryKey:['categories'] ,
-		queryFn:() => GetCategory()
+		queryFn:async() => {
+			return GetCategory()
+		}
 	});
-	// const { data :games} = useQuery({
-	// 	queryKey:['games'] ,
-	// 	queryFn:() => getGames()
-	// });
 
 	console.log('描写')
 
@@ -51,17 +48,16 @@ export const Home = () => {
 	// console.log(topics)
 	// console.log(error)
 	// console.log(isLoading)
-	
+	// if(topics){
 	const filterTopics = useMemo(() =>{
 		if(topics.length > 0){
-			console.log('topicsの中身');
-			console.log(topics);
 			return topics.filter((_topic) => {
 				if(selecged_tag === 'すべて' || selecged_tag === undefined) return true;
 				return _topic.tags.some(_tag => _tag.name === selecged_tag)
 			})
 		}
 	},[selecged_tag,topics])
+	
 	
 	return (		
 		<main className="top_page">
@@ -116,7 +112,7 @@ export const Home = () => {
 				<h2>みんなの取り組み中ゲーム</h2>
 				<div className="tags_wrap">
 					{
-						categories ? 
+						categories.length > 0 ? 
 							(
 								<>
 									{categories.map((_category)=>(

@@ -47,11 +47,12 @@ export const getTopic = async(target_id?:number) => {
 	const FetchURL = `${API_BASE_URL}/topics`;
     const target_URL = target_id == undefined ? FetchURL : `${FetchURL}/${target_id}`;
     checkApiUrl(target_URL)
-	const result = await axios.get(target_URL)
-	console.log('getTopicTanstack の　resultに入っているデータ')
-	console.log(result);
-	return result.data
-	
+	try{	
+		const result = await axios.get(target_URL)
+		return result.data
+	}catch(err){
+		return err
+	}
 }
 
 export const useGetTopics = (target_id?:number) => {

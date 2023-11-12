@@ -9,9 +9,8 @@ export const GetCategory = async() => {
         checkApiUrl(FetchURL)
         const res = await axios.get(FetchURL)
         return res.data;
-      }catch(e){
-        console.log('category error')
-        console.log(e)
+      }catch(err){
+		  return err      
       }
 
 }

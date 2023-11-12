@@ -2,9 +2,12 @@ import {ModalContext} from "../../provider/ModalProvider";
 import { ChangeEvent,memo,useState,useEffect,useContext,useMemo} from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import {searchGame} from "infrastructure/gameDriver";
+import {searchGame,searchGames} from "infrastructure/gameDriver";
 import {GameCard} from "components/molecules/card/GameCard";
 import { Searchbox } from "components/molecules/form/Searchbox"
+import { useQuery } from 'react-query';
+import { useTransition } from "react";
+
 
 
 export const GameList = () => {
@@ -15,28 +18,26 @@ export const GameList = () => {
     let defaultparam = params.get('game') ? params.get('game') : '';
 
     // const [keyword, setKeyword] = useState(defaultparam);
-    const [result, setResult] = useState([]);
+    // const [result, setResult] = useState([]);
 
-    useEffect(() => {
-        searchGame(defaultparam).then((data) =>{
-            if(data.length > 0){
-                setResult(data)                
-            }
-        })
-    },[])
+	
+	const { data :games, isError,refetch} = useQuery({
+		queryKey:['games'],
+		queryFn: async () => {
+			return searchGames(defaultparam);
+		},
+	});
 
-    // const changeKeyword = (e:ChangeEvent<HTMLInputElement>) => {
-    //     setKeyword(e.target.value)
-    // }
+
 
     const handleSubmitOnPage = (newText):void => {       
-        searchGame(newText).then((data) =>{
-            if(data.length > 0){
-                setResult(data)                
-            }else{
-                setResult([]);
-            }
-        })
+        // searchGame(newText).then((data) =>{
+        //     if(data.length > 0){
+        //         setResult(data)                
+        //     }else{
+        //         setResult([]);
+        //     }
+        // })
     }
 
     return (
@@ -49,17 +50,17 @@ export const GameList = () => {
 				<Searchbox modalStatus={true} type='is_page' func={handleSubmitOnPage} />
                 {
                     (()=>{
-                        if(result){
+                        if(games.length > 0){
                             return(
                                 <div className="game_card_wrap">
-                                    {result.map((each_game)=>(
+                                    {games.map((each_game)=>(
 										<GameCard key={each_game.id} {...each_game} />
                                     ))}
                                 </div>
                             )
                         }
                     })()
-                } 
+                }
                 
             </section>
         </>
