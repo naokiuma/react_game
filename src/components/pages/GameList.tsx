@@ -28,6 +28,9 @@ export const GameList = () => {
 		},
 	});
 
+	console.log('is_error')
+	console.log(isError)
+
 
 
     const handleSubmitOnPage = (newText):void => {       
@@ -50,7 +53,7 @@ export const GameList = () => {
 				<Searchbox modalStatus={true} type='is_page' func={handleSubmitOnPage} />
                 {
                     (()=>{
-                        if(games.length > 0){
+                        if(games.length > 0 && !isError){
                             return(
                                 <div className="game_card_wrap">
                                     {games.map((each_game)=>(

@@ -25,28 +25,32 @@ import { Layout } from 'components/commons/Layout';
  */
 export const MainRoute = () => {
     return(
-        <Routes>
-  			<Route path="/" element={<Layout />}>
-				<Route index element={<Home />} />
-				<Route path="/login/" element={<Login/>} />
-				<Route path="/register/" element={<Register/>} />
-				<Route path="/about/" element={<About/>} />
-				<Route path="/user/" element={<UserDetail/>} />
+		<Suspense fallback={<div>loading...</div>}>
 
-				<Route path="/game" element={<GameWrap/>}>
-					<Route path="list" element={<GameList/>} />
-					<Route path="create" element={<GameRegist/>} />
-					<Route path=":id" element={<GameDetail />} />
-				</Route>
-				<Route path="/topic/create/new/:game_id" element={<TopicRegist/>} />
-				<Route path="/topic/:id" element={<TopicDetail />} />
+			<Routes>
+				<Route path="/" element={<Layout />}>
+					<Route index element={<Home />} />
+					<Route path="/login/" element={<Login/>} />
+					<Route path="/register/" element={<Register/>} />
+					<Route path="/about/" element={<About/>} />
+					<Route path="/user/" element={<UserDetail/>} />
 
-				<Route element={<PrivateRoute />}>
-					<Route path="/setting" element={<Setting/>}/>
+					<Route path="/game" element={<GameWrap/>}>
+						<Route path="list" element={<GameList/>} />
+						<Route path="create" element={<GameRegist/>} />
+						<Route path=":id" element={<GameDetail />} />
+					</Route>
+					<Route path="/topic/create/new/:game_id" element={<TopicRegist/>} />
+					<Route path="/topic/:id" element={<TopicDetail />} />
+
+					<Route element={<PrivateRoute />}>
+						<Route path="/setting" element={<Setting/>}/>
+					</Route>
+					<Route path="*" element={<Nomatch />} />
 				</Route>
-				<Route path="*" element={<Nomatch />} />
-			</Route>
-        </Routes>
+			</Routes>
+		</Suspense>
+
 
     )
 };

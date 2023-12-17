@@ -14,7 +14,6 @@ import {checkApiUrl} from "utils/checkApiUrl"
 		const res = await axios.get(FetchURL)
 		return res.data;
     }catch(err){
-		// throw err;
 		return err
     }
 }

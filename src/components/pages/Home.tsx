@@ -35,20 +35,9 @@ export const Home = () => {
 	});
 
 	console.log('描写')
-
     const [modalActive,toggleModalActive] = useState(false)
-    // let [games,set_game] = useState([])
-    let [selecged_tag,set_tag] = useState('すべて')
+    const [selecged_tag,set_tag] = useState('すべて')
 	
-
-	// const { loading, topics, error } = useGetTopics();
-	//インターフェイスを使ったreactクエリ
-	// const {data:topics,error,isLoading} = UseFetch({key:'topics',fetcher:GetTopics});
-	// console.log('syutokude-ta')
-	// console.log(topics)
-	// console.log(error)
-	// console.log(isLoading)
-	// if(topics){
 	const filterTopics = useMemo(() =>{
 		if(topics.length > 0){
 			return topics.filter((_topic) => {
