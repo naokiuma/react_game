@@ -34,7 +34,6 @@ export const Home = () => {
 		}
 	});
 
-	console.log('描写')
     const [modalActive,toggleModalActive] = useState(false)
     const [selecged_tag,set_tag] = useState('すべて')
 	
@@ -53,10 +52,7 @@ export const Home = () => {
 			<section className="hero">
 				<div className="inner">
 					<div className="first_info">
-						<h1>ツミシェア</h1>
-						<p>
-							ツミシェアは、ゲーム体験をどんどん広げていくサービスです。
-						</p>
+						<h1>ゲームをつもう！</h1>
 					</div>
 
 					<SMainInfo>
@@ -64,7 +60,7 @@ export const Home = () => {
 							<div>
 								<h3>
 									<i className="fa-sharp fa-regular fa-pen-to-square"></i>
-									積みゲーをプレイして
+									積んで
 								</h3>
 							</div>
 							<figure>
@@ -78,7 +74,7 @@ export const Home = () => {
 							<div>
 								<h3>
 									<i className="fa-solid fa-magnifying-glass"></i>
-									情報をシェアして
+									シェアして
 								</h3>
 							</div>
 						</div>
@@ -86,7 +82,7 @@ export const Home = () => {
 							<div>
 								<h3>
 									<i className="fa-sharp fa-regular fa-handshake"></i>
-									また積みゲーを増やす
+									また積もう！
 								</h3>
 							</div>
 							<figure>

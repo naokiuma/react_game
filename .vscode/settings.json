@@ -1,2 +1,8 @@
 {
+	"liveSassCompile.settings.formats": [ //Sassの出力内容の設定
+		{
+			"indentType": "tab",
+			"indentWidth": "4",
+		}
+	],
 }

@@ -1,9 +1,1 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,iBAAiB,CAAA;EACb,KAAK,EAAE,KAAK;EACZ,MAAM,EAAE,KAAK;EACb,MAAM,EAAE,MAAM;CACjB",
-    "sources": [
-        "image_preview.scss"
-    ],
-    "names": [],
-    "file": "image_preview.css"
-}
+{"version":3,"sourceRoot":"","sources":["image_preview.scss"],"names":[],"mappings":"AAAA;EACI;EACA;EACA","file":"image_preview.css"}

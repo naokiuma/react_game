@@ -1,51 +1,19 @@
 * {
-  font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Yu Gothic Medium",
-    "游ゴシック", "Yu Gothic", "メイリオ", sans-serif;
+  //   font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Yu Gothic Medium",
+  //     "游ゴシック", "Yu Gothic", "メイリオ", sans-serif;
+  font-family: "メイリオ", sans-serif;
   color: black;
 }
 
 $primary_text: 40px;
 $secondary_text: 30px;
 $basic_radius: 6px;
-$main_blue: #4ea6cc;
+$main_blue: #9fdaf4;
 
-body {
-  // background-color: red;
-}
 $main_title: 20px;
 
 /* Primary: Green Wrasse */
-$primary-100: #f2fff7;
-$primary-200: #bdfed0;
-$primary-300: #87f9a1;
 $primary-400: #4fec6a;
-$primary-500: #1bd130;
-$primary-600: #09a612;
-$primary-700: #027c02;
-$primary-800: #055100;
-$primary-900: #042600;
-
-/* Accent: Rackham Red */
-$accent-100: #2d1b10;
-$accent-200: #fed1be;
-$accent-300: #faa388;
-$accent-400: #ed6c51;
-$accent-500: #d4331e;
-$accent-600: #a8130a;
-$accent-700: #7d0202;
-$accent-800: #520000;
-$accent-900: #260000;
-
-/* Neutral */
-$neutral-100: #fafcfb;
-$neutral-200: #eaf0ec;
-$neutral-300: #dbe3dd;
-$neutral-400: #ccd6ce;
-$neutral-500: #bdc9bf;
-$neutral-600: #95a197;
-$neutral-700: #6e786f;
-$neutral-800: #484f48;
-$neutral-900: #232622;
 
 html {
   position: relative;
@@ -225,15 +193,14 @@ header {
   color: #525252;
   padding: 15px 0 10px 0;
   position: fixed;
-  box-shadow: 1px 1px 1px #52525282;
   font-weight: bold;
   z-index: 10;
   .inner {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    width: 1280px;
-    padding: 0 40px;
+    width: 1200px;
+    padding: 0 10px;
     margin: auto;
   }
   .search_box_wrap {
@@ -247,7 +214,7 @@ header {
   }
   a,
   .header_btn {
-    color: #fff;
+    color: #333;
     font-weight: bold;
   }
   .header_btn {
@@ -274,7 +241,7 @@ header {
     display: flex;
     align-items: center;
     li {
-      color: #fff;
+      color: #333;
     }
     div {
       margin-left: 20px;
@@ -318,7 +285,7 @@ footer {
   height: 60px;
   position: fixed;
   bottom: 0;
-  background-color: #91dbff2e;
+  background-color: $main_blue;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -329,9 +296,13 @@ footer {
   flex-wrap: wrap;
   justify-content: flex-start;
   padding: 0;
+  a {
+    display: block;
+    height: 100%;
+  }
   li {
     width: 285px;
-    height: 350px;
+    height: 310px;
     margin-top: 24px;
     margin-right: 20px;
     border: 1px solid #353535;
@@ -513,7 +484,7 @@ footer {
     }
   }
   .sub_info {
-    margin: 10px 0;
+    margin-top: 10px;
   }
   .topic_img {
     border: 3px solid #525252;
@@ -844,7 +815,6 @@ footer {
 .game_form,
 .topic_form {
   margin-top: 100px;
-  //   : 100px 0px;
 }
 
 .topic_form {
@@ -858,12 +828,11 @@ footer {
 /*ヒーロ*/
 
 .hero {
-  width: 100%;
-  //   background-size: cover;
-  //   background: linear-gradient("45deg", $primary-300, $primary-700);
+  width: 1200px;
+  margin: auto;
 
   .inner {
-    width: 1280px;
+    width: 100%;
     margin: auto;
     padding: 100px 40px 100px;
     display: flex;
@@ -872,8 +841,8 @@ footer {
   }
 
   .first_info {
-    width: 30%;
-    padding-top: 200px;
+    width: auto;
+    padding-top: 100px;
   }
 }
 

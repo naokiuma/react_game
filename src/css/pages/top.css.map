@@ -1,9 +1,1 @@
-{
-    "version": 3,
-    "mappings": "",
-    "sources": [
-        "top.scss"
-    ],
-    "names": [],
-    "file": "top.css"
-}
+{"version":3,"sourceRoot":"","sources":[],"names":[],"mappings":"","file":"top.css"}
