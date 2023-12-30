@@ -4,15 +4,9 @@ import { topicType } from "types/topicType"
 
 
 export const Topic = (Props: topicType) => {
-	let { id, title, user_id, game_title, body, tags, status, image_path } = Props;
+	let { title, game_title, tags, status, image_path } = Props;
 	let game_hard = 'Nintendo Switch';
-	if (image_path == null) {
-		image_path = 'img/top/sample_topic.jpg';
-	} else {
-		image_path = BASE_URL + image_path.replace("public", "storage");
-	}
-	console.log(BASE_URL)
-
+	image_path = image_path == null ? 'img/top/sample_topic.jpg' : BASE_URL + image_path.replace("public", "storage");
 
 	return (
 		<div className="topic_card_wrap">

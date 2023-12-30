@@ -5,7 +5,13 @@ import {LogOutUser} from 'infrastructure/authDriver'
 import { Searchbox } from "components/molecules/form/Searchbox"
 
 
-export const Header = () => {
+type headerProps = {
+	isScroll?:boolean
+}
+
+
+export const Header = (props:headerProps) => {
+	const showclass = props.isScroll ? 'is_scroll' : '';
 	const toggleSearchBox = () =>setSearchBox(!searcIsActive)
     const { userAuth,username,setUserName,setUserID,setUserAuth } = useContext(LoggedInContext);
 	let [searcIsActive,setSearchBox] = useState(false)
@@ -13,8 +19,6 @@ export const Header = () => {
 	const handleLogout = () => {
 		LogOutUser()
 			.then((res)=>{
-				console.log('ログアウトしました');
-				console.log(res);
 				setUserName('');
 				setUserID(0);
 				setUserAuth(false);
@@ -24,7 +28,7 @@ export const Header = () => {
     }
 
     return(
-		<header>
+		<header className={showclass}>
 			<div className="inner">
 				<Link to="/">
 					<img src="/img/global/header_logo.png" className="header_logo" alt="Logo" />

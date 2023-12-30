@@ -7,20 +7,17 @@ import {CommentsType} from "types/commentsType"
 import {LoggedInContext} from "provider/LoggedInProvider";
 
 //新規form
-import { CommentForm } from "components/molecules/form/CommentForm"
+// import { CommentForm } from "components/molecules/form/CommentForm"
 //インフラ
 import {getComments} from "infrastructure/commentDriver";
-// import {GetTopics} from "infrastructure/topicDriver";
 import {useGetTopics} from "infrastructure/topicDriver";
 
 
-
-
+/**
+ * 投稿トピック詳細
+ */
 export const TopicDetail = memo(() => {
-	console.log('topicdetailの描写')
  
-
-    // const [topic,setTopic] = useState([]);
     const [comments,setComment] = useState<CommentsType[]>([])
 	const handleValueChange = (newValue) =>{
 		setComment([...comments,newValue])
@@ -28,22 +25,14 @@ export const TopicDetail = memo(() => {
 
     //user_id
     const { userid } = useContext(LoggedInContext);
-    // console.log('userid')
-    // console.log(userid)
 
     //topic_id
     const locationVal = useLocation();
-    let thisURL = locationVal.pathname
+	let topic_id = getidfromURL(locationVal.pathname,'topic');
+	const { topics } = useGetTopics(topic_id);
 
-	let topic_id = getidfromURL(thisURL,'topic');
-	const { loading, topics, error } = useGetTopics(topic_id);
-
-	// getTopics()
-	console.log('取得データ')
+	console.log('取得データ1')
     console.log(topics)
-    // let topic_id = Number(thisURL.replace('/topic/', ''))//topic_id
-
-
 
     //トピック編集用モーダル
     const [EditmodalActive,toggleEditModalActive] = useState(false)
@@ -57,15 +46,16 @@ export const TopicDetail = memo(() => {
     },[])
 
 
-	const MemoedForm = useMemo(() => 
-	<CommentForm 
-		form_title ='コメントを投稿'
-		isActive={modalActive} 
-		topic_id={topic_id}
-		toggleModalActive={toggleModalActive}
-		handleValueChange ={handleValueChange}
-	/>,
-	[modalActive])
+	//コメント投稿できる場合
+	// const MemoedForm = useMemo(() => 
+	// <CommentForm 
+	// 	form_title ='コメントを投稿'
+	// 	isActive={modalActive} 
+	// 	topic_id={topic_id}
+	// 	toggleModalActive={toggleModalActive}
+	// 	handleValueChange ={handleValueChange}
+	// />,
+	// [modalActive])
 
 
     //左辺がtrueなら右辺を返す。 
@@ -115,7 +105,6 @@ export const TopicDetail = memo(() => {
                     <p>{body}</p>
                 </div>
                 
-
                 {/* topicのユーザーidがログイン中urser_idと同じなら編集可能 */}
                 {(topics[0] && (topics[0]['parent_user_id'] != userid) ) && 
                     <button onClick={() => toggleEditModalActive(!EditmodalActive)}>記事を編集</button>
@@ -144,14 +133,7 @@ export const TopicDetail = memo(() => {
                         ))
                     }
                 </div>
-                {/* <CommentForm 
-                    form_title ='コメントを投稿'
-                    isActive={modalActive} 
-                    topic_id={topic_id}
-                    toggleModalActive={toggleModalActive}
-					handleValueChange ={handleValueChange}
-                /> */}
-				{MemoedForm}
+				{/* {MemoedForm} */}
 
             </div>
             <div className="new_form_button">

@@ -189,12 +189,12 @@ h1 {
 header {
   width: 100%;
   height: 70px;
-  background-color: $main_blue;
   color: #525252;
   padding: 15px 0 10px 0;
   position: fixed;
   font-weight: bold;
   z-index: 10;
+  transition: 0.3s;
   .inner {
     display: flex;
     justify-content: flex-start;
@@ -278,6 +278,10 @@ header {
       }
     }
   }
+}
+header.is_scroll {
+  background-color: $main_blue;
+  transition: 0.3s;
 }
 
 footer {
@@ -834,7 +838,7 @@ footer {
   .inner {
     width: 100%;
     margin: auto;
-    padding: 100px 40px 100px;
+    padding: 100px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -842,7 +846,9 @@ footer {
 
   .first_info {
     width: auto;
-    padding-top: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 

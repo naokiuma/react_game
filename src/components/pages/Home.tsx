@@ -1,4 +1,4 @@
-import { useMemo, useContext,useEffect, useState} from "react";
+import { useMemo, useContext, useState} from "react";
 import { Link } from "react-router-dom";
 import { Topic } from "components/atom/Topic";
 import { useQuery } from 'react-query';
