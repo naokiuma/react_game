@@ -8,10 +8,6 @@ import { Header } from 'components/commons/Header';
 
 
 // スクロールを制御する
-/**
- * @param {number}  activePoint - 表示のポイントを数値で取得
- * @return {boolean} 表示、非表示のbool値を返却する
- */
  const useHeaderShow = (activePoint: number): boolean => {
 	const [isHeaderActive, setIsHeaderActive] = useState<boolean>(false);
   

@@ -5,4 +5,13 @@
 			"indentWidth": "4",
 		}
 	],
+	
+	"emmet.triggerExpansionOnTab": true,
+		"emmet.includeLanguages": {
+		"javascript": "css",
+		"typescript": "css",
+		"typescriptreact": "css",
+
+	},
+	  
 }
