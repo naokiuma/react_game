@@ -1,10 +1,8 @@
-import { ChangeEvent, useState,useContext, useEffect} from 'react'
+import { useState,useContext } from 'react'
 import { useNavigate } from "react-router-dom";
 import { useForm } from 'react-hook-form';
-
-
-import {LoggedInContext} from "provider/LoggedInProvider";
-import {LogInUser} from 'infrastructure/authDriver'
+import { LoggedInUserContext } from "provider/LoggedInUserProvider";
+import { LogInUser } from 'infrastructure/authDriver'
 
 
 type LoginParams = {
@@ -19,8 +17,8 @@ export const Login = () => {
 	
 	//バリデーションエラー
 	const [errMsg,setErrMsg] = useState('')
+    const { userInfo,setUserInfo } = useContext(LoggedInUserContext);
 
-    const { userAuth,setUserName,setUserID,setUserAuth } = useContext(LoggedInContext);
 
 	//useformの初期化
 	const {
@@ -30,22 +28,21 @@ export const Login = () => {
 		} = useForm<LoginParams>({
 	});
 
-	if(userAuth){
+	if(userInfo.auth){
 		navigate('/')
 	}
 
 
 	// バリデーション後、ログイン
 	const isValid = async (data: LoginParams) => {
-		console.log(data);
 		await LogInUser(data)
 			.then((response)=>{
-				console.log('then')
-				setUserName(response.data.name);
-				setUserID(response.data.user_id);
-				// setUseremail(response.data.email);
-				setUserAuth(true);
-
+				setUserInfo({
+					name:response.data.name,
+					user_id:response.data.id,
+					email:response.data.email,
+					auth:true
+				})
 				//topにリダイレクト todo 前いたページにリダイレクトしたい
 				// navigate('/')
 			})
@@ -66,7 +63,6 @@ export const Login = () => {
                 Login
             </h1>
 			<form onSubmit={handleSubmit(isValid,isInValid)}>
-
 				<div>
 					メールアドレス
 					<input {...register('email', { required: 'emailは必須です' })} placeholder="example@example.com"/>
@@ -77,7 +73,6 @@ export const Login = () => {
 					<input {...register('password', { required: 'passwordは必須です' })} placeholder="**********"/>
 					<p className="_attention_msg">{errors.password?.message}</p>
 				</div>
-
 				<div>
 					<button type="submit">LOGIN</button>
 				</div>

@@ -2,8 +2,9 @@ import axios from 'axios'
 import {API_BASE_URL,API_SANCTUM_URL} from "config/url"
 
 import { ChangeEvent, useState,useContext,useEffect} from 'react'
-import { useLocation,useNavigate } from "react-router-dom";
-import {LoggedInContext} from "../../provider/LoggedInProvider";
+import {useNavigate } from "react-router-dom";
+import {LoggedInUserContext} from "provider/LoggedInUserProvider";
+
 
 type RegisterParams = {
     username:string;
@@ -12,26 +13,24 @@ type RegisterParams = {
 }
 
 export const Register = () => {
-
     const navigate = useNavigate();
+    const { setUserInfo,userInfo } = useContext(LoggedInUserContext);
 
     const [username,setName] = useState('')
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
 	const [errMsg,setErrMsg] = useState('')
-    const { userAuth,setUserAuth } = useContext(LoggedInContext);
 
     //すでにログイン済みならtopへ。
     useEffect(() => {
-        if (userAuth){
+		console.log('registerでのautho');
+		console.log(userInfo.auth)
+        if (userInfo.auth){
             navigate('/')
         }
 		console.log(API_BASE_URL);
 		console.log(API_SANCTUM_URL);
-    },[])
-
-  
-    const { setUseremail } = useContext(LoggedInContext);
+    },[userInfo.auth])
 
     const changeName = (e:ChangeEvent<HTMLInputElement>) => {
         setName(e.target.value)
@@ -42,7 +41,6 @@ export const Register = () => {
     const changePassword = (e:ChangeEvent<HTMLInputElement>) => {
         setPassword(e.target.value)
     }
-
 
     const handleLoginClick = () => {
         const loginParams:RegisterParams = {username,email,password}
@@ -59,16 +57,15 @@ export const Register = () => {
                 )
                 .then((response) => {
 					if(response.data.result){
-						// console.log('登録後のデータ')
-						// console.log(response.data)
-						setName(response.data.name);
-						setUseremail(response.data.email);
+						setUserInfo({
+							name:response.data.name,
+							user_id:response.data.id,
+							email:response.data.email,
+							auth:true
+						})
 					}else{
 						setErrMsg(response.data.msg)
-
 					}
-                  
-                    
                 })
             })
         }
@@ -78,7 +75,6 @@ export const Register = () => {
             <h1>
                 ユーザー登録
             </h1>
-
             <div>
                 お名前
                 <input onChange={changeName}/>
@@ -92,7 +88,7 @@ export const Register = () => {
                 <input onChange={changePassword}/>
             </div>
             <div>
-                <button onClick={handleLoginClick}>ログイン</button>
+                <button onClick={handleLoginClick}>登録</button>
             </div>
 
         </section>

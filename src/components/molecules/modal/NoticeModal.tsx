@@ -1,7 +1,4 @@
 import { memo } from "react";
-
-
-
 type NoticeModal = {
 	msg:string,
 	modalActive:boolean

@@ -1,6 +1,4 @@
 import axios, { AxiosResponse } from "axios";
-import {useContext} from "react";
-import {LoggedInContext} from "../provider/LoggedInProvider";
 import {API_BASE_URL,API_SANCTUM_URL} from "../config/url"
 import {checkApiUrl} from "../utils/checkApiUrl"
 

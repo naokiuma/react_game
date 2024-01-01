@@ -1,8 +1,8 @@
 
-import { memo,useContext,useState,Suspense,useEffect } from "react";
+import { memo,useState,useEffect } from "react";
 
-import { useLocation,Link,useNavigate } from "react-router-dom";
-import {LoggedInContext} from "../../provider/LoggedInProvider";
+import { useLocation,Link } from "react-router-dom";
+
 //インフラ
 import {getGames, getGame_with_topic} from "../../infrastructure/gameDriver";
 import {BASE_URL} from "config/url"
@@ -12,9 +12,6 @@ import {BASE_URL} from "config/url"
 
 
 export const GameDetail = memo(() => {
-
-    //user_id
-    const { userid } = useContext(LoggedInContext);
 
     //game_id todo id取得関数を作る
     const locationVal = useLocation();

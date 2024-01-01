@@ -1,6 +1,7 @@
 import {Link} from "react-router-dom";
 import {useContext,useState} from 'react'
-import {LoggedInContext} from "provider/LoggedInProvider";
+import {LoggedInUserContext} from "provider/LoggedInUserProvider";
+
 import {LogOutUser} from 'infrastructure/authDriver'
 import { Searchbox } from "components/molecules/form/Searchbox"
 
@@ -13,15 +14,24 @@ type headerProps = {
 export const Header = (props:headerProps) => {
 	const showclass = props.isScroll ? 'is_scroll' : '';
 	const toggleSearchBox = () =>setSearchBox(!searcIsActive)
-    const { userAuth,username,setUserName,setUserID,setUserAuth } = useContext(LoggedInContext);
+    const { userInfo,setUserInfo } = useContext(LoggedInUserContext);
+	// console.log('usernameは')
+	// console.log(username)
+
+	console.log('userinfoは')
+	console.log(userInfo)
+
 	let [searcIsActive,setSearchBox] = useState(false)
 
 	const handleLogout = () => {
 		LogOutUser()
 			.then((res)=>{
-				setUserName('');
-				setUserID(0);
-				setUserAuth(false);
+				setUserInfo({
+					name:'',
+					user_id:0,
+					email:'',
+					auth:false
+				})
 			}).catch(()=>{
 				alert('ログアウトに失敗しました。時間をあけて再実行してください')
 			})
@@ -48,9 +58,10 @@ export const Header = (props:headerProps) => {
 
 				<ul className="login_block">
 					<li className="user_info">
-						{username !== '' ? username : 'ゲスト'}
+						{userInfo.name !== '' ? userInfo.name : 'ゲスト'}
 					</li>
-					{userAuth?
+					{userInfo.auth?
+					// {userAuth?
 						<li className="btn_wrap">
 							<button className="header_btn" onClick={handleLogout}>Logout</button>
 						</li>

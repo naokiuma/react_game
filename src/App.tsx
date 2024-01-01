@@ -1,8 +1,7 @@
-// import { useContext} from 'react'
 import { BrowserRouter } from "react-router-dom";//switch は Routesに変わった
 import { MainRoute } from "../src/router/MainRoute";
-//プロバイダー。この中でグローバルstateを利用可能
-import { LoggedInProvider} from "./provider/LoggedInProvider";
+import { LoggedInUserProvider} from "./provider/LoggedInUserProvider";
+
 import { ModalProvider} from "./provider/ModalProvider";
 
 /*css*/
@@ -10,7 +9,6 @@ import './App.css';
 import './css/global/reset.css';
 import './css/global/main.css';
 import { QueryClient, QueryClientProvider } from 'react-query';
-// import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from 'react-query/devtools';
 
 
@@ -29,11 +27,11 @@ function App() {
     <>
 	<QueryClientProvider client={queryClient}>
     	<BrowserRouter>
-            <LoggedInProvider>
+            <LoggedInUserProvider>
               <ModalProvider>
                  <MainRoute />
               </ModalProvider>
-            </LoggedInProvider>
+            </LoggedInUserProvider>
     	</BrowserRouter>
 		<ReactQueryDevtools />
 	</QueryClientProvider>

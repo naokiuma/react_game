@@ -1,5 +1,7 @@
 import {ChangeEvent,useState,useContext,memo} from 'react'
 import { LoggedInContext } from "provider/LoggedInProvider";
+import {LoggedInUserContext} from "provider/LoggedInUserProvider";
+
 import {CommentFormType} from "types/commentsType"
 import {createComment} from "infrastructure/commentDriver"
 
@@ -7,20 +9,16 @@ import {createComment} from "infrastructure/commentDriver"
 
 
 export const CommentForm = (props:CommentFormType) => {
-    console.log("コメントフォーム");
-    console.log(props);
 
-    
-    const { username } = useContext(LoggedInContext);
-    const { userid } = useContext(LoggedInContext);
+    const { userInfo } = useContext(LoggedInUserContext);
 
     //モーダル表示フラグ
     let isActive = props.isActive
     let topic_id = props.topic_id
-    let user_id = userid;
+    let user_id = userInfo.user_id;
 
     //投稿者
-    const [name,setName] = useState(username)
+    const [name,setName] = useState(userInfo.name)
     const changeName = (e:ChangeEvent<HTMLInputElement>) => {
         setName(e.target.value)
     }
@@ -34,13 +32,10 @@ export const CommentForm = (props:CommentFormType) => {
 
     const submit = async () => {
         let result = await createComment({topic_id,user_id,name,text});
-		console.log('結果は２')
 		console.log(result)
 		props.handleValueChange(result);
         props.toggleModalActive(false);
-
     }
-
 
     return (
         <div className={'modal_wrap ' + (isActive == true ? 'isActive' : '')}>

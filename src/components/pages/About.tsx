@@ -1,6 +1,5 @@
 
 import { memo } from "react";
-import {Counter} from "components/study/Callback"
 
 export const About = () => {
 	console.log('描写');
@@ -18,7 +17,6 @@ export const About = () => {
 			アバウトページです
 
             アバウトページです
-			<Counter />
 
         </section>
     )

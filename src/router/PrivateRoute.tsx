@@ -1,6 +1,7 @@
 import { Outlet,Navigate,useNavigate,useLocation } from "react-router-dom";
 import { useContext} from 'react'
-import { LoggedInContext} from "../provider/LoggedInProvider";
+import {LoggedInUserContext} from "provider/LoggedInUserProvider";
+
 
 
 /**
@@ -8,16 +9,14 @@ import { LoggedInContext} from "../provider/LoggedInProvider";
  * ログインユーザーのみアクセス可能
  */
 export const PrivateRoute = () => {
-    const { userAuth } = useContext(LoggedInContext);
+    const { userInfo } = useContext(LoggedInUserContext);
     const location = useLocation();
-    console.log('userAuth')
-    console.log(userAuth)
 
     // const navigate = useNavigate()
     //https://zenn.dev/horisan/articles/2aeaf0bd3fb70f この方法でも取れる
 
 
-    if(userAuth){
+    if(userInfo.auth){
       return(
         <>
          <Outlet/>

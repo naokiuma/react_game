@@ -1,10 +1,11 @@
 
-import { memo,useMemo,useContext } from "react";
+import { memo,useContext } from "react";
 import { useEffect,useState } from 'react';
 import { useLocation } from "react-router-dom";
 import {getidfromURL} from 'utils/getidfromURL'
 import {CommentsType} from "types/commentsType"
-import {LoggedInContext} from "provider/LoggedInProvider";
+import {LoggedInUserContext} from "provider/LoggedInUserProvider";
+
 
 //新規form
 // import { CommentForm } from "components/molecules/form/CommentForm"
@@ -24,7 +25,10 @@ export const TopicDetail = memo(() => {
 	}
 
     //user_id
-    const { userid } = useContext(LoggedInContext);
+    // const { userid } = useContext(LoggedInContext);
+    const { userInfo } = useContext(LoggedInUserContext);
+	// console.log(userInfo)
+
 
     //topic_id
     const locationVal = useLocation();
@@ -45,7 +49,6 @@ export const TopicDetail = memo(() => {
         });
     },[])
 
-
 	//コメント投稿できる場合
 	// const MemoedForm = useMemo(() => 
 	// <CommentForm 
@@ -65,7 +68,6 @@ export const TopicDetail = memo(() => {
 
     //背景画像
     let main_img;
-
     if(topics[0] && topics[0]['image_path'] != null){
         let temp_image_path = topics[0]['image_path'];
         main_img = 'http://localhost:8888/' + temp_image_path.replace("public","storage");
@@ -106,7 +108,7 @@ export const TopicDetail = memo(() => {
                 </div>
                 
                 {/* topicのユーザーidがログイン中urser_idと同じなら編集可能 */}
-                {(topics[0] && (topics[0]['parent_user_id'] != userid) ) && 
+                {(topics[0] && (topics[0]['parent_user_id'] === userInfo.user_id) ) && 
                     <button onClick={() => toggleEditModalActive(!EditmodalActive)}>記事を編集</button>
                 }
 

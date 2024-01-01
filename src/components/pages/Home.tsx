@@ -4,7 +4,7 @@ import { Topic } from "components/atom/Topic";
 import { useQuery } from 'react-query';
 
 import {CategoryLabel } from "components/atom/CategoryLabel";
-import { LoggedInContext } from "provider/LoggedInProvider";
+
 
 //インフラ
 import {getTopic} from "infrastructure/topicDriver";
@@ -16,8 +16,6 @@ import { SMainInfo } from './Home_css';
 
 
 export const Home = () => {
-    const { username } = useContext(LoggedInContext); 
-    const { userid } = useContext(LoggedInContext);
 
 	//各データ取得
 	const {data :topics} = useQuery({
@@ -129,7 +127,6 @@ export const Home = () => {
 											image_path={topic.image_path}
 										/>
 									</Link>
-									{(username !== 'ゲスト' && userid === topic.parent_user_id) && <span>編集</span>}
 								</li>
 							))
 						}  
