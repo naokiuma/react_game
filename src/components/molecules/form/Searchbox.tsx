@@ -1,4 +1,3 @@
-import { ClassNames } from '@emotion/react';
 import {useState,memo} from 'react'
 import { useNavigate } from 'react-router-dom';
 
@@ -7,8 +6,6 @@ interface SearchboxProps {
 	type:string;
 	func?:(newtext) => void;
 }
-
-
 
 export const Searchbox = memo((props:SearchboxProps) => {
 	console.log('サーチボックス');
@@ -20,7 +17,7 @@ export const Searchbox = memo((props:SearchboxProps) => {
 
     const [inputValue, setInputValue] = useState(defaultValue);
 
-	const handleSubmit:React.MouseEventHandler<HTMLElement> = (event) => {
+	const handleSubmit:React.FormEventHandler<HTMLElement> = (event) => {
 		event.preventDefault();
 		//同じページでの処理の場合は親から受け取った関数を実施
 		if(props.type == 'is_page'){
@@ -38,12 +35,22 @@ export const Searchbox = memo((props:SearchboxProps) => {
 
 
     return (
-        <div className={'search_box_wrap ' + (modalStatus == true ? 'active' : '')} >
-            <div className="_inner">
-				<i className="fa-solid fa-magnifying-glass" onClick={handleSubmit}></i>
-                <input type="text" value={inputValue} onChange={handleInputChange} placeholder='ゲームの名前'/>
-            </div>
-        </div>
+		<>
+			{/* <div className={'search_box_wrap ' + (modalStatus == true ? 'active' : '')} >
+				<div className="_inner">
+					<i className="fa-solid fa-magnifying-glass" onClick={handleSubmit}></i>
+					<input type="text" value={inputValue} onChange={handleInputChange} placeholder='ゲームの名前'/>
+				</div>
+			</div> */}
+
+			<div className={'search_overlay ' + (modalStatus == true ? 'active' : '')}>
+				<form onSubmit={handleSubmit}>
+					ここがそれです。
+					<input type="text" value={inputValue} onChange={handleInputChange} placeholder='ゲームの名前'/>
+				</form>
+
+			</div>
+		</>
     )
 
 })

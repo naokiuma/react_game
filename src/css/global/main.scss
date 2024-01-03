@@ -1,6 +1,4 @@
 * {
-  //   font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Yu Gothic Medium",
-  //     "游ゴシック", "Yu Gothic", "メイリオ", sans-serif;
   font-family: "メイリオ", sans-serif;
   color: black;
 }
@@ -11,8 +9,6 @@ $basic_radius: 6px;
 $main_blue: #9fdaf4;
 
 $main_title: 20px;
-
-/* Primary: Green Wrasse */
 $primary-400: #4fec6a;
 
 html {
@@ -39,36 +35,6 @@ h2 {
 /*汎用css*/
 main {
   padding-top: 70px;
-}
-.search_box_wrap {
-  width: 270px;
-  display: none;
-  align-items: center;
-  background-color: #fff;
-  border: 1px solid #525252;
-  transition: 0.3s;
-
-  i {
-    border-right: 1px solid #525252;
-    padding: 10px 10px;
-    cursor: pointer;
-    &:hover {
-      opacity: 0.8;
-      background-color: #72dfea9e;
-    }
-  }
-  ._inner {
-    input {
-      border: none;
-      padding-left: 5px;
-      height: 100%;
-      outline: aliceblue;
-    }
-  }
-  &.active {
-    display: flex;
-    animation: fadeIn 0.3s ease 0.2s 1 normal backwards;
-  }
 }
 
 .main_btn,
@@ -186,6 +152,7 @@ h1 {
   }
 }
 
+/*ヘッダー-----------*/
 header {
   width: 100%;
   height: 70px;
@@ -284,6 +251,61 @@ header.is_scroll {
   transition: 0.3s;
 }
 
+/*検索モーダル--------*/
+
+.search_box_wrap {
+  width: 270px;
+  display: none;
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid #525252;
+  transition: 0.3s;
+  i {
+    border-right: 1px solid #525252;
+    padding: 10px 10px;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.8;
+      background-color: #72dfea9e;
+    }
+  }
+  ._inner {
+    input {
+      border: none;
+      padding-left: 5px;
+      height: 100%;
+      outline: aliceblue;
+    }
+  }
+  &.active {
+    display: flex;
+    animation: fadeIn 0.3s ease 0.2s 1 normal backwards;
+  }
+}
+
+.search_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease 0s;
+  display: flex;
+  &.active {
+    pointer-events: auto;
+    opacity: 1;
+  }
+  &:after {
+  }
+}
+
+/*フッター-----------*/
 footer {
   width: 100%;
   height: 60px;
@@ -434,7 +456,6 @@ footer {
   }
 }
 .ovarlay {
-  // display: none;
   position: fixed;
   width: 100%;
   height: 100vh;

@@ -4,7 +4,6 @@
 				color: black;
 }
 
-/* Primary: Green Wrasse */
 html {
 				position: relative;
 }
@@ -27,34 +26,6 @@ h2 {
 /*汎用css*/
 main {
 				padding-top: 70px;
-}
-
-.search_box_wrap {
-				width: 270px;
-				display: none;
-				align-items: center;
-				background-color: #fff;
-				border: 1px solid #525252;
-				transition: 0.3s;
-}
-.search_box_wrap i {
-				border-right: 1px solid #525252;
-				padding: 10px 10px;
-				cursor: pointer;
-}
-.search_box_wrap i:hover {
-				opacity: 0.8;
-				background-color: rgba(114, 223, 234, 0.6196078431);
-}
-.search_box_wrap ._inner input {
-				border: none;
-				padding-left: 5px;
-				height: 100%;
-				outline: aliceblue;
-}
-.search_box_wrap.active {
-				display: flex;
-				animation: fadeIn 0.3s ease 0.2s 1 normal backwards;
 }
 
 .main_btn,
@@ -172,6 +143,7 @@ h1 {
 				margin-left: 0;
 }
 
+/*ヘッダー-----------*/
 header {
 				width: 100%;
 				height: 70px;
@@ -271,6 +243,55 @@ header.is_scroll {
 				transition: 0.3s;
 }
 
+/*検索モーダル--------*/
+.search_box_wrap {
+				width: 270px;
+				display: none;
+				align-items: center;
+				background-color: #fff;
+				border: 1px solid #525252;
+				transition: 0.3s;
+}
+.search_box_wrap i {
+				border-right: 1px solid #525252;
+				padding: 10px 10px;
+				cursor: pointer;
+}
+.search_box_wrap i:hover {
+				opacity: 0.8;
+				background-color: rgba(114, 223, 234, 0.6196078431);
+}
+.search_box_wrap ._inner input {
+				border: none;
+				padding-left: 5px;
+				height: 100%;
+				outline: aliceblue;
+}
+.search_box_wrap.active {
+				display: flex;
+				animation: fadeIn 0.3s ease 0.2s 1 normal backwards;
+}
+
+.search_overlay {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background-color: rgba(0, 0, 0, 0.5);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				pointer-events: none;
+				opacity: 0;
+				transition: opacity 0.3s ease 0s;
+				display: flex;
+}
+.search_overlay.active {
+				pointer-events: auto;
+				opacity: 1;
+}
+/*フッター-----------*/
 footer {
 				width: 100%;
 				height: 60px;

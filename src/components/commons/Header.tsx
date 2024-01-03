@@ -1,5 +1,5 @@
 import {Link} from "react-router-dom";
-import {useContext,useState} from 'react'
+import {useContext,useState,memo} from 'react'
 import {LoggedInUserContext} from "provider/LoggedInUserProvider";
 
 import {LogOutUser} from 'infrastructure/authDriver'
@@ -11,9 +11,11 @@ type headerProps = {
 }
 
 
-export const Header = (props:headerProps) => {
+export const Header = memo((props:headerProps) => {
 	const showclass = props.isScroll ? 'is_scroll' : '';
-	const toggleSearchBox = () =>setSearchBox(!searcIsActive)
+	const toggleSearchBox = () =>{
+		setSearchBox(!searcIsActive)
+	}
     const { userInfo,setUserInfo } = useContext(LoggedInUserContext);
 	// console.log('usernameは')
 	// console.log(username)
@@ -47,9 +49,6 @@ export const Header = (props:headerProps) => {
 					<li>
 						<Link to="/game/list">ゲーム</Link>
 					</li>
-					<li>
-						<Link to="/about">このサービスについて</Link>
-					</li>
 					{/* todo ↓ログインしていれば出す */}
 					<li>
 						<Link to="/setting">設定</Link>
@@ -61,7 +60,6 @@ export const Header = (props:headerProps) => {
 						{userInfo.name !== '' ? userInfo.name : 'ゲスト'}
 					</li>
 					{userInfo.auth?
-					// {userAuth?
 						<li className="btn_wrap">
 							<button className="header_btn" onClick={handleLogout}>Logout</button>
 						</li>
@@ -85,4 +83,4 @@ export const Header = (props:headerProps) => {
 		</header>
     )
 
-}
+})
