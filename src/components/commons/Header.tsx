@@ -1,5 +1,5 @@
 import {Link} from "react-router-dom";
-import {useContext,useState,memo} from 'react'
+import React, {useContext,useState,memo} from 'react'
 import {LoggedInUserContext} from "provider/LoggedInUserProvider";
 
 import {LogOutUser} from 'infrastructure/authDriver'
@@ -10,20 +10,10 @@ type headerProps = {
 	isScroll?:boolean
 }
 
-
 export const Header = memo((props:headerProps) => {
 	const showclass = props.isScroll ? 'is_scroll' : '';
-	const toggleSearchBox = () =>{
-		setSearchBox(!searcIsActive)
-	}
     const { userInfo,setUserInfo } = useContext(LoggedInUserContext);
-	// console.log('usernameは')
-	// console.log(username)
-
-	console.log('userinfoは')
-	console.log(userInfo)
-
-	let [searcIsActive,setSearchBox] = useState(false)
+	const [searchIsActive,setSearchBox] = useState<boolean>(false)
 
 	const handleLogout = () => {
 		LogOutUser()
@@ -73,13 +63,15 @@ export const Header = memo((props:headerProps) => {
 							</li>
 						</>
 					}
-					<div onClick={toggleSearchBox}>
+					<div onClick={() => setSearchBox(!searchIsActive)}>
 						<span className="search_icon_wrap"><i className="fa-solid fa-magnifying-glass"></i></span>
 					</div>
 				</ul>
-
 			</div>
-			<Searchbox modalStatus={searcIsActive} type="global"/>
+
+			<div className={'search_overlay ' + (searchIsActive == true ? 'active' : '')}>
+				<Searchbox toggleDisplay={setSearchBox}/>
+			</div>
 		</header>
     )
 

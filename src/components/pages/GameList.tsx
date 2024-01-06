@@ -1,47 +1,29 @@
-import {ModalContext} from "../../provider/ModalProvider";
-import { ChangeEvent,memo,useState,useEffect,useContext,useMemo} from "react";
+import { memo,useEffect} from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import {searchGame,searchGames} from "infrastructure/gameDriver";
+import {searchGames} from "infrastructure/gameDriver";
 import {GameCard} from "components/molecules/card/GameCard";
 import { Searchbox } from "components/molecules/form/Searchbox"
 import { useQuery } from 'react-query';
-import { useTransition } from "react";
-
+import { useLocation } from "react-router-dom";
 
 
 export const GameList = () => {
 
-    //getパラメータの取得
-    let url = new URL(window.location.href);
-    let params = url.searchParams;
-    let defaultparam = params.get('game') ? params.get('game') : '';
-
-    // const [keyword, setKeyword] = useState(defaultparam);
-    // const [result, setResult] = useState([]);
-
-	
+	const location = useLocation();
+	//{"game" -> "ハイボール"}といった情報を取得
+	let urlParams = new URLSearchParams(location.search);
+	let inputValue = urlParams.get('game') || '';
 	const { data :games, isError,refetch} = useQuery({
 		queryKey:['games'],
 		queryFn: async () => {
-			return searchGames(defaultparam);
+			return searchGames(inputValue);
 		},
 	});
-
-	console.log('is_error')
-	console.log(isError)
-
-
-
-    const handleSubmitOnPage = (newText):void => {       
-        // searchGame(newText).then((data) =>{
-        //     if(data.length > 0){
-        //         setResult(data)                
-        //     }else{
-        //         setResult([]);
-        //     }
-        // })
-    }
+	// getが変わったらrefetch
+	useEffect(() => {   
+		refetch()
+	},[inputValue]);
 
     return (
         <>
@@ -50,7 +32,7 @@ export const GameList = () => {
                     <h1>ゲーム一覧</h1>
                 </div>
 
-				<Searchbox modalStatus={true} type='is_page' func={handleSubmitOnPage} />
+				<Searchbox />
                 {
                     (()=>{
                         if(games.length > 0 && !isError){
