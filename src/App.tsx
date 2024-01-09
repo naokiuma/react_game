@@ -10,6 +10,7 @@ import './css/global/reset.css';
 import './css/global/main.css';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
+import { ErrorBoundaryWithFallback } from "./components/commons/ErrorBoundaryWithFallback";
 
 
 const queryClient = new QueryClient({
@@ -25,16 +26,18 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <>
-	<QueryClientProvider client={queryClient}>
-    	<BrowserRouter>
-            <LoggedInUserProvider>
-              <ModalProvider>
-                 <MainRoute />
-              </ModalProvider>
-            </LoggedInUserProvider>
-    	</BrowserRouter>
-		<ReactQueryDevtools />
-	</QueryClientProvider>
+		<ErrorBoundaryWithFallback>
+			<QueryClientProvider client={queryClient}>
+				<BrowserRouter>
+					<LoggedInUserProvider>
+					<ModalProvider>
+						<MainRoute />
+					</ModalProvider>
+					</LoggedInUserProvider>
+				</BrowserRouter>
+				<ReactQueryDevtools />
+			</QueryClientProvider>
+		</ErrorBoundaryWithFallback>
     </>
   );
 }

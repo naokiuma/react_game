@@ -25,6 +25,7 @@ import { Layout } from 'components/commons/Layout';
  */
 export const MainRoute = () => {
     return(
+
 		<Suspense fallback={<div>loading...</div>}>
 
 			<Routes>
@@ -50,6 +51,7 @@ export const MainRoute = () => {
 				</Route>
 			</Routes>
 		</Suspense>
+
 
 
     )

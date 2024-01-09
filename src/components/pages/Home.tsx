@@ -45,7 +45,7 @@ export const Home = () => {
 	},[selecged_tag,topics])
 	
 	
-	return (		
+	return (
 		<main className="top_page">
 			<section className="hero">
 				<div className="inner">
