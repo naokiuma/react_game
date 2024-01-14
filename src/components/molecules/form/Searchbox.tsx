@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 type SearchboxProps = {
 	toggleDisplay?:React.Dispatch<React.SetStateAction<boolean>>;
 	with_result_area?:boolean
+	with_close_btn?:boolean
 }
 
 export const Searchbox = memo((props:SearchboxProps) => {
@@ -38,6 +39,9 @@ export const Searchbox = memo((props:SearchboxProps) => {
     return (
 		<>
 			<div className="search_form_wrap">
+				{props.with_close_btn　&&(
+					<button className="search_box_close_btn js_close_search_box">close</button>
+				)}
 				<form onSubmit={handleSubmit}>
 					<dl>
 						<dt>ゲーム名で検索する</dt>
@@ -45,7 +49,7 @@ export const Searchbox = memo((props:SearchboxProps) => {
 							<input type="text" value={inputValue} onChange={handleInputChange} placeholder='ゲームの名前'/>
 							<div className="_result">
 								{/* todo：ここに一時的リザルトを出したい */}
-
+								
 							</div>
 						</dd>
 					</dl>

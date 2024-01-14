@@ -1,5 +1,5 @@
 import {Link} from "react-router-dom";
-import React, {useContext,useState,memo} from 'react'
+import {useContext,useState,memo} from 'react'
 import {LoggedInUserContext} from "provider/LoggedInUserProvider";
 
 import {LogOutUser} from 'infrastructure/authDriver'
@@ -15,18 +15,25 @@ export const Header = memo((props:headerProps) => {
     const { userInfo,setUserInfo } = useContext(LoggedInUserContext);
 	const [searchIsActive,setSearchBox] = useState<boolean>(false)
 
+	//modalをトグル処理
+	const hundleToggleSearchBox = (event)=>{
+		if(event.target.className.includes('js_close_search_box')){
+			setSearchBox(!searchIsActive)
+		}
+	}
+
 	const handleLogout = () => {
 		LogOutUser()
-			.then((res)=>{
-				setUserInfo({
-					name:'',
-					user_id:0,
-					email:'',
-					auth:false
-				})
-			}).catch(()=>{
-				alert('ログアウトに失敗しました。時間をあけて再実行してください')
+		.then((res)=>{
+			setUserInfo({
+				name:'',
+				user_id:0,
+				email:'',
+				auth:false
 			})
+		}).catch(()=>{
+			alert('ログアウトに失敗しました。時間をあけて再実行してください')
+		})
     }
 
     return(
@@ -69,8 +76,8 @@ export const Header = memo((props:headerProps) => {
 				</ul>
 			</div>
 
-			<div className={'search_overlay ' + (searchIsActive == true ? 'active' : '')}>
-				<Searchbox toggleDisplay={setSearchBox}/>
+			<div className={'search_overlay js_close_search_box ' + (searchIsActive == true ? 'active' : '')} onClick={hundleToggleSearchBox}>
+				<Searchbox toggleDisplay={setSearchBox} with_close_btn={true}/>
 			</div>
 		</header>
     )
