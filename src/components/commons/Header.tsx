@@ -70,6 +70,7 @@ export const Header = memo((props:headerProps) => {
 							</li>
 						</>
 					}
+					{/* ヘッダーのサーチボックス */}
 					<div onClick={() => setSearchBox(!searchIsActive)}>
 						<span className="search_icon_wrap"><i className="fa-solid fa-magnifying-glass"></i></span>
 					</div>
@@ -77,7 +78,7 @@ export const Header = memo((props:headerProps) => {
 			</div>
 
 			<div className={'search_overlay js_close_search_box ' + (searchIsActive == true ? 'active' : '')} onClick={hundleToggleSearchBox}>
-				<Searchbox toggleDisplay={setSearchBox} with_close_btn={true}/>
+				<Searchbox toggleDisplay={setSearchBox} with_close_btn={true} with_result_area={true}/>
 			</div>
 		</header>
     )
