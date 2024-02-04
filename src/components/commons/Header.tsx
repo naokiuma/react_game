@@ -78,7 +78,7 @@ export const Header = memo((props:headerProps) => {
 			</div>
 
 			<div className={'search_overlay js_close_search_box ' + (searchIsActive == true ? 'active' : '')} onClick={hundleToggleSearchBox}>
-				<Searchbox toggleDisplay={setSearchBox} with_close_btn={true} with_result_area={true}/>
+				<Searchbox toggleDisplay={setSearchBox} is_modal={true}/>
 			</div>
 		</header>
     )

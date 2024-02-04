@@ -1,7 +1,7 @@
 import { memo,useEffect} from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import {searchGames} from "infrastructure/gameDriver";
+import {searchGamesFromKeyword} from "infrastructure/gameDriver";
 import {GameCard} from "components/molecules/card/GameCard";
 import { Searchbox } from "components/molecules/form/Searchbox"
 import { useQuery } from 'react-query';
@@ -17,7 +17,7 @@ export const GameList = () => {
 	const { data :games, isError,refetch} = useQuery({
 		queryKey:['games'],
 		queryFn: async () => {
-			return searchGames(inputValue);
+			return searchGamesFromKeyword(inputValue);
 		},
 	});
 	// getが変わったらrefetch
@@ -32,7 +32,7 @@ export const GameList = () => {
                     <h1>ゲーム一覧</h1>
                 </div>
 
-				<Searchbox />
+				<Searchbox is_modal={false}/>
                 {
                     (()=>{
                         if(games.length > 0 && !isError){
