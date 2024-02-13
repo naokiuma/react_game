@@ -40,7 +40,7 @@ export const Searchbox = memo((props:SearchboxProps) => {
 
 	useEffect(() => {
 		//モーダルの場合のみリアルタイム検索を実施
-		if(!props.is_modal){
+	if(!props.is_modal){
 			return;
 		}
 		//初回は表示しない
@@ -100,7 +100,7 @@ export const Searchbox = memo((props:SearchboxProps) => {
 											return(
 												<div className="game_card_wrap">
 													{temp_result.map((_result)=>(
-														<Link to={"game/list?game=" + _result.game_name}>
+														<Link to={"game/list?game=" + _result.game_name} className="game_link">
 															{_result.game_name}
 														</Link>
 														))}
