@@ -33,7 +33,7 @@ export const TopicDetail = memo(() => {
     //topic_id
     const locationVal = useLocation();
 	let topic_id = getidfromURL(locationVal.pathname,'topic');
-	const { topics } = useGetTopics(topic_id);
+	const { topics } = useGetTopics(8,topic_id);
 
 	console.log('取得データ1')
     console.log(topics)

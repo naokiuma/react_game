@@ -4,58 +4,39 @@ import { useState, useCallback, useEffect} from "react";
 import {checkApiUrl} from "utils/checkApiUrl"
 
 
-type topicResponce = {
-	body: string
-	game_id: number
-	game_name: string
-	genres: string
-	hard: string
-	id: number
-	image_path: string
-	parent_user_id: number
-	status: string
-	tags:{
-		color:string,
-		name:string
-	}
-	title: string
+// type topicResponce = {
+// 	body: string
+// 	game_id: number
+// 	game_name: string
+// 	genres: string
+// 	hard: string
+// 	id: number
+// 	image_path: string
+// 	parent_user_id: number
+// 	status: string
+// 	tags:{
+// 		color:string,
+// 		name:string
+// 	}
+// 	title: string
 
-}
-
-/**
- * from:どちらのテーブル基準か
- * targe_id:指定のidがあるか
- */
-type TopicsProp = {
-	// from:'games'|'topics',
-	target_id?:number
-}
-
-
-export const fetchAlbums = async () => {
-	const result = await axios.get(
-	  "https://jsonplaceholder.typicode.com/albums"
-	);
-	return result.data;
-  };
-
-  
+// }
 
 
 /*tanstack用にクエリを切り出したもの*/
-export const getTopic = async(target_id?:number) => {
+export const getTopic = async(count:number,target_id?:number) => {
 	const FetchURL = `${API_BASE_URL}/topics`;
     const target_URL = target_id == undefined ? FetchURL : `${FetchURL}/${target_id}`;
     checkApiUrl(target_URL)
 	try{	
-		const result = await axios.get(target_URL)
+		const result = await axios.get(`${target_URL}?count=${count}`)
 		return result.data
 	}catch(err){
 		return err
 	}
 }
 
-export const useGetTopics = (target_id?:number) => {
+export const useGetTopics = (count:number,target_id?:number) => {
 	const [topics,setTopics] = useState([]);
 	const [loading,setLoading] = useState(false);
 	const [error,setError] = useState(false);
