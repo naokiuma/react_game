@@ -21,7 +21,7 @@ const useHeaderShow = (activePoint: number): boolean => {
 		window.removeEventListener('scroll', scrollWindow);
 	  };
 	}, [activePoint]);
-	console.log('結果');
+	console.log('ヘッダー表示結果');
 	console.log(isHeaderActive)
   
 	return isHeaderActive ;

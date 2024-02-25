@@ -7,55 +7,55 @@ import {LoggedInUserContext} from "provider/LoggedInUserProvider";
 
 
 type RegisterParams = {
-    username:string;
-    email:string;
-    password:string;
+	username:string;
+	email:string;
+	password:string;
 }
 
 export const Register = () => {
-    const navigate = useNavigate();
-    const { setUserInfo,userInfo } = useContext(LoggedInUserContext);
+	const navigate = useNavigate();
+	const { setUserInfo,userInfo } = useContext(LoggedInUserContext);
 
-    const [username,setName] = useState('')
-    const [email,setEmail] = useState('')
-    const [password,setPassword] = useState('')
+	const [username,setName] = useState('')
+	const [email,setEmail] = useState('')
+	const [password,setPassword] = useState('')
 	const [errMsg,setErrMsg] = useState('')
 
-    //すでにログイン済みならtopへ。
-    useEffect(() => {
+	//すでにログイン済みならtopへ。
+	useEffect(() => {
 		console.log('registerでのautho');
 		console.log(userInfo.auth)
-        if (userInfo.auth){
-            navigate('/')
-        }
+		if (userInfo.auth){
+			navigate('/')
+		}
 		console.log(API_BASE_URL);
 		console.log(API_SANCTUM_URL);
-    },[userInfo.auth])
+	},[userInfo.auth])
 
-    const changeName = (e:ChangeEvent<HTMLInputElement>) => {
-        setName(e.target.value)
-    }
-    const changeEmail = (e:ChangeEvent<HTMLInputElement>) => {
-        setEmail(e.target.value)
-    }
-    const changePassword = (e:ChangeEvent<HTMLInputElement>) => {
-        setPassword(e.target.value)
-    }
+	const changeName = (e:ChangeEvent<HTMLInputElement>) => {
+		setName(e.target.value)
+	}
+	const changeEmail = (e:ChangeEvent<HTMLInputElement>) => {
+		setEmail(e.target.value)
+	}
+	const changePassword = (e:ChangeEvent<HTMLInputElement>) => {
+		setPassword(e.target.value)
+	}
 
-    const handleLoginClick = () => {
-        const loginParams:RegisterParams = {username,email,password}
+	const handleLoginClick = () => {
+		const loginParams:RegisterParams = {username,email,password}
 
-        axios//csrf保護の初期化
-            .get(API_SANCTUM_URL, { withCredentials: true })
-            .then((response) => {
-                //ログイン処理
-                axios
-                .post(
-                    API_BASE_URL + '/register',
-                    loginParams,
-                    {withCredentials:true}
-                )
-                .then((response) => {
+		axios//csrf保護の初期化
+			.get(API_SANCTUM_URL, { withCredentials: true })
+			.then((response) => {
+				//ログイン処理
+				axios
+				.post(
+					API_BASE_URL + '/register',
+					loginParams,
+					{withCredentials:true}
+				)
+				.then((response) => {
 					if(response.data.result){
 						setUserInfo({
 							name:response.data.name,
@@ -66,31 +66,32 @@ export const Register = () => {
 					}else{
 						setErrMsg(response.data.msg)
 					}
-                })
-            })
-        }
+				})
+			})
+		}
 
-    return(
-        <section className="login">
-            <h1>
-                ユーザー登録
-            </h1>
-            <div>
-                お名前
-                <input onChange={changeName}/>
-            </div>
-            <div>
-                メールアドレス
-                <input onChange={changeEmail}/>
-            </div>
-            <div>
-                パスワード
-                <input onChange={changePassword}/>
-            </div>
-            <div>
-                <button onClick={handleLoginClick}>登録</button>
-            </div>
+	return(
+		<section className="basic_form">
+			<h1>
+				ユーザー登録
+			</h1>
+			<dl>
+				<dt>お名前</dt>
+				<dd><input onChange={changeName}/></dd>
+			</dl>
+			<dl>
+				<dt>メールアドレス</dt>
+				<dd><input onChange={changeEmail}/></dd>
+			</dl>
+			<dl>
+				<dt>パスワード</dt>
+				<dd><input onChange={changePassword}/></dd>
+			</dl>
+		
+			<div>
+				<button onClick={handleLoginClick}>登録</button>
+			</div>
 
-        </section>
-    )
+		</section>
+	)
 }

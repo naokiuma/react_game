@@ -29,6 +29,10 @@ main {
 				padding-bottom: 120px;
 }
 
+.contents_outer {
+				padding-top: 100px;
+}
+
 .main_btn,
 .secondly_btn {
 				display: block;
@@ -121,12 +125,6 @@ h1 {
 				box-shadow: 2px 2px 1px rgba(128, 128, 128, 0.3803921569);
 }
 
-.login {
-				width: 1080px;
-				margin: auto;
-				padding: 200px 40px 100px;
-}
-
 .tags {
 				margin-top: 20px;
 }
@@ -196,18 +194,18 @@ header ul li {
 				align-items: center;
 				cursor: pointer;
 }
-header .login_block {
+header .header_login_block {
 				margin-left: auto;
 				display: flex;
 				align-items: center;
 }
-header .login_block li {
+header .header_login_block li {
 				color: #333;
 }
-header .login_block div {
+header .header_login_block div {
 				margin-left: 20px;
 }
-header .login_block .btn_wrap:hover {
+header .header_login_block .btn_wrap:hover {
 				opacity: 0.8;
 }
 header .game_menu {
@@ -842,16 +840,6 @@ footer {
 				}
 }
 /*topic詳細ページ*/
-/*フォームページ*/
-.game_form,
-.topic_form {
-				margin-top: 100px;
-}
-
-.topic_form .game_id input {
-				display: none;
-}
-
 /*ヒーロ*/
 .hero {
 				width: 1100px;

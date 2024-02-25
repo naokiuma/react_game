@@ -47,7 +47,7 @@ export const CommentForm = (props:CommentFormType) => {
                     </div>
                 </div>
                 {props.form_title}
-                <div className="write_area" >
+                <div className="write_area">
                     投稿者名<br/>
                     <input onChange={changeName} value={name}/>
                 </div>

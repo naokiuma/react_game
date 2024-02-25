@@ -58,23 +58,29 @@ export const Login = () => {
 	};
 
     return(
-        <section className="login">
+        <section className="basic_form">
             <h1>
                 Login
             </h1>
 			<form onSubmit={handleSubmit(isValid,isInValid)}>
+				<dl>
+					<dt>メールアドレス</dt>
+					<dd>
+						<input {...register('email', { required: 'emailは必須です' })} placeholder="example@example.com"/>
+						<p className="_attention_msg">{errors.email?.message}</p>				
+					</dd>
+
+				</dl>
+
+				<dl>
+					<dt>パスワード</dt>
+					<dd>
+						<input {...register('password', { required: 'passwordは必須です' })} placeholder="**********"/>
+						<p className="_attention_msg">{errors.password?.message}</p>
+					</dd>
+				</dl>
 				<div>
-					メールアドレス
-					<input {...register('email', { required: 'emailは必須です' })} placeholder="example@example.com"/>
-					<p className="_attention_msg">{errors.email?.message}</p>
-				</div>
-				<div>
-					パスワード
-					<input {...register('password', { required: 'passwordは必須です' })} placeholder="**********"/>
-					<p className="_attention_msg">{errors.password?.message}</p>
-				</div>
-				<div>
-					<button type="submit">LOGIN</button>
+					<button type="submit">ログイン</button>
 				</div>
 				{errMsg}
 			</form>

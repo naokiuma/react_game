@@ -87,7 +87,7 @@ export const GameDetail = memo(() => {
 								<span>ない</span>
 							)
 						}
-						<Link className="main_btn" to={`/topic/create/new/${gameId}`} >
+						<Link className="main_btn" to={`/topic/create/${gameId}`} >
 							新しく話題を登録
 						</Link>
 					</div>

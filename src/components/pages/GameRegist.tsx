@@ -50,7 +50,6 @@ export const GameRegist = memo(() => {
 		console.log(result);
     }
 
-
     return (
         <section className="form_wrap game_form">
             <h1>ゲームを登録する</h1>

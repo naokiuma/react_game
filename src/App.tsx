@@ -7,6 +7,7 @@ import { ModalProvider} from "./provider/ModalProvider";
 /*css*/
 import './App.css';
 import './css/global/reset.css';
+import './css/global/form.css';
 import './css/global/main.css';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';

@@ -38,6 +38,10 @@ main {
   padding-bottom: 120px;
 }
 
+.contents_outer {
+  padding-top: 100px;
+}
+
 .main_btn,
 .secondly_btn {
   display: block;
@@ -131,12 +135,6 @@ h1 {
   box-shadow: 2px 2px 1px #80808061;
 }
 
-.login {
-  width: 1080px;
-  margin: auto;
-  padding: 200px 40px 100px;
-}
-
 .tags {
   margin-top: 20px;
 }
@@ -204,7 +202,7 @@ header {
       cursor: pointer;
     }
   }
-  .login_block {
+  .header_login_block {
     margin-left: auto;
     display: flex;
     align-items: center;
@@ -867,20 +865,6 @@ footer {
 
 /*topic詳細ページ*/
 .topic_detail {
-}
-
-/*フォームページ*/
-.game_form,
-.topic_form {
-  margin-top: 100px;
-}
-
-.topic_form {
-  .game_id {
-    input {
-      display: none;
-    }
-  }
 }
 
 /*ヒーロ*/

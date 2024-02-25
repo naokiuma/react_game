@@ -15,7 +15,9 @@ export const Layout = () => {
         <>
 			<Header isScroll={isHeaderShow}/>
 				{  modalcontext.Modalmsg !== '' ? (<NoticeModal msg={modalcontext.Modalmsg} modalActive={true}/>) : (<></>)}
-				<Outlet/>
+				<div className="contents_outer">
+					<Outlet/>
+				</div>
 			<Footer/>            
         </>
     )

@@ -52,7 +52,7 @@ export const Header = memo((props:headerProps) => {
 					</li>
 				</ul>
 
-				<ul className="login_block">
+				<ul className="header_login_block">
 					<li className="user_info">
 						{userInfo.name !== '' ? userInfo.name : 'ゲスト'}
 					</li>

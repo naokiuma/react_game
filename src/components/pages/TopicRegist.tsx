@@ -23,6 +23,8 @@ export const TopicRegist = memo(() => {
 
 	const { game_id } = useParams();
     let target_game_id = Number(game_id);
+	console.log('ああい')
+	console.log(target_game_id)
 
 
     //既存カテゴリーの取得--------------
@@ -39,9 +41,12 @@ export const TopicRegist = memo(() => {
             set_category(data);//ローグライクとか。
         });
         getGames(target_game_id).then((data)=>{
+			console.log('ゲームデータ')
+			console.log(data[0])
+		
             set_game(data);
              //ゲーム情報が取得できなければリダイレクト
-             if(!data[0]){
+            if(!data[0]){
 				console.log('ゲームデータがありません')
             }
             setIsLoading(false);
@@ -69,14 +74,17 @@ export const TopicRegist = memo(() => {
 
 	
     return (
+
         <div className="main_contents">
 			<div className="form_wrap topic_form">
 			
             	<form onSubmit={handleSubmit(submit)}>
                 <div className=''>
-                    <span className="fw_b _title">
-                            {game_data[0].game_name}について投稿する
-                    </span>
+					{game_data?.[0]?.game_name && (
+                    	<span className="fw_b _title">
+							{game_data[0].game_name} について投稿する
+                    	</span>
+					)}
                     <div className="write_area game_name">
                         <span className="value_title">話題</span><br/>
                         <input className="mt10" {...register('Title', { required: 'タイトルは必須です' })} placeholder="タイトルを入力"/>
@@ -90,9 +98,11 @@ export const TopicRegist = memo(() => {
                         <option value="やり込み中">やり込み中</option>
                     </select>
 
-                    <div className="write_area game_id">
-						<input {...register('Gameid')}　value={game_data[0].id}/>
-                    </div>
+					{game_data?.[0]?.id && (
+						<div className="write_area game_id">
+							<input {...register('Gameid')}　value={game_data[0].id}/>
+                    	</div>
+					)}
 
                     <div className="write_area" >
                         <span className="value_title">本文</span><br/>

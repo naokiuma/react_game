@@ -41,7 +41,7 @@ export const MainRoute = () => {
 						<Route path="create" element={<GameRegist/>} />
 						<Route path=":id" element={<GameDetail />} />
 					</Route>
-					<Route path="/topic/create/new/:game_id" element={<TopicRegist/>} />
+					<Route path="/topic/create/:game_id" element={<TopicRegist/>} />
 					<Route path="/topic/:id" element={<TopicDetail />} />
 
 					<Route element={<PrivateRoute />}>
