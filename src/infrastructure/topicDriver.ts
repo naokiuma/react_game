@@ -32,7 +32,7 @@ export const getTopic = async(count:number,target_id?:number) => {
 		const result = await axios.get(`${target_URL}?count=${count}`)
 		return result.data
 	}catch(err){
-		return err
+		return []
 	}
 }
 

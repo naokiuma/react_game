@@ -34,12 +34,17 @@ export const Home = () => {
 
     const [modalActive,toggleModalActive] = useState(false)
     const [selecged_tag,set_tag] = useState('すべて')
+	console.log('は');
+	console.log(topics.length)
 	
 	const filterTopics = useMemo(() =>{
-		return topics.filter((_topic) => {
-			if(selecged_tag === 'すべて' || selecged_tag === undefined) return true;
-			return _topic.tags.some(_tag => _tag.name === selecged_tag)
-		})
+		if(topics.length > 0){
+
+			return topics.filter((_topic) => {
+				if(selecged_tag === 'すべて' || selecged_tag === undefined) return true;
+				return _topic.tags.some(_tag => _tag.name === selecged_tag)
+			})
+		}
 	},[selecged_tag,topics])
 	
 	
@@ -109,7 +114,7 @@ export const Home = () => {
 				</div>
 
 				{
-					filterTopics.length > 0 ? 
+					filterTopics && filterTopics.length > 0 ? 
 					(<ul className="topics_wrap">
 						{
 							filterTopics.map((topic)=>(
