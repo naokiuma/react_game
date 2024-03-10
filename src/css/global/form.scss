@@ -1,7 +1,22 @@
 /*フォームページ*/
 .basic_form {
   width: 1080px;
-  margin: auto;
+  margin: 50px auto;
+  form {
+    margin-top: 100px;
+    dl {
+      margin-top: 10px;
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+    dd {
+      margin-top: 5px;
+    }
+  }
+  ._btn_wrap {
+    margin-top: 40px;
+  }
 }
 .topic_form {
   .game_id {

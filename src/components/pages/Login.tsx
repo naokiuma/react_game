@@ -12,13 +12,16 @@ type LoginParams = {
 
 
 export const Login = () => {
-
 	const navigate = useNavigate();
 	
 	//バリデーションエラー
 	const [errMsg,setErrMsg] = useState('')
     const { userInfo,setUserInfo } = useContext(LoggedInUserContext);
 
+	//すでにログイン済みならtopへ。
+	if(userInfo.auth){
+		navigate('/')
+	}
 
 	//useformの初期化
 	const {
@@ -28,12 +31,13 @@ export const Login = () => {
 		} = useForm<LoginParams>({
 	});
 
-	if(userInfo.auth){
-		navigate('/')
-	}
+	//バリデーションNG
+	const isInValid = (erros: any) => {
+		console.log(errors);
+		console.log("Fail Login");
+	};
 
-
-	// バリデーション後、ログイン
+	//バリデーションOK
 	const isValid = async (data: LoginParams) => {
 		await LogInUser(data)
 			.then((response)=>{
@@ -49,12 +53,6 @@ export const Login = () => {
 			.catch((response) => {
 				setErrMsg('ログインに失敗しました。メールアドレスとパスワードが正しいかご確認下さい。');
 			})
-	};
-	
-	// バリデーション処理がNGの場合に呼ばれる関数
-	const isInValid = (erros: any) => {
-		console.log(errors);
-		console.log("Fail Login");
 	};
 
     return(
@@ -79,7 +77,7 @@ export const Login = () => {
 						<p className="_attention_msg">{errors.password?.message}</p>
 					</dd>
 				</dl>
-				<div>
+				<div className='_btn_wrap'>
 					<button type="submit">ログイン</button>
 				</div>
 				{errMsg}

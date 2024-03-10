@@ -2,7 +2,22 @@
 /*フォームページ*/
 .basic_form {
 				width: 1080px;
-				margin: auto;
+				margin: 50px auto;
+}
+.basic_form form {
+				margin-top: 100px;
+}
+.basic_form form dl {
+				margin-top: 10px;
+}
+.basic_form form dl:first-child {
+				margin-top: 0;
+}
+.basic_form form dd {
+				margin-top: 5px;
+}
+.basic_form ._btn_wrap {
+				margin-top: 40px;
 }
 
 .topic_form .game_id input {

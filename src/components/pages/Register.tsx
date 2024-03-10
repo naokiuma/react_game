@@ -1,9 +1,9 @@
 import axios from 'axios'
 import {API_BASE_URL,API_SANCTUM_URL} from "config/url"
-
-import { ChangeEvent, useState,useContext,useEffect} from 'react'
+import { ChangeEvent, useState,useContext} from 'react'
 import {useNavigate } from "react-router-dom";
 import {LoggedInUserContext} from "provider/LoggedInUserProvider";
+import { useForm } from 'react-hook-form';
 
 
 type RegisterParams = {
@@ -14,83 +14,92 @@ type RegisterParams = {
 
 export const Register = () => {
 	const navigate = useNavigate();
+
+	//バリデーションエラー
+	const [errMsg,setErrMsg] = useState('')
 	const { setUserInfo,userInfo } = useContext(LoggedInUserContext);
 
-	const [username,setName] = useState('')
-	const [email,setEmail] = useState('')
-	const [password,setPassword] = useState('')
-	const [errMsg,setErrMsg] = useState('')
-
 	//すでにログイン済みならtopへ。
-	useEffect(() => {
-		console.log('registerでのautho');
-		console.log(userInfo.auth)
-		if (userInfo.auth){
-			navigate('/')
-		}
-		console.log(API_BASE_URL);
-		console.log(API_SANCTUM_URL);
-	},[userInfo.auth])
-
-	const changeName = (e:ChangeEvent<HTMLInputElement>) => {
-		setName(e.target.value)
-	}
-	const changeEmail = (e:ChangeEvent<HTMLInputElement>) => {
-		setEmail(e.target.value)
-	}
-	const changePassword = (e:ChangeEvent<HTMLInputElement>) => {
-		setPassword(e.target.value)
+	if(userInfo.auth){
+		navigate('/')
 	}
 
-	const handleLoginClick = () => {
-		const loginParams:RegisterParams = {username,email,password}
+	const {
+		register,
+		handleSubmit,
+		formState:{errors}
+	} = useForm<RegisterParams>();
 
+
+	//バリデーションNG
+	const isInValid = (erros: any) => {
+		console.log(errors);
+		console.log("Fail Regist");
+	};
+
+	// バリデーション後OK
+	const isValid = async (data: RegisterParams) => {
 		axios//csrf保護の初期化
-			.get(API_SANCTUM_URL, { withCredentials: true })
+		.get(API_SANCTUM_URL, { withCredentials: true })
+		.then((response) => {
+			//ログイン処理
+			axios
+			.post(
+				API_BASE_URL + '/register',
+				data,
+				{withCredentials:true}
+			)
 			.then((response) => {
-				//ログイン処理
-				axios
-				.post(
-					API_BASE_URL + '/register',
-					loginParams,
-					{withCredentials:true}
-				)
-				.then((response) => {
-					if(response.data.result){
-						setUserInfo({
-							name:response.data.name,
-							user_id:response.data.id,
-							email:response.data.email,
-							auth:true
-						})
-					}else{
-						setErrMsg(response.data.msg)
-					}
-				})
+				if(response.data.result){
+					setUserInfo({
+						name:response.data.name,
+						user_id:response.data.id,
+						email:response.data.email,
+						auth:true
+					})
+				}else{
+					setErrMsg(response.data.msg)
+				}
 			})
-		}
+	})
+
+	};
+
 
 	return(
 		<section className="basic_form">
 			<h1>
 				ユーザー登録
 			</h1>
-			<dl>
-				<dt>お名前</dt>
-				<dd><input onChange={changeName}/></dd>
-			</dl>
-			<dl>
-				<dt>メールアドレス</dt>
-				<dd><input onChange={changeEmail}/></dd>
-			</dl>
-			<dl>
-				<dt>パスワード</dt>
-				<dd><input onChange={changePassword}/></dd>
-			</dl>
-		
-			<div>
-				<button onClick={handleLoginClick}>登録</button>
-			</div>
+			<form onSubmit={handleSubmit(isValid,isInValid)}>
+
+				<dl>
+					<dt>お名前</dt>
+					<dd>
+						<input {...register('username', { required: 'お名前は必須です' })} placeholder="ななし"/>
+						<p className="_attention_msg">{errors.username?.message}</p>				
+					</dd>
+				</dl>
+				<dl>
+					<dt>メールアドレス</dt>
+					<dd>
+						<input {...register('email', { required: 'emailは必須です' })} placeholder="example@example.com"/>
+						<p className="_attention_msg">{errors.email?.message}</p>				
+					</dd>
+				</dl>
+				<dl>
+					<dt>パスワード</dt>
+					<dd>
+						<input {...register('password', { required: 'passwordは必須です' })} placeholder="**********"/>
+						<p className="_attention_msg">{errors.password?.message}</p>
+					</dd>
+				</dl>
+			
+				<div className="_btn_wrap">
+					<button type="submit">登録</button>
+				</div>
+				{errMsg}
+			</form>
 
 		</section>
 	)
