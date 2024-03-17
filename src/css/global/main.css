@@ -14,6 +14,7 @@ a:hover {
 
 h2 {
 				font-size: 30px;
+				line-height: 1;
 }
 
 .search_icon_wrap {
@@ -46,7 +47,7 @@ main {
 }
 
 .main_btn {
-				background-color: #ffff76;
+				background-color: #fff;
 }
 
 .secondly_btn {
@@ -70,11 +71,9 @@ main {
 .main_contents {
 				min-width: 1100px;
 				width: 1100px;
-				margin: auto;
+				margin-left: auto;
+				margin-right: auto;
 				padding: 0px 30px;
-}
-.main_contents ._main_img_wrap {
-				width: 100%;
 }
 .main_contents .img_wrap {
 				width: 400px;
@@ -348,10 +347,10 @@ footer {
 				height: 100%;
 }
 .topics_wrap li {
-				width: 285px;
+				width: 250px;
 				height: 310px;
-				margin-top: 24px;
-				margin-right: 20px;
+				margin-top: 10px;
+				margin-right: 10px;
 				border: 1px solid #353535;
 }
 .topics_wrap li:nth-child(4n) {
@@ -678,13 +677,10 @@ footer {
 .game_detail {
 				border-radius: 6px;
 				padding: 20px;
-				margin: 100px auto auto auto;
+				margin: 50px auto auto auto;
 				width: 100%;
 				background-color: rgba(78, 166, 204, 0.0392156863);
 				border: 1px solid #5f5f5f;
-}
-.game_detail h2 {
-				line-height: 1;
 }
 .game_detail ._inner {
 				margin-top: 10px;
@@ -732,9 +728,6 @@ footer {
 				display: flex;
 				flex-direction: column;
 }
-.game_detail ._inner ._sub_info strong {
-				font-size: 20px;
-}
 .game_detail ._inner ._sub_info ._btns {
 				margin-top: 10px;
 }
@@ -742,7 +735,7 @@ footer {
 				font-size: 14px;
 				padding: 15px 20px;
 				line-height: 1;
-				width: 220px;
+				width: 210px;
 				border-radius: 6px;
 				border: none;
 				cursor: pointer;
@@ -840,6 +833,17 @@ footer {
 				}
 }
 /*topic詳細ページ*/
+.topic_detail .topic_detail_content {
+				margin-top: 40px;
+}
+.topic_detail .main_text {
+				margin-top: 30px;
+				font-size: 16px;
+}
+.topic_detail ._main_img_wrap {
+				width: 100%;
+				margin-top: 30px;
+}
 /*ヒーロ*/
 .hero {
 				width: 1100px;

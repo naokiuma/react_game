@@ -53,7 +53,7 @@ export const Home = () => {
 			<section className="hero">
 				<div className="inner">
 					<div className="first_info">
-						<h1>ゲームをつもう！</h1>
+						<h1>ゲームを積む</h1>
 					</div>
 
 					<SMainInfo>
@@ -61,7 +61,7 @@ export const Home = () => {
 							<div>
 								<h3>
 									<i className="fa-sharp fa-regular fa-pen-to-square"></i>
-									積んで
+									積む。
 								</h3>
 							</div>
 							<figure>
@@ -75,7 +75,7 @@ export const Home = () => {
 							<div>
 								<h3>
 									<i className="fa-solid fa-magnifying-glass"></i>
-									シェアして
+									楽しむ。
 								</h3>
 							</div>
 						</div>
@@ -83,7 +83,7 @@ export const Home = () => {
 							<div>
 								<h3>
 									<i className="fa-sharp fa-regular fa-handshake"></i>
-									また積もう！
+									また積む。
 								</h3>
 							</div>
 							<figure>

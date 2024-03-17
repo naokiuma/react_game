@@ -39,8 +39,8 @@ export const GameDetail = memo(() => {
     return (
 		<>
 			<section className="game_detail">				
-				<h2 className="">  
-					{game['game_name']}
+				<h2 className="game_detail_title">  
+					ゲームタイトル：{game['game_name']}
 				</h2>
 				<div className="_inner">
 					{
@@ -84,7 +84,10 @@ export const GameDetail = memo(() => {
 									</ul>
 								</div>
 							):(
-								<span>ない</span>
+								<div className="about_topics">
+									<span>現在、このゲームについてのトピックはありません。</span>
+								</div>
+
 							)
 						}
 						<Link className="main_btn" to={`/topic/create/${gameId}`} >

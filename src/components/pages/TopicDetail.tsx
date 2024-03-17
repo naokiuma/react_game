@@ -89,7 +89,7 @@ export const TopicDetail = memo(() => {
                 </div>
             </div>
            
-            <div className="main_contents">
+            <div className="main_contents topic_detail_content">
                 <h2 className="topic_title">         
                     {title}
                 </h2>
