@@ -26,7 +26,7 @@ h2 {
 
 /*汎用css*/
 main {
-				padding-top: 70px;
+				padding-top: 50px;
 				padding-bottom: 120px;
 }
 
@@ -65,7 +65,11 @@ main {
 }
 
 .game_list {
-				padding: 100px 0px 70px 0px;
+				padding: 50px 0px 70px 0px;
+}
+.game_list .search_form_wrap {
+				padding: 0;
+				border: initial;
 }
 
 .main_contents {
@@ -348,8 +352,8 @@ footer {
 }
 .topics_wrap li {
 				width: 250px;
-				height: 310px;
-				margin-top: 10px;
+				height: 275px;
+				margin-top: 20px;
 				margin-right: 10px;
 				border: 1px solid #353535;
 }
@@ -515,23 +519,21 @@ footer {
 }
 
 .topic_card_wrap {
-				padding: 10px;
+				padding: 15px;
 				color: #535353;
 				display: flex;
 				flex-direction: column;
 				height: 100%;
+				position: relative;
 }
 .topic_card_wrap ._title {
-				font-size: 20px;
+				font-size: 18px;
 				font-weight: bold;
 }
 .topic_card_wrap ._title span {
 				display: block;
 				font-size: 14px;
 				font-weight: lighter;
-}
-.topic_card_wrap .sub_info {
-				margin-top: 10px;
 }
 .topic_card_wrap .topic_img {
 				border: 3px solid #525252;
@@ -540,30 +542,32 @@ footer {
 				object-fit: cover;
 				margin-top: auto;
 }
-.topic_card_wrap .tags_wrap {
-				flex-wrap: wrap;
-}
-.topic_card_wrap .tags_wrap span {
-				margin-top: 7px;
-}
 
 .status_label {
 				font-weight: bold;
+				background-color: #fff;
 				border: 1px solid #525252;
 				padding: 5px 14px;
 				display: inline-block;
 				font-size: 12px;
 				line-height: 1;
 				border-radius: 5px;
+				position: absolute;
+				top: -10px;
+				right: -10px;
+				z-index: 2;
 }
 
 .tags_wrap {
 				display: flex;
+				flex-wrap: wrap;
 }
 .tags_wrap span {
 				font-size: 12px;
 				margin-left: 10px;
+				margin-top: 7px;
 				padding: 3px 7px;
+				line-height: 1;
 }
 .tags_wrap span:first-child {
 				margin-left: 0;
@@ -625,17 +629,14 @@ footer {
 }
 
 .game_card {
-				width: 250px;
+				width: 245px;
 				height: 190px;
 				border: 1px solid #ccd6ce;
-				margin-left: 20px;
+				margin-right: 20px;
 				margin-top: 20px;
 }
-.game_card:first-child {
-				margin-left: 0;
-}
-.game_card:nth-child(4n+1) {
-				margin-left: 0;
+.game_card:nth-child(4n) {
+				margin-right: 0;
 }
 .game_card ._first {
 				font-size: 16px;

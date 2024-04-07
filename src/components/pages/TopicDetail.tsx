@@ -120,10 +120,6 @@ export const TopicDetail = memo(() => {
                         </figure>
                     </div>
                 }
-              
-                <div className="status_label mt10">
-                    {status}
-                </div>
                 {/* 一つ一つのコメント */}
                 <div className="comments_wrap">
                     {

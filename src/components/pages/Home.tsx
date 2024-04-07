@@ -96,7 +96,7 @@ export const Home = () => {
 			
 			<section className="home_section main_contents">
 				<h2>みんなの取り組み中ゲーム</h2>
-				<div className="tags_wrap">
+				<div className="tags_wrap select_tags">
 					{
 						categories.length > 0 ? 
 							(

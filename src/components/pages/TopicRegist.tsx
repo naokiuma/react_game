@@ -1,6 +1,6 @@
 
-import { memo,useState,useEffect,Suspense } from "react";
-import { useForm } from 'react-hook-form';
+import { memo,useState,useEffect } from "react";
+import { useForm,Controller } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import {ImgPreview} from "components/commons/ImgPreview"
 
@@ -8,6 +8,8 @@ import {ImgPreview} from "components/commons/ImgPreview"
 import {CreateTopic} from "infrastructure/topicDriver";
 import {GetCategory} from "infrastructure/categoryDriver";
 import {getGames} from "infrastructure/gameDriver";
+
+import Select from 'react-select'
 
 
 //Form用の情報
@@ -18,14 +20,18 @@ type FormInputs = {
     Status: string;
 };
 
+const status_options = [
+	{ value: 'プレイ中', label: 'プレイ中' },
+	{ value: 'クリア', label: 'クリア' },
+	{ value: 'やり込み中', label: 'やり込み中' }
+]
+
+
 // todo 次ここ
 export const TopicRegist = memo(() => {
 
 	const { game_id } = useParams();
     let target_game_id = Number(game_id);
-	console.log('ああい')
-	console.log(target_game_id)
-
 
     //既存カテゴリーの取得--------------
     let [categories,set_category] = useState([])
@@ -56,6 +62,7 @@ export const TopicRegist = memo(() => {
     //useformの初期化
     const {
 			register,
+			control,
 			handleSubmit,
 			formState: { errors }
 		} = useForm<FormInputs>({
@@ -66,7 +73,6 @@ export const TopicRegist = memo(() => {
     const [images, setImages] = useState<File[]>([]);
 
 
-    
     const submit = (data:FormInputs) => {
 		console.log(data)
         CreateTopic(data.Gameid,data.Title,data.Body,data.Status,images)  
@@ -91,12 +97,21 @@ export const TopicRegist = memo(() => {
                         <p className="_attention_msg">{errors.Title?.message}</p> {/* エラー表示 */}
                     </div>
                     
-                    <select className="write_area" {...register('Status')}>
-                        <span className="value_title">状況</span>
-                        <option value="プレイ中">プレイ中</option>
-                        <option value="クリア">クリア</option>
-                        <option value="やり込み中">やり込み中</option>
-                    </select>
+
+					<Controller
+						control={control}
+						name="Status"
+						render={({ field }) => (
+							<Select
+							  options={status_options}
+							  value={status_options.find((x) => x.value === field.value)}
+							  onChange={(newValue) => {
+								field.onChange(newValue?.value);
+							  }}
+							/>
+						  )}
+					/> 
+
 
 					{game_data?.[0]?.id && (
 						<div className="write_area game_id">
