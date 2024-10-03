@@ -44,12 +44,13 @@ export const Header = memo((props:headerProps) => {
 				</Link>
 				<ul>
 					<li>
-						<Link to="/game/list">ゲーム</Link>
+						<Link to="/game/list">積みリスト</Link>
 					</li>
-					{/* todo ↓ログインしていれば出す */}
+					{userInfo.auth &&
 					<li>
 						<Link to="/setting">設定</Link>
 					</li>
+					}
 				</ul>
 
 				<ul className="header_login_block">

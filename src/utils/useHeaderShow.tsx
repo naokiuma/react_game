@@ -1,7 +1,12 @@
 import { useState,useEffect } from "react";
 
 
-// スクロールを制御する
+/**
+ * Custom hook that determines whether the header should be active based on the scroll position.
+ *
+ * @param {number} activePoint - The scroll position at which the header should become active.
+ * @returns {boolean} - A boolean indicating whether the header is active.
+ */
 const useHeaderShow = (activePoint: number): boolean => {
 	const [isHeaderActive, setIsHeaderActive] = useState<boolean>(false);
   
@@ -21,8 +26,6 @@ const useHeaderShow = (activePoint: number): boolean => {
 		window.removeEventListener('scroll', scrollWindow);
 	  };
 	}, [activePoint]);
-	console.log('ヘッダー表示結果');
-	console.log(isHeaderActive)
   
 	return isHeaderActive ;
 };

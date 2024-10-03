@@ -40,7 +40,7 @@ main {
 }
 
 .contents_outer {
-  padding-top: 100px;
+  padding: 100px 0;
 }
 
 .main_btn,
@@ -347,6 +347,7 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 100;
 }
 
 .topics_wrap {
@@ -357,12 +358,16 @@ footer {
   a {
     display: block;
     height: 100%;
+	&:hover{
+		opacity: 1;
+		background-color: red;
+	}
   }
   li {
-    width: 250px;
+    width: 240px;
     height: 275px;
     margin-top: 20px;
-    margin-right: 10px;
+    margin-right: 20px;
     border: 1px solid #353535;
     &:nth-child(4n) {
       margin-right: 0;
@@ -426,7 +431,7 @@ footer {
     margin-top: ５px;
 
     input {
-      width: 40%;
+      width: 50%;
       padding: 10px;
       line-height: 1;
     }
@@ -436,6 +441,17 @@ footer {
       line-height: 1.5;
       height: 15em;
     }
+  }
+
+  .game_name {
+    ._attention_msg {
+      margin-left: 10px;
+      font-size: 12px;
+    }
+  }
+
+  .game_status {
+    width: 50%;
   }
 
   .submit_btn {
@@ -596,12 +612,6 @@ footer {
 
 ._attention_msg {
   color: red;
-}
-.game_name {
-  ._attention_msg {
-    margin-left: 10px;
-    font-size: 12px;
-  }
 }
 
 .search_input_wrap {
@@ -803,10 +813,13 @@ footer {
     }
   }
 }
+
+.mb10 {
+  margin-bottom: 10px;
+}
 .mt10 {
   margin-top: 10px;
 }
-
 .mt20 {
   margin-top: 20px;
 }
@@ -889,6 +902,7 @@ footer {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+	flex-direction: column;
   }
 
   .first_info {

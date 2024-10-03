@@ -53,7 +53,7 @@ export const Home = () => {
 			<section className="hero">
 				<div className="inner">
 					<div className="first_info">
-						<h1>ゲームを積む</h1>
+						<h1>ゲームを積もう。</h1>
 					</div>
 
 					<SMainInfo>
@@ -96,6 +96,8 @@ export const Home = () => {
 			
 			<section className="home_section main_contents">
 				<h2>みんなの取り組み中ゲーム</h2>
+
+				{/* カテゴリー */}
 				<div className="tags_wrap select_tags">
 					{
 						categories.length > 0 ? 
@@ -113,6 +115,7 @@ export const Home = () => {
 					}
 				</div>
 
+				{/* トピック */}
 				{
 					filterTopics && filterTopics.length > 0 ? 
 					(<ul className="topics_wrap">

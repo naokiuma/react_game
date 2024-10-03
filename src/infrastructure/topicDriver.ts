@@ -67,7 +67,7 @@ export const useGetTopics = (count:number,target_id?:number) => {
 }
 
 
-export const CreateTopic = (game_id,title,body,status,imgData?) => {
+export const CreateTopic = (game_id,title,body,status,imgData?): Promise<any> => {
     const target_URL =  `${API_BASE_URL}/topics/create`;
     checkApiUrl(target_URL);
     const res = axios//csrf保護の初期化
@@ -79,11 +79,12 @@ export const CreateTopic = (game_id,title,body,status,imgData?) => {
                     {'Content-Type': 'multipart/form-data',},//画像を送る際にはこの指定が必要
                     withCredentials:true,
                 },
-            ).then(()=>{
+            ).then((response)=>{
+				console.log(response.data.game_id);
                 // window.location.reload();
             })
         })
-        return res;
+    return res;
 }
 
 

@@ -9,7 +9,8 @@ import { Header } from 'components/commons/Header';
 import  useHeaderShow from 'utils/useHeaderShow';
 
 export const Layout = () => {
-	const isHeaderShow = useHeaderShow(100);
+	// const isHeaderShow = useHeaderShow(100);
+	const isHeaderShow = true;
     let modalcontext = useContext(ModalContext)
     return(
         <>

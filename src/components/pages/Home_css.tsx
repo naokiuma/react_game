@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 export const SMainInfo = styled.section`
-	width:50%;
+	width:80%;
+	margin:auto;
 	._each{
 		margin-top: 30px;
 		display: flex;

@@ -31,7 +31,7 @@ main {
 }
 
 .contents_outer {
-				padding-top: 100px;
+				padding: 100px 0;
 }
 
 .main_btn,
@@ -338,6 +338,7 @@ footer {
 				display: flex;
 				align-items: center;
 				justify-content: center;
+				z-index: 100;
 }
 
 .topics_wrap {
@@ -350,11 +351,15 @@ footer {
 				display: block;
 				height: 100%;
 }
+.topics_wrap a:hover {
+				opacity: 1;
+				background-color: red;
+}
 .topics_wrap li {
-				width: 250px;
+				width: 240px;
 				height: 275px;
 				margin-top: 20px;
-				margin-right: 10px;
+				margin-right: 20px;
 				border: 1px solid #353535;
 }
 .topics_wrap li:nth-child(4n) {
@@ -415,7 +420,7 @@ footer {
 }
 .modal .write_area input,
 .form_wrap .write_area input {
-				width: 40%;
+				width: 50%;
 				padding: 10px;
 				line-height: 1;
 }
@@ -425,6 +430,15 @@ footer {
 				padding: 10px;
 				line-height: 1.5;
 				height: 15em;
+}
+.modal .game_name ._attention_msg,
+.form_wrap .game_name ._attention_msg {
+				margin-left: 10px;
+				font-size: 12px;
+}
+.modal .game_status,
+.form_wrap .game_status {
+				width: 50%;
 }
 .modal .submit_btn,
 .form_wrap .submit_btn {
@@ -585,11 +599,6 @@ footer {
 
 ._attention_msg {
 				color: red;
-}
-
-.game_name ._attention_msg {
-				margin-left: 10px;
-				font-size: 12px;
 }
 
 .search_input_wrap {
@@ -782,6 +791,10 @@ footer {
 				margin-top: auto;
 }
 
+.mb10 {
+				margin-bottom: 10px;
+}
+
 .mt10 {
 				margin-top: 10px;
 }
@@ -857,6 +870,7 @@ footer {
 				display: flex;
 				flex-direction: row;
 				justify-content: space-between;
+				flex-direction: column;
 }
 .hero .first_info {
 				width: auto;
