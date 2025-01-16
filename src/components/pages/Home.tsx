@@ -2,11 +2,14 @@ import { useMemo, useContext, useState} from "react";
 import { Link } from "react-router-dom";
 import { Topic } from "components/atom/Topic";
 import { useQuery } from 'react-query';
+import { GameCard } from 'components/molecules/card/GameCard'
+
 
 import {CategoryLabel } from "components/atom/CategoryLabel";
 
 
 //インフラ
+import {getGames} from "infrastructure/gameDriver";
 import {getTopic} from "infrastructure/topicDriver";
 import {GetCategory} from "infrastructure/categoryDriver";
 
@@ -31,6 +34,12 @@ export const Home = () => {
 			return GetCategory()
 		}
 	});
+
+	const { data :games} = useQuery({
+		queryKey:['games'] ,
+		queryFn:() => getGames()
+	});
+
 
     const [modalActive,toggleModalActive] = useState(false)
     const [selecged_tag,set_tag] = useState('すべて')
@@ -94,29 +103,28 @@ export const Home = () => {
 				</div>
 			</section>
 			
-			<section className="home_section main_contents">
-				<h2>みんなの取り組み中ゲーム</h2>
+			<section className="home_section main_contents w-50">
+				{/* <h2>ゲーム一覧</h2> */}
 
 				{/* カテゴリー */}
-				<div className="tags_wrap select_tags">
-					{
-						categories.length > 0 ? 
-							(
-								<>
-									{categories.map((_category)=>(
-										<CategoryLabel name={_category.name} func={set_tag} bgc={_category.color} key={_category.category_id}/>
-									))}
-									<span className="category_label" onClick={() => set_tag('すべて')}>すべて</span>
-								</>
-							):
-							(
-								<div>カテゴリーがありません。</div>
-							)	
+				{/* <div className="tags_wrap select_tags">
+					{ categories.length > 0 ? 
+						(
+							<>
+								{categories.map((_category)=>(
+									<CategoryLabel name={_category.name} func={set_tag} bgc={_category.color} key={_category.category_id}/>
+								))}
+								<span className="category_label" onClick={() => set_tag('すべて')}>すべて</span>
+							</>
+						):
+						(
+							<div>カテゴリーがありません。</div>
+						)	
 					}
-				</div>
+				</div> */}
 
 				{/* トピック */}
-				{
+				{/* {
 					filterTopics && filterTopics.length > 0 ? 
 					(<ul className="topics_wrap">
 						{
@@ -138,19 +146,19 @@ export const Home = () => {
 						}  
 					</ul>):
 					( <div>データがありません。</div> )
-				}
+				} */}
 				
 			</section>
 
 
-			{/* <section className="top_games main_contents">
+			<section className="top_games main_contents">
 				<h2>ゲーム一覧</h2>
 				<div className="game_card_wrap">
 					{games.map((each_game)=>(
 						<GameCard key={each_game.id} {...each_game} />
 					))}
 				</div>
-			</section> */}
+			</section>
 
 
 			<div className="new_form_button">

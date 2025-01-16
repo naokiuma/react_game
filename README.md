@@ -48,3 +48,7 @@ DB との通信を伴う実際の関数。<br/>
 ## テストのスクリプト
 
 yarn run test
+
+## ルーティング
+
+MainRoute

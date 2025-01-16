@@ -70,12 +70,13 @@ export const TopicDetail = memo(() => {
     let main_img;
     if(topics[0] && topics[0]['image_path'] != null){
         let temp_image_path = topics[0]['image_path'];
-        main_img = 'http://localhost:8888/' + temp_image_path.replace("public","storage");
+        main_img = 'http://now-games-api.local:8888/' + temp_image_path.replace("public","storage");
+		// http://now-games-api.local:8888/
     }else{
         main_img = '';
     }
 
-    const tags = ['ローグライク','泣ける']
+    const tags = ['ローグライク','泣けるああ']
     
     return (
         <section className="topic_detail">
@@ -104,7 +105,7 @@ export const TopicDetail = memo(() => {
                 </div>
 
                 <div className="main_text">
-                    <p>{body}</p>
+                    <p>{body}</p>です
                 </div>
                 
                 {/* topicのユーザーidがログイン中urser_idと同じなら編集可能 */}
